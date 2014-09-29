@@ -9,8 +9,6 @@
 				echo Yii::app()->bootstrap->registerAllCss();
 				echo Yii::app()->bootstrap->registerCoreScripts();
 			?>
-			<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/genericos.css" />
-			<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/estilos.css" />
 
 			<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 		</head>
@@ -53,9 +51,11 @@
 			<?php endif?>
 			</div>
 
-			<?php echo $content; ?>
+			<?php echo $content;?>
 
 			<div class="footer text-center">
+                                <?php if(Yii::app()->user->getId()!=null){echo Yii::app()->user->getId();}
+                                else{echo "YOLO";}?>
 				Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
 				All Rights Reserved.<br/>
 				<?php echo Yii::powered(); ?>
