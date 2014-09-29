@@ -9,6 +9,8 @@
 				echo Yii::app()->bootstrap->registerAllCss();
 				echo Yii::app()->bootstrap->registerCoreScripts();
 			?>
+			<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/genericos.css" />
+			<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/estilos.css" />
 
 			<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 		</head>
