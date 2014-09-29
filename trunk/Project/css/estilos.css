@@ -1,0 +1,27 @@
+div.navbar-inner {
+	height: 80px;
+	
+}
+a.brand {
+	width: 47px;
+	height: 70px;
+	margin-top: 5px;
+	margin-left: 20px !important;
+	margin-right: 20px;
+	padding: 0 !important;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url("../images/logo.png") no-repeat;
+}
+#yw0 {
+	margin-top: 20px;
+}
+#content {
+	width: 45%;
+}
+h1 {
+	font-size: 28.5px !important;
+}
+.row {
+	margin-left: 0 !important;
+}
