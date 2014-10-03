@@ -68,10 +68,10 @@ class CategoriaController extends Controller
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Categoria']))
-		{
+		{                  
+			$model->attributes=$_POST['Categoria'];
                         $userId = Yii::app()->user->getId();
                         $model->CORREO = $userId;
-			$model->attributes=$_POST['Categoria'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->ID_CATEGORIA));
 		}

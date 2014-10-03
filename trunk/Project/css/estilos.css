@@ -1,27 +1,94 @@
-div.navbar-inner {
-	height: 80px;
-	
+input[type="button"], input[type="submit"], input[type="reset"] {
+	background: #595959;
+	color: #ffffff;
+	border: 1px solid #14513f;
+	padding: 5px 8px;
+	border-radius: 5px;
+	cursor: pointer;
+        font-size: 15px;
 }
-a.brand {
-	width: 47px;
-	height: 70px;
-	margin-top: 5px;
-	margin-left: 20px !important;
-	margin-right: 20px;
-	padding: 0 !important;
-	text-indent: -9999px;
-	overflow: hidden;
-	background: url("../images/logo.png") no-repeat;
+input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+	background: #8f8d8d;
 }
-#yw0 {
-	margin-top: 20px;
+input[type="text"], input[type="password"] {
+	display: inline-block;
+	height: 22px;
+	border-radius: 5px;
+	border: 1px solid #1c1c1c;
 }
+.span-19 {
+    width: 20%;
+    margin-left: 50px;
+}
+.container {
+    width: 100%;
+}
+#page {
+    border: none;
+    margin: 0;
+}
+#header {
+    position: relative;
+    background-color: #1c1c1c;
+    border: none;
+}
+    #logo {
+        height: 70px;
+    }
+        #logo a{
+            display: block;
+            width: 47px;
+            height: 70px;
+            margin-left: 50px;
+            text-indent: -9999px;
+            overflow: hidden;
+            background: url("../images/logo.png") no-repeat;
+            background-color: #1c1c1c;
+        }
+    #mainmenu {
+        position: absolute;
+        left: 130px;
+        top: 30px;
+        background: none;
+        background-color: #1c1c1c;
+    } 
+        #mainmenu ul li a {
+            color: #8f8d8d;
+            font-size: 13px;
+            padding: 10px 15px;
+        }
+        #mainmenu ul li.active a {
+            background-color: #000000;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        #mainmenu ul li a:hover {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            text-decoration: none;
+        }
 #content {
-	width: 45%;
+    width: 20%;
+    margin-left: 50px;
 }
-h1 {
-	font-size: 28.5px !important;
+div.span-19 #content {
+    width: 100%;
+    margin: 0;
 }
-.row {
-	margin-left: 0 !important;
-}
+    #content div.categoria {
+        position: relative;
+        height: 30px;
+        border: 1px solid #1c1c1c;
+        border-radius: 5px;
+    }
+        #content div.categoria a {
+            position: absolute;
+            display: block;
+            top: 5px;
+            right: 10px;
+            width: 21px;
+            height: 21px;
+            text-indent: -9999px;
+            overflow: hidden;
+            background: url("../images/iconoMas.png");
+        }
