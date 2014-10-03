@@ -15,16 +15,10 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Los campos <span class="required">*</span> son obligatorios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-        <!--
-	<div class="row">
-		<?php echo $form->labelEx($model,'CORREO'); ?>
-		<?php echo $form->textField($model,'CORREO',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'CORREO'); ?>
-	</div>
-        -->
+       
 	<div class="row">
 		<?php echo $form->labelEx($model,'NOMBRE_CATEGORIA'); ?>
 		<?php echo $form->textField($model,'NOMBRE_CATEGORIA',array('size'=>60,'maxlength'=>100)); ?>
