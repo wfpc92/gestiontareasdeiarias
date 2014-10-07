@@ -17,9 +17,6 @@
 	<?php echo CHtml::encode($data->NOMBRE_CATEGORIA); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('DESCRIPCION_CATEGORIA')); ?>:</b>
-	<?php echo CHtml::encode($data->DESCRIPCION_CATEGORIA); ?>
-	<br />
 
 
 </div>

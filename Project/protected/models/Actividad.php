@@ -8,7 +8,6 @@
  * @property string $CORREO
  * @property integer $ID_CATEGORIA
  * @property string $NOMBRE_ACTIVIDAD
- * @property string $DESCRIPCION_ACTIVIDAD
  */
 class Actividad extends CActiveRecord
 {
@@ -31,10 +30,9 @@ class Actividad extends CActiveRecord
 			array('CORREO, ID_CATEGORIA', 'required'),
 			array('ID_CATEGORIA', 'numerical', 'integerOnly'=>true),
 			array('CORREO, NOMBRE_ACTIVIDAD', 'length', 'max'=>100),
-			array('DESCRIPCION_ACTIVIDAD', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID_ACTIVIDAD, CORREO, ID_CATEGORIA, NOMBRE_ACTIVIDAD, DESCRIPCION_ACTIVIDAD', 'safe', 'on'=>'search'),
+			array('ID_ACTIVIDAD, CORREO, ID_CATEGORIA, NOMBRE_ACTIVIDAD', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +57,6 @@ class Actividad extends CActiveRecord
 			'CORREO' => 'Correo',
 			'ID_CATEGORIA' => 'Id Categoria',
 			'NOMBRE_ACTIVIDAD' => 'Nombre Actividad',
-			'DESCRIPCION_ACTIVIDAD' => 'Descripcion Actividad',
 		);
 	}
 
@@ -85,7 +82,6 @@ class Actividad extends CActiveRecord
 		$criteria->compare('CORREO',$this->CORREO,true);
 		$criteria->compare('ID_CATEGORIA',$this->ID_CATEGORIA);
 		$criteria->compare('NOMBRE_ACTIVIDAD',$this->NOMBRE_ACTIVIDAD,true);
-		$criteria->compare('DESCRIPCION_ACTIVIDAD',$this->DESCRIPCION_ACTIVIDAD,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

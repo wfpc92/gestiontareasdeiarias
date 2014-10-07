@@ -21,9 +21,6 @@
 	<?php echo CHtml::encode($data->NOMBRE_ACTIVIDAD); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('DESCRIPCION_ACTIVIDAD')); ?>:</b>
-	<?php echo CHtml::encode($data->DESCRIPCION_ACTIVIDAD); ?>
-	<br />
 
 
 </div>

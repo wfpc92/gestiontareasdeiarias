@@ -31,10 +31,6 @@
 		<?php echo $form->textField($model,'NOMBRE_ACTIVIDAD',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->label($model,'DESCRIPCION_ACTIVIDAD'); ?>
-		<?php echo $form->textField($model,'DESCRIPCION_ACTIVIDAD',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>

@@ -1,5 +1,35 @@
 <?php
-
+/**
+ * Funcion que retorna la cadena de conexion
+ * segun el servidor donde se ejecute
+ * si es local: retorna una cadena de conexion local
+ * si es servidor de prueba: retorna conexion a servidor remoto
+ */
+function cadenaConexion(){
+    $servidor = $_SERVER['SERVER_NAME'];
+    $clave = "wfpc92.tk";
+    echo var_dump($servidor);
+    
+    if(strpos($servidor, $clave)!==FALSE){
+        return array(
+            'connectionString' => 'mysql:host=mysql.nixiweb.com;dbname=u974710561_proy2',
+            'emulatePrepare' => true,
+            'username' => 'u974710561_proy2',
+            'password' => 'u974710561_proy2',
+            'charset' => 'utf8',
+        );
+    }else{
+        return array(
+            'connectionString' => 'mysql:host=localhost;dbname=u974710561_proy2',
+            'emulatePrepare' => true,
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+        );
+    }
+    
+    
+}
 
 
 // uncomment the following to define a path alias
@@ -10,7 +40,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Planificación de Actividades Diarias',
-	'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
+	'theme'=>'classic', // requires you to copy the theme under your themes directory
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -49,19 +79,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-		// uncomment the following to use a MySQL database
-		
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=proyecto2',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => 'root',
-			'charset' => 'utf8',
-		),
+		'db'=>cadenaConexion(),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
