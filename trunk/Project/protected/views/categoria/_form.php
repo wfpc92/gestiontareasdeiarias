@@ -25,11 +25,6 @@
 		<?php echo $form->error($model,'NOMBRE_CATEGORIA'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'DESCRIPCION_CATEGORIA'); ?>
-		<?php echo $form->textField($model,'DESCRIPCION_CATEGORIA',array('size'=>60,'maxlength'=>200)); ?>
-		<?php echo $form->error($model,'DESCRIPCION_CATEGORIA'); ?>
-	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

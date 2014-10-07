@@ -7,7 +7,6 @@
  * @property integer $ID_CATEGORIA
  * @property string $CORREO
  * @property string $NOMBRE_CATEGORIA
- * @property string $DESCRIPCION_CATEGORIA
  */
 class Categoria extends CActiveRecord
 {
@@ -29,10 +28,9 @@ class Categoria extends CActiveRecord
 		return array(
 			array('CORREO', 'required'),
 			array('CORREO, NOMBRE_CATEGORIA', 'length', 'max'=>100),
-			array('DESCRIPCION_CATEGORIA', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID_CATEGORIA, CORREO, NOMBRE_CATEGORIA, DESCRIPCION_CATEGORIA', 'safe', 'on'=>'search'),
+			array('ID_CATEGORIA, CORREO, NOMBRE_CATEGORIA, ', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,8 +53,7 @@ class Categoria extends CActiveRecord
 		return array(
 			'ID_CATEGORIA' => 'Id Categoria',
 			'CORREO' => 'Correo',
-			'NOMBRE_CATEGORIA' => 'Nombre Categoria',
-			'DESCRIPCION_CATEGORIA' => 'Descripcion Categoria',
+			'NOMBRE_CATEGORIA' => 'Nombre Categoria'
 		);
 	}
 
@@ -81,7 +78,6 @@ class Categoria extends CActiveRecord
 		$criteria->compare('ID_CATEGORIA',$this->ID_CATEGORIA);
 		$criteria->compare('CORREO',$this->CORREO,true);
 		$criteria->compare('NOMBRE_CATEGORIA',$this->NOMBRE_CATEGORIA,true);
-		$criteria->compare('DESCRIPCION_CATEGORIA',$this->DESCRIPCION_CATEGORIA,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

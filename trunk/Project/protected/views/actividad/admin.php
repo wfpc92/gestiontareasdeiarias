@@ -49,7 +49,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'CORREO',
 		'ID_CATEGORIA',
 		'NOMBRE_ACTIVIDAD',
-		'DESCRIPCION_ACTIVIDAD',
 		array(
 			'class'=>'CButtonColumn',
 		),

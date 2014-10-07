@@ -42,11 +42,7 @@
 		<?php echo $form->error($model,'NOMBRE_ACTIVIDAD'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'DESCRIPCION_ACTIVIDAD'); ?>
-		<?php echo $form->textField($model,'DESCRIPCION_ACTIVIDAD',array('size'=>60,'maxlength'=>200)); ?>
-		<?php echo $form->error($model,'DESCRIPCION_ACTIVIDAD'); ?>
-	</div>
+	
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

@@ -24,6 +24,5 @@ $this->menu=array(
 		'ID_CATEGORIA',
 		'CORREO',
 		'NOMBRE_CATEGORIA',
-		'DESCRIPCION_CATEGORIA',
 	),
 )); ?>

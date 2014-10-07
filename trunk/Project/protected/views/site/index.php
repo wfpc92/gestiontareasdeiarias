@@ -9,6 +9,8 @@
     <a href="<?php echo Yii::app()->getHomeUrl() ?>/categoria/create" title="Agregar Nueva Categoría">
         Crear Categoría
     </a>
-
 </div>
 
+
+            
+            
