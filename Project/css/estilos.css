@@ -1,3 +1,37 @@
+@font-face {
+	font-family: 'asapitalic';
+	src: url('../font/asap-italic-webfont.eot');
+	src: url('../font/asap-italic-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../font/asap-italic-webfont.woff') format('woff'),
+		 url('../font/asap-italic-webfont.ttf') format('truetype'),
+		 url('../font/asap-italic-webfont.svg#asapitalic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'asapbold';
+	src: url('../font/asap-bold-webfont.eot');
+	src: url('../font/asap-bold-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../font/asap-bold-webfont.woff') format('woff'),
+		 url('../font/asap-bold-webfont.ttf') format('truetype'),
+		 url('../font/asap-bold-webfont.svg#asapbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'asapregular';
+	src: url('../font/asap-regular-webfont.eot');
+	src: url('../font/asap-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../font/asap-regular-webfont.woff') format('woff'),
+		 url('../font/asap-regular-webfont.ttf') format('truetype'),
+		 url('../font/asap-regular-webfont.svg#asapregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+    font-family: 'asapregular';
+}
 input[type="button"], input[type="submit"], input[type="reset"] {
 	background: #595959;
 	color: #ffffff;
@@ -15,6 +49,13 @@ input[type="text"], input[type="password"] {
 	height: 22px;
 	border-radius: 5px;
 	border: 1px solid #1c1c1c;
+        font-family: 'asapregular';
+}
+div.form input, div.form textarea, div.form select {
+    margin: 1px 0;
+}
+div.clearFix {
+    clear: both;
 }
 .span-19 {
     width: 20%;
@@ -22,10 +63,12 @@ input[type="text"], input[type="password"] {
 }
 .container {
     width: 100%;
+    
 }
 #page {
     border: none;
     margin: 0;
+    background-color: white;
 }
 #header {
     position: relative;
@@ -47,7 +90,7 @@ input[type="text"], input[type="password"] {
         }
     #mainmenu {
         position: absolute;
-        left: 130px;
+        right: 55px;
         top: 30px;
         background: none;
         background-color: #1c1c1c;
@@ -67,28 +110,165 @@ input[type="text"], input[type="password"] {
             color: #ffffff;
             text-decoration: none;
         }
+/*** Contenedores principales (inicio) ***/
 #content {
-    width: 20%;
-    margin-left: 50px;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
+#contentIzq {
+    float: left;
+    width: 20%;
+    border: 1px solid #1c1c1c;
+}
+#contentDer {
+    float: right;
+    width: 79.7%;
+    border: 1px solid #1c1c1c;
+}
+/*** Contenedores principales (fin) ***/
+
+/*** Componentes yii (inicio) ***/
 div.span-19 #content {
     width: 100%;
     margin: 0;
 }
-    #content div.categoria {
-        position: relative;
-        height: 30px;
-        border: 1px solid #1c1c1c;
-        border-radius: 5px;
+div.summary {
+    display: none;
+}
+div.view {
+    border: 1px solid #1c1c1c;
+    //border-radius: 5px;
+    margin: 1px 0;
+    padding: 7px;
+    font-size: 18px;    
+}
+    div.view  b {
+        display: none;
     }
-        #content div.categoria a {
-            position: absolute;
-            display: block;
-            top: 5px;
-            right: 10px;
-            width: 21px;
-            height: 21px;
-            text-indent: -9999px;
-            overflow: hidden;
-            background: url("../images/iconoMas.png");
+div.form {
+    border: 1px solid #1c1c1c;
+    //border-radius: 5px;
+}
+/*** Componentes yii (fin) ***/
+
+/*** Formulario categoria (inicio) ***/
+    #categoria-form div.row label {
+        display: none;
+    }
+    #categoria-form div.buttons input[type="submit"] {
+        width: 27px;
+        height: 26px;
+        text-indent: -9999px;
+        overflow: hidden;
+        background: url("../images/iconomas2.png") no-repeat center;
+        float: right;
+        margin-top: -32px;
+        margin-right: 5px;
+    }
+    #Categoria_NOMBRE_CATEGORIA {
+        margin-left: 5px;
+        width: 82%;
+    }
+/*** Formulario categoria (fin) ***/
+#footer {
+    display: none;
+}
+
+/*** Barra de progreso (inicio) ***/
+#contentDer  .progreso {
+    width: 99%;
+    height: 57px;
+    background: url('../images/barra1.png') no-repeat 110px 0px;
+    font-size: 20px;
+    line-height: 54px;
+    padding-left: 10px;
+    border-bottom: 1px solid #1c1c1c;
+}
+/*** Barra de progreso () ***/
+
+/*** Menu lista y calendario (inicio) ***/
+#contentDer .menu {
+    border-bottom: 1px solid #1c1c1c;
+} 
+    #menu {
+        display: block;
+        float: right;
+        width: 150px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+        #menu li {
+            float: left;
+            margin: 0 10px;
         }
+            #menu li a {
+                text-decoration: none;
+                font-size: 15px;
+            }
+        #menu li.lista {
+
+        }
+            #menu li.lista a:link, #menu li.lista a:visited {
+
+            }
+            #menu li.lista a:hover {
+
+            }
+        #menu li.calendario {
+
+        }
+            #menu li.calendario a:link, #menu li.calendario a:visited {
+
+            }
+            #menu li.calendario a:hover {
+
+            }
+/*** Menu lista y calendario (fin) ***/
+#yw0 .items .view a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #000000;
+    padding-bottom: 10px;
+}
+#yw1 .items .view a {
+    padding: 0;
+}
+/*** Formulario actividades (inicio) ***/
+.actividadesPorCate {
+    display: none;
+}
+    #actividad-form .buttons input[type="submit"] {
+        width: 27px;
+        height: 26px;
+        text-indent: -9999px;
+        overflow: hidden;
+        background: url("../images/iconomas2.png") no-repeat center;
+        float: right;
+        margin-top: -32px;
+        margin-right: 5px;
+    }
+    #actividad-form label {
+        display: none;
+    }
+    #Actividad_NOMBRE_ACTIVIDAD {
+        margin-left: 5px;
+        width: 82%;
+    }
+/*** Formulario actividades (fin) ***/
+
+#contentDer a.addTarea {
+    display: block;
+    width: 27px;
+    height: 26px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url("../images/iconomas2.png") no-repeat center;
+    margin-right: 5px;
+    border: 1px solid #1c1c1c;
+    border-radius: 5px;
+    margin: 20px 0 0 20px;
+}
