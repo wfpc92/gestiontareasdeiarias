@@ -229,17 +229,15 @@ div.form {
 #yw0 .items .view a {
     display: block;
     width: 100%;
-    height: 100%;
     text-decoration: none;
     color: #000000;
-    padding-bottom: 10px;
+    padding-bottom: 0;
 }
-#yw1 .items .view a {
-    padding: 0;
-}
+
 /*** Formulario actividades (inicio) ***/
 .actividadesPorCate {
     display: none;
+    margin-top: 20px;
 }
     #actividad-form .buttons input[type="submit"] {
         width: 27px;
