@@ -126,6 +126,7 @@ div.clearFix {
     float: right;
     width: 79.7%;
     border: 1px solid #1c1c1c;
+    padding-bottom: 20px;
 }
 /*** Contenedores principales (fin) ***/
 
@@ -148,7 +149,7 @@ div.view {
         display: none;
     }
 div.form {
-    border: 1px solid #1c1c1c;
+   //border: 1px solid #1c1c1c;
     //border-radius: 5px;
 }
 /*** Componentes yii (fin) ***/
@@ -164,7 +165,7 @@ div.form {
         overflow: hidden;
         background: url("../images/iconomas2.png") no-repeat center;
         float: right;
-        margin-top: -32px;
+        margin-top: -30px;
         margin-right: 5px;
     }
     #Categoria_NOMBRE_CATEGORIA {
@@ -259,7 +260,7 @@ div.form {
 /*** Formulario actividades (fin) ***/
 
 #contentDer a.addTarea {
-    display: block;
+    display: none;
     width: 27px;
     height: 26px;
     text-indent: -9999px;
@@ -269,4 +270,14 @@ div.form {
     border: 1px solid #1c1c1c;
     border-radius: 5px;
     margin: 20px 0 0 20px;
+    cursor: pointer;
+}
+#tarea-form {
+    display: none;
+    width: 368px;
+    border: 1px solid #1c1c1c;
+    margin-top: -28px;
+    margin-left: 70px;
+    margin-bottom: 20px;
+    padding: 5px;
 }
