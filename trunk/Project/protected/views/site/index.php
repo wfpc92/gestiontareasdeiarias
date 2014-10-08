@@ -4,12 +4,50 @@
 //$this->pageTitle=Yii::app()->name;
 ?>
 
-<div class="categoria">
-    
-    <a href="<?php echo Yii::app()->getHomeUrl() ?>/categoria/create" title="Agregar Nueva Categoría">
-        Crear Categoría
-    </a>
+<div id="contentIzq">
+    <?php
+    $form = '../categoria/_form';
+    $modelCategoria = new Categoria;
+    $this->renderPartial
+            ($form, array('model' => $modelCategoria));
+    ?> 
+    <div>
+        <?php
+        $dataProvider = new CActiveDataProvider('Categoria');
+        $this->widget('zii.widgets.CListView', array(
+            'dataProvider' => $dataProvider,
+            'itemView' => '../categoria/_view',
+        ));
+        ?>
+    </div>
 </div>
+<div id="contentDer">
+    <div class="progreso">
+        Progreso:
+    </div>
+    <div class="menu">
+        <ul id="menu">
+            <li class="lista">
+                <a href="#">Lista</a>
+            </li>
+            <li class="calendario">
+                <a href="#">Calendario</a>
+            </li>
+        </ul>    
+        <div class="clearFix"></div>
+    </div>
+    
+    <a class="addTarea" href="#">Agregar tarea</a>
+    
+    <?php
+    $form = '../tarea/_form';
+    $modelTarea = new Tarea;
+    $this->renderPartial
+            ($form, array('model' => $modelTarea));
+    ?>
+    
+</div>
+<div class="clearFix"></div>
 
 
             
