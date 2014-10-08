@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<!--<p class="note">Fields with <span class="required">*</span> are required.</p>-->
 
 	<?php echo $form->errorSummary($model); ?>
         <!--
@@ -26,23 +26,27 @@
 		<?php echo $form->error($model,'CORREO'); ?>
 	</div>
         -->
+        <!--
 	<div class="row">
 		<?php echo $form->labelEx($model,'CATEGORIA'); ?>
                 <?php
                     $categorias = CHtml::listData(Categoria::model()->findAll(), 'ID_CATEGORIA', 'NOMBRE_CATEGORIA');
                     echo $form->dropDownList($model,'ID_CATEGORIA', $categorias) 
                     ?> 
-		<!--<?php echo $form->textField($model,'ID_CATEGORIA'); ?>-->
+		<?php echo $form->textField($model,'ID_CATEGORIA'); ?>
 		<?php echo $form->error($model,'ID_CATEGORIA'); ?>
 	</div>
+        -->
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'NOMBRE_ACTIVIDAD'); ?>
-		<?php echo $form->textField($model,'NOMBRE_ACTIVIDAD',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'NOMBRE_ACTIVIDAD',array('size'=>60,'maxlength'=>100,'placeholder'=>'Agregar Actividad')); ?>
 		<?php echo $form->error($model,'NOMBRE_ACTIVIDAD'); ?>
 	</div>
-
+        
+        <!--
 	
+        -->
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

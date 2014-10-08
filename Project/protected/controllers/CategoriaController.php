@@ -62,7 +62,7 @@ class CategoriaController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Categoria;
+		$model=new Categoria;           
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
