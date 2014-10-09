@@ -55,43 +55,93 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'FECHA_INICIO'); ?>
-		<?php echo $form->textField($model,'FECHA_INICIO'); ?>
+		<?php
+                    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                     'model'=>$model,
+                     'attribute'=>'FECHA_INICIO',
+                     'value'=>$model->FECHA_INICIO,
+                     'language' => 'es',
+                     //'htmlOptions' => array('readonly'=>"readonly"),
+                     'options'=>array(
+                      'autoSize'=>true,
+                      'defaultDate'=>$model->FECHA_INICIO,
+                      'dateFormat'=>'yy-mm-dd',
+                      //'buttonImage'=>Yii::app()->baseUrl.'/images/calendario.jpg',
+                      'buttonImageOnly'=>true,
+                      'buttonText'=>'Fecha',
+                      'selectOtherMonths'=>true,
+                      'showAnim'=>'slide',
+                      'showButtonPanel'=>true,
+                      'showOn'=>'focus', 
+                      'showOtherMonths'=>true, 
+                      'changeMonth' => 'true', 
+                      'changeYear' => 'true', 
+                      'minDate'=>'date("Y-m-d")', 
+                      'maxDate'=> "+20Y",
+                      ),
+                    )); 
+                   ?>
 		<?php echo $form->error($model,'FECHA_INICIO'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'FECHA_FIN'); ?>
-		<?php echo $form->textField($model,'FECHA_FIN'); ?>
+		<?php
+                    $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+                     'model'=>$model,
+                     'attribute'=>'FECHA_FIN',
+                     'value'=>$model->FECHA_FIN,
+                     'language' => 'es',
+                     //'htmlOptions' => array('readonly'=>"readonly"),
+                     'options'=>array(
+                      'autoSize'=>true,
+                      'defaultDate'=>$model->FECHA_FIN,
+                      'dateFormat'=>'yy-mm-dd',
+                      //'buttonImage'=>Yii::app()->baseUrl.'/images/calendario.jpg',
+                      'buttonImageOnly'=>true,
+                      'buttonText'=>'Fecha',
+                      'selectOtherMonths'=>true,
+                      'showAnim'=>'slide',
+                      'showButtonPanel'=>true,
+                      'showOn'=>'focus', 
+                      'showOtherMonths'=>true, 
+                      'changeMonth' => 'true', 
+                      'changeYear' => 'true', 
+                      'minDate'=>'date("Y-m-d")', 
+                      'maxDate'=> "+20Y",
+                      ),
+                    )); 
+                   ?>
 		<?php echo $form->error($model,'FECHA_FIN'); ?>
 	</div>
-
+        <!--
 	<div class="row">
 		<?php echo $form->labelEx($model,'FECHA_ULTIMA_PAUSA'); ?>
 		<?php echo $form->textField($model,'FECHA_ULTIMA_PAUSA'); ?>
 		<?php echo $form->error($model,'FECHA_ULTIMA_PAUSA'); ?>
 	</div>
-
+        
 	<div class="row">
 		<?php echo $form->labelEx($model,'DURACION'); ?>
 		<?php echo $form->textField($model,'DURACION',array('size'=>5,'maxlength'=>5)); ?>
 		<?php echo $form->error($model,'DURACION'); ?>
 	</div>
-
+        -->
 	<div class="row">
 		<?php echo $form->labelEx($model,'PRIORIDAD'); ?>
 		<?php echo $form->dropDownList($model,'PRIORIDAD',array("1"=>"Alta","2"=>"Media","3"=>"Baja")); ?>
 		<?php echo $form->error($model,'PRIORIDAD'); ?>
 	</div>
-
+        <!--
 	<div class="row">
 		<?php echo $form->labelEx($model,'ESTADO'); ?>
 		<?php echo $form->textField($model,'ESTADO'); ?>
 		<?php echo $form->error($model,'ESTADO'); ?>
 	</div>
-
+        -->
 	<div class="row">
 		<?php echo $form->labelEx($model,'INAMOVIBLE'); ?>
-		<?php echo $form->textField($model,'INAMOVIBLE'); ?>
+                <?php echo $form->checkBox($model,'INAMOVIBLE',  array('checked'=>1, 'unchecked'=>0)); ?>		
 		<?php echo $form->error($model,'INAMOVIBLE'); ?>
 	</div>
 
@@ -106,9 +156,13 @@
 		<?php echo $form->textField($model,'HORA_FIN'); ?>
 		<?php echo $form->error($model,'HORA_FIN'); ?>
 	</div>
-
+        <!--
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	</div>
+        -->
+        <div class="row buttons">
+		<?php echo CHtml::Button('Guardar',array('submit' => 'index.php/tarea/create'));?>
 	</div>
 
 <?php $this->endWidget(); ?>

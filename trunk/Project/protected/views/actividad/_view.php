@@ -24,14 +24,8 @@
 	<?php echo CHtml::encode($data->NOMBRE_ACTIVIDAD); ?>
 	<br />
         -->
-        <a href="#">
-        <?php echo CHtml::encode($data->NOMBRE_ACTIVIDAD); ?>
+        <a href="#" onClick="<?php Yii::app()->session['numeroActividad'] = $data->ID_ACTIVIDAD; ?>">
+        <?php echo CHtml::encode($data->NOMBRE_ACTIVIDAD); ?>        
         </a>
-
-	<!--<b><?php echo CHtml::encode($data->getAttributeLabel('DESCRIPCION_ACTIVIDAD')); ?>:</b>
-	<?php echo CHtml::encode($data->DESCRIPCION_ACTIVIDAD); ?>
-	<br />
-        -->
-
-
+        
 </div>

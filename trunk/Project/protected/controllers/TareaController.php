@@ -70,8 +70,10 @@ class TareaController extends Controller
 		if(isset($_POST['Tarea']))
 		{
 			$model->attributes=$_POST['Tarea'];
+                        $userId = Yii::app()->user->getId();
+                        $model->CORREO = $userId;
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->ID_TAREA));
+				$this->redirect(array('view',$model->ID_TAREA));
 		}
 
 		$this->render('create',array(
@@ -94,6 +96,8 @@ class TareaController extends Controller
 		if(isset($_POST['Tarea']))
 		{
 			$model->attributes=$_POST['Tarea'];
+                        $userId = Yii::app()->user->getId();
+                        $model->CORREO = $userId;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->ID_TAREA));
 		}
