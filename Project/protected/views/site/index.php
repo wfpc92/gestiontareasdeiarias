@@ -18,7 +18,7 @@
             'dataProvider' => $dataProvider,
             'itemView' => '../categoria/_view',
         ));
-        ?>
+        ?>  
     </div>
 </div>
 <div id="contentDer">
@@ -45,6 +45,16 @@
     $this->renderPartial
             ($form, array('model' => $modelTarea));
     ?>
+    
+    <?php
+        $dataProvider = new CActiveDataProvider('Tarea');
+        $this->widget('zii.widgets.CListView', array(
+            'dataProvider' => $dataProvider,
+            //'viewData' => array('numero' => Yii::app()->getSession()->get('numeroActividad')),
+            'viewData' => array('numero' => 1),
+            'itemView' => '../tarea/_view',            
+        ));
+        ?>
     
 </div>
 <div class="clearFix"></div>

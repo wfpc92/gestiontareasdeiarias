@@ -37,8 +37,8 @@ class Tarea extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ID_TAREA, CORREO, ID_ACTIVIDAD, PRIORIDAD', 'required'),
-			array('ID_TAREA, ID_FRECUENCIA, ID_ACTIVIDAD, PRIORIDAD, ESTADO, INAMOVIBLE', 'numerical', 'integerOnly'=>true),
+			array('CORREO, ID_ACTIVIDAD, NOMBRE_TAREA, PRIORIDAD', 'required'),
+			array('ID_FRECUENCIA, ID_ACTIVIDAD, PRIORIDAD, ESTADO, INAMOVIBLE', 'numerical', 'integerOnly'=>true),
 			array('CORREO, NOMBRE_TAREA', 'length', 'max'=>100),
 			array('DURACION', 'length', 'max'=>5),
 			array('FECHA_INICIO, FECHA_FIN, FECHA_ULTIMA_PAUSA, HORA_INICIO, HORA_FIN', 'safe'),

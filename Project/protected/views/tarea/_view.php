@@ -4,7 +4,7 @@
 ?>
 
 <div class="view">
-
+        <!--
 	<b><?php echo CHtml::encode($data->getAttributeLabel('ID_TAREA')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->ID_TAREA), array('view', 'id'=>$data->ID_TAREA)); ?>
 	<br />
@@ -12,19 +12,23 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('ID_FRECUENCIA')); ?>:</b>
 	<?php echo CHtml::encode($data->ID_FRECUENCIA); ?>
 	<br />
-
+        
 	<b><?php echo CHtml::encode($data->getAttributeLabel('CORREO')); ?>:</b>
 	<?php echo CHtml::encode($data->CORREO); ?>
 	<br />
-
+        
 	<b><?php echo CHtml::encode($data->getAttributeLabel('ID_ACTIVIDAD')); ?>:</b>
 	<?php echo CHtml::encode($data->ID_ACTIVIDAD); ?>
 	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('NOMBRE_TAREA')); ?>:</b>
-	<?php echo CHtml::encode($data->NOMBRE_TAREA); ?>
+        -->
+	<b><?php echo CHtml::encode($data->getAttributeLabel('NOMBRE_TAREA')); ?>:</b>        
+	<?php
+            if($data->ID_ACTIVIDAD == $numero){
+                echo CHtml::encode($data->NOMBRE_TAREA); 
+            }
+            ?>
 	<br />
-
+        <!--
 	<b><?php echo CHtml::encode($data->getAttributeLabel('FECHA_INICIO')); ?>:</b>
 	<?php echo CHtml::encode($data->FECHA_INICIO); ?>
 	<br />
@@ -32,7 +36,7 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('FECHA_FIN')); ?>:</b>
 	<?php echo CHtml::encode($data->FECHA_FIN); ?>
 	<br />
-
+        -->
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('FECHA_ULTIMA_PAUSA')); ?>:</b>
 	<?php echo CHtml::encode($data->FECHA_ULTIMA_PAUSA); ?>

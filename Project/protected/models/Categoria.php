@@ -26,11 +26,11 @@ class Categoria extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('CORREO', 'required'),
+			array('CORREO, NOMBRE_CATEGORIA', 'required'),
 			array('CORREO, NOMBRE_CATEGORIA', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID_CATEGORIA, CORREO, NOMBRE_CATEGORIA, ', 'safe', 'on'=>'search'),
+			array('ID_CATEGORIA, CORREO, NOMBRE_CATEGORIA', 'safe', 'on'=>'search'),
 		);
 	}
 
