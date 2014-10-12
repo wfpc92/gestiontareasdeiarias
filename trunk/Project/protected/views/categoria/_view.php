@@ -3,21 +3,10 @@
 /* @var $data Categoria */
 ?>
 
-<div class="view">
+<div id="categoria_<?php echo CHtml::encode($data->ID_CATEGORIA); ?>" 
+     class="view">
 
-    <!--
-    <b><?php echo CHtml::encode($data->getAttributeLabel('ID_CATEGORIA')); ?>:</b>
-    <?php echo CHtml::link(CHtml::encode($data->ID_CATEGORIA), array('view', 'id' => $data->ID_CATEGORIA)); ?>
-    <br />
-    -->
-
-    <!--
-    <b><?php echo CHtml::encode($data->getAttributeLabel('CORREO')); ?>:</b>
-    <?php echo CHtml::encode($data->CORREO); ?>
-    <br />
-    -->
-
-    <a href="#">
+    <a href="#" class="" onclick="return categoriaToogle(this)">
         <?php echo CHtml::encode($data->NOMBRE_CATEGORIA); ?>
     </a>
 
@@ -25,15 +14,21 @@
         <?php
         $form = '../actividad/_form';
         $modelActividad = new Actividad;
-        $this->renderPartial
-                ($form, array('model' => $modelActividad));
-        ?>
-        <?php
-        $dataProvider = new CActiveDataProvider('Actividad');
+        $modelActividad->ID_CATEGORIA = $data->ID_CATEGORIA;
+        $this->renderPartial($form, array('model' => $modelActividad));
+
+        $dataProvider = new CActiveDataProvider('Actividad', array(
+            'criteria' => array(
+                'condition' => 'ID_CATEGORIA=' . $data->ID_CATEGORIA
+            )
+        ));
+        
         $this->widget('zii.widgets.CListView', array(
             'dataProvider' => $dataProvider,
             'itemView' => '../actividad/_view',
         ));
         ?>
     </div>
+
+
 </div>

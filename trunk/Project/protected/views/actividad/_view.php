@@ -3,29 +3,23 @@
 /* @var $data Actividad */
 ?>
 
-<div class="view">
+<div id="actividad_<?php echo CHtml::encode($data->ID_ACTIVIDAD); ?>" class="view">
 
-	<!--<b><?php echo CHtml::encode($data->getAttributeLabel('ID_ACTIVIDAD')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->ID_ACTIVIDAD), array('view', 'id'=>$data->ID_ACTIVIDAD)); ?>
-	<br />
-        -->
+    
+    <?php
+    $label = $data->NOMBRE_ACTIVIDAD;
+    $id_actividad = $data->ID_ACTIVIDAD;
+    $url = Yii::app()->homeUrl . '/tarea/listarAjax/' . $id_actividad;
+    $data = array(
+        'update'=>'#content-tareas'
+        /*'success' => file_get_contents('js/ajax/tarea/listar.js'),
+        'error' => file_get_contents('js/ajax/tarea/error_listar.js')*/
+    );
+    $htmlOptions = array(
+        'id' => 'btnListarTareas_'.$id_actividad
+    );
+    echo CHtml::ajaxLink($label, $url, $data, $htmlOptions);
+    ?>
 
-	<!--<b><?php echo CHtml::encode($data->getAttributeLabel('CORREO')); ?>:</b>
-	<?php echo CHtml::encode($data->CORREO); ?>
-	<br />
-        -->
 
-	<!--<b><?php echo CHtml::encode($data->getAttributeLabel('ID_CATEGORIA')); ?>:</b>
-	<?php echo CHtml::encode($data->ID_CATEGORIA); ?>
-	<br />
-        -->
-
-	<!--<b><?php echo CHtml::encode($data->getAttributeLabel('NOMBRE_ACTIVIDAD')); ?>:</b>
-	<?php echo CHtml::encode($data->NOMBRE_ACTIVIDAD); ?>
-	<br />
-        -->
-        <a href="#" onClick="<?php Yii::app()->session['numeroActividad'] = $data->ID_ACTIVIDAD; ?>">
-        <?php echo CHtml::encode($data->NOMBRE_ACTIVIDAD); ?>        
-        </a>
-        
 </div>

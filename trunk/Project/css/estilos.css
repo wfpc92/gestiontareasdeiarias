@@ -72,7 +72,7 @@ div.clearFix {
 }
 #header {
     position: relative;
-    background-color: #1c1c1c;
+    background-color: rgb(88, 172, 250);
     border: none;
 }
     #logo {
@@ -235,6 +235,15 @@ div.form {
     padding-bottom: 0;
 }
 
+#yw0 .items .view input[type="button"]{
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    text-decoration: none;
+    color: #000000;
+    padding-bottom: 0;
+}
+
 /*** Formulario actividades (inicio) ***/
 .actividadesPorCate {
     display: none;
@@ -258,26 +267,23 @@ div.form {
         width: 82%;
     }
 /*** Formulario actividades (fin) ***/
-
-#contentDer a.addTarea {
-    display: none;
-    width: 27px;
-    height: 26px;
-    text-indent: -9999px;
-    overflow: hidden;
-    background: url("../images/iconomas2.png") no-repeat center;
-    margin-right: 5px;
-    border: 1px solid #1c1c1c;
-    border-radius: 5px;
-    margin: 20px 0 0 20px;
-    cursor: pointer;
-}
 #tarea-form {
-    display: none;
-    width: 368px;
-    border: 1px solid #1c1c1c;
-    margin-top: -28px;
-    margin-left: 70px;
-    margin-bottom: 20px;
-    padding: 5px;
+    width: 30%;
 }
+#tarea-form div.row label {
+        display: none;
+    }
+    #tarea-form div.buttons input[type="submit"] {
+        width: 27px;
+        height: 26px;
+        text-indent: -9999px;
+        overflow: hidden;
+        background: url("../images/iconomas2.png") no-repeat center;
+        float: right;
+        margin-top: -32px;
+        margin-right: 5px;
+    }
+    #Tarea_NOMBRE_TAREA {
+        margin-left: 5px;
+        width: 85%;
+    }
