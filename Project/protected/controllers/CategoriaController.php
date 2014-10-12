@@ -28,7 +28,7 @@ class CategoriaController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','crearAjax'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -174,4 +174,26 @@ class CategoriaController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        
+        /**
+         * Crear una categoria desde el lado el cliente.
+         */
+        public function actionCrearAjax(){
+            if(isset($_REQUEST['Categoria']))
+            {
+                $model=new Categoria;           
+                $model->attributes=$_REQUEST['Categoria'];
+                $userId = Yii::app()->user->getId();
+                $model->CORREO = $userId;
+                if($model->save()){
+                    $this->renderPartial('_view', array('data'=>$model));
+                }else{
+                    echo "ERROR: no se guardo la categoria en la BD.";
+                }
+            }
+            else{
+                echo "ERROR: no hay datos en la peticion AJAX.";
+            }
+        }
 }

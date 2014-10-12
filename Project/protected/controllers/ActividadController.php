@@ -28,7 +28,7 @@ class ActividadController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','crearAjax'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -174,4 +174,29 @@ class ActividadController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        
+         /**
+         * Crear una actividad desde el lado el cliente.
+         */
+        public function actionCrearAjax(){
+            if(isset($_REQUEST['Actividad']))
+            {
+                $model=new Actividad;           
+                $model->attributes=$_REQUEST['Actividad'];
+                $userId = Yii::app()->user->getId();
+                $model->CORREO = $userId;
+                if($model->save()){
+                    $view = $this->renderPartial('_view', array('data'=>$model), true);
+                    echo json_encode(array(
+                        'VIEW'=>$view,
+                        'ID_CATEGORIA'=>$model->ID_CATEGORIA,
+                        'ID_ACTIVIDAD'=>$model->ID_ACTIVIDAD
+                    ));
+                }else{
+                    //error, no guardo la actividad
+                }
+                
+            }
+        }
 }

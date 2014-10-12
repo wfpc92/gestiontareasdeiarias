@@ -1,26 +1,29 @@
 <?php
 /* @var $this SiteController */
-
-//$this->pageTitle=Yii::app()->name;
 ?>
 
 <div id="contentIzq">
     <?php
     $form = '../categoria/_form';
     $modelCategoria = new Categoria;
-    $this->renderPartial
-            ($form, array('model' => $modelCategoria));
+    $this->renderPartial($form, array('model' => $modelCategoria));
     ?> 
-    <div>
+    <div id="itemsCategoria">
         <?php
-        $dataProvider = new CActiveDataProvider('Categoria');
+        $dataProvider = new CActiveDataProvider('Categoria', array(
+            'pagination' => false
+        ));
         $this->widget('zii.widgets.CListView', array(
             'dataProvider' => $dataProvider,
             'itemView' => '../categoria/_view',
+            'enablePagination' => false,
+            'id'=>'categoria-list-view'
         ));
         ?>  
     </div>
 </div>
+
+
 <div id="contentDer">
     <div class="progreso">
         Progreso:
@@ -33,32 +36,30 @@
             <li class="calendario">
                 <a href="#">Calendario</a>
             </li>
-        </ul>    
+        </ul> 
         <div class="clearFix"></div>
     </div>
-    
-    <a class="addTarea" href="#">Agregar tarea</a>
-    
-    <?php
-    $form = '../tarea/_form';
-    $modelTarea = new Tarea;
-    $this->renderPartial
-            ($form, array('model' => $modelTarea));
-    ?>
-    
-    <?php
-        $dataProvider = new CActiveDataProvider('Tarea');
-        $this->widget('zii.widgets.CListView', array(
-            'dataProvider' => $dataProvider,
-            //'viewData' => array('numero' => Yii::app()->getSession()->get('numeroActividad')),
-            'viewData' => array('numero' => 1),
-            'itemView' => '../tarea/_view',            
-        ));
-        ?>
-    
+    content-tareas1:
+    <br/>
+    <div id="content-tareas">
+        content-tareas
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    content-tareas2:
+    <br/>    
+    <div id="content-tareas2">
+        content-tareas2
+    </div>
 </div>
+
+
+
+
 <div class="clearFix"></div>
 
 
-            
-            
+
+

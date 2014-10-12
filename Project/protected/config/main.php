@@ -8,7 +8,6 @@
 function cadenaConexion(){
     $servidor = $_SERVER['SERVER_NAME'];
     $clave = "wfpc92.tk";
-    echo var_dump($servidor);
     
     if(strpos($servidor, $clave)!==FALSE){
         return array(
@@ -100,7 +99,7 @@ return array(
 				),
 				*/
 			),
-		),
+		)
 	),
 
 	// application-level parameters that can be accessed
