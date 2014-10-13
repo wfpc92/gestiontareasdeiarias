@@ -17,7 +17,7 @@
             'dataProvider' => $dataProvider,
             'itemView' => '../categoria/_view',
             'enablePagination' => false,
-            'id'=>'categoria-list-view'
+            'id' => 'categoria-list-view'
         ));
         ?>  
     </div>
@@ -39,19 +39,13 @@
         </ul> 
         <div class="clearFix"></div>
     </div>
-    content-tareas1:
-    <br/>
-    <div id="content-tareas">
-        content-tareas
+
+    <div id="content-princ-izq">
+        content-princ-izq
     </div>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    content-tareas2:
-    <br/>    
-    <div id="content-tareas2">
-        content-tareas2
+
+    <div id="content-princ-der">
+        content-princ-der
     </div>
 </div>
 

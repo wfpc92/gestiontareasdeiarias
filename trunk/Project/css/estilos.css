@@ -1,55 +1,55 @@
 @font-face {
-	font-family: 'asapitalic';
-	src: url('../font/asap-italic-webfont.eot');
-	src: url('../font/asap-italic-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('../font/asap-italic-webfont.woff') format('woff'),
-		 url('../font/asap-italic-webfont.ttf') format('truetype'),
-		 url('../font/asap-italic-webfont.svg#asapitalic') format('svg');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'asapitalic';
+    src: url('../font/asap-italic-webfont.eot');
+    src: url('../font/asap-italic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/asap-italic-webfont.woff') format('woff'),
+        url('../font/asap-italic-webfont.ttf') format('truetype'),
+        url('../font/asap-italic-webfont.svg#asapitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 @font-face {
-	font-family: 'asapbold';
-	src: url('../font/asap-bold-webfont.eot');
-	src: url('../font/asap-bold-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('../font/asap-bold-webfont.woff') format('woff'),
-		 url('../font/asap-bold-webfont.ttf') format('truetype'),
-		 url('../font/asap-bold-webfont.svg#asapbold') format('svg');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'asapbold';
+    src: url('../font/asap-bold-webfont.eot');
+    src: url('../font/asap-bold-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/asap-bold-webfont.woff') format('woff'),
+        url('../font/asap-bold-webfont.ttf') format('truetype'),
+        url('../font/asap-bold-webfont.svg#asapbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 @font-face {
-	font-family: 'asapregular';
-	src: url('../font/asap-regular-webfont.eot');
-	src: url('../font/asap-regular-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('../font/asap-regular-webfont.woff') format('woff'),
-		 url('../font/asap-regular-webfont.ttf') format('truetype'),
-		 url('../font/asap-regular-webfont.svg#asapregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'asapregular';
+    src: url('../font/asap-regular-webfont.eot');
+    src: url('../font/asap-regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/asap-regular-webfont.woff') format('woff'),
+        url('../font/asap-regular-webfont.ttf') format('truetype'),
+        url('../font/asap-regular-webfont.svg#asapregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
     font-family: 'asapregular';
 }
 input[type="button"], input[type="submit"], input[type="reset"] {
-	background: #595959;
-	color: #ffffff;
-	border: 1px solid #14513f;
-	padding: 5px 8px;
-	border-radius: 5px;
-	cursor: pointer;
-        font-size: 15px;
+    background: #595959;
+    color: #ffffff;
+    border: 1px solid #14513f;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
 }
 input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
-	background: #8f8d8d;
+    background: #8f8d8d;
 }
 input[type="text"], input[type="password"] {
-	display: inline-block;
-	height: 22px;
-	border-radius: 5px;
-	border: 1px solid #1c1c1c;
-        font-family: 'asapregular';
+    display: inline-block;
+    height: 22px;
+    border-radius: 5px;
+    border: 1px solid #1c1c1c;
+    font-family: 'asapregular';
 }
 div.form input, div.form textarea, div.form select {
     margin: 1px 0;
@@ -63,7 +63,7 @@ div.clearFix {
 }
 .container {
     width: 100%;
-    
+
 }
 #page {
     border: none;
@@ -75,41 +75,41 @@ div.clearFix {
     background-color: rgb(88, 172, 250);
     border: none;
 }
-    #logo {
-        height: 70px;
-    }
-        #logo a{
-            display: block;
-            width: 47px;
-            height: 70px;
-            margin-left: 50px;
-            text-indent: -9999px;
-            overflow: hidden;
-            background: url("../images/logo.png") no-repeat;
-            background-color: #1c1c1c;
-        }
-    #mainmenu {
-        position: absolute;
-        right: 55px;
-        top: 30px;
-        background: none;
-        background-color: #1c1c1c;
-    } 
-        #mainmenu ul li a {
-            color: #8f8d8d;
-            font-size: 13px;
-            padding: 10px 15px;
-        }
-        #mainmenu ul li.active a {
-            background-color: #000000;
-            color: #ffffff;
-            text-decoration: none;
-        }
-        #mainmenu ul li a:hover {
-            background-color: #1c1c1c;
-            color: #ffffff;
-            text-decoration: none;
-        }
+#logo {
+    height: 70px;
+}
+#logo a{
+    display: block;
+    width: 47px;
+    height: 70px;
+    margin-left: 50px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url("../images/logo.png") no-repeat;
+    background-color: #1c1c1c;
+}
+#mainmenu {
+    position: absolute;
+    right: 55px;
+    top: 30px;
+    background: none;
+    background-color: #1c1c1c;
+} 
+#mainmenu ul li a {
+    color: #8f8d8d;
+    font-size: 13px;
+    padding: 10px 15px;
+}
+#mainmenu ul li.active a {
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+}
+#mainmenu ul li a:hover {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    text-decoration: none;
+}
 /*** Contenedores principales (inicio) ***/
 #content {
     position: relative;
@@ -125,6 +125,20 @@ div.clearFix {
 #contentDer {
     float: right;
     width: 79.7%;
+    border: 1px solid #1c1c1c;
+    padding-bottom: 20px;
+}
+#content-princ-izq {
+    float: left;
+    width: auto;
+    min-width: 40%; 
+    max-width: 100%;
+    border: 1px solid #1c1c1c;
+    padding-bottom: 20px;
+}
+#content-princ-der {
+    float: left;
+    width: 58%;
     border: 1px solid #1c1c1c;
     padding-bottom: 20px;
 }
@@ -145,33 +159,33 @@ div.view {
     padding: 7px;
     font-size: 18px;    
 }
-    div.view  b {
-        display: none;
-    }
+div.view  b {
+    display: none;
+}
 div.form {
-   //border: 1px solid #1c1c1c;
+    //border: 1px solid #1c1c1c;
     //border-radius: 5px;
 }
 /*** Componentes yii (fin) ***/
 
 /*** Formulario categoria (inicio) ***/
-    #categoria-form div.row label {
-        display: none;
-    }
-    #categoria-form div.buttons input[type="submit"] {
-        width: 27px;
-        height: 26px;
-        text-indent: -9999px;
-        overflow: hidden;
-        background: url("../images/iconomas2.png") no-repeat center;
-        float: right;
-        margin-top: -30px;
-        margin-right: 5px;
-    }
-    #Categoria_NOMBRE_CATEGORIA {
-        margin-left: 5px;
-        width: 82%;
-    }
+#categoria-form div.row label {
+    display: none;
+}
+#categoria-form div.buttons input[type="submit"] {
+    width: 27px;
+    height: 26px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url("../images/iconomas2.png") no-repeat center;
+    float: right;
+    margin-top: -30px;
+    margin-right: 5px;
+}
+#Categoria_NOMBRE_CATEGORIA {
+    margin-left: 5px;
+    width: 82%;
+}
 /*** Formulario categoria (fin) ***/
 #footer {
     display: none;
@@ -193,39 +207,39 @@ div.form {
 #contentDer .menu {
     border-bottom: 1px solid #1c1c1c;
 } 
-    #menu {
-        display: block;
-        float: right;
-        width: 150px;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
-        #menu li {
-            float: left;
-            margin: 0 10px;
-        }
-            #menu li a {
-                text-decoration: none;
-                font-size: 15px;
-            }
-        #menu li.lista {
+#menu {
+    display: block;
+    float: right;
+    width: 150px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+#menu li {
+    float: left;
+    margin: 0 10px;
+}
+#menu li a {
+    text-decoration: none;
+    font-size: 15px;
+}
+#menu li.lista {
 
-        }
-            #menu li.lista a:link, #menu li.lista a:visited {
+}
+#menu li.lista a:link, #menu li.lista a:visited {
 
-            }
-            #menu li.lista a:hover {
+}
+#menu li.lista a:hover {
 
-            }
-        #menu li.calendario {
+}
+#menu li.calendario {
 
-        }
-            #menu li.calendario a:link, #menu li.calendario a:visited {
+}
+#menu li.calendario a:link, #menu li.calendario a:visited {
 
-            }
-            #menu li.calendario a:hover {
+}
+#menu li.calendario a:hover {
 
-            }
+}
 /*** Menu lista y calendario (fin) ***/
 #yw0 .items .view a {
     display: block;
@@ -249,41 +263,41 @@ div.form {
     display: none;
     margin-top: 20px;
 }
-    #actividad-form .buttons input[type="submit"] {
-        width: 27px;
-        height: 26px;
-        text-indent: -9999px;
-        overflow: hidden;
-        background: url("../images/iconomas2.png") no-repeat center;
-        float: right;
-        margin-top: -32px;
-        margin-right: 5px;
-    }
-    #actividad-form label {
-        display: none;
-    }
-    #Actividad_NOMBRE_ACTIVIDAD {
-        margin-left: 5px;
-        width: 82%;
-    }
+#actividad-form .buttons input[type="submit"] {
+    width: 27px;
+    height: 26px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url("../images/iconomas2.png") no-repeat center;
+    float: right;
+    margin-top: -32px;
+    margin-right: 5px;
+}
+#actividad-form label {
+    display: none;
+}
+#Actividad_NOMBRE_ACTIVIDAD {
+    margin-left: 5px;
+    width: 82%;
+}
 /*** Formulario actividades (fin) ***/
 #tarea-form {
     width: 30%;
 }
 #tarea-form div.row label {
-        display: none;
-    }
-    #tarea-form div.buttons input[type="submit"] {
-        width: 27px;
-        height: 26px;
-        text-indent: -9999px;
-        overflow: hidden;
-        background: url("../images/iconomas2.png") no-repeat center;
-        float: right;
-        margin-top: -32px;
-        margin-right: 5px;
-    }
-    #Tarea_NOMBRE_TAREA {
-        margin-left: 5px;
-        width: 85%;
-    }
+    display: none;
+}
+#tarea-form div.buttons input[type="submit"] {
+    width: 27px;
+    height: 26px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url("../images/iconomas2.png") no-repeat center;
+    float: right;
+    margin-top: -32px;
+    margin-right: 5px;
+}
+#Tarea_NOMBRE_TAREA {
+    margin-left: 5px;
+    width: 85%;
+}

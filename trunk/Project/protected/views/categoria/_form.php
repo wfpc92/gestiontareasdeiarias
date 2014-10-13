@@ -5,11 +5,14 @@
 ?>
 
 <div class="form">
-
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'categoria-form',
-        'enableAjaxValidation' => false,    
+        'enableAjaxValidation' => false,
+        'action' => Yii::app()->homeUrl . '/categoria/crearAjax',
+        'htmlOptions' => array(
+            'onsubmit' => 'return categoriaCrearAjax(this)'
+        )
     ));
 
     echo $form->errorSummary($model);
@@ -18,25 +21,25 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'NOMBRE_CATEGORIA');
-        echo $form->textField($model, 'NOMBRE_CATEGORIA', array('size' => 60, 'maxlength' => 100, 'placeholder' => 'Agregar Categoría'));
+        echo $form->textField($model, 'NOMBRE_CATEGORIA', array(
+            'id' => 'txt-categoria',
+            'size' => 60,
+            'maxlength' => 100,
+            'placeholder' => 'Agregar Categoría'));
         echo $form->error($model, 'NOMBRE_CATEGORIA');
         ?>
     </div>
 
     <div class="row buttons">
         <?php
-        $label = "agregar";
-        $url = Yii::app()->homeUrl . '/categoria/crearAjax';
-        $ajaxOptions = array(
-            'success' => file_get_contents('js/ajax/categoria/crear.js'),
-            'error' => file_get_contents('js/ajax/categoria/error_crear.js')
-        );
+        $label = "agregar categoria";
         $htmlOptions = array(
-            'id' => 'btnCrearCategoria',
-            'name' => 'btnCrearCategoria'
+            'id' => 'btn-crear-categoria',
+            'name' => 'btn-crear-categoria'
         );
-        echo CHtml::ajaxSubmitButton($label, $url, $ajaxOptions, $htmlOptions);
+        echo CHtml::submitButton($label, $htmlOptions);
         ?>
+
         <div class="clearFix"></div>
     </div>
 

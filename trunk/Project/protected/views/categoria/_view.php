@@ -3,7 +3,7 @@
 /* @var $data Categoria */
 ?>
 
-<div id="categoria_<?php echo CHtml::encode($data->ID_CATEGORIA); ?>" 
+<div id="categoria-<?php echo CHtml::encode($data->ID_CATEGORIA); ?>" 
      class="view">
 
     <a href="#" class="" onclick="return categoriaToogle(this)">
@@ -22,7 +22,7 @@
                 'condition' => 'ID_CATEGORIA=' . $data->ID_CATEGORIA
             )
         ));
-        
+
         $this->widget('zii.widgets.CListView', array(
             'dataProvider' => $dataProvider,
             'itemView' => '../actividad/_view',
