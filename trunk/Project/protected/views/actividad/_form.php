@@ -12,7 +12,8 @@
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/actividad/crearAjax',
         'htmlOptions' => array(
-            'onsubmit' => 'return actividadCrearAjax(this)'
+            'onsubmit' => 'return actividadCrearAjax(this)',
+            'class' => 'formActividad'
         )
     ));
 

@@ -36,6 +36,9 @@
             <li class="calendario">
                 <a href="#">Calendario</a>
             </li>
+            <li class="reportes">
+                <a href="#">Reportes</a>
+            </li>
         </ul> 
         <div class="clearFix"></div>
     </div>
