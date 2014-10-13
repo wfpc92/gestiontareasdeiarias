@@ -13,7 +13,8 @@ $idActividad = $model->ID_ACTIVIDAD;
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/tarea/crearAjax',
         'htmlOptions' => array(
-            'onsubmit' => 'return tareaCrearAjax(this)'
+            'onsubmit' => 'return tareaCrearAjax(this)',
+            'class' => 'formTarea'
         )
     ));
     ?>

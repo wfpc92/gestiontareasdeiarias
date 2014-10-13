@@ -68,7 +68,7 @@ div.clearFix {
 #page {
     border: none;
     margin: 0;
-    background-color: white;
+    background-color: #FFDDAE;
 }
 #header {
     position: relative;
@@ -80,25 +80,24 @@ div.clearFix {
 }
 #logo a{
     display: block;
-    width: 47px;
+    width: 82px;
     height: 70px;
     margin-left: 50px;
     text-indent: -9999px;
     overflow: hidden;
     background: url("../images/logo.png") no-repeat;
-    background-color: #1c1c1c;
 }
 #mainmenu {
     position: absolute;
     right: 55px;
     top: 30px;
     background: none;
-    background-color: #1c1c1c;
+    background-color: #58acfa;
 } 
 #mainmenu ul li a {
-    color: #8f8d8d;
+    color: #ffffff;
     font-size: 13px;
-    padding: 10px 15px;
+    padding: 5px 10px;
 }
 #mainmenu ul li.active a {
     background-color: #000000;
@@ -106,9 +105,10 @@ div.clearFix {
     text-decoration: none;
 }
 #mainmenu ul li a:hover {
-    background-color: #1c1c1c;
+    background-color: #58acfa;
     color: #ffffff;
     text-decoration: none;
+    border-bottom: 1px solid #ffffff;
 }
 /*** Contenedores principales (inicio) ***/
 #content {
@@ -179,10 +179,10 @@ div.form {
     overflow: hidden;
     background: url("../images/iconomas2.png") no-repeat center;
     float: right;
-    margin-top: -30px;
+    margin-top: -32px;
     margin-right: 5px;
 }
-#Categoria_NOMBRE_CATEGORIA {
+#txt-categoria {
     margin-left: 5px;
     width: 82%;
 }
@@ -195,7 +195,7 @@ div.form {
 #contentDer  .progreso {
     width: 99%;
     height: 57px;
-    background: url('../images/barra1.png') no-repeat 110px 0px;
+    background: url('../images/barra1.png') no-repeat 110px 11px;
     font-size: 20px;
     line-height: 54px;
     padding-left: 10px;
@@ -210,38 +210,44 @@ div.form {
 #menu {
     display: block;
     float: right;
-    width: 150px;
+    width: 230px;
     margin-bottom: 10px;
     margin-top: 10px;
 }
-#menu li {
-    float: left;
-    margin: 0 10px;
-}
-#menu li a {
-    text-decoration: none;
-    font-size: 15px;
-}
-#menu li.lista {
+    #menu li {
+        float: left;
+        margin: 0 10px;
+    }
+        #menu li a {
+            text-decoration: none;
+            font-size: 15px;
+        }
+        #menu li.lista {
 
-}
-#menu li.lista a:link, #menu li.lista a:visited {
+        }
+        #menu li.lista a:link, #menu li.lista a:visited {
 
-}
-#menu li.lista a:hover {
+        }
+        #menu li.lista a:hover {
 
-}
-#menu li.calendario {
+        }
+        #menu li.calendario {
 
-}
-#menu li.calendario a:link, #menu li.calendario a:visited {
+        }
+        #menu li.calendario a:link, #menu li.calendario a:visited {
 
-}
-#menu li.calendario a:hover {
+        }
+        #menu li.calendario a:hover {
 
-}
+        }
+        #menu li.reportes a:link, #menu li.reportes a:visited {
+
+        }
+        #menu li.reportes a:hover {
+
+        }
 /*** Menu lista y calendario (fin) ***/
-#yw0 .items .view a {
+#categoria-list-view .items .view a {
     display: block;
     width: 100%;
     text-decoration: none;
@@ -263,7 +269,7 @@ div.form {
     display: none;
     margin-top: 20px;
 }
-#actividad-form .buttons input[type="submit"] {
+.actividadesPorCate .form .formActividad .buttons input[type="submit"] {
     width: 27px;
     height: 26px;
     text-indent: -9999px;
@@ -273,21 +279,23 @@ div.form {
     margin-top: -32px;
     margin-right: 5px;
 }
-#actividad-form label {
+.actividadesPorCate .form .formActividad label {
     display: none;
 }
-#Actividad_NOMBRE_ACTIVIDAD {
+.actividadesPorCate .form .formActividad .row input[type="text"] {
     margin-left: 5px;
     width: 82%;
 }
 /*** Formulario actividades (fin) ***/
-#tarea-form {
-    width: 30%;
+
+/*** Formulario tareas (inicio) ***/
+#content-princ-izq .form .formTarea {
+    width: 100%;
 }
-#tarea-form div.row label {
+#content-princ-izq .form .formTarea label {
     display: none;
 }
-#tarea-form div.buttons input[type="submit"] {
+#content-princ-izq .form .formTarea .buttons input[type="submit"] {
     width: 27px;
     height: 26px;
     text-indent: -9999px;
@@ -295,9 +303,10 @@ div.form {
     background: url("../images/iconomas2.png") no-repeat center;
     float: right;
     margin-top: -32px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
-#Tarea_NOMBRE_TAREA {
-    margin-left: 5px;
-    width: 85%;
+#content-princ-izq .form .formTarea .row input[type="text"] {
+    margin-left: 10px;
+    width: 86%;
 }
+/*** Formulario tareas (fin) ***/
