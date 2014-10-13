@@ -2,18 +2,19 @@
 /* @var $this TareaController */
 /* @var $model Tarea */
 /* @var $form CActiveForm */
+
+$idActividad = $model->ID_ACTIVIDAD;
 ?>
 
 <div class="form">
-
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'tarea-form',
-        // Please note: When you enable ajax validation, make sure the corresponding
-        // controller action is handling ajax validation correctly.
-        // There is a call to performAjaxValidation() commented in generated controller code.
-        // See class documentation of CActiveForm for details on this.
+        'id' => 'tarea-form-' . $idActividad,
         'enableAjaxValidation' => false,
+        'action' => Yii::app()->homeUrl . '/tarea/crearAjax',
+        'htmlOptions' => array(
+            'onsubmit' => 'return tareaCrearAjax(this)'
+        )
     ));
     ?>
 
@@ -21,8 +22,13 @@
 
     <div class="row">
         <?php
+        echo $form->hiddenField($model, 'ID_ACTIVIDAD');
         echo $form->labelEx($model, 'NOMBRE_TAREA');
-        echo $form->textField($model, 'NOMBRE_TAREA', array('size' => 60, 'maxlength' => 100, 'placeholder' => 'Agregar Tarea'));
+        echo $form->textField($model, 'NOMBRE_TAREA', array(
+            'id' => 'txt-tarea-' . $idActividad,
+            'size' => 60,
+            'maxlength' => 100,
+            'placeholder' => 'Agregar Tarea'));
         echo $form->error($model, 'NOMBRE_TAREA');
         ?>
     </div>
@@ -30,17 +36,12 @@
 
     <div class="row buttons">
         <?php
-        $label = "crearTarea";
-        $url = Yii::app()->homeUrl . '/tarea/crearAjax';
-        $data = array(
-            'success' => file_get_contents('js/ajax/tarea/crear.js'),
-            'error' => file_get_contents('js/ajax/tarea/error_crear.js')
-        );
+        $label = "agregar tarea";
         $htmlOptions = array(
-            'id'=>'btnCrearTarea_'.$model->ID_ACTIVIDAD
+            'id' => 'btn-crear-tarea-' . $idActividad,
+            'name' => 'btn-crear-tarea-' . $idActividad
         );
-
-        echo CHtml::ajaxSubmitButton($label, $url, $data);
+        echo CHtml::submitButton($label, $htmlOptions);
         ?>
         <div class="clearFix"></div>
     </div>

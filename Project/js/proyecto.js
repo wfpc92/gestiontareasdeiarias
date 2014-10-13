@@ -1,10 +1,3 @@
 $(document).ready(function() {
-
-
-
+    $("#content-princ-der").hide();
 });
-
-function categoriaToogle(self) {
-    $(self).siblings().eq(0).slideToggle();
-    return false;
-}

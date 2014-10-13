@@ -1,6 +1,26 @@
+var tareaCrearAjax = function(form) {
+    $.ajax({
+        type: 'POST',
+        url: $(form).attr('action'),
+        data: $(form).serialize(),
+        dataType: 'json',
+        success: function(data) {
+            var htmlTarea = data.htmlTarea;
+            var idActividad = data.idActividad;
+            var idTarea = data.idTarea;
+            var items = $("#tarea-" + idActividad + " .items");
+            var divsItems = $("#tarea-" + idActividad + " .items > div");
 
-function sucess(nvaTarea) {
-    console.log("hola mundo desde ajax, tarea");
-    
-}
-      
+            if (divsItems.length === 0) {
+                items.html("");
+            }
+            items.append(htmlTarea);
+            $("#txt-tarea-" + idActividad).val("");
+        },
+        error: function() {
+            alert("ERROR: categoriaCrearAjax conexion fallida");
+        }
+    });
+    return false;
+};
+ 

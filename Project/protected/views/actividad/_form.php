@@ -5,12 +5,15 @@
 ?>
 
 <div class="form">
-
     <?php
+    $idCategoria = $model->ID_CATEGORIA;
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'actividad-form',
+        'id' => 'actividad-form-' . $idCategoria,
         'enableAjaxValidation' => false,
-        'action' => Yii::app()->homeUrl
+        'action' => Yii::app()->homeUrl . '/actividad/crearAjax',
+        'htmlOptions' => array(
+            'onsubmit' => 'return actividadCrearAjax(this)'
+        )
     ));
 
     echo $form->errorSummary($model);
@@ -20,25 +23,24 @@
         <?php
         echo $form->hiddenField($model, 'ID_CATEGORIA');
         echo $form->labelEx($model, 'NOMBRE_ACTIVIDAD');
-        echo $form->textField($model, 'NOMBRE_ACTIVIDAD', array('class' => 'input_categoria', 'size' => 60, 'maxlength' => 100, 'placeholder' => 'Agregar Actividad'));
+        echo $form->textField($model, 'NOMBRE_ACTIVIDAD', array(
+            'id' => 'txt-actividad-' . $idCategoria,
+            'class' => 'input-categoria',
+            'size' => 60,
+            'maxlength' => 100,
+            'placeholder' => 'Agregar Actividad'));
         echo $form->error($model, 'NOMBRE_ACTIVIDAD');
         ?>
     </div>
 
     <div class="row buttons">
         <?php
-        $label = "agregar";
-        $url = Yii::app()->homeUrl . '/actividad/crearAjax';
-        $data = array(
-            'success' => file_get_contents('js/ajax/actividad/crear.js'),
-            'error' => file_get_contents('js/ajax/actividad/error_crear.js'),
-            'dataType' => 'json'
-        );
+        $label = "agregar actividad";
         $htmlOptions = array(
-            'id' => 'btnCrearActividad_' . $model->ID_CATEGORIA,
-            'name' => 'btnCrearActividad_' . $model->ID_CATEGORIA
+            'id' => 'btn-crear-actividad-' . $idCategoria,
+            'name' => 'btn-crear-actividad-' . $idCategoria
         );
-        echo CHtml::ajaxSubmitButton($label, $url, $data, $htmlOptions);
+        echo CHtml::submitButton($label, $htmlOptions);
         ?>
         <div class="clearFix"></div>
     </div>

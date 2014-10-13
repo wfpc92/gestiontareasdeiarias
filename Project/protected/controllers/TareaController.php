@@ -26,7 +26,7 @@ class TareaController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'listarAjax', 'crearAjax'),
+                'actions' => array('index', 'view', 'crearAjax'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -163,36 +163,31 @@ class TareaController extends Controller {
     }
 
     /**
-     * listar las tareas de una actividad
-     */
-    public function actionListarAjax() {
-        if (isset($_REQUEST['id'])) {
-            $model = new Tarea;
-            $model->ID_ACTIVIDAD = $_REQUEST['id'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            
-            $form = '../tarea/_form';
-            $this->renderPartial($form, array('model' => $model));
-    
-            
-            $dataProvider = new CActiveDataProvider('Tarea', array(
-            'criteria' => array(
-                'condition' => 'ID_ACTIVIDAD=' . $model->ID_ACTIVIDAD
-            )));
-
-            $this->widget('zii.widgets.CListView', array(
-                'dataProvider' => $dataProvider,
-                'itemView' => '../tarea/_view'
-            ));                
-        }
-    }
-    
-    /**
      * Funcion que crea una tarea y renderiza el formulario para editar la tarea. 
      */
-    public function actionCrearAjax(){
-        var_dump($_REQUEST);
+    public function actionCrearAjax() {
+        if (isset($_REQUEST['Tarea'])) {
+            $model = new Tarea;
+            $model->attributes = $_REQUEST['Tarea'];
+            $userId = Yii::app()->user->getId();
+            $model->CORREO = $userId;
+            $model->PRIORIDAD = 0;
+            $result = $model->save();
+            if ($result) {
+                $htmlActividad = $this->renderPartial('_view', array('data' => $model), true);
+
+                echo CJavaScript::jsonEncode(array(
+                    'htmlTarea' => $htmlActividad,
+                    'idActividad' => $model->ID_ACTIVIDAD,
+                    'idTarea' => $model->ID_TAREA
+                ));
+            } else {
+                //error, no guardo la actividad
+                echo "ERROR: no se guardo la tarea";
+            }
+        } else {
+            echo "ERROR: peticion de crear tarea mal formada.";
+        }
     }
 
 }

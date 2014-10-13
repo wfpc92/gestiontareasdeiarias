@@ -1,25 +1,39 @@
 <?php
 /* @var $this ActividadController */
 /* @var $data Actividad */
+/* @var $form CActiveForm  */
+
+$idActividad = $data->ID_ACTIVIDAD;
+$nombreActividad = $data->NOMBRE_ACTIVIDAD;
 ?>
 
-<div id="actividad_<?php echo CHtml::encode($data->ID_ACTIVIDAD); ?>" class="view">
-
-    
+<div id="actividad-<?php echo CHtml::encode($idActividad); ?>" class="view">
     <?php
-    $label = $data->NOMBRE_ACTIVIDAD;
-    $id_actividad = $data->ID_ACTIVIDAD;
-    $url = Yii::app()->homeUrl . '/tarea/listarAjax/' . $id_actividad;
-    $data = array(
-        'update'=>'#content-tareas'
-        /*'success' => file_get_contents('js/ajax/tarea/listar.js'),
-        'error' => file_get_contents('js/ajax/tarea/error_listar.js')*/
-    );
+    $model = new Actividad;
+    $model->ID_ACTIVIDAD = $idActividad;
+
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'listar-tareas-form-' . $idActividad,
+        'enableAjaxValidation' => false,
+        'action' => Yii::app()->homeUrl . '/actividad/listarTareasAjax',
+        'htmlOptions' => array(
+            'onclick' => 'return actividadListarTareasAjax(this)'
+        )
+    ));
+
+    $attribute = "ID_ACTIVIDAD";
     $htmlOptions = array(
-        'id' => 'btnListarTareas_'.$id_actividad
+        'id' => 'hdn-actividad-id-' . $idActividad
     );
-    echo CHtml::ajaxLink($label, $url, $data, $htmlOptions);
+    echo $form->hiddenField($model, $attribute, $htmlOptions);
+
+    $label = $nombreActividad;
+    $url = "#";
+    $htmlOptions = array(
+        'id' => 'btn-listar-tareas-' . $idActividad
+    );
+    echo CHtml::link($label, $url, $htmlOptions);
+
+    $this->endWidget();
     ?>
-
-
 </div>
