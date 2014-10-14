@@ -26,7 +26,7 @@ class TareaController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'crearAjax'),
+                'actions' => array('index', 'view', 'crearAjax', 'actualizarAjax'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -174,10 +174,12 @@ class TareaController extends Controller {
             $model->PRIORIDAD = 0;
             $result = $model->save();
             if ($result) {
-                $htmlActividad = $this->renderPartial('_view', array('data' => $model), true);
+                $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
+                $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
 
                 echo CJavaScript::jsonEncode(array(
-                    'htmlTarea' => $htmlActividad,
+                    'htmlTarea' => $htmlTarea,
+                    'htmlTareaEditar' => $htmlTareaEditar,
                     'idActividad' => $model->ID_ACTIVIDAD,
                     'idTarea' => $model->ID_TAREA
                 ));
@@ -188,6 +190,36 @@ class TareaController extends Controller {
         } else {
             echo "ERROR: peticion de crear tarea mal formada.";
         }
+    }
+
+    /**
+     * Funcion que actualizar una tarea. 
+     */
+    public function actionActualizarAjax() {
+        $actualizar = false;
+        $motivo = "";
+
+        if (isset($_REQUEST['Tarea'])) {
+            $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
+            $model->attributes = $_REQUEST['Tarea'];
+            $userId = Yii::app()->user->getId();
+            $model->CORREO = $userId;
+
+            $result = $model->save();
+            if ($result) {
+                $actualizar = true;
+            } else {
+                $motivo = "ERROR: no se hizo la actualizacion en BD";
+            }
+
+            $motivo = $model->getErrors();
+        } else {
+            $motivo = "ERROR: peticion mal formada";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'actualizar' => $actualizar,
+            'motivo' => $motivo
+        ));
     }
 
 }

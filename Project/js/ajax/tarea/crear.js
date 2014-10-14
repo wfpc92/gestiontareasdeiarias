@@ -6,6 +6,7 @@ var tareaCrearAjax = function(form) {
         dataType: 'json',
         success: function(data) {
             var htmlTarea = data.htmlTarea;
+            var htmlTareaEditar = data.htmlTareaEditar;
             var idActividad = data.idActividad;
             var idTarea = data.idTarea;
             var items = $("#tarea-" + idActividad + " .items");
@@ -16,6 +17,12 @@ var tareaCrearAjax = function(form) {
             }
             items.append(htmlTarea);
             $("#txt-tarea-" + idActividad).val("");
+
+            $("#content-princ-izq").css("width", "38%");
+            $("#content-princ-der")
+                    .css("width", "58%")
+                    .show()
+                    .html(htmlTareaEditar);
         },
         error: function() {
             alert("ERROR: categoriaCrearAjax conexion fallida");

@@ -18,6 +18,7 @@
         $this->renderPartial($form, array('model' => $modelActividad));
 
         $dataProvider = new CActiveDataProvider('Actividad', array(
+            'pagination' => false,
             'criteria' => array(
                 'condition' => 'ID_CATEGORIA=' . $data->ID_CATEGORIA
             )
@@ -26,6 +27,7 @@
         $this->widget('zii.widgets.CListView', array(
             'dataProvider' => $dataProvider,
             'itemView' => '../actividad/_view',
+            'enablePagination' => false,
         ));
         ?>
     </div>

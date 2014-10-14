@@ -21,6 +21,7 @@
         $cs->registerScriptFile('js/ajax/actividad/crear.js');
         $cs->registerScriptFile('js/ajax/actividad/listarTareas.js');
         $cs->registerScriptFile('js/ajax/tarea/crear.js');
+        $cs->registerScriptFile('js/ajax/tarea/actualizar.js');
         ?>
 
 
