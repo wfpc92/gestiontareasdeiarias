@@ -8,8 +8,7 @@ var actividadListarTareasAjax = function(form) {
             var idActividad = data.idActividad;
             var htmlTareas = data.htmlTareas;
             var panel = $("#content-princ-izq");
-            console.log(panel)
-            panel.html(htmlTareas);
+            panel.html(htmlTareas);            
         },
         error: function() {
             alert("ERROR: actividadListarTareasAjax conexion fallida");

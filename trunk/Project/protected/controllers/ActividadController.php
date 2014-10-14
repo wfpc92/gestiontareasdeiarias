@@ -200,6 +200,7 @@ class ActividadController extends Controller {
             $htmlTareas = $this->renderPartial($form, array('model' => $model), true);
 
             $dataProvider = new CActiveDataProvider('Tarea', array(
+                'pagination' => false,
                 'criteria' => array(
                     'condition' => 'ID_ACTIVIDAD=' . $model->ID_ACTIVIDAD
             )));
@@ -207,6 +208,7 @@ class ActividadController extends Controller {
             $htmlTareas .= $this->widget('zii.widgets.CListView', array(
                 'dataProvider' => $dataProvider,
                 'itemView' => '../tarea/_view',
+                'enablePagination' => false,
                 'htmlOptions' => array(
                     'id' => 'tarea-' . $model->ID_ACTIVIDAD
                 )), true);
