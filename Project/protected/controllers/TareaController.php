@@ -174,8 +174,11 @@ class TareaController extends Controller {
             $model->PRIORIDAD = 0;
             $result = $model->save();
             if ($result) {
+                Yii::app()->clientScript->reset();
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
+                $output = $htmlTareaEditar;
+                Yii::app()->clientScript->render($htmlTareaEditar);
 
                 echo CJavaScript::jsonEncode(array(
                     'htmlTarea' => $htmlTarea,

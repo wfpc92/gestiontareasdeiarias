@@ -2,6 +2,7 @@
 /* @var $this TareaController */
 /* @var $model Tarea */
 /* @var $form CActiveForm */
+/* @var Yii::app()->clientScript CClientScript */
 ?>
 
 <div class="form">
