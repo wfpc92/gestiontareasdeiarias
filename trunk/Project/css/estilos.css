@@ -28,10 +28,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
-body {
-    font-family: 'asapregular';
-}
 input[type="button"], input[type="submit"], input[type="reset"] {
     background: #595959;
     color: #ffffff;
@@ -42,170 +38,172 @@ input[type="button"], input[type="submit"], input[type="reset"] {
     font-size: 15px;
 }
 input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
-    background: #8f8d8d;
+	background: #8f8d8d;
 }
 input[type="text"], input[type="password"] {
     display: inline-block;
     height: 22px;
     border-radius: 5px;
-    border: 1px solid #1c1c1c;
+    border: none;
     font-family: 'asapregular';
 }
-div.form input, div.form textarea, div.form select {
-    margin: 1px 0;
+body {
+    font-family: 'asapregular';
+}
+#page {
+    background: #E9EAED;
+    border: medium none;
+    margin: 0;
+    width: 100%;
+}
+.list-view .summary {
+    display: none;
+}
+div.view {
+    border: 1px solid #CBCBCB;
+    margin: 1px 0px;
+    font-size: 18px;
 }
 div.clearFix {
     clear: both;
 }
-.span-19 {
-    width: 20%;
-    margin-left: 50px;
-}
-.container {
-    width: 100%;
-
-}
-#page {
-    border: none;
-    margin: 0;
-    background-color: #FFDDAE;
-}
+/***** Header (inicio) *****/
 #header {
-    position: relative;
-    background-color: rgb(88, 172, 250);
-    border: none;
+	position: relative;
+	background-color: rgb(88, 172, 250);
+	border: none;
 }
-#logo {
-    height: 70px;
+    #logo {
+            height: 45px;
+    }
+        #logo a{
+                display: block;
+                width: 36px;
+                height: 40px;
+                margin-left: 50px;
+                text-indent: -9999px;
+                overflow: hidden;
+                background: url("../images/logo.png") no-repeat;
+        }
+    #mainmenu {
+            position: absolute;
+            right: 55px;
+            top: 20px;
+            background: none;
+            background-color: #58acfa;
+    } 
+        #mainmenu ul li a {
+                font-size: 13px;
+                padding: 5px 5px;
+        }
+        #mainmenu ul li.active a {
+                color: #ffffff;
+                text-decoration: none;
+        }
+        #mainmenu ul li a:hover {
+                background-color: #58acfa;
+                color: #ffffff;
+                text-decoration: none;
+                border-bottom: 1px solid #ffffff;
+        }
+/***** Header (fin) *****/
+
+/***** Footer (inicio) *****/
+#footer {
+	display: none;
 }
-#logo a{
-    display: block;
-    width: 82px;
-    height: 70px;
-    margin-left: 50px;
-    text-indent: -9999px;
-    overflow: hidden;
-    background: url("../images/logo.png") no-repeat;
-}
-#mainmenu {
-    position: absolute;
-    right: 55px;
-    top: 30px;
-    background: none;
-    background-color: #58acfa;
-} 
-#mainmenu ul li a {
-    color: #ffffff;
-    font-size: 13px;
-    padding: 5px 10px;
-}
-#mainmenu ul li.active a {
-    background-color: #000000;
-    color: #ffffff;
-    text-decoration: none;
-}
-#mainmenu ul li a:hover {
-    background-color: #58acfa;
-    color: #ffffff;
-    text-decoration: none;
-    border-bottom: 1px solid #ffffff;
-}
-/*** Contenedores principales (inicio) ***/
+/***** Footer (fin) *****/
+
+/***** Contenedores principales (inicio) *****/
 #content {
-    position: relative;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    padding: 0 10px;
 }
 #contentIzq {
     float: left;
     width: 20%;
-    border: 1px solid #1c1c1c;
+    border-right: 1px solid #CBCBCB;
+    padding-right: 10px;
 }
 #contentDer {
     float: right;
-    width: 79.7%;
-    border: 1px solid #1c1c1c;
+    width: 78%;
     padding-bottom: 20px;
 }
 #content-princ-izq {
-    float: left;
-    width: auto;
-    min-width: 40%; 
-    max-width: 100%;
-    border: 1px solid #1c1c1c;
-    padding-bottom: 20px;
+	float: left;
+	width: auto;
+	min-width: 40%; 
+	max-width: 100%;
+	padding-bottom: 20px;
+        padding-right: 15px;
 }
 #content-princ-der {
-    float: left;
-    width: 58%;
-    border: 1px solid #1c1c1c;
-    padding-bottom: 20px;
+	float: left;
+	width: 58%;
+	padding-bottom: 20px;
 }
-/*** Contenedores principales (fin) ***/
+/***** Contenedores principales (fin) *****/
 
-/*** Componentes yii (inicio) ***/
-div.span-19 #content {
+#categoria-list-view .items .view a {
+    display: block;
     width: 100%;
-    margin: 0;
+    text-decoration: none;
+    color: #000000;
+    padding-bottom: 0;
 }
-div.summary {
-    display: none;
-}
-div.view {
-    border: 1px solid #1c1c1c;
-    //border-radius: 5px;
-    margin: 1px 0;
-    padding: 7px;
-    font-size: 18px;    
-}
-div.view  b {
-    display: none;
-}
-div.form {
-    //border: 1px solid #1c1c1c;
-    //border-radius: 5px;
-}
-/*** Componentes yii (fin) ***/
 
-/*** Formulario categoria (inicio) ***/
-#categoria-form div.row label {
+/***** Formularios (inicio) *****/
+.actividadesPorCate {
+	display: none;
+	margin-top: 20px;
+}
+#categoria-form .row label,
+.actividadesPorCate .form .formActividad label,
+#content-princ-izq .form .formTarea label {
     display: none;
 }
-#categoria-form div.buttons input[type="submit"] {
+#categoria-form .row input[type="text"],
+.actividadesPorCate .form .formActividad .row input[type="text"] {
+    width: 82%;
+    display: block;
+    padding: 0px 7px;
+}
+#categoria-form div.buttons input[type="submit"],
+.actividadesPorCate .form .formActividad .buttons input[type="submit"],
+#content-princ-izq .form .formTarea .buttons input[type="submit"] {
     width: 27px;
     height: 26px;
     text-indent: -9999px;
     overflow: hidden;
     background: url("../images/iconomas2.png") no-repeat center;
+    border: none;
     float: right;
     margin-top: -32px;
-    margin-right: 5px;
 }
-#txt-categoria {
-    margin-left: 5px;
-    width: 82%;
+#content-princ-izq div.form {
+    width: 320px;
 }
-/*** Formulario categoria (fin) ***/
-#footer {
-    display: none;
+.form .formTarea .row input[type="text"] {
+    padding: 0px 7px;
+    width: 85%;
 }
+#content-princ-izq .form .formTarea .buttons input[type="submit"] {
+    margin-top: -35px;
+}
+/***** Formularios (fin) *****/
 
-/*** Barra de progreso (inicio) ***/
+/***** Barra de progreso (inicio) *****/
 #contentDer  .progreso {
     width: 99%;
     height: 57px;
-    background: url('../images/barra1.png') no-repeat 110px 11px;
-    font-size: 20px;
-    line-height: 54px;
-    padding-left: 10px;
-    border-bottom: 1px solid #1c1c1c;
+    background: url('../images/barra.png') no-repeat 100px 10px;
+    font-size: 18px;
+    line-height: 45px;
 }
-/*** Barra de progreso () ***/
+/***** Barra de progreso (fin) *****/
 
-/*** Menu lista y calendario (inicio) ***/
+/***** Menu lista y calendario (inicio) *****/
 #contentDer .menu {
-    border-bottom: 1px solid #1c1c1c;
 } 
 #menu {
     display: block;
@@ -223,90 +221,19 @@ div.form {
             font-size: 15px;
         }
         #menu li.lista {
-
         }
         #menu li.lista a:link, #menu li.lista a:visited {
-
         }
         #menu li.lista a:hover {
-
         }
         #menu li.calendario {
-
         }
         #menu li.calendario a:link, #menu li.calendario a:visited {
-
         }
         #menu li.calendario a:hover {
-
         }
         #menu li.reportes a:link, #menu li.reportes a:visited {
-
         }
         #menu li.reportes a:hover {
-
         }
-/*** Menu lista y calendario (fin) ***/
-#categoria-list-view .items .view a {
-    display: block;
-    width: 100%;
-    text-decoration: none;
-    color: #000000;
-    padding-bottom: 0;
-}
-
-#yw0 .items .view input[type="button"]{
-    display: block;
-    background-color: #fff;
-    width: 100%;
-    text-decoration: none;
-    color: #000000;
-    padding-bottom: 0;
-}
-
-/*** Formulario actividades (inicio) ***/
-.actividadesPorCate {
-    display: none;
-    margin-top: 20px;
-}
-.actividadesPorCate .form .formActividad .buttons input[type="submit"] {
-    width: 27px;
-    height: 26px;
-    text-indent: -9999px;
-    overflow: hidden;
-    background: url("../images/iconomas2.png") no-repeat center;
-    float: right;
-    margin-top: -32px;
-    margin-right: 5px;
-}
-.actividadesPorCate .form .formActividad label {
-    display: none;
-}
-.actividadesPorCate .form .formActividad .row input[type="text"] {
-    margin-left: 5px;
-    width: 82%;
-}
-/*** Formulario actividades (fin) ***/
-
-/*** Formulario tareas (inicio) ***/
-#content-princ-izq .form .formTarea {
-    width: 100%;
-}
-#content-princ-izq .form .formTarea label {
-    display: none;
-}
-#content-princ-izq .form .formTarea .buttons input[type="submit"] {
-    width: 27px;
-    height: 26px;
-    text-indent: -9999px;
-    overflow: hidden;
-    background: url("../images/iconomas2.png") no-repeat center;
-    float: right;
-    margin-top: -32px;
-    margin-right: 10px;
-}
-#content-princ-izq .form .formTarea .row input[type="text"] {
-    margin-left: 10px;
-    width: 86%;
-}
-/*** Formulario tareas (fin) ***/
+/***** Menu lista y calendario (fin) *****/

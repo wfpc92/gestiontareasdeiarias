@@ -43,13 +43,9 @@
         <div class="clearFix"></div>
     </div>
 
-    <div id="content-princ-izq">
-        content-princ-izq
-    </div>
+    <div id="content-princ-izq"></div>
 
-    <div id="content-princ-der">
-        content-princ-der
-    </div>
+    <div id="content-princ-der"></div>
 </div>
 
 
