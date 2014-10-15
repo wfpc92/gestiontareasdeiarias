@@ -3,8 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" >
     <head>
         <?php
+        
         $cs = Yii::app()->clientScript;
-        $cs->registerMetaTag('text/html; charset=utf-8', 'content-type', 'Content-Type');
+        $cs->registerMetaTag(
+                'text/html; charset=utf-8', 
+                'content-type', 
+                'Content-Type');
         $cs->registerMetaTag('en', 'language');
 
         $cs->registerCssFile('css/screen.css', 'screen, projection');
