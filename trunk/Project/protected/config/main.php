@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Funcion que retorna la cadena de conexion
  * segun el servidor donde se ejecute

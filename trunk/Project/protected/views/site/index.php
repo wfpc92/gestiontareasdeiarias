@@ -54,5 +54,3 @@
 <div class="clearFix"></div>
 
 
-
-

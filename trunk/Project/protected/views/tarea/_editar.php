@@ -2,7 +2,6 @@
 /* @var $this TareaController */
 /* @var $model Tarea */
 /* @var $form CActiveForm */
-/* @var Yii::app()->clientScript CClientScript */
 ?>
 
 <div class="form">
@@ -12,9 +11,9 @@
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tarea-editar-form-' . $idTarea,
         'enableAjaxValidation' => false,
-        'action' => Yii::app()->homeUrl . "/tarea/actualizarAjax",
+        'action' => Yii::app()->homeUrl . '/tarea/actualizarAjax',
         'htmlOptions' => array(
-            'onsubmit' => "return tareaActualizarAjax(this)",
+            'onsubmit' => "return tareaGuardarAjax(this)",
             'onchange' => "return tareaActualizarAjax(this)",
             'class' => ''
         )
@@ -27,7 +26,11 @@
         echo $form->hiddenField($model, "ID_ACTIVIDAD");
         echo $form->hiddenField($model, "ID_TAREA");
         echo $form->labelEx($model, 'NOMBRE_TAREA');
-        echo $form->textField($model, 'NOMBRE_TAREA', array('size' => 60, 'maxlength' => 100));
+        echo $form->textField($model, 'NOMBRE_TAREA', array(
+            'size' => 60,
+            'maxlength' => 100,
+            'id' => 'txt-tarea-nombre-' . $idTarea)
+        );
         echo $form->error($model, 'NOMBRE_TAREA');
         ?>
     </div>
@@ -39,56 +42,17 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'FECHA_INICIO');
-        $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-            'model' => $model,
-            'attribute' => 'FECHA_INICIO',
-            'value' => $model->FECHA_INICIO,
-            'language' => 'es',
-            //'htmlOptions' => array('readonly'=>"readonly"),
-            'options' => array(
-                'autoSize' => true,
-                'defaultDate' => $model->FECHA_INICIO,
-                'dateFormat' => 'yy-mm-dd',
-                //'buttonImage'=>Yii::app()->baseUrl.'/images/calendario.jpg',
-                'buttonImageOnly' => true,
-                'buttonText' => 'Fecha',
-                'selectOtherMonths' => true,
-                'showAnim' => 'slide',
-                'showButtonPanel' => true,
-                'showOn' => 'focus',
-                'showOtherMonths' => true,
-                'changeMonth' => 'true',
-                'changeYear' => 'true',
-                'minDate' => 'date("Y-m-d")',
-                'maxDate' => "+20Y",
-            ),
+        echo $form->textField($model, 'FECHA_INICIO', array(
+            'id' => 'd-picker-fecha-inicio-' . $idTarea,
+            'class' => 'd-picker'
         ));
 
         echo $form->labelEx($model, 'FECHA_FIN');
-        $this->widget('zii.widgets.jui.CJuiDatePicker', array(
-            'model' => $model,
-            'attribute' => 'FECHA_FIN',
-            'value' => $model->FECHA_FIN,
-            'language' => 'es',
-            //'htmlOptions' => array('readonly'=>"readonly"),
-            'options' => array(
-                'autoSize' => true,
-                'defaultDate' => $model->FECHA_FIN,
-                'dateFormat' => 'yy-mm-dd',
-                //'buttonImage'=>Yii::app()->baseUrl.'/images/calendario.jpg',
-                'buttonImageOnly' => true,
-                'buttonText' => 'Fecha',
-                'selectOtherMonths' => true,
-                'showAnim' => 'slide',
-                'showButtonPanel' => true,
-                'showOn' => 'focus',
-                'showOtherMonths' => true,
-                'changeMonth' => 'true',
-                'changeYear' => 'true',
-                'minDate' => 'date("Y-m-d")',
-                'maxDate' => "+20Y",
-            ),
+        echo $form->textField($model, 'FECHA_INICIO', array(
+            'id' => 'd-picker-fecha-fin-' . $idTarea,
+            'class' => 'd-picker'
         ));
+
 
         echo $form->error($model, 'FECHA_INICIO');
         echo $form->error($model, 'FECHA_FIN');
@@ -145,16 +109,15 @@
         );
         echo CHtml::submitButton($label, $htmlOptions);
 
-        $label = "Cancelar";
+        $label = "Cerrar";
         $htmlOptions = array(
-            'id' => 'btn-cancelar-tarea-' . $idTarea,
-            'class' => ''
+            'id' => 'btn-cerrar-tarea-' . $idTarea,
+            'class' => '',
+            'onclick' => 'return tareaCerrar(this)'
         );
         echo CHtml::submitButton($label, $htmlOptions);
         ?>
 
     </div>
-
     <?php $this->endWidget(); ?>
-
 </div><!-- form -->

@@ -1,4 +1,4 @@
-var tareaActualizarAjax = function(form) {
+var tareaGuardarAjax = function(form) {
     $.ajax({
         type: 'POST',
         url: $(form).attr('action'),
@@ -9,11 +9,11 @@ var tareaActualizarAjax = function(form) {
             var txtNombreTarea = $("#txt-tarea-nombre-" + idTarea);
             var pViejoTarea = $("#p-tarea-nombre-" + idTarea);
             pViejoTarea.text(txtNombreTarea.val());
+            tareaCerrar(null);
         },
         error: function() {
-            alert("ERROR: tareaActualizarAjax conexion fallida");
+            alert("ERROR: tareaGuardarAjax conexion fallida");
         }
     });
     return false;
 };
-
