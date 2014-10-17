@@ -26,7 +26,7 @@ class TareaController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'crearAjax', 'actualizarAjax'),
+                'actions' => array('index', 'view', 'crearAjax', 'mostrarAjax', 'actualizarAjax', 'eliminarAjax'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -165,7 +165,9 @@ class TareaController extends Controller {
     /**
      * Funcion que crea una tarea y renderiza el formulario para editar la tarea. 
      */
+    /* @var $cs CClientScript */
     public function actionCrearAjax() {
+        $cs = Yii::app()->clientScript;
         if (isset($_REQUEST['Tarea'])) {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
@@ -174,12 +176,10 @@ class TareaController extends Controller {
             $model->PRIORIDAD = 0;
             $result = $model->save();
             if ($result) {
-                Yii::app()->clientScript->reset();
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
-                $output = $htmlTareaEditar;
-                Yii::app()->clientScript->render($htmlTareaEditar);
 
+                //Yii::app()->clientScript->render($htmlTareaEditar);//error de yii y ajax
                 echo CJavaScript::jsonEncode(array(
                     'htmlTarea' => $htmlTarea,
                     'htmlTareaEditar' => $htmlTareaEditar,
@@ -187,9 +187,25 @@ class TareaController extends Controller {
                     'idTarea' => $model->ID_TAREA
                 ));
             } else {
-                //error, no guardo la actividad
                 echo "ERROR: no se guardo la tarea";
             }
+        } else {
+            echo "ERROR: peticion de crear tarea mal formada.";
+        }
+    }
+
+    /**
+     * Funcion que muestra la tarea solicitada.
+     */
+    public function actionMostrarAjax() {
+        if (isset($_REQUEST['Tarea'])) {
+            $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
+            $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
+            echo CJavaScript::jsonEncode(array(
+                'htmlTareaEditar' => $htmlTareaEditar,
+                'idActividad' => $model->ID_ACTIVIDAD,
+                'idTarea' => $model->ID_TAREA
+            ));
         } else {
             echo "ERROR: peticion de crear tarea mal formada.";
         }
@@ -203,7 +219,8 @@ class TareaController extends Controller {
         $motivo = "";
 
         if (isset($_REQUEST['Tarea'])) {
-            $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
+            $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
+            $model = Tarea::model()->findByPk($idTarea);
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
             $model->CORREO = $userId;
@@ -214,14 +231,49 @@ class TareaController extends Controller {
             } else {
                 $motivo = "ERROR: no se hizo la actualizacion en BD";
             }
+            $motivo = $model->getErrors();
+            echo CJavaScript::jsonEncode(array(
+                'actualizar' => $actualizar,
+                'motivo' => $motivo,
+                'idTarea' => $idTarea
+            ));
+        } else {
+            $motivo = "ERROR: peticion mal formada";
+            echo CJavaScript::jsonEncode(array(
+                'actualizar' => $actualizar,
+                'motivo' => $motivo
+            ));
+        }
+    }
 
+    /**
+     * Funcion que eliminar una tarea. 
+     */
+    public function actionEliminarAjax() {
+        $borrar = false;
+        $motivo = "";
+        $idTarea = NULL;
+        if (isset($_REQUEST['Tarea'])) {
+            $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
+            $model = Tarea::model()->findByPk($idTarea);
+            $model->attributes = $_REQUEST['Tarea'];
+            $userId = Yii::app()->user->getId();
+            $model->CORREO = $userId;
+            $result = $model->delete();
+
+            if ($result) {
+                $borrar = true;
+            } else {
+                $motivo = "ERROR: no se hizo la eliminacion en BD";
+            }
             $motivo = $model->getErrors();
         } else {
             $motivo = "ERROR: peticion mal formada";
         }
         echo CJavaScript::jsonEncode(array(
-            'actualizar' => $actualizar,
-            'motivo' => $motivo
+            'borrar' => $borrar,
+            'motivo' => $motivo,
+            'idTarea' => $idTarea
         ));
     }
 

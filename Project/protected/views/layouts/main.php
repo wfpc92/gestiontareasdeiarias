@@ -3,12 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" >
     <head>
         <?php
-        
         $cs = Yii::app()->clientScript;
         $cs->registerMetaTag(
-                'text/html; charset=utf-8', 
-                'content-type', 
-                'Content-Type');
+                'text/html; charset=utf-8', 'content-type', 'Content-Type');
         $cs->registerMetaTag('en', 'language');
 
         $cs->registerCssFile('css/screen.css', 'screen, projection');
@@ -24,8 +21,13 @@
         $cs->registerScriptFile('js/ajax/categoria/crear.js');
         $cs->registerScriptFile('js/ajax/actividad/crear.js');
         $cs->registerScriptFile('js/ajax/actividad/listarTareas.js');
-        $cs->registerScriptFile('js/ajax/tarea/crear.js');
+
         $cs->registerScriptFile('js/ajax/tarea/actualizar.js');
+        $cs->registerScriptFile('js/ajax/tarea/cerrar.js');
+        $cs->registerScriptFile('js/ajax/tarea/crear.js');
+        $cs->registerScriptFile('js/ajax/tarea/guardar.js');
+        $cs->registerScriptFile('js/ajax/tarea/eliminar.js');
+        $cs->registerScriptFile('js/ajax/tarea/mostrar.js');
         ?>
 
 
