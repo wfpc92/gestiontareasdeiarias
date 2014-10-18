@@ -19,10 +19,10 @@ $this->breadcrumbs=array(
 
 <?php else: ?>
 
-<p>
+<!--<p>
 If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
 </p>
-
+-->
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -32,10 +32,11 @@ If you have business inquiries or other questions, please fill out the following
 		'validateOnSubmit'=>true,
 	),
 )); ?>
+        
+        
+	<!--<p class="note">Fields with <span class="required">*</span> are required.</p>-->
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
+        <!--<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
@@ -60,8 +61,8 @@ If you have business inquiries or other questions, please fill out the following
 		<?php echo $form->textArea($model,'body',array('rows'=>6, 'cols'=>50)); ?>
 		<?php echo $form->error($model,'body'); ?>
 	</div>
-
-	<?php if(CCaptcha::checkRequirements()): ?>
+        -->
+	<!--<?php if(CCaptcha::checkRequirements()): ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'verifyCode'); ?>
 		<div>
@@ -72,12 +73,13 @@ If you have business inquiries or other questions, please fill out the following
 		<br/>Letters are not case-sensitive.</div>
 		<?php echo $form->error($model,'verifyCode'); ?>
 	</div>
-	<?php endif; ?>
+	<?php endif; ?> 
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Submit'); ?>
-	</div>
+	</div> -->
 
+        
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->

@@ -20,6 +20,9 @@
         $cs->registerCssFile('css/responsive768.css', 'screen and (max-width: 768px)');
         $cs->registerCssFile('css/responsive480.css', 'screen and (max-width: 480px)');
         $cs->registerCssFile('css/responsive360.css', 'screen and (max-width: 360px)');
+        
+        //$cs->registerScriptFile('js/fullcalendar/fullcalendar.css');
+        $cs->registerCssFile('js/fullcalendar/fullcalendar.css');
 
         $cs->registerScriptFile('js/proyecto.js', CClientScript::POS_HEAD);
         $cs->registerScriptFile('js/ajax/categoria/crear.js');
@@ -27,6 +30,12 @@
         $cs->registerScriptFile('js/ajax/actividad/listarTareas.js');
 
         $cs->registerScriptFile('js/ajax/tarea/actualizar.js');
+        
+        $cs->registerScriptFile('js/fullcalendar/fullcalendar.js');
+        $cs->registerScriptFile('js/fullcalendar/lib/jquery.min.js');
+        $cs->registerScriptFile('js/fullcalendar/lib/moment.min.js');
+        $cs->registerScriptFile('js/fullcalendar/lang-all.js');
+
         $cs->registerScriptFile('js/ajax/tarea/cerrar.js');
         $cs->registerScriptFile('js/ajax/tarea/crear.js');
         $cs->registerScriptFile('js/ajax/tarea/guardar.js');
