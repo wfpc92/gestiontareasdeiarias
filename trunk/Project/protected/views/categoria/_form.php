@@ -39,9 +39,8 @@
         );
         echo CHtml::submitButton($label, $htmlOptions);
         ?>
-
-        <div class="clearFix"></div>
     </div>
+    <div class="clearFix"></div>
 
     <?php $this->endWidget(); ?>
 

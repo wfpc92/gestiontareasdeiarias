@@ -6,8 +6,9 @@
 <div id="categoria-<?php echo CHtml::encode($data->ID_CATEGORIA); ?>" 
      class="view">
 
-    <a href="#" class="" onclick="return categoriaToogle(this)">
+    <a href="#" class="categoria" onclick="return categoriaToogle(this)">
         <?php echo CHtml::encode($data->NOMBRE_CATEGORIA); ?>
+        
     </a>
 
     <div class="actividadesPorCate">
@@ -23,7 +24,7 @@
                 'condition' => 'ID_CATEGORIA=' . $data->ID_CATEGORIA
             )
         ));
-
+        
         $this->widget('zii.widgets.CListView', array(
             'dataProvider' => $dataProvider,
             'itemView' => '../actividad/_view',
@@ -31,6 +32,9 @@
         ));
         ?>
     </div>
+    <a class="editar-categoria" href="#">Editar</a>
+    <a class="eliminar-categoria" href="#">Eliminar</a>
+    <div class="clearFix"></div>
 
 
 </div>

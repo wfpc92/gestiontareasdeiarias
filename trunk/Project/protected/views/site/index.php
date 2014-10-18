@@ -23,30 +23,32 @@
     </div>
 </div>
 
+<div class="fluida">
+    <div id="contentDer">
+        <div class="progreso">
+            Progreso:
+        </div>
+        <div class="menu">
+            <ul id="menu">
+                <li class="lista">
+                    <a href="#">Lista</a>
+                </li>
+                <li class="calendario">
+                    <a href="#">Calendario</a>
+                </li>
+                <li class="reportes">
+                    <a href="#">Reportes</a>
+                </li>
+            </ul> 
+            <div class="clearFix"></div>
+        </div>
 
-<div id="contentDer">
-    <div class="progreso">
-        Progreso:
-    </div>
-    <div class="menu">
-        <ul id="menu">
-            <li class="lista">
-                <a href="#">Lista</a>
-            </li>
-            <li class="calendario">
-                <a href="#">Calendario</a>
-            </li>
-            <li class="reportes">
-                <a href="#">Reportes</a>
-            </li>
-        </ul> 
+        <div id="content-princ-izq"></div>
+        <div id="content-princ-der"></div>
         <div class="clearFix"></div>
     </div>
-
-    <div id="content-princ-izq"></div>
-
-    <div id="content-princ-der"></div>
 </div>
+<div class="clearFix"></div>
 
 
 
