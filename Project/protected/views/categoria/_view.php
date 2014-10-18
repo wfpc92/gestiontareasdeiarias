@@ -11,7 +11,7 @@
         <?php echo CHtml::link("eliminar","#",
                 array('onclick'=>'return categoriaEliminarAjax(this)',
                         'class'=>'eliminar-categoria')); ?>
-        
+
     </a>
     <span id="tgr-modificar">
         <?php
@@ -36,15 +36,23 @@
                 'condition' => 'ID_CATEGORIA=' . $data->ID_CATEGORIA
             )
         ));
-        
+
         $this->widget('zii.widgets.CListView', array(
             'dataProvider' => $dataProvider,
             'itemView' => '../actividad/_view',
             'enablePagination' => false,
         ));
         ?>
-    </div>    
-    <a class="eliminar-categoria" href="#">Eliminar</a>
+
+    <a class="menu-categoria" href="#">Menú Categoría</a>
+    <ul class="categoria">
+        <li class="editar">
+            <a href="#">Editar</a>
+        </li>
+        <li class="eliminar">
+            <a href="#">Eliminar</a>
+        </li>
+    </ul>
     <div class="clearFix"></div>
 
 

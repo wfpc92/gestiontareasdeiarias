@@ -26,7 +26,7 @@ $idTarea = $data->ID_TAREA;
         'id' => 'p-tarea-nombre-' . $idTarea)
             , CHtml::encode($data->NOMBRE_TAREA));
 
-    $label = "Eliminar Tarea";
+    $label = "Eliminar";
     $htmlOptions = array(
         'id' => 'lnk-eliminar-tarea-' . $idTarea,
         'name' => 'lnk-eliminar-tarea-' . $idTarea,
@@ -37,6 +37,6 @@ $idTarea = $data->ID_TAREA;
 
     $this->endWidget();
     ?>
-    <!--<a class="eliminar-tarea" href="#">Eliminar</a>-->
+    <a class="menu-tarea" href="#">Menú Tarea</a>
     <br />
 </div>
