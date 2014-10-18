@@ -30,12 +30,13 @@ $idTarea = $data->ID_TAREA;
     $htmlOptions = array(
         'id' => 'lnk-eliminar-tarea-' . $idTarea,
         'name' => 'lnk-eliminar-tarea-' . $idTarea,
+        'class' => 'eliminar-tarea',
         'onclick' => 'return tareaEliminarAjax(this)'
     );
     echo CHtml::link($label, "#", $htmlOptions);
 
     $this->endWidget();
     ?>
-    <a class="eliminar-tarea" href="#">Eliminar</a>
+    <!--<a class="eliminar-tarea" href="#">Eliminar</a>-->
     <br />
 </div>
