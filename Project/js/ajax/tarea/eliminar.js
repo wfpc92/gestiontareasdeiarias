@@ -1,6 +1,6 @@
-var tareaEliminarAjax = function(selfLink) {
-    var form = $(selfLink).parent("form");
-    console.log($(selfLink));
+
+var tareaEliminarAjax = function(self, event) {
+    var form = $(self).parent("form");
     $.ajax({
         type: 'POST',
         url: $(form).attr('action') + '/tarea/eliminarAjax',
@@ -20,6 +20,7 @@ var tareaEliminarAjax = function(selfLink) {
             alert("ERROR: tareaEliminarAjax conexion fallida");
         }
     });
+    //event.preventDefault();
     return false;
 };
 

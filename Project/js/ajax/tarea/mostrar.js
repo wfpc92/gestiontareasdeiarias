@@ -1,4 +1,5 @@
 var tareaMostrarAjax = function(form) {
+
     $.ajax({
         type: 'POST',
         url: $(form).attr('action') + '/tarea/mostrarAjax',
@@ -9,11 +10,9 @@ var tareaMostrarAjax = function(form) {
             var idActividad = data.idActividad;
             var idTarea = data.idTarea;
 
-            $("#content-princ-izq").css("width", "38%");
-            $("#content-princ-der")
-                    .css("width", "58%")
-                    .show()
-                    .html(htmlTareaEditar);
+            if (idTarea) {
+                mostrarPanelDerecho(htmlTareaEditar)
+            }
         },
         error: function() {
             alert("ERROR: tareaMostrarAjax conexion fallida");
@@ -22,3 +21,10 @@ var tareaMostrarAjax = function(form) {
     return false;
 };
 
+var mostrarPanelDerecho = function(html) {
+    $("#content-princ-izq").css("width", "38%");
+    $("#content-princ-der")
+            .css("width", "58%")
+            .show()
+            .html(html);
+};

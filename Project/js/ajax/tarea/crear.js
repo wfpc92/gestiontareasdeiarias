@@ -18,11 +18,7 @@ var tareaCrearAjax = function(form) {
             items.append(htmlTarea);
             $("#txt-tarea-" + idActividad).val("");
 
-            $("#content-princ-izq").css("width", "38%");
-            $("#content-princ-der")
-                    .css("width", "58%")
-                    .show()
-                    .html(htmlTareaEditar);
+            mostrarPanelDerecho(htmlTareaEditar);
         },
         error: function() {
             alert("ERROR: categoriaCrearAjax conexion fallida");

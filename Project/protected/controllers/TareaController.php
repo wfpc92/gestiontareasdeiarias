@@ -167,7 +167,10 @@ class TareaController extends Controller {
      */
     /* @var $cs CClientScript */
     public function actionCrearAjax() {
-        $cs = Yii::app()->clientScript;
+        $htmlTarea = "";
+        $htmlTareaEditar = "";
+        $idActividad = NULL;
+        $idTarea = NULL;
         if (isset($_REQUEST['Tarea'])) {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
@@ -178,45 +181,52 @@ class TareaController extends Controller {
             if ($result) {
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
-
-                //Yii::app()->clientScript->render($htmlTareaEditar);//error de yii y ajax
-                echo CJavaScript::jsonEncode(array(
-                    'htmlTarea' => $htmlTarea,
-                    'htmlTareaEditar' => $htmlTareaEditar,
-                    'idActividad' => $model->ID_ACTIVIDAD,
-                    'idTarea' => $model->ID_TAREA
-                ));
             } else {
                 echo "ERROR: no se guardo la tarea";
             }
         } else {
             echo "ERROR: peticion de crear tarea mal formada.";
         }
+        echo CJavaScript::jsonEncode(array(
+                    'htmlTarea' => $htmlTarea,
+                    'htmlTareaEditar' => $htmlTareaEditar,
+                    'idActividad' => $model->ID_ACTIVIDAD,
+                    'idTarea' => $model->ID_TAREA
+                ));
     }
 
     /**
      * Funcion que muestra la tarea solicitada.
      */
     public function actionMostrarAjax() {
+        $htmlTareaEditar = "";
+        $idActividad = NULL;
+        $idTarea = NULL;
+
         if (isset($_REQUEST['Tarea'])) {
             $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
-            $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
-            echo CJavaScript::jsonEncode(array(
-                'htmlTareaEditar' => $htmlTareaEditar,
-                'idActividad' => $model->ID_ACTIVIDAD,
-                'idTarea' => $model->ID_TAREA
-            ));
+            if ($model !== NULL) {
+                $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
+                $idActividad = $model->ID_ACTIVIDAD;
+                $idTarea = $model->ID_TAREA;
+            }
         } else {
             echo "ERROR: peticion de crear tarea mal formada.";
         }
+        echo CJavaScript::jsonEncode(array(
+            'htmlTareaEditar' => $htmlTareaEditar,
+            'idActividad' => $idActividad,
+            'idTarea' => $idTarea
+        ));
     }
 
     /**
      * Funcion que actualizar una tarea. 
      */
     public function actionActualizarAjax() {
-        $actualizar = false;
+        $actualizar = FALSE;
         $motivo = "";
+        $idTarea = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
@@ -224,26 +234,20 @@ class TareaController extends Controller {
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
             $model->CORREO = $userId;
-
             $result = $model->save();
+
             if ($result) {
                 $actualizar = true;
-            } else {
-                $motivo = "ERROR: no se hizo la actualizacion en BD";
             }
             $motivo = $model->getErrors();
-            echo CJavaScript::jsonEncode(array(
-                'actualizar' => $actualizar,
-                'motivo' => $motivo,
-                'idTarea' => $idTarea
-            ));
         } else {
             $motivo = "ERROR: peticion mal formada";
-            echo CJavaScript::jsonEncode(array(
-                'actualizar' => $actualizar,
-                'motivo' => $motivo
-            ));
         }
+        echo CJavaScript::jsonEncode(array(
+            'actualizar' => $actualizar,
+            'motivo' => $motivo,
+            'idTarea' => $idTarea
+        ));
     }
 
     /**
