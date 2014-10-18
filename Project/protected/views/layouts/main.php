@@ -7,6 +7,7 @@
         $cs->registerMetaTag(
                 'text/html; charset=utf-8', 'content-type', 'Content-Type');
         $cs->registerMetaTag('en', 'language');
+        $cs->registerMetaTag('viewport', 'width-device-width, initial-scale=1');
 
         $cs->registerCssFile('css/screen.css', 'screen, projection');
         $cs->registerCssFile('css/print.css', 'print');
@@ -16,6 +17,9 @@
         $cs->registerCssFile('css/form.css');
         $cs->registerCssFile('css/genericos.css');
         $cs->registerCssFile('css/estilos.css');
+        $cs->registerCssFile('css/responsive768.css', 'screen and (max-width: 768px)');
+        $cs->registerCssFile('css/responsive480.css', 'screen and (max-width: 480px)');
+        $cs->registerCssFile('css/responsive360.css', 'screen and (max-width: 360px)');
 
         $cs->registerScriptFile('js/proyecto.js', CClientScript::POS_HEAD);
         $cs->registerScriptFile('js/ajax/categoria/crear.js');
@@ -29,9 +33,8 @@
         $cs->registerScriptFile('js/ajax/tarea/eliminar.js');
         $cs->registerScriptFile('js/ajax/tarea/mostrar.js');
         ?>
-
-
-
+        
+        <link rel="shortcut icon" href="favicon.ico">
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
 

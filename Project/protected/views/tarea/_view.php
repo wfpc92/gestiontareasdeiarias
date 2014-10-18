@@ -36,5 +36,6 @@ $idTarea = $data->ID_TAREA;
 
     $this->endWidget();
     ?>
+    <a class="eliminar-tarea" href="#">Eliminar</a>
     <br />
 </div>

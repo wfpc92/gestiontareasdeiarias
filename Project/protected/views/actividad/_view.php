@@ -7,6 +7,7 @@ $idActividad = $data->ID_ACTIVIDAD;
 $nombreActividad = $data->NOMBRE_ACTIVIDAD;
 ?>
 
+
 <div id="actividad-<?php echo CHtml::encode($idActividad); ?>" class="view">
     <?php
     $model = new Actividad;
@@ -30,10 +31,14 @@ $nombreActividad = $data->NOMBRE_ACTIVIDAD;
     $label = $nombreActividad;
     $url = "#";
     $htmlOptions = array(
-        'id' => 'btn-listar-tareas-' . $idActividad
+        'id' => 'btn-listar-tareas-' . $idActividad,
+        'class' => 'actividad'
     );
     echo CHtml::link($label, $url, $htmlOptions);
 
     $this->endWidget();
     ?>
+    
+    <a class="editar-actividad" href="#">Editar</a>
+    <a class="eliminar-actividad" href="#">Eliminar</a>
 </div>

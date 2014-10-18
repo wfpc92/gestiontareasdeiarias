@@ -60,6 +60,7 @@ body {
     display: none;
 }
 div.view {
+    position: relative;
     border: 1px solid #CBCBCB;
     margin: 1px 0px;
     font-size: 18px;
@@ -120,14 +121,20 @@ div.clearFix {
 }
 #contentIzq {
     float: left;
-    width: 20%;
+    width: 275px;
     border-right: 1px solid #CBCBCB;
     padding-right: 10px;
 }
+.fluida {
+    width: 100%;
+}
 #contentDer {
-    float: right;
-    width: 78%;
-    padding-bottom: 20px;
+    margin-left: 275px;
+    padding-left: 20px;
+    padding-right: 5px;
+    //float: right;
+    //width: 100%;
+    //padding-bottom: 20px;
 }
 #content-princ-izq {
 	float: left;
@@ -144,7 +151,8 @@ div.clearFix {
 }
 /***** Contenedores principales (fin) *****/
 
-#categoria-list-view .items .view a {
+#categoria-list-view .items .view a.categoria,
+.actividadesPorCate .list-view .items .view form a.actividad {
     display: block;
     width: 100%;
     text-decoration: none;
@@ -153,9 +161,28 @@ div.clearFix {
 }
 
 /***** Formularios (inicio) *****/
+#categoria-form, .formActividad {
+    width: 100%;
+}
+    #categoria-form .row {
+        width: 88%;
+    }
+    #categoria-form .buttons {
+        width: 12%;
+        float: right;
+        margin-top: -34px;
+    }
+.formActividad div:first-child {
+    width: 88%;
+}
+.formActividad div:last-child{
+    width: 12%;
+    float: right;
+    margin-top: -34px;
+}
 .actividadesPorCate {
-	display: none;
-	margin-top: 20px;
+    display: none;
+    margin-top: 20px;
 }
 #categoria-form .row label,
 .actividadesPorCate .form .formActividad label,
@@ -164,21 +191,24 @@ div.clearFix {
 }
 #categoria-form .row input[type="text"],
 .actividadesPorCate .form .formActividad .row input[type="text"] {
-    width: 82%;
+    width: 90%;
     display: block;
     padding: 0px 7px;
 }
 #categoria-form div.buttons input[type="submit"],
 .actividadesPorCate .form .formActividad .buttons input[type="submit"],
 #content-princ-izq .form .formTarea .buttons input[type="submit"] {
-    width: 27px;
-    height: 26px;
+    display: block;
+    width: 24px;
+    height: 23px;
     text-indent: -9999px;
     overflow: hidden;
-    background: url("../images/iconomas2.png") no-repeat center;
+    background: url("../images/agregar.png") no-repeat center;
     border: none;
+}
+#content-princ-izq .form .formTarea .buttons input[type="submit"] {
     float: right;
-    margin-top: -32px;
+    margin-top: -34px;
 }
 #content-princ-izq div.form {
     width: 320px;
@@ -204,6 +234,7 @@ div.clearFix {
 
 /***** Menu lista y calendario (inicio) *****/
 #contentDer .menu {
+    height: 30px;
 } 
 #menu {
     display: block;
@@ -236,4 +267,62 @@ div.clearFix {
         }
         #menu li.reportes a:hover {
         }
-/***** Menu lista y calendario (fin) *****/
+/***** Menu lista y calendario (fin) 
+
+/***** Menus categorias (inicio) *****/
+.actividadesPorCate .list-view .items .view, #content-princ-izq .items .view {
+    position: relative;
+}
+#categoria-list-view .items .view:hover a.editar-categoria, 
+#categoria-list-view .items .view:hover a.eliminar-categoria,
+.actividadesPorCate .list-view .items .view:hover a.editar-actividad,
+.actividadesPorCate .list-view .items .view:hover a.eliminar-actividad,
+#content-princ-izq .items .view:hover a.eliminar-tarea{
+    display: block;
+}
+#categoria-list-view .items .view a.editar-categoria,
+#categoria-list-view .items .view a.eliminar-categoria,
+.actividadesPorCate .list-view .items .view a.editar-actividad,
+.actividadesPorCate .list-view .items .view a.eliminar-actividad,
+#content-princ-izq .items .view a.eliminar-tarea {   
+    display: none;
+    position: absolute;
+    cursor: pointer;
+    border: hidden;   
+    text-indent: -9999px;
+    overflow: hidden;
+    float: right;
+}
+#categoria-list-view .items .view a.editar-categoria:link,
+#categoria-list-view .items .view a.editar-categoria:visited,
+.actividadesPorCate .list-view .items .view a.editar-actividad:link,
+.actividadesPorCate .list-view .items .view a.editar-actividad:visited {
+    width: 23px;
+    height: 24px;
+    background: url("../images/editar.png") no-repeat center center;
+    top:5px;
+    right: 5px;
+}
+#categoria-list-view .items .vie a.editar-categoria:hover {
+    
+}
+#categoria-list-view .items .view a.eliminar-categoria:link,
+#categoria-list-view .items .view a.eliminar-categoria:visited,
+.actividadesPorCate .list-view .items .view a.eliminar-actividad:visited,
+.actividadesPorCate .list-view .items .view a.eliminar-actividad:link,
+#content-princ-izq .items .view a.eliminar-tarea:visited ,
+#content-princ-izq .items .view a.eliminar-tarea:link {
+    width: 24px;
+    height: 23px;
+    background: url("../images/eliminar.png") no-repeat center center;
+    top:7px;
+    right: 30px;
+}
+#content-princ-izq .items .view a.eliminar-tarea:link {
+    top:7px;
+    right: 7px;
+}
+#categoria-list-view .items .view a.eliminar-categoria:hover {
+    
+}
+/***** Menus categotias (fin) *****/
