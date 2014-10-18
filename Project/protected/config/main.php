@@ -8,7 +8,8 @@
 function cadenaConexion() {
     $servidor = $_SERVER['SERVER_NAME'];
     $clave = "wfpc92.tk";
-
+    
+    //Yii::setPathOfAlias('ecalendarview', dirname(__FILE__).'/../extensions/ecalendarview');
     if (strpos($servidor, $clave) !== FALSE) {
         return array(
             'connectionString' => 'mysql:host=mysql.nixiweb.com;dbname=u974710561_proy2',
@@ -22,7 +23,7 @@ function cadenaConexion() {
             'connectionString' => 'mysql:host=localhost;dbname=u974710561_proy2',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
         );
     }
@@ -98,4 +99,5 @@ return array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
     ),
+    
 );
