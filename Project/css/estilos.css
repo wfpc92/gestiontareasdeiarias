@@ -284,7 +284,7 @@ div.clearFix {
 #categoria-list-view .items .view a.eliminar-categoria,
 .actividadesPorCate .list-view .items .view a.editar-actividad,
 .actividadesPorCate .list-view .items .view a.eliminar-actividad,
-#content-princ-izq .items .view a.eliminar-tarea {   
+#content-princ-izq .items .view form a.eliminar-tarea {   
     display: none;
     position: absolute;
     cursor: pointer;
@@ -310,15 +310,15 @@ div.clearFix {
 #categoria-list-view .items .view a.eliminar-categoria:visited,
 .actividadesPorCate .list-view .items .view a.eliminar-actividad:visited,
 .actividadesPorCate .list-view .items .view a.eliminar-actividad:link,
-#content-princ-izq .items .view a.eliminar-tarea:visited ,
-#content-princ-izq .items .view a.eliminar-tarea:link {
+#content-princ-izq .items .view form a.eliminar-tarea:visited ,
+#content-princ-izq .items .view form a.eliminar-tarea:link {
     width: 24px;
     height: 23px;
     background: url("../images/eliminar.png") no-repeat center center;
     top:7px;
     right: 30px;
 }
-#content-princ-izq .items .view a.eliminar-tarea:link {
+#content-princ-izq .items .view form a.eliminar-tarea:link {
     top:7px;
     right: 7px;
 }
@@ -326,3 +326,6 @@ div.clearFix {
     
 }
 /***** Menus categotias (fin) *****/
+#content-princ-izq .list-view .items .view {
+    height: 20px;
+}
