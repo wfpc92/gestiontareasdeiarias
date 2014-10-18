@@ -79,7 +79,7 @@ div.clearFix {
     }
         #logo a{
                 display: block;
-                width: 36px;
+                width: 40px;
                 height: 40px;
                 margin-left: 50px;
                 text-indent: -9999px;
@@ -269,63 +269,83 @@ div.clearFix {
         }
 /***** Menu lista y calendario (fin) 
 
-/***** Menus categorias (inicio) *****/
-.actividadesPorCate .list-view .items .view, #content-princ-izq .items .view {
-    position: relative;
-}
-#categoria-list-view .items .view:hover a.editar-categoria, 
-#categoria-list-view .items .view:hover a.eliminar-categoria,
-.actividadesPorCate .list-view .items .view:hover a.editar-actividad,
-.actividadesPorCate .list-view .items .view:hover a.eliminar-actividad,
-#content-princ-izq .items .view:hover a.eliminar-tarea{
-    display: block;
-}
-#categoria-list-view .items .view a.editar-categoria,
-#categoria-list-view .items .view a.eliminar-categoria,
-.actividadesPorCate .list-view .items .view a.editar-actividad,
-.actividadesPorCate .list-view .items .view a.eliminar-actividad,
-#content-princ-izq .items .view form a.eliminar-tarea {   
+/***** Menus categotia, actividad y tarea (inicio) *****/
+#categoria-list-view .items .view a.menu-categoria,
+.actividadesPorCate .list-view .items .view a.menu-actividad,
+#content-princ-izq .list-view .items .view a.menu-tarea {
     display: none;
     position: absolute;
+    width: 36px;
+    height: 29px;
+    background: url("../images/bt-menu.png") no-repeat;
     cursor: pointer;
     border: hidden;   
     text-indent: -9999px;
     overflow: hidden;
     float: right;
-}
-#categoria-list-view .items .view a.editar-categoria:link,
-#categoria-list-view .items .view a.editar-categoria:visited,
-.actividadesPorCate .list-view .items .view a.editar-actividad:link,
-.actividadesPorCate .list-view .items .view a.editar-actividad:visited {
-    width: 23px;
-    height: 24px;
-    background: url("../images/editar.png") no-repeat center center;
     top:5px;
     right: 5px;
 }
-#categoria-list-view .items .vie a.editar-categoria:hover {
-    
+#categoria-list-view .items .view:hover a.menu-categoria,
+.actividadesPorCate .list-view .items .view:hover a.menu-actividad,
+#content-princ-izq .list-view .items .view:hover a.menu-tarea {
+    display: block;
 }
-#categoria-list-view .items .view a.eliminar-categoria:link,
-#categoria-list-view .items .view a.eliminar-categoria:visited,
-.actividadesPorCate .list-view .items .view a.eliminar-actividad:visited,
-.actividadesPorCate .list-view .items .view a.eliminar-actividad:link,
-#content-princ-izq .items .view form a.eliminar-tarea:visited ,
-#content-princ-izq .items .view form a.eliminar-tarea:link {
-    width: 24px;
-    height: 23px;
-    background: url("../images/eliminar.png") no-repeat center center;
-    top:7px;
-    right: 30px;
+#categoria-list-view .items .view a.menu-categoria:hover,
+.actividadesPorCate .list-view .items .view a.menu-actividad:hover,
+#content-princ-izq .list-view .items .view a.menu-tarea:hover {
+    background: url("../images/bt-menuHover.png") no-repeat;
 }
-#content-princ-izq .items .view form a.eliminar-tarea:link {
-    top:7px;
-    right: 7px;
+ul.categoria, ul.actividad, .eliminar-tarea  {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 1px;
+    background: #E9EAED;
+    border: 1px solid #CBCBCB;
+    border-radius: 5px;
+    padding: 3px;
+    z-index: 10;
 }
-#categoria-list-view .items .view a.eliminar-categoria:hover {
-    
+    ul.categoria li, ul.actividad li, .eliminar-tarea  {
+        height: 20px;
+        padding-left: 15px; 
+    }
+        ul.categoria li a, ul.actividad li a, .eliminar-tarea  {
+            text-decoration: none;
+            color: #000000;
+            font-size: 14px;
+        }
+    ul.categoria li.editar, ul.actividad li.editar {
+        background: url("../images/editar.png") no-repeat 0 center;
+    }
+        ul.categoria li.editar a:link, ul.categoria li.editar a:visited,
+        ul.actividad li.editar a:link, ul.actividad li.editar a:visited {
+            
+        }
+        ul.categoria li.editar a:hover, ul.actividad li.editar a:hover {
+            
+        }
+    ul.categoria li.eliminar, ul.actividad li.eliminar {
+        margin-top: 2px;
+        background: url("../images/eliminar.png") no-repeat 0 center;
+    }
+        ul.categoria li.eliminar a:link, ul.categoria li.eliminar a:visited,
+        ul.actividad li.eliminar a:link, ul.actividad li.eliminar a:visited {
+            
+        }
+        ul.categoria li.eliminar a:hover, ul.actividad li.eliminar a:hover {
+            
+        }
+.eliminar-tarea {
+    display: none;
+    line-height: 19px;
+    padding: 3px 3px 3px 17px;;
+    margin: 0;
+    background: url("../images/eliminar.png") no-repeat 2px center;
+    background-color: #E9EAED;
 }
-/***** Menus categotias (fin) *****/
+/***** Menus categotia, actividad y tarea (fin) *****/
 #content-princ-izq .list-view .items .view {
     height: 20px;
 }

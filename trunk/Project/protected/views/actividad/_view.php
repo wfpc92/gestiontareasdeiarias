@@ -38,7 +38,14 @@ $nombreActividad = $data->NOMBRE_ACTIVIDAD;
 
     $this->endWidget();
     ?>
+    <a class="menu-actividad" href="#">Menú Actividad</a>
+    <ul class="actividad">
+        <li class="editar">
+            <a href="#">Editar</a>
+        </li>
+        <li class="eliminar">
+            <a href="#">Eliminar</a>
+        </li>
+    </ul>
     
-    <a class="editar-actividad" href="#">Editar</a>
-    <a class="eliminar-actividad" href="#">Eliminar</a>
 </div>
