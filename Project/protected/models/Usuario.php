@@ -11,6 +11,7 @@
  */
 class Usuario extends CActiveRecord
 {
+        public $repeat_password;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -29,7 +30,8 @@ class Usuario extends CActiveRecord
 		return array(
 			array('CORREO', 'required'),
 			array('NOMBRES, APELLIDOS, CORREO', 'length', 'max'=>100),
-			array('CONTRASENA', 'length', 'max'=>50),
+			array('CONTRASENA, repeat_password', 'length', 'max'=>50),
+                        array('CONTRASENA', 'compare', 'compareAttribute'=>'repeat_password'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('NOMBRES, APELLIDOS, CORREO, CONTRASENA', 'safe', 'on'=>'search'),
@@ -57,6 +59,7 @@ class Usuario extends CActiveRecord
 			'APELLIDOS' => 'Apellidos',
 			'CORREO' => 'Correo',
 			'CONTRASENA' => 'Contrasena',
+                        'repeat_password' => 'Confirmar contrasena'
 		);
 	}
 

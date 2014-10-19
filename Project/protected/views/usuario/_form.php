@@ -15,7 +15,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -39,12 +39,17 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'CONTRASENA'); ?>
-		<?php echo $form->textField($model,'CONTRASENA',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->passwordField($model,'CONTRASENA',array('size'=>50,'maxlength'=>50)); ?>                
 		<?php echo $form->error($model,'CONTRASENA'); ?>
 	</div>
+        
+        <div class="row">
+                <?php echo $form->labelEx($model,'repeat_password'); ?>
+                <?php echo $form->passwordField($model,'repeat_password',array('size'=>50,'maxlength'=>50)); ?>
+        </div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrarse' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

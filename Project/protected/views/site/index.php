@@ -6,11 +6,14 @@
     <?php
     $form = '../categoria/_form';
     $modelCategoria = new Categoria;
+    $modelCategoria->CORREO = Yii::app()->user->getId();
     $this->renderPartial($form, array('model' => $modelCategoria));
     ?> 
     <div id="itemsCategoria">
         <?php
         $dataProvider = new CActiveDataProvider('Categoria', array(
+            'criteria' => array(
+                'condition' => 'CORREO=\'' . $modelCategoria->CORREO.'\''),
             'pagination' => false
         ));
         $this->widget('zii.widgets.CListView', array(
