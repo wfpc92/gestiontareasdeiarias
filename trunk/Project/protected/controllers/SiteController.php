@@ -27,9 +27,10 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		if (Yii::app()->user->isGuest)
+                    $this->redirect(Yii::app()->createUrl('site/login'));
+                else
+                    $this->render('index');
 	}
 
 	/**
@@ -89,7 +90,8 @@ class SiteController extends Controller
 		// collect user input data
 		if(isset($_POST['LoginForm']))
 		{
-			$model->attributes=$_POST['LoginForm'];
+			$model->attributes=$_POST['LoginForm'];                        
+                        $record = Usuario::model()->findByAttributes(array('CORREO'=>$model->username));                        
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
@@ -104,6 +106,6 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
+		$this->redirect(Yii::app()->createUrl('site/login'));
 	}
 }
