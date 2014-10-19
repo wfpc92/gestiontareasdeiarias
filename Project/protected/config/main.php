@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Funcion que retorna la cadena de conexion
  * segun el servidor donde se ejecute
@@ -12,6 +13,7 @@ function cadenaConexion() {
     //Yii::setPathOfAlias('ecalendarview', dirname(__FILE__).'/../extensions/ecalendarview');
     if (strpos($servidor, $clave) !== FALSE) {
         return array(
+            'class' => 'CDbConnection',
             'connectionString' => 'mysql:host=mysql.nixiweb.com;dbname=u974710561_proy2',
             'emulatePrepare' => true,
             'username' => 'u974710561_proy2',
@@ -20,10 +22,11 @@ function cadenaConexion() {
         );
     } else {
         return array(
+            'class' => 'CDbConnection',
             'connectionString' => 'mysql:host=localhost;dbname=u974710561_proy2',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
             'charset' => 'utf8',
         );
     }
@@ -56,6 +59,10 @@ return array(
     ),
     // application components
     'components' => array(
+        'authManager' => array(
+            'class' => 'CDbAuthManager',
+            'connectionID' => 'db',
+        ),
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,

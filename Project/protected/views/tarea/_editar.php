@@ -44,13 +44,13 @@
         echo $form->labelEx($model, 'FECHA_INICIO');
         echo $form->textField($model, 'FECHA_INICIO', array(
             'id' => 'd-picker-fecha-inicio-' . $idTarea,
-            'class' => 'd-picker'
+            'class' => ''
         ));
 
         echo $form->labelEx($model, 'FECHA_FIN');
-        echo $form->textField($model, 'FECHA_INICIO', array(
+        echo $form->textField($model, 'FECHA_FIN', array(
             'id' => 'd-picker-fecha-fin-' . $idTarea,
-            'class' => 'd-picker'
+            'class' => ''
         ));
 
 
