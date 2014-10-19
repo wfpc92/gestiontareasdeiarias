@@ -28,7 +28,7 @@ class UsuarioController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','create'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -71,7 +71,7 @@ class UsuarioController extends Controller
 		{
 			$model->attributes=$_POST['Usuario'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->CORREO));
+				$this->redirect(Yii::app()->createUrl('site/login'));
 		}
 
 		$this->render('create',array(
@@ -170,4 +170,20 @@ class UsuarioController extends Controller
 			Yii::app()->end();
 		}
 	}
+        //hasta aqui
+        public function actionRegistrarse()
+        {
+            $model=new Usuario('register');            
+
+            if(isset($_POST['Usuario']))
+            {
+                $model->attributes=$_POST['Usuario'];
+                if($model->validate())
+                {
+                    // form inputs are valid, do something here
+                    return;
+                }
+            }
+            $this->render('registrarse',array('model'=>$model));
+        }
 }
