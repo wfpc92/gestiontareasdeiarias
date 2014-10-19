@@ -29,12 +29,18 @@
             Progreso:
         </div>
         <div class="menu">
+
             <ul id="menu">
                 <li class="lista">
                     <a href="#">Lista</a>
                 </li>
                 <li class="calendario">
-                    <a href="#">Calendario</a>
+                    <?php
+                    $text = "Calendario";
+                    $url = Yii::app()->urlManager->createUrl("calendario");
+                    $htmlOptions = array();
+                    echo CHtml::link($text, $url, $htmlOptions);
+                    ?>
                 </li>
                 <li class="reportes">
                     <a href="#">Reportes</a>

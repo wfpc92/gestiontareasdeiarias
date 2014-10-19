@@ -165,12 +165,13 @@ class TareaController extends Controller {
     /**
      * Funcion que crea una tarea y renderiza el formulario para editar la tarea. 
      */
-    /* @var $cs CClientScript */
     public function actionCrearAjax() {
         $htmlTarea = "";
         $htmlTareaEditar = "";
         $idActividad = NULL;
         $idTarea = NULL;
+        $motivo = "";
+
         if (isset($_REQUEST['Tarea'])) {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
@@ -182,17 +183,18 @@ class TareaController extends Controller {
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
             } else {
-                echo "ERROR: no se guardo la tarea";
+                $motivo = "ERROR: no se guardo la tarea";
             }
         } else {
-            echo "ERROR: peticion de crear tarea mal formada.";
+            $motivo = "ERROR: peticion de crear tarea mal formada.";
         }
         echo CJavaScript::jsonEncode(array(
-                    'htmlTarea' => $htmlTarea,
-                    'htmlTareaEditar' => $htmlTareaEditar,
-                    'idActividad' => $model->ID_ACTIVIDAD,
-                    'idTarea' => $model->ID_TAREA
-                ));
+            'htmlTarea' => $htmlTarea,
+            'htmlTareaEditar' => $htmlTareaEditar,
+            'idActividad' => $model->ID_ACTIVIDAD,
+            'idTarea' => $model->ID_TAREA,
+            'motivo' => $motivo
+        ));
     }
 
     /**
@@ -202,6 +204,7 @@ class TareaController extends Controller {
         $htmlTareaEditar = "";
         $idActividad = NULL;
         $idTarea = NULL;
+        $motivo = "";
 
         if (isset($_REQUEST['Tarea'])) {
             $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
@@ -211,12 +214,13 @@ class TareaController extends Controller {
                 $idTarea = $model->ID_TAREA;
             }
         } else {
-            echo "ERROR: peticion de crear tarea mal formada.";
+            $motivo = "ERROR: peticion de crear tarea mal formada.";
         }
         echo CJavaScript::jsonEncode(array(
             'htmlTareaEditar' => $htmlTareaEditar,
             'idActividad' => $idActividad,
-            'idTarea' => $idTarea
+            'idTarea' => $idTarea,
+            'motivo' => $motivo
         ));
     }
 
