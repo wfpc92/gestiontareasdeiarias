@@ -2,11 +2,12 @@
 /* @var $this ActividadController */
 /* @var $model Actividad */
 /* @var $form CActiveForm */
+
+$idCategoria = $model->ID_CATEGORIA;
 ?>
 
 <div class="form">
     <?php
-    $idCategoria = $model->ID_CATEGORIA;
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'actividad-form-' . $idCategoria,
         'enableAjaxValidation' => false,

@@ -13,7 +13,7 @@
         <?php
         $dataProvider = new CActiveDataProvider('Categoria', array(
             'criteria' => array(
-                'condition' => 'CORREO=\'' . $modelCategoria->CORREO.'\''),
+                'condition' => 'CORREO=\'' . $modelCategoria->CORREO . '\''),
             'pagination' => false
         ));
         $this->widget('zii.widgets.CListView', array(
@@ -52,16 +52,22 @@
             <div class="clearFix"></div>
         </div>
 
-        <div id="content-princ-izq"></div>
-        <div id="content-princ-der"></div>
-        <div class="clearFix"></div>
+        <div id="content-princ-izq">
+            <?php
+            if (isset($vista)) {
+                echo $vista;
+            }
+            ?>
+        </div>
+        <div id = "content-princ-der"></div>
+        <div class = "clearFix"></div>
     </div>
 </div>
-<div class="clearFix"></div>
+<div class = "clearFix"></div>
 
 
 
 
-<div class="clearFix"></div>
+<div class = "clearFix"></div>
 
 

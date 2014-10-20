@@ -1,27 +1,57 @@
 <?php
 /* @var $this CategoriaController */
 /* @var $data Categoria */
+/* @var $form CActiveForm */
+
+$idCategoria = $data->ID_CATEGORIA;
 ?>
 
-<div id="categoria-<?php echo CHtml::encode($data->ID_CATEGORIA); ?>" 
+<div id="categoria-<?php echo $idCategoria; ?>" 
      class="view">    
 
-    <a href="#" class="categoria" onclick="return categoriaToogle(this)">
-        <span id="modificar-categoria-<?php echo $data->ID_CATEGORIA ?>"><?php echo CHtml::encode($data->NOMBRE_CATEGORIA); ?></span>                
-        <?php echo CHtml::link("eliminar","#",
-                array('onclick'=>'return categoriaEliminarAjax(this)',
-                        'class'=>'eliminar-categoria')); ?>
-
-    </a>
-    <span id="tgr-modificar">
+    <div id="categoria-content-<?php echo $idCategoria; ?>" >
         <?php
-        $iden = $data->ID_CATEGORIA;
-        $nombre = $data->NOMBRE_CATEGORIA;
-        echo CHtml::link("editar", "#", array
-            ('onclick' => 'return categoriaEditarAjax('.$iden.',"'.$nombre.'")',
-                'class' => 'editar-categoria'));
+        echo CHtml::link($data->NOMBRE_CATEGORIA, "#", array(
+            'class' => 'categoria',
+            'onclick' => 'return categoriaToogle(this)'
+        ));
         ?>
-    </span>
+    </div>
+
+    <?php
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'categoria-form-' . $idCategoria,
+        'enableAjaxValidation' => false,
+        'action' => Yii::app()->homeUrl . '/categoria'
+    ));
+    echo $form->hiddenField($data, 'ID_CATEGORIA');
+
+    echo CHtml::link("Menú Categoría", "", array(
+        'class' => 'menu-categoria',
+        'onclick' => 'return categoriaMenu(this)'
+    ));
+    ?>
+    <ul class="categoria">
+        <li class="editar">
+            <?php
+            echo CHtml::link("Editar", "#", array(
+                'id' => 'lnk-categoria-editar-form-' . $idCategoria,
+                'onclick' => 'return categoriaEditarFormAjax(this)'
+            ));
+            ?>
+        </li>
+        <li class="eliminar">
+            <?php
+            echo CHtml::link("Eliminar", "#", array(
+                'id' => 'lnk-categoria-eliminar-' . $idCategoria,
+                'onclick' => 'return categoriaEliminarAjax(this)'
+            ));
+            ?>
+        </li>
+    </ul>
+
+    <?php $this->endWidget(); ?>
+
 
     <div class="actividadesPorCate">
         <?php
@@ -44,16 +74,7 @@
         ));
         ?>
 
-    <a class="menu-categoria" href="#">Menú Categoría</a>
-    <ul class="categoria">
-        <li class="editar">
-            <a href="#">Editar</a>
-        </li>
-        <li class="eliminar">
-            <a href="#">Eliminar</a>
-        </li>
-    </ul>
-    <div class="clearFix"></div>
 
-
+        <div class="clearFix"></div>
+    </div>
 </div>

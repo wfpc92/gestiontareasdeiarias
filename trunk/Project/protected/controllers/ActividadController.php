@@ -26,7 +26,7 @@ class ActividadController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'crearAjax', 'listarTareasAjax'),
+                'actions' => array('index', 'view', 'crearAjax', 'listarTareasAjax', 'editarFormAjax', 'editarAjax', 'eliminarAjax'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -218,6 +218,81 @@ class ActividadController extends Controller {
                 'idActividad' => $model->ID_ACTIVIDAD
             ));
         }
+    }
+
+    /**
+     * Funcion que retorna el formulario de edicion de la actividad
+     */
+    public function actionEditarFormAjax() {
+        $idActividad = NULL;
+        $htmlEditarForm = "";
+
+        if (isset($_REQUEST['Actividad'])) {
+            $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
+            $model = Actividad::model()->findByPk($idActividad);
+            if ($model !== NULL) {
+                $htmlEditarForm = $this->renderPartial('_editar', array(
+                    'model' => $model
+                        ), TRUE);
+            }
+        }
+        echo CJavaScript::jsonEncode(array(
+            'idActividad' => $idActividad,
+            'htmlEditarForm' => $htmlEditarForm
+        ));
+    }
+
+    /**
+     * Funcion que Editar una actividad y retorna la actividad.
+     */
+    public function actionEditarAjax() {
+        $idActividad = NULL;
+        $htmlActividad = "";
+
+        if (isset($_REQUEST['Actividad'])) {
+            $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
+            $model = Actividad::model()->findByPk($idActividad);
+            $model->attributes = $_REQUEST['Actividad'];
+            $result = $model->save();
+            if ($result) {
+                $htmlActividad = CHtml::link($model->NOMBRE_ACTIVIDAD, "#", array(
+                            'id' => 'lnk-tarea-listar-' . $idActividad,
+                            'class' => 'actividad',
+                            'onclick' => 'return actividadListarTareasAjax(this)'
+                ));
+            }
+        }
+        echo CJavaScript::jsonEncode(array(
+            'idActividad' => $idActividad,
+            'htmlActividad' => $htmlActividad
+        ));
+    }
+
+    /**
+     * Funcion que elimina una actividad. 
+     */
+    public function actionEliminarAjax() {
+        $borrar = false;
+        $motivo = "";
+        $idActividad = NULL;
+        if (isset($_REQUEST['Actividad'])) {
+            $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
+            $model = Categoria::model()->findByPk($idActividad);
+            $result = $model->delete();
+            if ($result) {
+                $borrar = true;
+            } else {
+                $motivo = "ERROR: no se hizo la eliminacion en BD";
+            }
+            $motivo = $model->getErrors();
+        } else {
+            $motivo = "ERROR: peticion mal formada";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'borrar' => $borrar,
+            'motivo' => $motivo,
+            'idActividad' => $idActividad
+        ));
     }
 
 }

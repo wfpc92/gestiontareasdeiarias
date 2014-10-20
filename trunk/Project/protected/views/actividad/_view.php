@@ -7,45 +7,61 @@ $idActividad = $data->ID_ACTIVIDAD;
 $nombreActividad = $data->NOMBRE_ACTIVIDAD;
 ?>
 
+<div id="actividad-<?php echo CHtml::encode($idActividad); ?>" 
+     class="view">
+         <?php
+         $form = $this->beginWidget('CActiveForm', array(
+             'id' => 'listar-tareas-form-' . $idActividad,
+             'enableAjaxValidation' => false,
+             'action' => Yii::app()->homeUrl . '/actividad'
+         ));
 
-<div id="actividad-<?php echo CHtml::encode($idActividad); ?>" class="view">
-    <?php
-    $model = new Actividad;
-    $model->ID_ACTIVIDAD = $idActividad;
+         echo $form->hiddenField($data, "ID_ACTIVIDAD");
+         ?>
 
-    $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'listar-tareas-form-' . $idActividad,
-        'enableAjaxValidation' => false,
-        'action' => Yii::app()->homeUrl . '/actividad/listarTareasAjax',
-        'htmlOptions' => array(
+    <div id="actividad-content-<?php echo $idActividad; ?>" >
+        <?php
+        echo CHtml::link($nombreActividad, "#", array(
+            'id' => 'lnk-tarea-listar-' . $idActividad,
+            'class' => 'actividad',
             'onclick' => 'return actividadListarTareasAjax(this)'
-        )
+        ));
+        ?>
+    </div>
+
+
+
+    <?php
+    echo CHtml::link("Menú Actividad", "", array(
+        'class' => 'menu-actividad',
+        'onclick' => 'return actividadMenu(this)'
     ));
-
-    $attribute = "ID_ACTIVIDAD";
-    $htmlOptions = array(
-        'id' => 'hdn-actividad-id-' . $idActividad
-    );
-    echo $form->hiddenField($model, $attribute, $htmlOptions);
-
-    $label = $nombreActividad;
-    $url = "#";
-    $htmlOptions = array(
-        'id' => 'btn-listar-tareas-' . $idActividad,
-        'class' => 'actividad'
-    );
-    echo CHtml::link($label, $url, $htmlOptions);
-
-    $this->endWidget();
     ?>
-    <a class="menu-actividad" href="#">Menú Actividad</a>
-    <ul class="actividad">
+    <ul class="actividad"> 
         <li class="editar">
-            <a href="#">Editar</a>
+            <?php
+            echo CHtml::link("Editar", "#", array(
+                'id' => 'lnk-actividad-editar-form-' . $idActividad,
+                'onclick' => 'return actividadEditarFormAjax(this)'
+            ));
+            ?>
         </li>
         <li class="eliminar">
-            <a href="#">Eliminar</a>
+            <?php
+            echo CHtml::link("Eliminar", "#", array(
+                'id' => 'lnk-actividad-eliminar-' . $idActividad,
+                'onclick' => 'return actividadEliminarAjax(this)'
+            ));
+            ?>
         </li>
     </ul>
-    
+
+    <?php
+    $this->endWidget();
+    ?>
+
+
 </div>
+
+
+

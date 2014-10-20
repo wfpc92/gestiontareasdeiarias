@@ -21,6 +21,13 @@ var categoriaCrearAjax = function(form) {
 
 
 var categoriaToogle = function(self) {
-    $(self).siblings().eq(0).slideToggle();
+    var contenedor = $(self).parent("div");
+    $(contenedor).siblings("div").eq(0).slideToggle();
+    return false;
+}
+
+var categoriaMenu = function(self) {
+    var contenedor = $(self);
+    $(contenedor).siblings("ul").eq(0).slideToggle();
     return false;
 }

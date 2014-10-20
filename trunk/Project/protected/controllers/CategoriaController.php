@@ -26,7 +26,7 @@ class CategoriaController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'crearAjax'),
+                'actions' => array('index', 'view', 'crearAjax', 'editarFormAjax', 'editarAjax', 'eliminarAjax'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -180,6 +180,80 @@ class CategoriaController extends Controller {
         } else {
             echo "ERROR: no hay datos en la peticion AJAX.";
         }
+    }
+
+    /**
+     * Funcion que retorna el formulario de edicion de la categoria
+     */
+    public function actionEditarFormAjax() {
+        $idCategoria = NULL;
+        $htmlEditarForm = "";
+
+        if (isset($_REQUEST['Categoria'])) {
+            $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
+            $model = Categoria::model()->findByPk($idCategoria);
+            if ($model !== NULL) {
+                $htmlEditarForm = $this->renderPartial('_editar', array(
+                    'model' => $model
+                        ), TRUE);
+            }
+        }
+        echo CJavaScript::jsonEncode(array(
+            'idCategoria' => $idCategoria,
+            'htmlEditarForm' => $htmlEditarForm
+        ));
+    }
+
+    /**
+     * Funcion que Editar una categoria y retorna la categoria.
+     */
+    public function actionEditarAjax() {
+        $idCategoria = NULL;
+        $htmlCategoria = "";
+
+        if (isset($_REQUEST['Categoria'])) {
+            $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
+            $model = Categoria::model()->findByPk($idCategoria);
+            $model->attributes = $_REQUEST['Categoria'];
+            $result = $model->save();
+            if ($result) {
+                $htmlCategoria = CHtml::link($model->NOMBRE_CATEGORIA, "#", array(
+                            'class' => 'categoria',
+                            'onclick' => 'return categoriaToogle(this)'
+                ));
+            }
+        }
+        echo CJavaScript::jsonEncode(array(
+            'idCategoria' => $idCategoria,
+            'htmlCategoria' => $htmlCategoria
+        ));
+    }
+
+    /**
+     * Funcion que eliminar una categoria. 
+     */
+    public function actionEliminarAjax() {
+        $borrar = false;
+        $motivo = "";
+        $idCategoria = NULL;
+        if (isset($_REQUEST['Categoria'])) {
+            $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
+            $model = Categoria::model()->findByPk($idCategoria);
+            $result = $model->delete();
+            if ($result) {
+                $borrar = true;
+            } else {
+                $motivo = "ERROR: no se hizo la eliminacion en BD";
+            }
+            $motivo = $model->getErrors();
+        } else {
+            $motivo = "ERROR: peticion mal formada";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'borrar' => $borrar,
+            'motivo' => $motivo,
+            'idCategoria' => $idCategoria
+        ));
     }
 
 }

@@ -2187,3 +2187,15 @@ REQUEST_URI=/Project/index.php/actividad/listarTareasAjax
 in /opt/lampp/htdocs/Project/protected/views/tarea/_view.php (25)
 in /opt/lampp/htdocs/Project/protected/controllers/ActividadController.php (214)
 in /opt/lampp/htdocs/Project/index.php (13)
+2014/10/15 04:59:05 [warning] [application] Failed to set unsafe attribute "ID_TAREA" of "Tarea".
+in /opt/lampp/htdocs/Project/protected/controllers/TareaController.php (207)
+in /opt/lampp/htdocs/Project/index.php (13)
+2014/10/15 04:59:07 [warning] [application] Failed to set unsafe attribute "ID_TAREA" of "Tarea".
+in /opt/lampp/htdocs/Project/protected/controllers/TareaController.php (207)
+in /opt/lampp/htdocs/Project/index.php (13)
+2014/10/15 04:59:09 [warning] [application] Failed to set unsafe attribute "ID_TAREA" of "Tarea".
+in /opt/lampp/htdocs/Project/protected/controllers/TareaController.php (207)
+in /opt/lampp/htdocs/Project/index.php (13)
+2014/10/15 04:59:11 [warning] [application] Failed to set unsafe attribute "ID_TAREA" of "Tarea".
+in /opt/lampp/htdocs/Project/protected/controllers/TareaController.php (207)
+in /opt/lampp/htdocs/Project/index.php (13)
