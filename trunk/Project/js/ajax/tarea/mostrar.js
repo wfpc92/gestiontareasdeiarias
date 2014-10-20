@@ -1,5 +1,6 @@
-var tareaMostrarAjax = function(form) {
-
+var tareaMostrarAjax = function(self) {
+    var form = $(self).parent("form");
+    console.log(form)
     $.ajax({
         type: 'POST',
         url: $(form).attr('action') + '/tarea/mostrarAjax',

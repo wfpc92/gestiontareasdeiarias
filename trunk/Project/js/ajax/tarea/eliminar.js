@@ -1,6 +1,6 @@
 
-var tareaEliminarAjax = function(self, event) {
-    var form = $(self).parent("form");
+var tareaEliminarAjax = function(self) {
+    var form = $(self).parents("form");
     $.ajax({
         type: 'POST',
         url: $(form).attr('action') + '/tarea/eliminarAjax',

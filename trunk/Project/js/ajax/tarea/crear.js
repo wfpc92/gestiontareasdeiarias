@@ -26,4 +26,9 @@ var tareaCrearAjax = function(form) {
     });
     return false;
 };
- 
+
+var tareaMenu = function(self) {
+    var contenedor = $(self);
+    $(contenedor).siblings("ul").eq(0).slideToggle();
+    return false;
+}
