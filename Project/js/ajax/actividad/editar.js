@@ -1,37 +1,37 @@
-var categoriaEditarFormAjax = function(self) {
+var actividadEditarFormAjax = function(self) {
     var form = $(self).parents("form");
+    console.log(form);
     $.ajax({
         type: 'POST',
         url: $(form).attr('action') + '/editarFormAjax',
         data: $(form).serialize(),
         dataType: 'json',
         success: function(data) {
-            var idCategoria = data.idCategoria;
+            var idActividad = data.idActividad;
             var htmlEditarForm = data.htmlEditarForm;
-            $("#categoria-content-" + idCategoria).html(htmlEditarForm);
+            $("#actividad-content-" + idActividad).html(htmlEditarForm);
         },
         error: function() {
-            alert("ERROR: categoriaEditarFormAjax conexion fallida");
+            alert("ERROR: actividadEditarFormAjax conexion fallida");
         }
     });
     return false;
 };
 
-var categoriaEditarAjax = function(self) {
-    var form = $(self);
+var actividadEditarAjax = function(self) {
+    var form = $(self).parents("form");
     $.ajax({
         type: 'POST',
         url: $(form).attr('action') + '/editarAjax',
         data: $(form).serialize(),
         dataType: 'json',
         success: function(data) {
-            var idCategoria = data.idCategoria;
-            var htmlCategoria = data.htmlCategoria;
-            $("#categoria-content-" + idCategoria).html(htmlCategoria);
-            return false;
+            var idActividad = data.idActividad;
+            var htmlActividad = data.htmlActividad;
+            $("#actividad-content-" + idActividad).html(htmlActividad);
         },
         error: function() {
-            alert("ERROR: categoriaEditarFormAjax conexion fallida");
+            alert("ERROR: actividadEditarAjaxwq conexion fallida");
         }
     });
     return false;
