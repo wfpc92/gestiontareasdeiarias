@@ -26,7 +26,7 @@ class TareaController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'crearAjax', 'mostrarAjax', 'actualizarAjax', 'eliminarAjax'),
+                'actions' => array('index', 'view', 'crearAjax', 'mostrarAjax', 'actualizarAjax', 'eliminarAjax', 'checkAjax'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -281,6 +281,24 @@ class TareaController extends Controller {
         echo CJavaScript::jsonEncode(array(
             'borrar' => $borrar,
             'motivo' => $motivo,
+            'idTarea' => $idTarea
+        ));
+    }
+
+    /**
+     * Funcion que actualiza el estado de una tarea. 
+     * @var $estado Tarea
+     */
+    public function actionCheckAjax() {
+        $idTarea = NULL;
+        $estado = isset($_REQUEST["ESTADO"]) ? 1 : 0;
+        if (isset($_REQUEST['Tarea'])) {
+            $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
+            $model = Tarea::model()->findByPk($idTarea);
+            $model->ESTADO = $estado;
+            $model->save();
+        }
+        echo CJavaScript::jsonEncode(array(
             'idTarea' => $idTarea
         ));
     }

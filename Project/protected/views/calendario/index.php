@@ -1,11 +1,7 @@
 <?php
 /* @var $this CalendarioController */
 /* @var $dataProvider CActiveDataProvider */
-?>
 
-<div id="calendar"></div>
-
-<?php
 $cs = Yii::app()->clientScript;
 $bu = Yii::app()->baseUrl . '/';
 $cs->registerCssFile($bu . 'js/fullcalendar/fullcalendar.css');
@@ -13,6 +9,8 @@ $cs->registerScriptFile($bu . 'js/fullcalendar/fullcalendar.js');
 $cs->registerScriptFile($bu . 'js/fullcalendar/lib/moment.min.js');
 $cs->registerScriptFile($bu . 'js/fullcalendar/lang-all.js');
 ?>
+
+<div id="calendar"></div>
 
 <script id="calendar-script">
     $(document).ready(function() {

@@ -17,3 +17,19 @@ var tareaActualizarAjax = function(form) {
     return false;
 };
 
+var tareaCheckAjax = function(self) {
+    var form = $(self).parent("form");
+    $.ajax({
+        type: 'POST',
+        url: $(form).attr('action') + "/tarea/checkAjax",
+        data: $(form).serialize(),
+        dataType: 'json',
+        success: function(data) {
+
+        },
+        error: function() {
+            alert("ERROR: tareaCheckAjax conexion fallida");
+        }
+    });
+    return false;
+};
