@@ -78,7 +78,7 @@ $bu = Yii::app()->baseUrl . '/';
     $this->widget('ext.EFullCalendar.EFullCalendar',array(
         'themeCssFile'=>'cupertino/theme.css',
         'htmlOptions'=>array(
-            'style'=>'width:500px; margin: 0 auto;'
+            'style'=>'width:800px; margin: 0 auto;'
         ),
         'options'=>array(
             'header'=>array(
