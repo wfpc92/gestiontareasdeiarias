@@ -304,6 +304,7 @@ class TareaController extends Controller {
             $model = Tarea::model()->findByPk($idTarea);
             $model->ESTADO = $estado;
             $model->save();
+            
         }
         echo CJavaScript::jsonEncode(array(
             'idTarea' => $idTarea
@@ -333,4 +334,13 @@ class TareaController extends Controller {
         }
     }
 
+    
+    public function actionTotalTarea() {
+        $numTT =5;//consutla en bd
+        $numTTol = 10; //consulta bd
+        echo CJavaScript::jsonEncode(array(
+            'numTT' => $numTT,
+            'numTTot'=>$numTTol
+        ));
+    }
 }
