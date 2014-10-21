@@ -4,18 +4,17 @@
 
 $cs = Yii::app()->clientScript;
 $bu = Yii::app()->baseUrl . '/';
-$cs->registerCssFile($bu . 'js/fullcalendar/fullcalendar.css');
-$cs->registerScriptFile($bu . 'js/fullcalendar/fullcalendar.js');
-$cs->registerScriptFile($bu . 'js/fullcalendar/lib/moment.min.js');
-$cs->registerScriptFile($bu . 'js/fullcalendar/lang-all.js');
+//$cs->registerCssFile($bu . 'js/fullcalendar/fullcalendar.css');
+//$cs->registerScriptFile($bu . 'js/fullcalendar/fullcalendar.js');
+//$cs->registerScriptFile($bu . 'js/fullcalendar/lib/moment.min.js');
+//$cs->registerScriptFile($bu . 'js/fullcalendar/lang-all.js');
 ?>
 
 <div id="calendar"></div>
-
+<!--
 <script id="calendar-script">
     $(document).ready(function() {
         $('#calendar').fullCalendar({
-            lang: 'es',
             height: 450,
             contentHeight: 400,
             header: {
@@ -49,7 +48,7 @@ $cs->registerScriptFile($bu . 'js/fullcalendar/lang-all.js');
                 '': 'H:mm{ - H:mm}'
             },
             dayClick: function(date) {
-                var direccion = "<?php echo Yii::app()->createUrl("tarea/vistaDiaria"); ?>";
+                var direccion = "php //echo Yii::app()->createUrl("tarea/vistaDiaria");fin php";
                 var fecha = date.toJSON();
                 location.href = direccion + "?fecha="+fecha ;
                 
@@ -73,10 +72,32 @@ $cs->registerScriptFile($bu . 'js/fullcalendar/lang-all.js');
              }*/
         })
     });
-</script>
+</script> -->
 
 <?php
-$this->widget('ext.EFullCalendar.EFullCalendar');
+    $this->widget('ext.EFullCalendar.EFullCalendar',array(
+        'themeCssFile'=>'cupertino/theme.css',
+        'htmlOptions'=>array(
+            'style'=>'width:500px; margin: 0 auto;'
+        ),
+        'options'=>array(
+            'header'=>array(
+                'left'=>'prev,next',
+                'center'=>'title',
+                'right'=>'today,month',
+            ),
+            'editable'=>true,
+            'selectable'=>true,
+            'selectHelper'=>true,
+            'dayClick'=> 'js:function(date) {
+                var direccion = "'.Yii::app()->createUrl("tarea/vistaDiaria").'";'.
+                'var fecha = date.toJSON();
+                location.href = direccion + "?fecha="+fecha ;
+            }',
+            'event'=> Yii::app()->createUrl('CalendarioController/CalendarEvents'),
+        )
+    )
+    );
 ?>
 
 
