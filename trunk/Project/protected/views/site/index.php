@@ -35,7 +35,12 @@
 
             <ul id="menu">
                 <li class="lista">
-                    <a href="#">Lista</a>
+                    <?php
+                    $text = "Hoy";
+                    $url = Yii::app()->createUrl("tarea/vistaDiaria");
+                    $htmlOptions = array();
+                    echo CHtml::link($text, $url, $htmlOptions);
+                    ?>
                 </li>
                 <li class="calendario">
                     <?php

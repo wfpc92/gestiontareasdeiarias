@@ -1,12 +1,10 @@
 <?php
 
 class TareaController extends Controller {
-
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
 
     /**
      * @return array action filters
@@ -26,7 +24,16 @@ class TareaController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'crearAjax', 'mostrarAjax', 'actualizarAjax', 'eliminarAjax', 'checkAjax'),
+                'actions' => array(
+                    'index',
+                    'view',
+                    'crearAjax',
+                    'mostrarAjax',
+                    'actualizarAjax',
+                    'eliminarAjax',
+                    'checkAjax',
+                    'vistaDiaria'
+                ),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -301,6 +308,29 @@ class TareaController extends Controller {
         echo CJavaScript::jsonEncode(array(
             'idTarea' => $idTarea
         ));
+    }
+
+    /**
+     * Funcion que renderiza las tareas de una fecha 
+     */
+    public function actionVistaDiaria() {
+        if (Yii::app()->user->isGuest)
+            $this->redirect(Yii::app()->createUrl('site/login'));
+        else {
+            if (isset($_GET['fecha'])) {
+                $d = strtotime($_GET['fecha']);
+                $fecha = date("Y/m/d", $d);
+            } else {
+                $fecha = date("Y/m/d");
+            }
+
+            $contentVistaDiaria = $this->renderPartial('_vista_diaria', array(
+                'fecha' => $fecha
+                    ), true);
+            $this->render('../site/index', array(
+                'vista' => $contentVistaDiaria
+            ));
+        }
     }
 
 }

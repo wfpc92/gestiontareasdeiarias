@@ -25,18 +25,18 @@ $cs->registerScriptFile($bu . 'js/fullcalendar/lang-all.js');
             },
             editable: true,
             events: [
-                {
-                    title: 'All Day Event',
-                    start: '2014-10-17',
-                    /*url: 'http://localhost/Project/index.php'*/
-                    editable: true
-                },
-                {
-                    title: 'Long Event',
-                    start: '2014-10-17',
-                    end: '2014-10-18',
-                    /*url: 'http://localhost/Project/index.php'*/
-                },
+                /* {
+                 title: 'All Day Event',
+                 start: '2014-10-17',
+                 //url: 'http://localhost/Project/index.php'
+                 editable: true
+                 },
+                 {
+                 title: 'Long Event',
+                 start: '2014-10-17',
+                 end: '2014-10-18',
+                 //url: 'http://localhost/Project/index.php'
+                 },*/
             ],
             eventLimit: true,
             columnFormat: {
@@ -49,7 +49,11 @@ $cs->registerScriptFile($bu . 'js/fullcalendar/lang-all.js');
                 '': 'H:mm{ - H:mm}'
             },
             dayClick: function(date) {
-                alert('Haz dado click en : ' + date);
+                var direccion = "<?php echo Yii::app()->createUrl("tarea/vistaDiaria"); ?>";
+                var fecha = date.toJSON();
+                location.href = direccion + "?fecha="+fecha ;
+                
+    
             },
             eventRender: function(event, element, view)
             {
