@@ -16,6 +16,19 @@ $(document).ready(function() {
      $("#content-princ-izq .list-view .items .view a.menu-tarea").click(function() {
      alert("Hola soy menu tarea");
      return false;
+    
+    $("ul.categoria li").click(function() {
+        $("ul.categoria").hide();  
+        return false;
+     });
+     
+     $("ul.actividad li").click(function() {
+        $("ul.actividad").hide();  
+        return false;
+     });
+    
      });*/
+    
+    
 
 });

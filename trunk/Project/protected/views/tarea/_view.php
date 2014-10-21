@@ -14,7 +14,7 @@ $idTarea = $data->ID_TAREA;
              'enableAjaxValidation' => false,
              'action' => Yii::app()->homeUrl,
              'htmlOptions' => array(
-                 'class' => ''
+                 'class' => 'form-tarea'
              )
          ));
 
@@ -36,37 +36,42 @@ $idTarea = $data->ID_TAREA;
              'onclick' => 'return tareaMostrarAjax(this)',
                  ), CHtml::encode($data->NOMBRE_TAREA));
 
+         ?>
+        <div class="botones">
+            <?php
+            $label = "Play Tarea";
+            $htmlOptions = array(
+                'id' => 'btn-play-tarea-' . $idTarea,
+                'name' => 'btn-play-tarea-' . $idTarea,
+                'class' => 'play-tarea'
+            );
+            echo CHtml::button($label, $htmlOptions);
 
-         $label = "Play Tarea";
-         $htmlOptions = array(
-             'id' => 'btn-play-tarea-' . $idTarea,
-             'name' => 'btn-play-tarea-' . $idTarea,
-             'class' => ''
-         );
-         echo CHtml::button($label, $htmlOptions);
+            $label = "Pausar Tarea";
+            $htmlOptions = array(
+                'id' => 'lnk-pausar-tarea-' . $idTarea,
+                'name' => 'lnk-pausar-tarea-' . $idTarea,
+                'class' => 'pause-tarea'
+            );
+            echo CHtml::button($label, $htmlOptions);
 
-         $label = "Pausar Tarea";
-         $htmlOptions = array(
-             'id' => 'lnk-pausar-tarea-' . $idTarea,
-             'name' => 'lnk-pausar-tarea-' . $idTarea,
-             'class' => ''
-         );
-         echo CHtml::button($label, $htmlOptions);
+            echo CHtml::tag('p', array(
+                'id' => 'p-duracion-tarea-' . $idTarea
+                    ), $data->DURACION);
 
-         echo CHtml::tag('p', array(
-             'id' => 'p-duracion-tarea-' . $idTarea
-                 ), $data->DURACION);
-
-
-         $label = "Eliminar Tarea";
+            ?>
+            <div class="clearFix"></div>
+        </div>
+        <?php
+         /*$label = "Eliminar Tarea";
          $htmlOptions = array(
              'id' => 'lnk-eliminar-tarea-' . $idTarea,
              'name' => 'lnk-eliminar-tarea-' . $idTarea,
              'class' => 'eliminar-tarea',
              'onclick' => 'return tareaEliminarAjax(this)'
          );
-         echo CHtml::link($label, "#", $htmlOptions);
-
+         echo CHtml::link($label, "#", $htmlOptions);*/
+         
          echo CHtml::link("Menú Tarea", "", array(
              'class' => 'menu-tarea',
              'onclick' => 'return tareaMenu(this)'

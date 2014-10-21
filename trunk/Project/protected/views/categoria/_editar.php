@@ -6,7 +6,7 @@
 $idCategoria = $model->ID_CATEGORIA;
 ?>
 
-<div class="form">
+<div class="form form-editar-categoria">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'categoria-editar-form-' . $idCategoria,
