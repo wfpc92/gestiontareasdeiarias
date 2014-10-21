@@ -296,7 +296,7 @@ div.clearFix {
 #content-princ-izq .list-view .items .view a.menu-tarea:hover {
     background: url("../images/bt-menuHover.png") no-repeat;
 }
-ul.categoria, ul.actividad, .eliminar-tarea  {
+ul.categoria, ul.actividad, ul.tarea  {
     display: none;
     position: absolute;
     top: 30px;
@@ -307,11 +307,11 @@ ul.categoria, ul.actividad, .eliminar-tarea  {
     padding: 3px;
     z-index: 10;
 }
-    ul.categoria li, ul.actividad li, .eliminar-tarea  {
+    ul.categoria li, ul.actividad li, ul.tarea li  {
         height: 20px;
         padding-left: 15px; 
     }
-        ul.categoria li a, ul.actividad li a, .eliminar-tarea  {
+        ul.categoria li a, ul.actividad li a, ul.tarea li a  {
             text-decoration: none;
             color: #000000;
             font-size: 14px;
@@ -326,26 +326,92 @@ ul.categoria, ul.actividad, .eliminar-tarea  {
         ul.categoria li.editar a:hover, ul.actividad li.editar a:hover {
             
         }
-    ul.categoria li.eliminar, ul.actividad li.eliminar {
+    ul.categoria li.eliminar, ul.actividad li.eliminar, ul.tarea li.eliminar {
         margin-top: 2px;
         background: url("../images/eliminar.png") no-repeat 0 center;
     }
         ul.categoria li.eliminar a:link, ul.categoria li.eliminar a:visited,
-        ul.actividad li.eliminar a:link, ul.actividad li.eliminar a:visited {
+        ul.actividad li.eliminar a:link, ul.actividad li.eliminar a:visited,
+        ul.tarea li.eliminar a:link, ul.tarea li.eliminar a:visited {
             
         }
-        ul.categoria li.eliminar a:hover, ul.actividad li.eliminar a:hover {
+        ul.categoria li.eliminar a:hover, ul.actividad li.eliminar a:hover,
+        ul.tarea li.eliminar a:hover {
             
         }
-.eliminar-tarea {
-    display: none;
-    line-height: 19px;
-    padding: 3px 3px 3px 17px;;
+ul.tarea li.eliminar {
     margin: 0;
-    background: url("../images/eliminar.png") no-repeat 2px center;
-    background-color: #E9EAED;
 }
 /***** Menus categotia, actividad y tarea (fin) *****/
 #content-princ-izq .list-view .items .view {
     height: 20px;
 }
+
+/***** Botones play y pause () *****/
+.botones {
+    width: 100px;
+    margin: -25px auto 0;
+}
+    .botones .play-tarea, .botones .pause-tarea {
+        display: block;
+        width: 35px;
+        height: 35px;
+        text-indent: -9999px;
+        overflow: hidden;
+        border: none;
+    }
+    .botones .play-tarea {
+        background: url("../images/play.png") no-repeat center;
+    }
+    .botones .pause-tarea {
+        float: right;
+        background: url("../images/pause.png") no-repeat center;
+        margin-top: -35px;
+    }
+    .botones .play-tarea:hover {
+        background: url("../images/play.png") no-repeat center;
+    }
+    .botones .pause-tarea:hover {
+        background: url("../images/pause.png") no-repeat center;
+    }
+/***** Botones play y paluse () *****/
+input[type="checkbox"] {
+    display: inline-block;
+    float: left;
+    margin-right: 15px;
+    background: none;
+}
+/***** Formulario editar actividad (inicio) *****/
+.form-editar-actividad, .form-editar-categoria {
+    width: 100%;
+    margin-top: 25px;
+}
+    .form-editar-actividad .row, .form-editar-categoria .row {
+        width: 88%;
+    }
+    .form-editar-actividad .row input[type="text"],
+    .form-editar-categoria .row input[type="text"]{
+        display: block;
+        padding: 0 7px;
+        width: 90%;
+    }
+    .form-editar-actividad div:last-child,
+    .form-editar-categoria .buttons {
+        float: right;
+        margin-top: -34px;
+        width: 12%;
+    }
+    .form-editar-categoria .buttons {
+        margin: -34px 0 0 !important;
+    }
+    .form-editar-actividad .buttons input[type="submit"],
+    .form-editar-categoria .buttons input[type="submit"]{
+        background: url("../images/ok.png") no-repeat;
+        border: medium none;
+        display: block;
+        height: 24px;
+        width: 24px;
+        overflow: hidden;
+        text-indent: -9999px;        
+    }
+/***** Formulario editar actividad (fin) *****/

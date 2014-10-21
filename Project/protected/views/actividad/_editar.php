@@ -6,7 +6,7 @@
 $idActividad = $model->ID_ACTIVIDAD;
 ?>
 
-<div class="form">
+<div class="form form-editar-actividad">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'actividad-editar-form-' . $idActividad,
@@ -37,7 +37,6 @@ $idActividad = $model->ID_ACTIVIDAD;
         ));
         ?>
     </div>
-    <div class="clearFix"></div>
 
     <?php $this->endWidget(); ?>
 
