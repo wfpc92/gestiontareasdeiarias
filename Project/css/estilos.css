@@ -137,17 +137,17 @@ div.clearFix {
     //padding-bottom: 20px;
 }
 #content-princ-izq {
-	float: left;
-	width: auto;
-	min-width: 40%; 
-	max-width: 100%;
-	padding-bottom: 20px;
-        padding-right: 15px;
+    float: left;
+    width: auto;
+    min-width: 40%; 
+    max-width: 100%;
+    padding-bottom: 20px;
+    padding-right: 15px;
 }
 #content-princ-der {
-	float: left;
-	width: 58%;
-	padding-bottom: 20px;
+    float: left;
+    width: 58%;
+    padding-bottom: 20px;
 }
 /***** Contenedores principales (fin) *****/
 
@@ -347,9 +347,11 @@ ul.tarea li.eliminar {
     height: 20px;
 }
 
-/***** Botones play y pause () *****/
+/***** Duración, botones play y pause (inicio) *****/
 .botones {
-    width: 100px;
+    //width: 170px;
+    width: 30%;
+    min-width: 170px;
     margin: -25px auto 0;
 }
     .botones .play-tarea, .botones .pause-tarea {
@@ -364,9 +366,10 @@ ul.tarea li.eliminar {
         background: url("../images/play.png") no-repeat center;
     }
     .botones .pause-tarea {
-        float: right;
+        float: left;
         background: url("../images/pause.png") no-repeat center;
         margin-top: -35px;
+        margin-left: 50px;
     }
     .botones .play-tarea:hover {
         background: url("../images/play.png") no-repeat center;
@@ -374,7 +377,11 @@ ul.tarea li.eliminar {
     .botones .pause-tarea:hover {
         background: url("../images/pause.png") no-repeat center;
     }
-/***** Botones play y paluse () *****/
+    .botones p {
+        float: right;
+        margin-top: -25px;
+    }
+/***** Duración botones play y paluse (fin) *****/
 input[type="checkbox"] {
     display: inline-block;
     float: left;

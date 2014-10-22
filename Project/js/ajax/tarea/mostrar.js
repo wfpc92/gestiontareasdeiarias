@@ -23,9 +23,20 @@ var tareaMostrarAjax = function(self) {
 };
 
 var mostrarPanelDerecho = function(html) {
-    $("#content-princ-izq").css("width", "38%");
-    $("#content-princ-der")
-            .css("width", "58%")
-            .show()
-            .html(html);
+    $ancho =  $(window).width();
+    
+    if ($ancho <= 1200) {
+        $("#content-princ-izq").css("width", "100%");
+        $("#content-princ-der")
+                .css("width", "100%")
+                .show()
+                .html(html);
+    }
+    else {
+        $("#content-princ-izq").css("width", "38%");
+        $("#content-princ-der")
+                .css("width", "58%")
+                .show()
+                .html(html);
+    }    
 };
