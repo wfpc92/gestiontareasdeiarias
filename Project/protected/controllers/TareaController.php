@@ -32,7 +32,8 @@ class TareaController extends Controller {
                     'actualizarAjax',
                     'eliminarAjax',
                     'checkAjax',
-                    'vistaDiaria'
+                    'vistaDiaria',
+                    'totalTarea'
                 ),
                 'users' => array('*'),
             ),
@@ -183,6 +184,7 @@ class TareaController extends Controller {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
+            $idActividad = $model->ID_ACTIVIDAD;
             $model->CORREO = $userId;
             $model->PRIORIDAD = 0;
             $result = $model->save();
@@ -227,7 +229,7 @@ class TareaController extends Controller {
             'htmlTareaEditar' => $htmlTareaEditar,
             'idActividad' => $idActividad,
             'idTarea' => $idTarea,
-            'motivo' => $motivo
+            'motivo' => $motivo,
         ));
     }
 
@@ -238,12 +240,14 @@ class TareaController extends Controller {
         $actualizar = FALSE;
         $motivo = "";
         $idTarea = NULL;
+        $idActividad = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
             $model = Tarea::model()->findByPk($idTarea);
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
+            $idActividad = $model->ID_ACTIVIDAD;
             $model->CORREO = $userId;
             $result = $model->save();
 
@@ -257,7 +261,8 @@ class TareaController extends Controller {
         echo CJavaScript::jsonEncode(array(
             'actualizar' => $actualizar,
             'motivo' => $motivo,
-            'idTarea' => $idTarea
+            'idTarea' => $idTarea,
+            'idActividad' => $idActividad
         ));
     }
 
@@ -268,11 +273,14 @@ class TareaController extends Controller {
         $borrar = false;
         $motivo = "";
         $idTarea = NULL;
+        $idActividad = NULL;
+        
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
             $model = Tarea::model()->findByPk($idTarea);
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
+            $idActividad = $model->ID_ACTIVIDAD;
             $model->CORREO = $userId;
             $result = $model->delete();
 
@@ -288,26 +296,30 @@ class TareaController extends Controller {
         echo CJavaScript::jsonEncode(array(
             'borrar' => $borrar,
             'motivo' => $motivo,
-            'idTarea' => $idTarea
+            'idTarea' => $idTarea,
+            'idActividad' => $idActividad
         ));
     }
 
     /**
      * Funcion que actualiza el estado de una tarea. 
-     * @var $estado Tarea
      */
+    /* @var $model Tarea */
     public function actionCheckAjax() {
         $idTarea = NULL;
+        $idActividad = NULL;
+        
         $estado = isset($_REQUEST["ESTADO"]) ? 1 : 0;
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
             $model = Tarea::model()->findByPk($idTarea);
+            $idActividad = $model->ID_ACTIVIDAD;
             $model->ESTADO = $estado;
             $model->save();
-            
         }
         echo CJavaScript::jsonEncode(array(
-            'idTarea' => $idTarea
+            'idTarea' => $idTarea,
+            'idActividad' => $idActividad
         ));
     }
 
@@ -334,13 +346,36 @@ class TareaController extends Controller {
         }
     }
 
-    
     public function actionTotalTarea() {
-        $numTT =5;//consutla en bd
-        $numTTol = 10; //consulta bd
+        /* $model = Tarea::model()->findByPk($idTarea);
+          $model->ESTADO = $estado;
+          $model->save();
+          $numTT =5;//consutla en bd
+          $numTTol = 10; //consulta bd
+         */
+        $idActividad = $_GET["ID_ACTIVIDAD"];
+        /*$dataProvider = new CActiveDataProvider('Tarea', array(
+            'pagination' => false,
+            'criteria' => array(
+                'condition' => 'ID_ACTIVIDAD=' . $idActividad
+        )));
+        //var_dump($dataProvider->getItemCount());
+        $numTT = $dataProvider->getItemCount();*/
+
+        $numTT = 2;/*Yii::app()->db->createCommand()
+                ->select(count('ID_ACTIVIDAD'))
+                ->from('tarea')
+                ->where('ID_ACTIVIDAD' == $idActividad);*/
+        
+        $numTTot = 4;/*Yii::app()->db->createCommand()
+                ->select(count('ID_ACTIVIDAD'))
+                ->from('tarea');*/
+        
         echo CJavaScript::jsonEncode(array(
+            //'idTarea' => $idTarea,
             'numTT' => $numTT,
-            'numTTot'=>$numTTol
+            'numTTot' => $numTTot
         ));
     }
+
 }

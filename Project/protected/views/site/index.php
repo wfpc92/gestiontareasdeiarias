@@ -29,7 +29,17 @@
 <div class="fluida">
     <div id="contentDer">
         <div class="progreso">
-            Progreso:
+            Progreso: <div id="progressbar" style="width:91%; float: right; margin-top: 5px;">
+                <?php
+                $this->widget('zii.widgets.jui.CJuiProgressBar', array(
+                    'value' => 1000,
+                    'htmlOptions' => array(
+                        'id' => 'progress-bar-real'
+                    )
+                ));
+                ?>
+
+            </div> 
         </div>
         <div class="menu">
 

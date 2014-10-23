@@ -25,7 +25,7 @@ var tareaCheckAjax = function(self) {
         data: $(form).serialize(),
         dataType: 'json',
         success: function(data) {
-            actualizarProgreso();
+            actualizarProgreso(data.idActividad);
         },
         error: function() {
             alert("ERROR: tareaCheckAjax conexion fallida");
@@ -34,21 +34,30 @@ var tareaCheckAjax = function(self) {
     return false;
 };
 
-var actualizarProgreso = function(){
-    var form = $(self).parent("form");
+var actualizarProgreso = function( idActividad ){
     $.ajax({
-        type: 'POST',
-        url: $(form).attr('action') + "/tarea/totalTarea",
-        data: $(form).serialize(),
+        type: 'GET',
+        url:  "index.php/tarea/totalTarea?ID_ACTIVIDAD="+idActividad,
         dataType: 'json',
         success: function(data) {
-            var idTare = data.idTarea;
-            var numTT = data.numTT; 
-            var numTTot= data.numTTot;
+            console.log(data);
+            //console.log(data.numTT);
+            //console.log(data.numTTot);
+            /*
+            var idTare = data.idTarea;*/
+            //var numTT = data.numTT; 
+            //var numTTot= data.numTTot;
             
             //atualizo la barra de progreso.
-            var barra = $("barra");
-            barra.setAvance(numTT / numTTtol);
+            //$(this).parent().append('<div class="progressbar"></div>');
+            //$(this).parent().children('div.progressbar').show();
+            //$(this).parent().children('div.progressbar').progressbar("option", "value", 75);
+            //$("#progress-bar-real").progressbar("option", "value", 75);
+            //var progressBar = document.getElementById("progressBar");
+            //progressBar.value += 10;
+            //var barra = $("barra");
+            //barra.setAvance(numTT / numTTtol);
+            
         },
         error: function() {
             alert("ERROR: actualizarProgreso conexion fallida");

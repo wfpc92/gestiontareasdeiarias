@@ -19,7 +19,7 @@ var tareaCrearAjax = function(form) {
             $("#txt-tarea-" + idActividad).val("");
 
             mostrarPanelDerecho(htmlTareaEditar);
-                actualizaProgreso();
+            actualizarProgreso(data.idActividad);
         },
         error: function() {
             alert("ERROR: categoriaCrearAjax conexion fallida");

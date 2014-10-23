@@ -13,7 +13,7 @@ var tareaEliminarAjax = function(self) {
             //obtener la lista de tareas.
             var idTareaActual = "#tarea-view-" + idTarea;
             $("div").remove(idTareaActual);
-            actualizarProgreso();
+            actualizarProgreso(data.idActividad);
             tareaCerrar(null);
             return false;
         },
