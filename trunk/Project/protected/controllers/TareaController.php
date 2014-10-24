@@ -347,32 +347,26 @@ class TareaController extends Controller {
     }
 
     public function actionTotalTarea() {
-        /* $model = Tarea::model()->findByPk($idTarea);
-          $model->ESTADO = $estado;
-          $model->save();
-          $numTT =5;//consutla en bd
-          $numTTol = 10; //consulta bd
-         */
         $idActividad = $_GET["ID_ACTIVIDAD"];
-        /*$dataProvider = new CActiveDataProvider('Tarea', array(
+        $criteria = new CDbCriteria;
+        $criteria2 = new CDbCriteria;
+        
+        $criteria->compare('ID_ACTIVIDAD', $idActividad, true);
+        $dataProvider = new CActiveDataProvider('Tarea', array(
             'pagination' => false,
-            'criteria' => array(
-                'condition' => 'ID_ACTIVIDAD=' . $idActividad
-        )));
-        //var_dump($dataProvider->getItemCount());
-        $numTT = $dataProvider->getItemCount();*/
-
-        $numTT = 2;/*Yii::app()->db->createCommand()
-                ->select(count('ID_ACTIVIDAD'))
-                ->from('tarea')
-                ->where('ID_ACTIVIDAD' == $idActividad);*/
+            'criteria' => $criteria
+        ));
         
-        $numTTot = 4;/*Yii::app()->db->createCommand()
-                ->select(count('ID_ACTIVIDAD'))
-                ->from('tarea');*/
+        $criteria2->compare('ID_ACTIVIDAD', $idActividad, true);
+        $criteria2->compare('ESTADO', 1, true);
+        $dataProvider2 = new CActiveDataProvider('Tarea', array(
+            'pagination' => false,
+            'criteria' => $criteria2
+        ));
         
+        $numTT = $dataProvider2->getItemCount();
+        $numTTot = $dataProvider->getItemCount();
         echo CJavaScript::jsonEncode(array(
-            //'idTarea' => $idTarea,
             'numTT' => $numTT,
             'numTTot' => $numTTot
         ));
