@@ -37,26 +37,15 @@ var tareaCheckAjax = function(self) {
 var actualizarProgreso = function( idActividad ){
     $.ajax({
         type: 'GET',
-        url:  "index.php/tarea/totalTarea?ID_ACTIVIDAD="+idActividad,
+        url:  "tarea/totalTarea?ID_ACTIVIDAD="+idActividad,
         dataType: 'json',
         success: function(data) {
-            console.log(data);
-            //console.log(data.numTT);
-            //console.log(data.numTTot);
-            /*
-            var idTare = data.idTarea;*/
-            //var numTT = data.numTT; 
-            //var numTTot= data.numTTot;
+            var numTT = data.numTT; 
+            var numTTot= data.numTTot;
+            var porcentaje = (numTT / numTTot)*100;
             
             //atualizo la barra de progreso.
-            //$(this).parent().append('<div class="progressbar"></div>');
-            //$(this).parent().children('div.progressbar').show();
-            //$(this).parent().children('div.progressbar').progressbar("option", "value", 75);
-            //$("#progress-bar-real").progressbar("option", "value", 75);
-            //var progressBar = document.getElementById("progressBar");
-            //progressBar.value += 10;
-            //var barra = $("barra");
-            //barra.setAvance(numTT / numTTtol);
+            $("#progress-bar-real").progressbar("option", "value", porcentaje);
             
         },
         error: function() {
