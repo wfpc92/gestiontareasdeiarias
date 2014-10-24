@@ -6,12 +6,17 @@ var tareaCerrar = function(self) {
             .html("");
     if ($(window).width() <= 1200) {
         $(".botones").css("margin-right", "40px")
-    }
-    else {
+    } else {
         $(".botones").css("float", "right")
-            .css("margin-right", "25%")
-            .css("margin-top", "-17px");
+                .css("margin-right", "25%")
+                .css("margin-top", "-17px");
     }
-    $(".form-tarea p").css("padding", "0 40px 10px 33px");  
+    if ($(window).width() <= 920) {
+        $(".form-tarea p").css("padding", "0 40px 10px 33px");
+    } else {
+        $(".form-tarea p").css("padding", "0px");  
+    }
+    
+    
     return false;
 };

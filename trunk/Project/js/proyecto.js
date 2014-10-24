@@ -2,13 +2,16 @@ $(document).ready(function() {
     $("#content-princ-der").hide()
             .css("width", "0%");
     $("#content-princ-izq").css("width", "100%");
-    $("ul.categoria li").mouseout(function() {
+    
+    $("ul.categoria").mouseleave(function() {
         $("ul.categoria").hide();
     });
-    $("ul.actividad li").mouseout(function() {
+    
+    $("ul.actividad").mouseleave(function() {
         $("ul.actividad").hide();
     });
-    $("ul.tarea li").mouseout(function() {
+    
+    $("ul.tarea").mouseleave(function() {
         $("ul.tarea").hide();
     });
     
