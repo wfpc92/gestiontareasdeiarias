@@ -31,6 +31,7 @@ var mostrarPanelDerecho = function(html) {
                 .css("width", "100%")
                 .show()
                 .html(html);
+        $(".botones").css("margin-right", "40px");
     }
     else {
         $("#content-princ-izq").css("width", "38%");
@@ -38,5 +39,19 @@ var mostrarPanelDerecho = function(html) {
                 .css("width", "58%")
                 .show()
                 .html(html);
-    }    
+
+        if ($("#content-princ-izq").width() <= 500) {
+            $(".botones").css("float", "none")
+                    .css("margin-left", "30px")
+                    .css("margin-top", "0px");
+            $(".form-tarea p").css("padding", "0 40px 10px 33px");
+        } else {
+            $(".botones").css("margin-right", "25%");
+        }
+    } 
+    
+    $anchoizq = $("#content-princ-izq").width();
+    console.log($anchoizq);
+    
+    
 };
