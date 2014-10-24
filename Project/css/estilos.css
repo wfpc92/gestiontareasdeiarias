@@ -29,16 +29,17 @@
     font-style: normal;
 }
 input[type="button"], input[type="submit"], input[type="reset"] {
-    background: #595959;
+    background: #0E83EB;
     color: #ffffff;
-    border: 1px solid #14513f;
+    border: 1px solid #251DEE;
     padding: 5px 8px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 15px;
+    margin-right: 30px;
 }
 input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
-	background: #8f8d8d;
+	background: #6B65FB;
 }
 input[type="text"], input[type="password"] {
     display: inline-block;
@@ -63,7 +64,15 @@ div.view {
     position: relative;
     border: 1px solid #CBCBCB;
     margin: 1px 0px;
-    font-size: 18px;
+    font-size: 17px;
+    padding: 7px;
+}
+#categoria-list-view .items .view:hover,
+#content-princ-izq .list-view .items .view:hover {
+    background: #E1E2E5;
+}
+.actividadesPorCate .list-view .items .view:hover {
+   border: 1px solid #8F8AFC;
 }
 div.clearFix {
     clear: both;
@@ -122,16 +131,16 @@ div.clearFix {
 #contentIzq {
     float: left;
     width: 275px;
-    border-right: 1px solid #CBCBCB;
     padding-right: 10px;
 }
 .fluida {
     width: 100%;
 }
 #contentDer {
-    margin-left: 275px;
+    margin-left: 285px;
     padding-left: 20px;
     padding-right: 5px;
+    border-left: 1px solid #CBCBCB;
     //float: right;
     //width: 100%;
     //padding-bottom: 20px;
@@ -220,13 +229,20 @@ div.clearFix {
 #content-princ-izq .form .formTarea .buttons input[type="submit"] {
     margin-top: -35px;
 }
+.form-tarea {
+}
+    .form-tarea p {
+        padding: 0px;
+    }
+.form-editar-tarea div.buttons input[type="submit"] {
+    margin-right: 10px;
+}
 /***** Formularios (fin) *****/
 
 /***** Barra de progreso (inicio) *****/
 #contentDer  .progreso {
     width: 99%;
     height: 57px;
-    background: url('../images/barra.png') no-repeat 100px 10px;
     font-size: 18px;
     line-height: 45px;
 }
@@ -283,13 +299,13 @@ div.clearFix {
     text-indent: -9999px;
     overflow: hidden;
     float: right;
-    top:5px;
     right: 5px;
+    top: 0;
 }
 #categoria-list-view .items .view:hover a.menu-categoria,
 .actividadesPorCate .list-view .items .view:hover a.menu-actividad,
 #content-princ-izq .list-view .items .view:hover a.menu-tarea {
-    display: block;
+    display: block; 
 }
 #categoria-list-view .items .view a.menu-categoria:hover,
 .actividadesPorCate .list-view .items .view a.menu-actividad:hover,
@@ -299,7 +315,7 @@ div.clearFix {
 ul.categoria, ul.actividad, ul.tarea  {
     display: none;
     position: absolute;
-    top: 30px;
+    top: 25px;
     right: 1px;
     background: #E9EAED;
     border: 1px solid #CBCBCB;
@@ -343,21 +359,26 @@ ul.tarea li.eliminar {
     margin: 0;
 }
 /***** Menus categotia, actividad y tarea (fin) *****/
+
 #content-princ-izq .list-view .items .view {
-    height: 20px;
+    padding: 5px 0 0 0;
+}
+#content-princ-izq .list-view .items .view:hover {
+    cursor: pointer;
 }
 
 /***** Duración, botones play y pause (inicio) *****/
 .botones {
-    //width: 170px;
     width: 30%;
-    min-width: 170px;
-    margin: -25px auto 0;
+    min-width: 160px;
+    float: right;
+    margin-top: -17px;
+    margin-right: 25%;
 }
     .botones .play-tarea, .botones .pause-tarea {
         display: block;
-        width: 35px;
-        height: 35px;
+        width: 28px;
+        height: 28px;
         text-indent: -9999px;
         overflow: hidden;
         border: none;
@@ -368,8 +389,8 @@ ul.tarea li.eliminar {
     .botones .pause-tarea {
         float: left;
         background: url("../images/pause.png") no-repeat center;
-        margin-top: -35px;
-        margin-left: 50px;
+        margin-top: -28px;
+        margin-left: 40px;
     }
     .botones .play-tarea:hover {
         background: url("../images/play.png") no-repeat center;
@@ -380,12 +401,13 @@ ul.tarea li.eliminar {
     .botones p {
         float: right;
         margin-top: -25px;
+        padding: 0 !important;
     }
 /***** Duración botones play y paluse (fin) *****/
 input[type="checkbox"] {
     display: inline-block;
     float: left;
-    margin-right: 15px;
+    margin: 3px 10px 0; 
     background: none;
 }
 /***** Formulario editar actividad (inicio) *****/

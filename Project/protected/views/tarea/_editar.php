@@ -15,7 +15,7 @@
         'htmlOptions' => array(
             'onsubmit' => "return tareaGuardarAjax(this)",
             'onchange' => "return tareaActualizarAjax(this)",
-            'class' => ''
+            'class' => 'form-editar-tarea'
         )
     ));
     echo $form->errorSummary($model);
@@ -105,7 +105,7 @@
         $label = "Guardar";
         $htmlOptions = array(
             'id' => 'btn-guardar-tarea-' . $idTarea,
-            'class' => ''
+            'class' => 'guardar-tarea'
         );
         echo CHtml::submitButton($label, $htmlOptions);
 
