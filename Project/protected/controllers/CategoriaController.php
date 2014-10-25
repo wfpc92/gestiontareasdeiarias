@@ -1,12 +1,11 @@
 <?php
 
 class CategoriaController extends Controller {
-
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
+    //public $layout = '//layouts/column2';
 
     /**
      * @return array action filters
@@ -166,6 +165,10 @@ class CategoriaController extends Controller {
      * Crear una categoria desde el lado el cliente.
      */
     public function actionCrearAjax() {
+        $idCategoria = NULL;
+        $htmlCategoria = NULL;
+        $motivo = NULL;
+
         if (isset($_REQUEST['Categoria'])) {
             $model = new Categoria;
             $model->attributes = $_REQUEST['Categoria'];
@@ -173,13 +176,19 @@ class CategoriaController extends Controller {
             $model->CORREO = $userId;
             $result = $model->save();
             if ($result) {
-                $this->renderPartial('_view', array('data' => $model));
+                $idCategoria = $model->ID_CATEGORIA;
+                $htmlCategoria = $this->renderPartial('_view', array('data' => $model), true);
             } else {
-                echo "ERROR: no se guardo la categoria en la BD.";
+                $motivo = "Error de conexion interna en la base de datos.";
             }
         } else {
-            echo "ERROR: no hay datos en la peticion AJAX.";
+            $motivo = "Error en el envio del formulario.";
         }
+        echo CJavaScript::encode(array(
+            'idCategoria' => $idCategoria,
+            'htmlCategoria' => $htmlCategoria,
+            'motivo' => $motivo
+        ));
     }
 
     /**

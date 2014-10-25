@@ -4,11 +4,14 @@
 /* @var $form CActiveForm */
 ?>
 
+<div id="error-categoria"></div>
+
 <div class="form">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'categoria-form',
         'enableAjaxValidation' => false,
+        'enableClientValidation'=>true,
         'action' => Yii::app()->homeUrl . '/categoria/crearAjax',
         'htmlOptions' => array(
             'onsubmit' => 'return categoriaCrearAjax(this)'
@@ -20,6 +23,7 @@
 
     <div class="row">
         <?php
+        
         echo $form->labelEx($model, 'NOMBRE_CATEGORIA');
         echo $form->textField($model, 'NOMBRE_CATEGORIA', array(
             'id' => 'txt-categoria',
