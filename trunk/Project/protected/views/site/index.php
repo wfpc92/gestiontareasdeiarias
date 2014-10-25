@@ -28,6 +28,9 @@
 
 <div class="fluida">
     <div id="contentDer">
+        <div id="cargando-principal">cargando principal</div>
+        <div id="error-principal"></div>
+
         <div class="progreso">
             Progreso: <div id="progressbar" style="width:91%; float: right; margin-top: 5px;">
                 <?php
