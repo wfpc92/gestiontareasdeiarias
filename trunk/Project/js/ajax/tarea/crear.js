@@ -1,4 +1,5 @@
 var tareaCrearAjax = function(form) {
+    console.log(form);
     $.ajax({
         type: 'POST',
         url: $(form).attr('action'),
@@ -8,7 +9,7 @@ var tareaCrearAjax = function(form) {
             var htmlTarea = data.htmlTarea;
             var htmlTareaEditar = data.htmlTareaEditar;
             var idActividad = data.idActividad;
-            var idTarea = data.idTarea;
+            //var idTarea = data.idTarea;
             var items = $("#tarea-" + idActividad + " .items");
             var divsItems = $("#tarea-" + idActividad + " .items > div");
 
@@ -19,10 +20,10 @@ var tareaCrearAjax = function(form) {
             $("#txt-tarea-" + idActividad).val("");
 
             mostrarPanelDerecho(htmlTareaEditar);
-            actualizarProgreso(data.idActividad);
+            //actualizarProgreso(data.idActividad);
         },
         error: function() {
-            alert("ERROR: categoriaCrearAjax conexion fallida");
+            alert("ERROR: tareaCrearAjax conexion fallida");
         }
     });
     return false;
