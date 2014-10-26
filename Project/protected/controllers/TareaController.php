@@ -33,7 +33,9 @@ class TareaController extends Controller {
                     'eliminarAjax',
                     'checkAjax',
                     'vistaDiaria',
-                    'totalTarea'
+                    'totalTarea',
+                    'crearTareaPool',
+                    'cargarActividades'
                 ),
                 'users' => array('*'),
             ),
@@ -274,7 +276,7 @@ class TareaController extends Controller {
         $motivo = "";
         $idTarea = NULL;
         $idActividad = NULL;
-        
+
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
             $model = Tarea::model()->findByPk($idTarea);
@@ -308,7 +310,7 @@ class TareaController extends Controller {
     public function actionCheckAjax() {
         $idTarea = NULL;
         $idActividad = NULL;
-        
+
         $estado = isset($_REQUEST["ESTADO"]) ? 1 : 0;
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
@@ -340,10 +342,50 @@ class TareaController extends Controller {
             $contentVistaDiaria = $this->renderPartial('_vista_diaria', array(
                 'fecha' => $fecha
                     ), true);
+            $contentPoolTareas = $this->renderPartial('_pool_tareas', array(
+                'fecha' => $fecha
+                    ), true);
+
             $this->render('../site/index', array(
-                'vista' => $contentVistaDiaria
+                'vistaIzquierda' => $contentVistaDiaria,
+                'vistaDerecha' => $contentPoolTareas
             ));
         }
+    }
+
+    /**
+     * Funcion que crea una tarea y renderiza el formulario para editar la tarea. 
+     */
+    public function actionCrearTareaPool() {
+        $htmlTarea = "";
+        $htmlTareaEditar = "";
+        $idActividad = NULL;
+        $idTarea = NULL;
+        $motivo = "";
+
+        if (isset($_REQUEST['Tarea'])) {
+            $model = new Tarea;
+            $model->attributes = $_REQUEST['Tarea'];
+            $userId = Yii::app()->user->getId();
+            $model->CORREO = $userId;
+            $model->PRIORIDAD = 0;
+            $result = $model->save();
+            if ($result) {
+                $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
+                $htmlTareaEditar = $this->renderPartial('_editar_diaria', array('model' => $model), true);
+            } else {
+                $motivo = "ERROR: no se guardo la tarea";
+            }
+        } else {
+            $motivo = "ERROR: peticion de crear tarea mal formada.";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'htmlTarea' => $htmlTarea,
+            'htmlTareaEditar' => $htmlTareaEditar,
+            'idActividad' => $model->ID_ACTIVIDAD,
+            'idTarea' => $model->ID_TAREA,
+            'motivo' => $motivo
+        ));
     }
 
     public function actionTotalTarea() {
@@ -364,12 +406,46 @@ class TareaController extends Controller {
             'criteria' => $criteria2
         ));
         
+        /* $dataProvider = new CActiveDataProvider('Tarea', array(
+          'pagination' => false,
+          'criteria' => array(
+          'condition' => 'ID_ACTIVIDAD=' . $idActividad
+          )));
+          //var_dump($dataProvider->getItemCount());
+          $numTT = $dataProvider->getItemCount(); */
+
+        $numTT = 2; /* Yii::app()->db->createCommand()
+          ->select(count('ID_ACTIVIDAD'))
+          ->from('tarea')
+          ->where('ID_ACTIVIDAD' == $idActividad); */
+
+        $numTTot = 4; /* Yii::app()->db->createCommand()
+          ->select(count('ID_ACTIVIDAD'))
+          ->from('tarea'); */
+
         $numTT = $dataProvider2->getItemCount();
         $numTTot = $dataProvider->getItemCount();
         echo CJavaScript::jsonEncode(array(
             'numTT' => $numTT,
             'numTTot' => $numTTot
         ));
+    }
+    
+    public function actionCargarActividades()
+    {
+       $categoriaModel = new Categoria;
+       if(isset($_POST['Categoria']))
+       {
+               $categoriaModel->attributes=$_POST['Categoria'];			
+       }
+       
+       $data = Actividad::model()->findAll('ID_CATEGORIA='.$categoriaModel->ID_CATEGORIA);               
+              
+       $data=CHtml::listData($data,'ID_ACTIVIDAD','NOMBRE_ACTIVIDAD');
+       
+       foreach($data as $value=>$NOMBRE_ACTIVIDAD){
+            echo CHtml::tag('option', array('value'=>$value),CHtml::encode($NOMBRE_ACTIVIDAD),true);
+       }
     }
 
 }
