@@ -1,24 +1,13 @@
 var categoriaCrearAjax = function(form) {
-    $.ajax({
+    var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
         dataType: 'json',
-        beforeSend: function() {
-            var divCargando = $("#cargando-principal");
-            var txtCategoria = $(form).find("input");
-            var divError = $("#cargando-principal");
-            mostrarCargando(divCargando);
-
-            //if (!validarEntrada(txtCategoria)) {
-            //    mostrarMensaje(divError, "Este campo no puede estar vacio.");
-                return false;
-            //}
-        },
-        success: function(data) {
+        success: function(data, textStatus, jqXHR) {
             var idCategoria = data.idCategoria;
             var htmlCategoria = data.htmlCategoria;
-            var motivo = data.motivo;
+            var error = data.error;
 
             var items = $("#categoria-list-view > .items");
             var divsItems = $("#categoria-list-view .items > div");
@@ -27,16 +16,13 @@ var categoriaCrearAjax = function(form) {
             }
             items.append(htmlCategoria);
             $("#txt-categoria").val("");
-            //ocultarCargando("#cargando-principal");
-        },
-        error: function(xhr, text, thr) {
-            console.log(xhr)
-            $("#error-principal")
-                    .css('display', 'block')
-                    .css('background', 'red')
-                    .text("Verifique su conexión a Internet.");
         }
-    });
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: $("#error-form-categoria")
+    };
+    templateAjax1(confAjax, selectores);
     return false;
 };
 

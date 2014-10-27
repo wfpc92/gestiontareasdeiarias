@@ -9,7 +9,7 @@
 function cadenaConexion() {
     $servidor = $_SERVER['SERVER_NAME'];
     $clave = "wfpc92.tk";
-    
+
     //Yii::setPathOfAlias('ecalendarview', dirname(__FILE__).'/../extensions/ecalendarview');
     if (strpos($servidor, $clave) !== FALSE) {
         return array(
@@ -42,6 +42,7 @@ return array(
     'theme' => 'classic', // requires you to copy the theme under your themes directory
     // preloading 'log' component
     'preload' => array('log'),
+    'language' => 'es',
     // autoloading model and component classes
     'import' => array(
         'application.models.*',
@@ -106,5 +107,4 @@ return array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
     ),
-    
 );

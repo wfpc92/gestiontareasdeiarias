@@ -5,7 +5,6 @@
 ?>
 
 <div class="form">
-
     <?php
     $idTarea = $model->ID_TAREA;
     $form = $this->beginWidget('CActiveForm', array(
@@ -18,8 +17,9 @@
             'class' => 'form-editar-tarea'
         )
     ));
-    echo $form->errorSummary($model);
     ?>
+
+    <div id="tarea-editar-form-error-<?php echo $idTarea; ?>" class="error"></div>
 
     <div class="row">
         <?php
@@ -29,8 +29,9 @@
         echo $form->textField($model, 'NOMBRE_TAREA', array(
             'size' => 60,
             'maxlength' => 100,
-            'id' => 'txt-tarea-nombre-' . $idTarea)
-        );
+            'id' => 'txt-tarea-nombre-' . $idTarea,
+            'title' => 'Ingrese el nombre la tarea. (ej: hacer taller de calculo)'
+        ));
         echo $form->error($model, 'NOMBRE_TAREA');
         ?>
     </div>
@@ -43,18 +44,18 @@
         <?php
         echo $form->labelEx($model, 'FECHA_INICIO');
         echo $form->textField($model, 'FECHA_INICIO', array(
-            'id' => 'd-picker-fecha-inicio-' . $idTarea,
-            'class' => ''
+            'id' => 'd-picker-fecha-inicio',
+            'class' => 'dpicker',
+            'title' => 'Ingrese la fecha en que inicia la tarea.'
         ));
+        echo $form->error($model, 'FECHA_INICIO');
 
         echo $form->labelEx($model, 'FECHA_FIN');
         echo $form->textField($model, 'FECHA_FIN', array(
-            'id' => 'd-picker-fecha-fin-' . $idTarea,
-            'class' => ''
+            'id' => 'd-picker-fecha-fin',
+            'class' => 'dpicker',
+            'title' => 'Ingrese la fecha en que finaliza la tarea.'
         ));
-
-
-        echo $form->error($model, 'FECHA_INICIO');
         echo $form->error($model, 'FECHA_FIN');
         ?>
     </div>
@@ -66,7 +67,10 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'PRIORIDAD');
-        echo $form->dropDownList($model, 'PRIORIDAD', array("1" => "Alta", "2" => "Media", "3" => "Baja"));
+        echo $form->dropDownList($model, 'PRIORIDAD', array(
+            "1" => "Alta", "2" => "Media", "3" => "Baja"), array(
+            'title' => 'Ingrese el nivel de prioridad que le va a asignar a la tarea.'
+        ));
         echo $form->error($model, 'PRIORIDAD');
         ?>
     </div>
@@ -79,7 +83,11 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'INAMOVIBLE');
-        echo $form->checkBox($model, 'INAMOVIBLE', array('checked' => 1, 'unchecked' => 0));
+        echo $form->checkBox($model, 'INAMOVIBLE', array(
+            'checked' => 1, 'unchecked' => 0,
+            'title' => 'Las tareas inamovibles son aquellas que finalizan en la fecha de finalizacion.'
+            . ' El resto de tareas se programaran para el proximo dia.'
+        ));
         echo $form->error($model, 'INAMOVIBLE');
         ?>
     </div>
@@ -87,7 +95,9 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'HORA_INICIO');
-        echo $form->textField($model, 'HORA_INICIO');
+        echo $form->textField($model, 'HORA_INICIO', array(
+            'title' => 'Ingrese la hora en que iniciara la tarea.'
+        ));
         echo $form->error($model, 'HORA_INICIO');
         ?>
     </div>
@@ -95,7 +105,9 @@
     <div class="row">
         <?php
         echo $form->labelEx($model, 'HORA_FIN');
-        echo $form->textField($model, 'HORA_FIN');
+        echo $form->textField($model, 'HORA_FIN', array(
+            'title' => 'Ingrese la hora en que finaliza la tarea.'
+        ));
         echo $form->error($model, 'HORA_FIN');
         ?>
     </div>
@@ -121,3 +133,16 @@
     </div>
     <?php $this->endWidget(); ?>
 </div><!-- form -->
+
+<script>
+    $(".dpicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy-mm-dd',
+        showOn: "both",
+        buttonImage: "<?php echo Yii::app()->baseUrl . "/images/calendar.gif"; ?>",
+        buttonImageOnly: true,
+        buttonText: "Seleccione una Fecha."
+    });
+</script>

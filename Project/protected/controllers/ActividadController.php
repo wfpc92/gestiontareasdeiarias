@@ -3,12 +3,6 @@
 class ActividadController extends Controller {
 
     /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    public $layout = '//layouts/column2';
-
-    /**
      * @return array action filters
      */
     public function filters() {
@@ -26,7 +20,14 @@ class ActividadController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'crearAjax', 'listarTareasAjax', 'editarFormAjax', 'editarAjax', 'eliminarAjax'),
+                'actions' => array(
+                    'index',
+                    'view',
+                    'crearAjax',
+                    'listarTareasAjax',
+                    'editarFormAjax',
+                    'editarAjax',
+                    'eliminarAjax'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -166,58 +167,60 @@ class ActividadController extends Controller {
      * Crear una actividad desde el lado el cliente.
      */
     public function actionCrearAjax() {
+        $idCategoria = NULL;
+        $idActividad = NULL;
+        $htmlActividad = NULL;
+        $error = NULL;
+
         if (isset($_REQUEST['Actividad'])) {
             $model = new Actividad;
             $model->attributes = $_REQUEST['Actividad'];
             $userId = Yii::app()->user->getId();
             $model->CORREO = $userId;
-            if ($model->save()) {
+            if ($model->validate()) {
+                $model->save();
+                $idCategoria = $model->ID_CATEGORIA;
+                $idActividad = $model->ID_ACTIVIDAD;
                 $htmlActividad = $this->renderPartial('_view', array('data' => $model), true);
-                echo CJavaScript::jsonEncode(array(
-                    'htmlActividad' => $htmlActividad,
-                    'idCategoria' => $model->ID_CATEGORIA,
-                    'idActividad' => $model->ID_ACTIVIDAD
-                ));
-            } else {
-                //error, no guardo la actividad
+            }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
             }
         } else {
-            //peticion incorrecta
+            $error = "Error en el envio del formulario.";
         }
+        echo CJavaScript::jsonEncode(array(
+            'idCategoria' => $idCategoria,
+            'idActividad' => $idActividad,
+            'htmlActividad' => $htmlActividad,
+            'error' => $error
+        ));
     }
 
     /**
      * listar las tareas de una actividad
+     * @var $model Actividad
      */
     public function actionListarTareasAjax() {
+        $idActividad = NULL;
+        $htmlTareas = NULL;
+        $progressBar = NULL;
+        $error = NULL;
+
         if (isset($_REQUEST['Actividad'])) {
-            $model = new Tarea;
-            $model->ID_ACTIVIDAD = $_REQUEST['Actividad']['ID_ACTIVIDAD'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-
-            $form = '../tarea/_form';
-            $htmlTareas = $this->renderPartial($form, array('model' => $model), true);
-
-            $dataProvider = new CActiveDataProvider('Tarea', array(
-                'pagination' => false,
-                'criteria' => array(
-                    'condition' => 'ID_ACTIVIDAD=' . $model->ID_ACTIVIDAD
-            )));
-
-            $htmlTareas .= $this->widget('zii.widgets.CListView', array(
-                'dataProvider' => $dataProvider,
-                'itemView' => '../tarea/_view',
-                'enablePagination' => false,
-                'htmlOptions' => array(
-                    'id' => 'tarea-' . $model->ID_ACTIVIDAD
-                )), true);
-
-            echo CJavaScript::jsonEncode(array(
-                'htmlTareas' => $htmlTareas,
-                'idActividad' => $model->ID_ACTIVIDAD
-            ));
+            $idActividad = $_REQUEST['Actividad']['ID_ACTIVIDAD'];
+            $model = Actividad::model()->findByPk($idActividad);
+            $progressBar = $model->progressBar();
+            $htmlTareas = $this->renderPartial('_listar_tareas', array(
+                'model' => $model
+                    ), true);
         }
+        echo CJavaScript::jsonEncode(array(
+            'idActividad' => $idActividad,
+            'htmlTareas' => $htmlTareas,
+            'progressBar' => $progressBar,
+            'error' => $error
+        ));
     }
 
     /**
@@ -225,7 +228,8 @@ class ActividadController extends Controller {
      */
     public function actionEditarFormAjax() {
         $idActividad = NULL;
-        $htmlEditarForm = "";
+        $htmlEditarForm = NULL;
+        $error = NULL;
 
         if (isset($_REQUEST['Actividad'])) {
             $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
@@ -234,11 +238,14 @@ class ActividadController extends Controller {
                 $htmlEditarForm = $this->renderPartial('_editar', array(
                     'model' => $model
                         ), TRUE);
+            } else {
+                $error = "Actividad Seleccionada Desconocida. Actualice la página.";
             }
         }
         echo CJavaScript::jsonEncode(array(
             'idActividad' => $idActividad,
-            'htmlEditarForm' => $htmlEditarForm
+            'htmlEditarForm' => $htmlEditarForm,
+            'error' => $error
         ));
     }
 
@@ -247,24 +254,31 @@ class ActividadController extends Controller {
      */
     public function actionEditarAjax() {
         $idActividad = NULL;
-        $htmlActividad = "";
+        $htmlActividad = NULL;
+        $error = NULL;
 
         if (isset($_REQUEST['Actividad'])) {
             $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
             $model = Actividad::model()->findByPk($idActividad);
             $model->attributes = $_REQUEST['Actividad'];
-            $result = $model->save();
-            if ($result) {
+            if ($model->validate()) {
+                $model->save();
                 $htmlActividad = CHtml::link($model->NOMBRE_ACTIVIDAD, "#", array(
                             'id' => 'lnk-tarea-listar-' . $idActividad,
                             'class' => 'actividad',
                             'onclick' => 'return actividadListarTareasAjax(this)'
                 ));
             }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
+        } else {
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
             'idActividad' => $idActividad,
-            'htmlActividad' => $htmlActividad
+            'htmlActividad' => $htmlActividad,
+            'error' => $error
         ));
     }
 
@@ -273,25 +287,26 @@ class ActividadController extends Controller {
      */
     public function actionEliminarAjax() {
         $borrar = false;
-        $motivo = "";
         $idActividad = NULL;
+        $error = NULL;
+
         if (isset($_REQUEST['Actividad'])) {
             $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
-            $model = Categoria::model()->findByPk($idActividad);
-            $result = $model->delete();
-            if ($result) {
+            $model = Actividad::model()->findByPk($idActividad);
+            if ($model->validate()) {
+                $model->delete();
                 $borrar = true;
-            } else {
-                $motivo = "ERROR: no se hizo la eliminacion en BD";
             }
-            $motivo = $model->getErrors();
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
         } else {
-            $motivo = "ERROR: peticion mal formada";
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
             'borrar' => $borrar,
-            'motivo' => $motivo,
-            'idActividad' => $idActividad
+            'idActividad' => $idActividad,
+            'error' => $error
         ));
     }
 

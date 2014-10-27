@@ -13,8 +13,6 @@ $idActividad = $model->ID_ACTIVIDAD;
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/actividad',
     ));
-
-    echo $form->errorSummary($model);
     ?>
 
     <div class="row">

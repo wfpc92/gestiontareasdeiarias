@@ -11,19 +11,16 @@
     ));
     ?>
 
-    <?php echo $form->errorSummary($model); ?>
-
     <div class="row">
         <?php
-        $model->ID_ACTIVIDAD = 1;        
-        echo $form->hiddenField($model, 'ID_ACTIVIDAD');        
+        echo $form->hiddenField($model, 'ID_ACTIVIDAD');
         echo $form->hiddenField($model, 'FECHA_INICIO');
         echo $form->labelEx($model, 'NOMBRE_TAREA');
         echo $form->textField($model, 'NOMBRE_TAREA', array(
             'id' => 'SUP',
             'size' => 60,
             'maxlength' => 100,
-            'placeholder' => 'Agregar Tarea'));
+            'placeholder' => 'Nueva Tarea'));
         echo $form->error($model, 'NOMBRE_TAREA');
         ?>
     </div>

@@ -16,9 +16,8 @@ $idCategoria = $model->ID_CATEGORIA;
             'onsubmit' => 'return categoriaEditarAjax(this)'
         )
     ));
-
-    echo $form->errorSummary($model);
     ?>
+    <div id="form-editar-categoria-error-<?php echo $idCategoria; ?>" class="error"></div>
 
     <div class="row">
         <?php

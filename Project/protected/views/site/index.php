@@ -28,11 +28,12 @@
 
 <div class="fluida">
     <div id="contentDer">
-        <div id="cargando-principal">cargando principal</div>
+        <div id="cargando-principal"></div>
         <div id="error-principal"></div>
 
-        <div class="progreso">
-            Progreso: <div id="progressbar" style="width:91%; float: right; margin-top: 5px;">
+        <div id="actividad_progress_bar" class="progreso">
+            Progreso: 
+            <div id="progressbar" style="width:91%; float: right; margin-top: 5px;">
                 <?php
                 $this->widget('zii.widgets.jui.CJuiProgressBar', array(
                     'value' => 1000,
@@ -41,11 +42,10 @@
                     )
                 ));
                 ?>
-
-            </div> 
+            </div>
         </div>
-        <div class="menu">
 
+        <div class="menu">
             <ul id="menu">
                 <li class="lista">
                     <?php
@@ -67,25 +67,21 @@
                     <a href="#">Reportes</a>
                 </li>
             </ul> 
-            <div class="clearFix"></div>
         </div>
 
         <div id="content-princ-izq">
             <?php
-            if (isset($vista)) {
-                echo $vista;
+            if (isset($vistaIzquierda)) {
+                echo $vistaIzquierda;
             }
             ?>
         </div>
-        <div id = "content-princ-der"></div>
-        <div class = "clearFix"></div>
+        <div id = "content-princ-der">
+            <?php
+            if (isset($vistaDerecha)) {
+                echo $vistaDerecha;
+            }
+            ?>
+        </div>
     </div>
 </div>
-<div class = "clearFix"></div>
-
-
-
-
-<div class = "clearFix"></div>
-
-

@@ -46,12 +46,12 @@ class CalendarioController extends Controller {
         if (Yii::app()->user->isGuest)
             $this->redirect(Yii::app()->createUrl('site/login'));
         else {
-            $selectedDate = $this->getSelectedDate();
+            //$selectedDate = $this->getSelectedDate();
             $contentCalendario = $this->renderPartial('index', array(
                     ), true);
 
             $this->render('../site/index', array(
-                'vista' => $contentCalendario
+                'vistaIzquierda' => $contentCalendario
             ));
         }
     }
@@ -77,24 +77,6 @@ class CalendarioController extends Controller {
         echo CJSON::encode($items);
         Yii::app()->end();
     }
-
-    /* public function actionCalendarEvents()
-      {
-      $items = array();
-      $model =  Calendario::model()->findAll();
-      foreach ($model as $value) {
-      $items[]=array(
-      'title'=>$value->name,
-      'start'=>$value->start,
-      'end'=>date('Y-m-d', strtotime('+1 day', strtotime($value->finish))),
-      //'color'=>'#CC0000',
-      //'allDay'=>true,
-      //'url'=>'http://anyurl.com'
-      );
-      }
-      echo CJSON::encode($items);
-      Yii::app()->end();
-      } */
 
     public function actionView($id) {
         $this->render('view', array(

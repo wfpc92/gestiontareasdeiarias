@@ -24,13 +24,15 @@
         $cs->registerCssFile($bu . 'css/responsive360.css', 'screen and (max-width: 360px)');
 
         $cs->registerScriptFile($bu . 'js/proyecto.js', CClientScript::POS_HEAD);
+        $cs->registerScriptFile($bu . 'js/ajax/plantillas_ajax.js');
         $cs->registerScriptFile($bu . 'js/ajax/categoria/crear.js');
         $cs->registerScriptFile($bu . 'js/ajax/categoria/editar.js');
         $cs->registerScriptFile($bu . 'js/ajax/categoria/eliminar.js');
+        $cs->registerScriptFile($bu . 'js/ajax/actividad/barra_progreso.js');
         $cs->registerScriptFile($bu . 'js/ajax/actividad/crear.js');
         $cs->registerScriptFile($bu . 'js/ajax/actividad/editar.js');
         $cs->registerScriptFile($bu . 'js/ajax/actividad/eliminar.js');
-        $cs->registerScriptFile($bu . 'js/ajax/actividad/listarTareas.js');
+        $cs->registerScriptFile($bu . 'js/ajax/actividad/listar_tareas.js');
         $cs->registerScriptFile($bu . 'js/ajax/tarea/actualizar.js');
         $cs->registerScriptFile($bu . 'js/ajax/tarea/cerrar.js');
         $cs->registerScriptFile($bu . 'js/ajax/tarea/crear.js');

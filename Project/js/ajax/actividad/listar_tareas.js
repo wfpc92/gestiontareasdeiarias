@@ -1,6 +1,6 @@
 var actividadListarTareasAjax = function(self) {
     var form = $(self).parents("form");
-    $.ajax({
+    var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/listarTareasAjax',
         data: $(form).serialize(),
@@ -9,12 +9,16 @@ var actividadListarTareasAjax = function(self) {
             var idActividad = data.idActividad;
             var htmlTareas = data.htmlTareas;
             var panel = $("#content-princ-izq");
+            var progressBar = data.progressBar;
             panel.html(htmlTareas);
-        },
-        error: function() {
-            alert("ERROR: actividadListarTareasAjax conexion fallida");
+            actualizarProgressBar(progressBar);
         }
-    });
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: $("#error-principal")
+    };
+    templateAjax1(confAjax, selectores);
     return false;
 }
       

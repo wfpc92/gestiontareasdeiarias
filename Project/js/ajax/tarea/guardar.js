@@ -1,5 +1,5 @@
 var tareaGuardarAjax = function(form) {
-    $.ajax({
+    var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
@@ -10,10 +10,12 @@ var tareaGuardarAjax = function(form) {
             var pViejoTarea = $("#p-tarea-nombre-" + idTarea);
             pViejoTarea.text(txtNombreTarea.val());
             tareaCerrar(null);
-        },
-        error: function() {
-            alert("ERROR: tareaGuardarAjax conexion fallida");
         }
-    });
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: $(form).find(".error")
+    };
+    templateAjax1(confAjax, selectores);
     return false;
 };
