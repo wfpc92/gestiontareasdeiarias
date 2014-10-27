@@ -19,7 +19,7 @@ $idActividad = $model->ID_ACTIVIDAD;
     ));
     ?>
 
-    <?php echo $form->errorSummary($model); ?>
+    <div id="tarea-form-error<?php echo $idActividad; ?>" class="error"></div>
 
     <div class="row">
         <?php
@@ -29,7 +29,7 @@ $idActividad = $model->ID_ACTIVIDAD;
             'id' => 'txt-tarea-' . $idActividad,
             'size' => 60,
             'maxlength' => 100,
-            'placeholder' => 'Agregar Tarea'));
+            'placeholder' => 'Nueva Tarea'));
         echo $form->error($model, 'NOMBRE_TAREA');
         ?>
     </div>
@@ -37,7 +37,7 @@ $idActividad = $model->ID_ACTIVIDAD;
 
     <div class="row buttons">
         <?php
-        $label = "agregar tarea";
+        $label = "Nueva tarea";
         $htmlOptions = array(
             'id' => 'btn-crear-tarea-' . $idActividad,
             'name' => 'btn-crear-tarea-' . $idActividad

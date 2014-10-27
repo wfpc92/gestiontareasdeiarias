@@ -44,7 +44,7 @@ $idCategoria = $data->ID_CATEGORIA;
             <?php
             echo CHtml::link("Eliminar", "#", array(
                 'id' => 'lnk-categoria-eliminar-' . $idCategoria,
-                'onclick' => 'return categoriaEliminarAjax(this)'
+                'onclick' => 'return categoriaEliminarModal(this)'
             ));
             ?>
         </li>

@@ -4,14 +4,14 @@
 /* @var $form CActiveForm */
 ?>
 
-<div id="error-categoria"></div>
 
 <div class="form">
+    <div id="error-form-categoria" class="error"></div>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'categoria-form',
         'enableAjaxValidation' => false,
-        'enableClientValidation'=>true,
+        'enableClientValidation' => true,
         'action' => Yii::app()->homeUrl . '/categoria/crearAjax',
         'htmlOptions' => array(
             'onsubmit' => 'return categoriaCrearAjax(this)'
@@ -23,20 +23,19 @@
 
     <div class="row">
         <?php
-        
         echo $form->labelEx($model, 'NOMBRE_CATEGORIA');
         echo $form->textField($model, 'NOMBRE_CATEGORIA', array(
             'id' => 'txt-categoria',
             'size' => 60,
             'maxlength' => 100,
-            'placeholder' => 'Agregar Categoría'));
+            'placeholder' => 'Nueva Categoría'));
         echo $form->error($model, 'NOMBRE_CATEGORIA');
         ?>
     </div>
 
     <div class="row buttons">
         <?php
-        $label = "agregar categoria";
+        $label = "Nueva categoria";
         $htmlOptions = array(
             'id' => 'btn-crear-categoria',
             'name' => 'btn-crear-categoria'

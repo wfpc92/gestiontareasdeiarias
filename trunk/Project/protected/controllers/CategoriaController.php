@@ -1,12 +1,7 @@
 <?php
 
 class CategoriaController extends Controller {
-    /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    //public $layout = '//layouts/column2';
-
+    
     /**
      * @return array action filters
      */
@@ -167,27 +162,29 @@ class CategoriaController extends Controller {
     public function actionCrearAjax() {
         $idCategoria = NULL;
         $htmlCategoria = NULL;
-        $motivo = NULL;
+        $error = NULL;
 
         if (isset($_REQUEST['Categoria'])) {
             $model = new Categoria;
             $model->attributes = $_REQUEST['Categoria'];
             $userId = Yii::app()->user->getId();
             $model->CORREO = $userId;
-            $result = $model->save();
-            if ($result) {
+            if ($model->validate()) {
+                $model->save();
                 $idCategoria = $model->ID_CATEGORIA;
                 $htmlCategoria = $this->renderPartial('_view', array('data' => $model), true);
-            } else {
-                $motivo = "Error de conexion interna en la base de datos.";
+            }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
             }
         } else {
-            $motivo = "Error en el envio del formulario.";
+            $error = "Error en el envio del formulario.";
         }
-        echo CJavaScript::encode(array(
+
+        echo CJavaScript::jsonEncode(array(
             'idCategoria' => $idCategoria,
             'htmlCategoria' => $htmlCategoria,
-            'motivo' => $motivo
+            'error' => $error
         ));
     }
 
@@ -197,6 +194,7 @@ class CategoriaController extends Controller {
     public function actionEditarFormAjax() {
         $idCategoria = NULL;
         $htmlEditarForm = "";
+        $error = NULL;
 
         if (isset($_REQUEST['Categoria'])) {
             $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
@@ -205,11 +203,16 @@ class CategoriaController extends Controller {
                 $htmlEditarForm = $this->renderPartial('_editar', array(
                     'model' => $model
                         ), TRUE);
+            } else {
+                $error = "No existe esta categoria, actualice la página.";
             }
+        } else {
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
             'idCategoria' => $idCategoria,
-            'htmlEditarForm' => $htmlEditarForm
+            'htmlEditarForm' => $htmlEditarForm,
+            'error' => $error
         ));
     }
 
@@ -218,23 +221,30 @@ class CategoriaController extends Controller {
      */
     public function actionEditarAjax() {
         $idCategoria = NULL;
-        $htmlCategoria = "";
+        $htmlCategoria = NULL;
+        $error = NULL;
 
         if (isset($_REQUEST['Categoria'])) {
             $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
             $model = Categoria::model()->findByPk($idCategoria);
             $model->attributes = $_REQUEST['Categoria'];
-            $result = $model->save();
-            if ($result) {
+            if ($model->validate()) {
+                $model->save();
                 $htmlCategoria = CHtml::link($model->NOMBRE_CATEGORIA, "#", array(
                             'class' => 'categoria',
                             'onclick' => 'return categoriaToogle(this)'
                 ));
             }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
+        } else {
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
             'idCategoria' => $idCategoria,
-            'htmlCategoria' => $htmlCategoria
+            'htmlCategoria' => $htmlCategoria,
+            'error' => $error
         ));
     }
 
@@ -242,26 +252,29 @@ class CategoriaController extends Controller {
      * Funcion que eliminar una categoria. 
      */
     public function actionEliminarAjax() {
-        $borrar = false;
-        $motivo = "";
+        $borrar = FALSE;
         $idCategoria = NULL;
+        $error = NULL;
+
         if (isset($_REQUEST['Categoria'])) {
             $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
             $model = Categoria::model()->findByPk($idCategoria);
-            $result = $model->delete();
-            if ($result) {
-                $borrar = true;
+            if ($model->validate()) {
+                $model->delete();
+                $borrar = TRUE;
             } else {
-                $motivo = "ERROR: no se hizo la eliminacion en BD";
+                $error = "ERROR: no se hizo la eliminacion en BD";
             }
-            $motivo = $model->getErrors();
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
         } else {
-            $motivo = "ERROR: peticion mal formada";
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
+            'idCategoria' => $idCategoria,
             'borrar' => $borrar,
-            'motivo' => $motivo,
-            'idCategoria' => $idCategoria
+            'error' => $error
         ));
     }
 

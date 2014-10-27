@@ -7,17 +7,19 @@ $idActividad = $data->ID_ACTIVIDAD;
 $nombreActividad = $data->NOMBRE_ACTIVIDAD;
 ?>
 
-<div id="actividad-<?php echo CHtml::encode($idActividad); ?>" 
-     class="view">
-         <?php
-         $form = $this->beginWidget('CActiveForm', array(
-             'id' => 'listar-tareas-form-' . $idActividad,
-             'enableAjaxValidation' => false,
-             'action' => Yii::app()->homeUrl . '/actividad'
-         ));
+<div id="actividad-<?php echo CHtml::encode($idActividad); ?>" class="view">
+    <?php
+    $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'listar-tareas-form-' . $idActividad,
+        'enableAjaxValidation' => false,
+        'action' => Yii::app()->homeUrl . '/actividad'
+    ));
 
-         echo $form->hiddenField($data, "ID_ACTIVIDAD");
-         ?>
+    echo $form->hiddenField($data, "ID_ACTIVIDAD");
+    ?>
+
+    <div id="actividad-error-<?php echo $idActividad; ?>" class="error"></div>
+
 
     <div id="actividad-content-<?php echo $idActividad; ?>" >
         <?php
@@ -50,7 +52,7 @@ $nombreActividad = $data->NOMBRE_ACTIVIDAD;
             <?php
             echo CHtml::link("Eliminar", "#", array(
                 'id' => 'lnk-actividad-eliminar-' . $idActividad,
-                'onclick' => 'return actividadEliminarAjax(this)'
+                'onclick' => 'return actividadEliminarModal(this)'
             ));
             ?>
         </li>

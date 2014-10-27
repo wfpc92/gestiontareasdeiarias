@@ -1,7 +1,6 @@
 var actividadEditarFormAjax = function(self) {
     var form = $(self).parents("form");
-    console.log(form);
-    $.ajax({
+    var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/editarFormAjax',
         data: $(form).serialize(),
@@ -10,17 +9,19 @@ var actividadEditarFormAjax = function(self) {
             var idActividad = data.idActividad;
             var htmlEditarForm = data.htmlEditarForm;
             $("#actividad-content-" + idActividad).html(htmlEditarForm);
-        },
-        error: function() {
-            alert("ERROR: actividadEditarFormAjax conexion fallida");
         }
-    });
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: form.find(".error")
+    };
+    templateAjax1(confAjax, selectores);
     return false;
 };
 
 var actividadEditarAjax = function(self) {
     var form = $(self).parents("form");
-    $.ajax({
+    var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/editarAjax',
         data: $(form).serialize(),
@@ -29,10 +30,12 @@ var actividadEditarAjax = function(self) {
             var idActividad = data.idActividad;
             var htmlActividad = data.htmlActividad;
             $("#actividad-content-" + idActividad).html(htmlActividad);
-        },
-        error: function() {
-            alert("ERROR: actividadEditarAjaxwq conexion fallida");
         }
-    });
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: form.find(".error")
+    };
+    templateAjax1(confAjax, selectores);
     return false;
 };

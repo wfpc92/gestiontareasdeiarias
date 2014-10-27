@@ -3,12 +3,6 @@
 class SiteController extends Controller {
 
     /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    public $layout ='//layouts/column1';
-
-    /**
      * Declares class-based actions.
      */
     public function actions() {
@@ -33,8 +27,22 @@ class SiteController extends Controller {
     public function actionIndex() {
         if (Yii::app()->user->isGuest)
             $this->redirect(Yii::app()->createUrl('site/login'));
-        else
-            $this->render('index');
+        else {
+            $fecha = date_create();
+            $userId = Yii::app()->user->getId();
+            $contentVistaDiaria = $this->renderPartial('../tarea/_vista_diaria', array(
+                'fecha' => $fecha,
+                'userId' => $userId
+                    ), true);
+            $contentPoolTareas = $this->renderPartial('../tarea/_pool_tareas', array(
+                'fecha' => $fecha,
+                'userId' => $userId
+                    ), true);
+            $this->render('index', array(
+                'vistaIzquierda' => $contentVistaDiaria,
+                'vistaDerecha' => $contentPoolTareas
+            ));
+        }
     }
 
     /**

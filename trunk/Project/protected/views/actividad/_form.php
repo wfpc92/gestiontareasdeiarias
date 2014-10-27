@@ -17,9 +17,9 @@ $idCategoria = $model->ID_CATEGORIA;
             'class' => 'formActividad'
         )
     ));
-
-    echo $form->errorSummary($model);
     ?>
+
+    <div id="actividad-form-error-<?php echo $idCategoria; ?>" class="error"></div>
 
     <div class="row">
         <?php
@@ -30,14 +30,14 @@ $idCategoria = $model->ID_CATEGORIA;
             'class' => 'input-categoria',
             'size' => 60,
             'maxlength' => 100,
-            'placeholder' => 'Agregar Actividad'));
+            'placeholder' => 'Nueva Actividad'));
         echo $form->error($model, 'NOMBRE_ACTIVIDAD');
         ?>
     </div>
 
     <div class="row buttons">
         <?php
-        $label = "agregar actividad";
+        $label = "Nueva actividad";
         $htmlOptions = array(
             'id' => 'btn-crear-actividad-' . $idCategoria,
             'name' => 'btn-crear-actividad-' . $idCategoria

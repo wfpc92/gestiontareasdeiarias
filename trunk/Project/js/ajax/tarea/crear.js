@@ -1,6 +1,5 @@
 var tareaCrearAjax = function(form) {
-    console.log(form);
-    $.ajax({
+    var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
@@ -10,6 +9,7 @@ var tareaCrearAjax = function(form) {
             var htmlTareaEditar = data.htmlTareaEditar;
             var idActividad = data.idActividad;
             //var idTarea = data.idTarea;
+            var progressBar = data.progressBar;
             var items = $("#tarea-" + idActividad + " .items");
             var divsItems = $("#tarea-" + idActividad + " .items > div");
 
@@ -20,12 +20,14 @@ var tareaCrearAjax = function(form) {
             $("#txt-tarea-" + idActividad).val("");
 
             mostrarPanelDerecho(htmlTareaEditar);
-            //actualizarProgreso(data.idActividad);
-        },
-        error: function() {
-            alert("ERROR: tareaCrearAjax conexion fallida");
+            actualizarProgressBar(progressBar);
         }
-    });
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: $(form).find(".error")
+    };
+    templateAjax1(confAjax, selectores);
     return false;
 };
 

@@ -1,5 +1,5 @@
 var actividadCrearAjax = function(form) {
-    $.ajax({
+    var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
@@ -14,11 +14,13 @@ var actividadCrearAjax = function(form) {
             }
             items.append(htmlActividad);
             $("#txt-actividad-" + idCategoria).val("");
-        },
-        error: function() {
-            alert("ERROR: actividadCrearAjax conexion fallida");
         }
-    });
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: $(form).find(".error")
+    };
+    templateAjax1(confAjax, selectores);
     return false;
 };
 

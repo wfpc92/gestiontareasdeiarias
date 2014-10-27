@@ -1,7 +1,27 @@
-var categoriaEliminarAjax = function(self) {
+var categoriaEliminarModal = function(self) {
     var form = $(self).parents("form");
-    console.log(form);
-    $.ajax({
+    $("<div>")
+            .html("¿Estas seguro que deseas eliminar esta categoria?")
+            .dialog({
+                title: "Eliminar Categoria",
+                resizable: false,
+                width: 500,
+                modal: true,
+                buttons: {
+                    "Borrar Categoria": function() {
+                        categoriaEliminarAjax(form);
+                        $(this).dialog("close");
+                    },
+                    Cancel: function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+    return false;
+};
+
+var categoriaEliminarAjax = function(form) {
+    var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/eliminarAjax',
         data: $(form).serialize(),
@@ -13,11 +33,12 @@ var categoriaEliminarAjax = function(self) {
             //obtener la lista de categorias.
             var idCategoriaActual = "#categoria-" + idCategoria;
             $("div").remove(idCategoriaActual);
-        },
-        error: function() {
-            alert("ERROR: categoriaEliminarAjax conexion fallida");
         }
-    });
-    //event.preventDefault();
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: $("#error-form-categoria")
+    };
+    templateAjax1(confAjax, selectores);
     return false;
 };

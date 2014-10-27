@@ -1,10 +1,6 @@
 <?php
 
 class TareaController extends Controller {
-    /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
 
     /**
      * @return array action filters
@@ -32,10 +28,7 @@ class TareaController extends Controller {
                     'actualizarAjax',
                     'eliminarAjax',
                     'checkAjax',
-                    'vistaDiaria',
-                    'totalTarea',
-                    'crearTareaPool',
-                    'cargarActividades'
+                    'vistaDiaria'
                 ),
                 'users' => array('*'),
             ),
@@ -176,35 +169,41 @@ class TareaController extends Controller {
      * Funcion que crea una tarea y renderiza el formulario para editar la tarea. 
      */
     public function actionCrearAjax() {
-        $htmlTarea = "";
-        $htmlTareaEditar = "";
         $idActividad = NULL;
         $idTarea = NULL;
-        $motivo = "";
+        $htmlTarea = NULL;
+        $htmlTareaEditar = NULL;
+        $progressBar = NULL;
+        $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
-            $userId = Yii::app()->user->getId();
-            $idActividad = $model->ID_ACTIVIDAD;
-            $model->CORREO = $userId;
+            $model->CORREO = Yii::app()->user->getId();
             $model->PRIORIDAD = 0;
-            $result = $model->save();
-            if ($result) {
+            $model->scenario = "crearAjax";
+
+            if ($model->validate()) {
+                $model->save();
+                $idActividad = $model->ID_ACTIVIDAD;
+                $idTarea = $model->ID_TAREA;
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
-            } else {
-                $motivo = "ERROR: no se guardo la tarea";
+                $progressBar = $model->progressBar();
+            }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
             }
         } else {
-            $motivo = "ERROR: peticion de crear tarea mal formada.";
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
+            'idActividad' => $idActividad,
+            'idTarea' => $idTarea,
             'htmlTarea' => $htmlTarea,
             'htmlTareaEditar' => $htmlTareaEditar,
-            'idActividad' => $model->ID_ACTIVIDAD,
-            'idTarea' => $model->ID_TAREA,
-            'motivo' => $motivo
+            'progressBar' => $progressBar,
+            'error' => $error
         ));
     }
 
@@ -212,26 +211,30 @@ class TareaController extends Controller {
      * Funcion que muestra la tarea solicitada.
      */
     public function actionMostrarAjax() {
-        $htmlTareaEditar = "";
         $idActividad = NULL;
         $idTarea = NULL;
-        $motivo = "";
+        $htmlTareaEditar = NULL;
+        $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
-            if ($model !== NULL) {
+            $model->scenario = "actualizarAjax";
+            if ($model->validate()) {
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
                 $idActividad = $model->ID_ACTIVIDAD;
                 $idTarea = $model->ID_TAREA;
             }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
         } else {
-            $motivo = "ERROR: peticion de crear tarea mal formada.";
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
-            'htmlTareaEditar' => $htmlTareaEditar,
             'idActividad' => $idActividad,
             'idTarea' => $idTarea,
-            'motivo' => $motivo,
+            'htmlTareaEditar' => $htmlTareaEditar,
+            'error' => $error
         ));
     }
 
@@ -239,10 +242,10 @@ class TareaController extends Controller {
      * Funcion que actualizar una tarea. 
      */
     public function actionActualizarAjax() {
-        $actualizar = FALSE;
-        $motivo = "";
-        $idTarea = NULL;
         $idActividad = NULL;
+        $idTarea = NULL;
+        $actualizar = FALSE;
+        $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
@@ -251,20 +254,23 @@ class TareaController extends Controller {
             $userId = Yii::app()->user->getId();
             $idActividad = $model->ID_ACTIVIDAD;
             $model->CORREO = $userId;
-            $result = $model->save();
+            $model->scenario = "actualizarAjax";
 
-            if ($result) {
+            if ($model->validate()) {
+                $model->save();
                 $actualizar = true;
             }
-            $motivo = $model->getErrors();
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
         } else {
-            $motivo = "ERROR: peticion mal formada";
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
-            'actualizar' => $actualizar,
-            'motivo' => $motivo,
+            'idActividad' => $idActividad,
             'idTarea' => $idTarea,
-            'idActividad' => $idActividad
+            'actualizar' => $actualizar,
+            'error' => $error,
         ));
     }
 
@@ -272,44 +278,49 @@ class TareaController extends Controller {
      * Funcion que eliminar una tarea. 
      */
     public function actionEliminarAjax() {
-        $borrar = false;
-        $motivo = "";
-        $idTarea = NULL;
         $idActividad = NULL;
+        $idTarea = NULL;
+        $borrar = false;
+        $progressBar = NULL;
+        $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
             $model = Tarea::model()->findByPk($idTarea);
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
-            $idActividad = $model->ID_ACTIVIDAD;
             $model->CORREO = $userId;
-            $result = $model->delete();
+            $idActividad = $model->ID_ACTIVIDAD;
 
-            if ($result) {
+            if ($model->validate()) {
+                $model->delete();
+                $progressBar = $model->progressBar();
                 $borrar = true;
-            } else {
-                $motivo = "ERROR: no se hizo la eliminacion en BD";
             }
-            $motivo = $model->getErrors();
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
         } else {
-            $motivo = "ERROR: peticion mal formada";
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
-            'borrar' => $borrar,
-            'motivo' => $motivo,
+            'idActividad' => $idActividad,
             'idTarea' => $idTarea,
-            'idActividad' => $idActividad
+            'borrar' => $borrar,
+            'progressBar' => $progressBar,
+            'error' => $error,
         ));
     }
 
     /**
      * Funcion que actualiza el estado de una tarea. 
+     * @var $model Tarea
      */
-    /* @var $model Tarea */
     public function actionCheckAjax() {
         $idTarea = NULL;
         $idActividad = NULL;
+        $progressBar = NULL;
+        $error = NULL;
 
         $estado = isset($_REQUEST["ESTADO"]) ? 1 : 0;
         if (isset($_REQUEST['Tarea'])) {
@@ -318,10 +329,15 @@ class TareaController extends Controller {
             $idActividad = $model->ID_ACTIVIDAD;
             $model->ESTADO = $estado;
             $model->save();
+            $progressBar = $model->progressBar();
+        } else {
+            $error = "Error en el envio del formulario.";
         }
         echo CJavaScript::jsonEncode(array(
             'idTarea' => $idTarea,
-            'idActividad' => $idActividad
+            'idActividad' => $idActividad,
+            'progressBar' => $progressBar,
+            'error' => $error
         ));
     }
 
@@ -332,20 +348,20 @@ class TareaController extends Controller {
         if (Yii::app()->user->isGuest)
             $this->redirect(Yii::app()->createUrl('site/login'));
         else {
+            $userId = Yii::app()->user->getId();
             if (isset($_GET['fecha'])) {
-                $d = strtotime($_GET['fecha']);
-                $fecha = date("Y/m/d", $d);
+                $fecha = date_create($_GET['fecha']);
             } else {
-                $fecha = date("Y/m/d");
+                $fecha = date_create();
             }
-
             $contentVistaDiaria = $this->renderPartial('_vista_diaria', array(
-                'fecha' => $fecha
+                'fecha' => $fecha,
+                'userId' => $userId
                     ), true);
             $contentPoolTareas = $this->renderPartial('_pool_tareas', array(
-                'fecha' => $fecha
+                'fecha' => $fecha,
+                'userId' => $userId
                     ), true);
-
             $this->render('../site/index', array(
                 'vistaIzquierda' => $contentVistaDiaria,
                 'vistaDerecha' => $contentPoolTareas
@@ -388,64 +404,19 @@ class TareaController extends Controller {
         ));
     }
 
-    public function actionTotalTarea() {
-        $idActividad = $_GET["ID_ACTIVIDAD"];
-        $criteria = new CDbCriteria;
-        $criteria2 = new CDbCriteria;
-        
-        $criteria->compare('ID_ACTIVIDAD', $idActividad, true);
-        $dataProvider = new CActiveDataProvider('Tarea', array(
-            'pagination' => false,
-            'criteria' => $criteria
-        ));
-        
-        $criteria2->compare('ID_ACTIVIDAD', $idActividad, true);
-        $criteria2->compare('ESTADO', 1, true);
-        $dataProvider2 = new CActiveDataProvider('Tarea', array(
-            'pagination' => false,
-            'criteria' => $criteria2
-        ));
-        
-        /* $dataProvider = new CActiveDataProvider('Tarea', array(
-          'pagination' => false,
-          'criteria' => array(
-          'condition' => 'ID_ACTIVIDAD=' . $idActividad
-          )));
-          //var_dump($dataProvider->getItemCount());
-          $numTT = $dataProvider->getItemCount(); */
+    public function actionCargarActividades() {
+        $categoriaModel = new Categoria;
+        if (isset($_POST['Categoria'])) {
+            $categoriaModel->attributes = $_POST['Categoria'];
+        }
 
-        $numTT = 2; /* Yii::app()->db->createCommand()
-          ->select(count('ID_ACTIVIDAD'))
-          ->from('tarea')
-          ->where('ID_ACTIVIDAD' == $idActividad); */
+        $data = Actividad::model()->findAll('ID_CATEGORIA=' . $categoriaModel->ID_CATEGORIA);
 
-        $numTTot = 4; /* Yii::app()->db->createCommand()
-          ->select(count('ID_ACTIVIDAD'))
-          ->from('tarea'); */
+        $data = CHtml::listData($data, 'ID_ACTIVIDAD', 'NOMBRE_ACTIVIDAD');
 
-        $numTT = $dataProvider2->getItemCount();
-        $numTTot = $dataProvider->getItemCount();
-        echo CJavaScript::jsonEncode(array(
-            'numTT' => $numTT,
-            'numTTot' => $numTTot
-        ));
-    }
-    
-    public function actionCargarActividades()
-    {
-       $categoriaModel = new Categoria;
-       if(isset($_POST['Categoria']))
-       {
-               $categoriaModel->attributes=$_POST['Categoria'];			
-       }
-       
-       $data = Actividad::model()->findAll('ID_CATEGORIA='.$categoriaModel->ID_CATEGORIA);               
-              
-       $data=CHtml::listData($data,'ID_ACTIVIDAD','NOMBRE_ACTIVIDAD');
-       
-       foreach($data as $value=>$NOMBRE_ACTIVIDAD){
-            echo CHtml::tag('option', array('value'=>$value),CHtml::encode($NOMBRE_ACTIVIDAD),true);
-       }
+        foreach ($data as $value => $NOMBRE_ACTIVIDAD) {
+            echo CHtml::tag('option', array('value' => $value), CHtml::encode($NOMBRE_ACTIVIDAD), true);
+        }
     }
 
 }
