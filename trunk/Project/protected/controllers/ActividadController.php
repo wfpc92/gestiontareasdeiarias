@@ -294,7 +294,7 @@ class ActividadController extends Controller {
             $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
             $model = Actividad::model()->findByPk($idActividad);
             if ($model->validate()) {
-                $model->delete();
+                $model->eliminarActividad();
                 $borrar = true;
             }
             if ($model->hasErrors()) {

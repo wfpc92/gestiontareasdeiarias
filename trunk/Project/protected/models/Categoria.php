@@ -94,4 +94,15 @@ class Categoria extends CActiveRecord {
         return parent::model($className);
     }
 
+    public function eliminarCategoria() {
+        $idCategoria = $this->ID_CATEGORIA;
+        $actividades = Actividad::model()->findAll("ID_CATEGORIA={$idCategoria}");
+        if ($actividades !== NULL) {
+            foreach ($actividades as $actividad) {
+                $actividad->eliminarActividad();
+            }
+        }
+        return $this->delete();
+    }
+
 }

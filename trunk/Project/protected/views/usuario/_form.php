@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form registro">
+<div class="form login">
     <h2>Registrarse</h2>
 
 <?php $form=$this->beginWidget('CActiveForm', array(

@@ -146,7 +146,7 @@ class Tarea extends CActiveRecord {
         //$items[] = ;
         //$items[] = 
         $connection = Yii::app()->db;
-        $sql = 'select "" as "title", FECHA_INICIO as "start", FECHA_INICIO as "end"
+        $sql = 'select distinct "" as "title", FECHA_INICIO as "start", FECHA_INICIO as "end"
                     from tarea
                     where ID_ACTIVIDAD is not null';
         $command = $connection->createCommand($sql);
