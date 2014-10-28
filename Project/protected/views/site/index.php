@@ -83,5 +83,7 @@
             }
             ?>
         </div>
-    </div>
+        <div class="clear"></div>
+        <?php echo CHtml::Button(yii::t('app', 'Regresar'), array('id' => 'regresar')); ?>
+    </div>    
 </div>

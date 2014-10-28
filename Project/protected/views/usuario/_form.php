@@ -4,7 +4,8 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<div class="form registro">
+    <h2>Registrarse</h2>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'usuario-form',
@@ -50,6 +51,7 @@
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Registrarse' : 'Save'); ?>
+                <?php echo CHtml::Button(yii::t('app', 'Regresar'), array('submit' => '../site/login', 'class' => 'regresar-login')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

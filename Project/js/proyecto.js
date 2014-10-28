@@ -23,6 +23,11 @@ $(document).ready(function() {
             $("#contentDer").show();
         });
     }
+    
+    $("#regresar").click(function() {
+		$("#contentDer").hide();
+		$("#contentIzq").show();
+	});
 });
 
 
