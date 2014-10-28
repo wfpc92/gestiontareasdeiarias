@@ -97,6 +97,15 @@ class Actividad extends CActiveRecord {
         return parent::model($className);
     }
 
+    public function eliminarActividad() {
+        $idActividad = $this->ID_ACTIVIDAD;
+        $tareas = Tarea::model()->findAll("ID_ACTIVIDAD={$idActividad}");
+        foreach ($tareas as $tarea) {
+            $tarea->delete();
+        }
+        return $this->delete();
+    }
+
     public function progressBar() {
         $idActividad = $this->ID_ACTIVIDAD;
         $criteria = new CDbCriteria;

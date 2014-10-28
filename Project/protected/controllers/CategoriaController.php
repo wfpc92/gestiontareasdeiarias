@@ -267,7 +267,7 @@ class CategoriaController extends Controller {
             $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
             $model = Categoria::model()->findByPk($idCategoria);
             if ($model->validate()) {
-                $model->delete();
+                $model->eliminarCategoria();
                 $borrar = TRUE;
             } else {
                 $error = "ERROR: no se hizo la eliminacion en BD";
