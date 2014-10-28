@@ -23,11 +23,11 @@ $(document).ready(function() {
             $("#contentDer").show();
         });
     }
-    
+
     $("#regresar").click(function() {
-		$("#contentDer").hide();
-		$("#contentIzq").show();
-	});
+        $("#contentDer").hide();
+        $("#contentIzq").show();
+    });
 });
 
 
@@ -43,6 +43,18 @@ var mostrarMensaje = function(div, mensaje) {
 };
 var mostrarCargando = function(div) {
     div.css('display', 'block')
+            .css('padding', '8px 35px 8px 14px')
+            .css('margin-bottom', '18px')
+            .css('color', '#c09853')
+            .css('text-shadow', '0 1px 0 rgba(255, 255, 255, 0.5')
+            .css('background-color', '#fcf8e3')
+            .css('border', '1px solid #fbeed5')
+            .css('-webkit-border-radius', '4px')
+            .css('-moz-border-radius', '4px')
+            .css('border-radius', '4px')
+            .css('color', '#3a87ad')
+            .css('background-color', '#d9edf7')
+            .css('border-color', '#bce8f1')
             .text("Cargando, un momento por favor...");
 };
 
@@ -53,7 +65,18 @@ var ocultarCargando = function(div) {
 
 var mostrarError = function(div, mensaje) {
     div.css('display', 'block')
-            .css('background', 'red')
+            .css('padding', '8px 35px 8px 14px')
+            .css('margin-bottom', '18px')
+            .css('color', '#c09853')
+            .css('text-shadow', '0 1px 0 rgba(255, 255, 255, 0.5')
+            .css('background-color', '#fcf8e3')
+            .css('border', '1px solid #fbeed5')
+            .css('-webkit-border-radius', '4px')
+            .css('-moz-border-radius', '4px')
+            .css('border-radius', '4px')
+            .css('color', '#b94a48')
+            .css('background-color', '#f2dede')
+            .css('border-color', '#eed3d7')
             .html(mensaje);
 };
 var ocultarError = function(div) {

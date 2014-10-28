@@ -14,6 +14,7 @@ $dataProvider = new CActiveDataProvider('Tarea', array(
     'criteria' => array(
         'condition' => "FECHA_INICIO = '{$fechaFormato}' "
         . " AND CORREO = '{$userId}'"
+        . " AND ID_ACTIVIDAD IS NULL    "
     ))
 );
 

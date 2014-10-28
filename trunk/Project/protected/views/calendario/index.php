@@ -24,7 +24,12 @@ $this->widget('ext.EFullCalendar.EFullCalendar', array(
         'var fecha = date.toJSON();
                 location.href = direccion + "?fecha="+fecha ;
             }',
-        'event' => Yii::app()->createUrl('CalendarioController/CalendarEvents'),
+        'eventClick' => 'js:function(calEvent, jsEvent, view) {
+                var direccion = "' . Yii::app()->createUrl("tarea/vistaDiaria") . '";' .
+        'var fecha = calEvent.start.toJSON();
+                location.href = direccion + "?fecha="+fecha ;
+            }',
+        'events' => Yii::app()->createUrl('calendario/calendarEvents'),
     )
         )
 );
