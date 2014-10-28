@@ -9,9 +9,10 @@ $this->breadcrumbs = array(
 );
 ?>
 
-<h1>Login</h1>
 
-<div class="form">
+
+<div class="form login">
+    <h2>Login</h2>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'login-form',
@@ -51,6 +52,7 @@ $this->breadcrumbs = array(
         echo CHtml::link('Registrarse', Yii::app()->createUrl('Usuario/create'));
         ?>
     </div>
+    <div class="clear"></div>
 
     <?php $this->endWidget(); ?>
 

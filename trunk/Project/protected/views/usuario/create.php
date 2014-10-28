@@ -8,6 +8,6 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Registrarse</h1>
+
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -1,81 +1,81 @@
 @font-face {
-    font-family: 'asapitalic';
-    src: url('../font/asap-italic-webfont.eot');
-    src: url('../font/asap-italic-webfont.eot?#iefix') format('embedded-opentype'),
-        url('../font/asap-italic-webfont.woff') format('woff'),
-        url('../font/asap-italic-webfont.ttf') format('truetype'),
-        url('../font/asap-italic-webfont.svg#asapitalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'asapitalic';
+	src: url('../font/asap-italic-webfont.eot');
+	src: url('../font/asap-italic-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../font/asap-italic-webfont.woff') format('woff'),
+		url('../font/asap-italic-webfont.ttf') format('truetype'),
+		url('../font/asap-italic-webfont.svg#asapitalic') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 @font-face {
-    font-family: 'asapbold';
-    src: url('../font/asap-bold-webfont.eot');
-    src: url('../font/asap-bold-webfont.eot?#iefix') format('embedded-opentype'),
-        url('../font/asap-bold-webfont.woff') format('woff'),
-        url('../font/asap-bold-webfont.ttf') format('truetype'),
-        url('../font/asap-bold-webfont.svg#asapbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'asapbold';
+	src: url('../font/asap-bold-webfont.eot');
+	src: url('../font/asap-bold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../font/asap-bold-webfont.woff') format('woff'),
+		url('../font/asap-bold-webfont.ttf') format('truetype'),
+		url('../font/asap-bold-webfont.svg#asapbold') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 @font-face {
-    font-family: 'asapregular';
-    src: url('../font/asap-regular-webfont.eot');
-    src: url('../font/asap-regular-webfont.eot?#iefix') format('embedded-opentype'),
-        url('../font/asap-regular-webfont.woff') format('woff'),
-        url('../font/asap-regular-webfont.ttf') format('truetype'),
-        url('../font/asap-regular-webfont.svg#asapregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'asapregular';
+	src: url('../font/asap-regular-webfont.eot');
+	src: url('../font/asap-regular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('../font/asap-regular-webfont.woff') format('woff'),
+		url('../font/asap-regular-webfont.ttf') format('truetype'),
+		url('../font/asap-regular-webfont.svg#asapregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 input[type="button"], input[type="submit"], input[type="reset"] {
-    background: #0E83EB;
-    color: #ffffff;
-    border: 1px solid #251DEE;
-    padding: 5px 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    margin-right: 30px;
+	background: #0E83EB;
+	color: #ffffff;
+	border: 1px solid #251DEE;
+	padding: 5px 8px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 15px;
+	margin-right: 30px;
 }
 input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
 	background: #6B65FB;
 }
 input[type="text"], input[type="password"] {
-    display: inline-block;
-    height: 22px;
-    border-radius: 5px;
-    border: none;
-    font-family: 'asapregular';
+	display: inline-block;
+	height: 22px;
+	border-radius: 5px;
+	border: none;
+	font-family: 'asapregular';
 }
 body {
-    font-family: 'asapregular';
+	font-family: 'asapregular';
 }
 #page {
-    background: #E9EAED;
-    border: medium none;
-    margin: 0;
-    width: 100%;
+	background: #E9EAED;
+	border: medium none;
+	margin: 0;
+	width: 100%;
 }
 .list-view .summary {
-    display: none;
+	display: none;
 }
 div.view {
-    position: relative;
-    border: 1px solid #CBCBCB;
-    margin: 1px 0px;
-    font-size: 17px;
-    padding: 7px;
+	position: relative;
+	border: 1px solid #CBCBCB;
+	margin: 1px 0px;
+	font-size: 17px;
+	padding: 7px;
 }
 #categoria-list-view .items .view:hover,
 #content-princ-izq .list-view .items .view:hover {
-    background: #E1E2E5;
+	background: #E1E2E5;
 }
 .actividadesPorCate .list-view .items .view:hover {
    border: 1px solid #8F8AFC;
 }
 div.clearFix {
-    clear: both;
+	clear: both;
 }
 /***** Header (inicio) *****/
 #header {
@@ -83,39 +83,40 @@ div.clearFix {
 	background-color: rgb(88, 172, 250);
 	border: none;
 }
-    #logo {
-            height: 45px;
-    }
-        #logo a{
-                display: block;
-                width: 40px;
-                height: 40px;
-                margin-left: 50px;
-                text-indent: -9999px;
-                overflow: hidden;
-                background: url("../images/logo.png") no-repeat;
-        }
-    #mainmenu {
-            position: absolute;
-            right: 55px;
-            top: 20px;
-            background: none;
-            background-color: #58acfa;
-    } 
-        #mainmenu ul li a {
-                font-size: 13px;
-                padding: 5px 5px;
-        }
-        #mainmenu ul li.active a {
-                color: #ffffff;
-                text-decoration: none;
-        }
-        #mainmenu ul li a:hover {
-                background-color: #58acfa;
-                color: #ffffff;
-                text-decoration: none;
-                border-bottom: 1px solid #ffffff;
-        }
+	#logo {
+			height: 45px;
+	}
+		#logo a{
+				display: block;
+				width: 40px;
+				height: 40px;
+				margin-left: 50px;
+				text-indent: -9999px;
+				overflow: hidden;
+				background: url("../images/logo.png") no-repeat;
+		}
+	#mainmenu {
+			position: absolute;
+			right: 55px;
+			top: 20px;
+			background: none;
+			background-color: #58acfa;
+	} 
+		#mainmenu ul li a {
+				font-size: 13px;
+				padding: 5px 5px;
+		}
+		#mainmenu ul li.active a {
+				color: #ffffff;
+				text-decoration: none;
+				background-color: #58ACFA;
+		}
+		#mainmenu ul li a:hover {
+				background-color: #58acfa;
+				color: #ffffff;
+				text-decoration: none;
+				border-bottom: 1px solid #ffffff;
+		}
 /***** Header (fin) *****/
 
 /***** Footer (inicio) *****/
@@ -126,321 +127,415 @@ div.clearFix {
 
 /***** Contenedores principales (inicio) *****/
 #content {
-    padding: 0 10px;
+	padding: 0 10px;
 }
 #contentIzq {
-    float: left;
-    width: 275px;
-    padding-right: 10px;
+	float: left;
+	width: 275px;
+	padding-right: 10px;
 }
 .fluida {
-    width: 100%;
+	width: 100%;
 }
 #contentDer {
-    margin-left: 285px;
-    padding-left: 20px;
-    padding-right: 5px;
-    border-left: 1px solid #CBCBCB;
-    //float: right;
-    //width: 100%;
-    //padding-bottom: 20px;
+	margin-left: 285px;
+	padding-left: 20px;
+	padding-right: 5px;
+	border-left: 1px solid #CBCBCB;
+	//float: right;
+	//width: 100%;
+	//padding-bottom: 20px;
 }
 #content-princ-izq {
-    float: left;
-    width: auto;
-    min-width: 40%; 
-    max-width: 100%;
-    padding-bottom: 20px;
-    padding-right: 15px;
+	float: left;
+	width: auto;
+	min-width: 40%; 
+	max-width: 100%;
+	padding-bottom: 20px;
+	padding-right: 15px;
 }
 #content-princ-der {
-    float: left;
-    width: 58%;
-    padding-bottom: 20px;
+	float: left;
+	width: 58%;
+	padding-bottom: 20px;
 }
 /***** Contenedores principales (fin) *****/
 
 #categoria-list-view .items .view a.categoria,
 .actividadesPorCate .list-view .items .view form a.actividad {
-    display: block;
-    width: 100%;
-    text-decoration: none;
-    color: #000000;
-    padding-bottom: 0;
+	display: block;
+	width: 100%;
+	text-decoration: none;
+	color: #000000;
+	padding-bottom: 0;
 }
 
 /***** Formularios (inicio) *****/
 #categoria-form, .formActividad {
-    width: 100%;
+	width: 100%;
 }
-    #categoria-form .row {
-        width: 88%;
-    }
-    #categoria-form .buttons {
-        width: 12%;
-        float: right;
-        margin-top: -34px;
-    }
+	#categoria-form .row {
+		width: 88%;
+	}
+	#categoria-form .buttons {
+		width: 12%;
+		float: right;
+		margin-top: -34px;
+	}
 .formActividad div:first-child {
-    width: 88%;
+	width: 88%;
 }
 .formActividad div:last-child{
-    width: 12%;
-    float: right;
-    margin-top: -34px;
+	width: 12%;
+	float: right;
+	margin-top: -34px;
 }
 .actividadesPorCate {
-    display: none;
-    margin-top: 20px;
+	display: none;
+	margin-top: 20px;
 }
 #categoria-form .row label,
 .actividadesPorCate .form .formActividad label,
 #content-princ-izq .form .formTarea label {
-    display: none;
+	display: none;
 }
 #categoria-form .row input[type="text"],
 .actividadesPorCate .form .formActividad .row input[type="text"] {
-    width: 90%;
-    display: block;
-    padding: 0px 7px;
+	width: 90%;
+	display: block;
+	padding: 0px 7px;
+}
+.actividadesPorCate .form .formActividad .row input[type="text"] {
+	width: 80%;
 }
 #categoria-form div.buttons input[type="submit"],
 .actividadesPorCate .form .formActividad .buttons input[type="submit"],
 #content-princ-izq .form .formTarea .buttons input[type="submit"] {
-    display: block;
-    width: 24px;
-    height: 23px;
-    text-indent: -9999px;
-    overflow: hidden;
-    background: url("../images/agregar.png") no-repeat center;
-    border: none;
+	display: block;
+	width: 24px;
+	height: 23px;
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url("../images/agregar.png") no-repeat center;
+	border: none;
 }
 #content-princ-izq .form .formTarea .buttons input[type="submit"] {
-    float: right;
-    margin-top: -34px;
+	float: right;
+	margin-top: -34px;
 }
 #content-princ-izq div.form {
-    width: 320px;
+	width: 320px;
 }
 .form .formTarea .row input[type="text"] {
-    padding: 0px 7px;
-    width: 85%;
+	padding: 0px 7px;
+	width: 85%;
 }
 #content-princ-izq .form .formTarea .buttons input[type="submit"] {
-    margin-top: -35px;
+	margin-top: -35px;
 }
 .form-tarea {
 }
-    .form-tarea p {
-        padding: 0px;
-    }
+	.form-tarea p {
+		padding: 0px;
+	}
 .form-editar-tarea div.buttons input[type="submit"] {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 /***** Formularios (fin) *****/
 
 /***** Barra de progreso (inicio) *****/
 #contentDer  .progreso {
-    width: 99%;
-    height: 57px;
-    font-size: 18px;
-    line-height: 45px;
+	width: 99%;
+	height: 57px;
+	font-size: 18px;
+	line-height: 45px;
+}
+#progressbar {
+	width: 90%;
+	float: right;
+	margin-top: 8px;
+}
+.ui-progressbar .ui-progressbar-value {
+	background: url("../images/fondoBarra.png") repeat-x;
+        border-radius: 17px;
+}
+#progressbar .ui-corner-all, #progressbar .ui-corner-bottom,
+#progressbar .ui-corner-right, #progressbar .ui-corner-br {
+	border-radius: 17px;
+	height: 30px;
 }
 /***** Barra de progreso (fin) *****/
 
 /***** Menu lista y calendario (inicio) *****/
 #contentDer .menu {
-    height: 30px;
+	height: 30px;
 } 
 #menu {
-    display: block;
-    float: right;
-    width: 230px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+	display: block;
+	float: right;
+	width: 230px;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
-    #menu li {
-        float: left;
-        margin: 0 10px;
-    }
-        #menu li a {
-            text-decoration: none;
-            font-size: 15px;
-        }
-        #menu li.lista {
-        }
-        #menu li.lista a:link, #menu li.lista a:visited {
-        }
-        #menu li.lista a:hover {
-        }
-        #menu li.calendario {
-        }
-        #menu li.calendario a:link, #menu li.calendario a:visited {
-        }
-        #menu li.calendario a:hover {
-        }
-        #menu li.reportes a:link, #menu li.reportes a:visited {
-        }
-        #menu li.reportes a:hover {
-        }
+	#menu li {
+		float: left;
+		margin: 0 10px;
+	}
+		#menu li a {
+			text-decoration: none;
+			font-size: 15px;
+		}
+		#menu li.lista {
+		}
+		#menu li.lista a:link, #menu li.lista a:visited {
+		}
+		#menu li.lista a:hover {
+		}
+		#menu li.calendario {
+		}
+		#menu li.calendario a:link, #menu li.calendario a:visited {
+		}
+		#menu li.calendario a:hover {
+		}
+		#menu li.reportes a:link, #menu li.reportes a:visited {
+		}
+		#menu li.reportes a:hover {
+		}
 /***** Menu lista y calendario (fin) 
 
 /***** Menus categotia, actividad y tarea (inicio) *****/
 #categoria-list-view .items .view a.menu-categoria,
 .actividadesPorCate .list-view .items .view a.menu-actividad,
 #content-princ-izq .list-view .items .view a.menu-tarea {
-    display: none;
-    position: absolute;
-    width: 36px;
-    height: 29px;
-    background: url("../images/bt-menu.png") no-repeat;
-    cursor: pointer;
-    border: hidden;   
-    text-indent: -9999px;
-    overflow: hidden;
-    float: right;
-    right: 5px;
-    top: 0;
+	display: none;
+	position: absolute;
+	width: 36px;
+	height: 29px;
+	background: url("../images/bt-menu.png") no-repeat;
+	cursor: pointer;
+	border: hidden;   
+	text-indent: -9999px;
+	overflow: hidden;
+	float: right;
+	right: 5px;
+	top: 0;
 }
 #categoria-list-view .items .view:hover a.menu-categoria,
 .actividadesPorCate .list-view .items .view:hover a.menu-actividad,
 #content-princ-izq .list-view .items .view:hover a.menu-tarea {
-    display: block; 
+	display: block; 
 }
 #categoria-list-view .items .view a.menu-categoria:hover,
 .actividadesPorCate .list-view .items .view a.menu-actividad:hover,
 #content-princ-izq .list-view .items .view a.menu-tarea:hover {
-    background: url("../images/bt-menuHover.png") no-repeat;
+	background: url("../images/bt-menuHover.png") no-repeat;
 }
 ul.categoria, ul.actividad, ul.tarea  {
-    display: none;
-    position: absolute;
-    top: 25px;
-    right: 1px;
-    background: #E9EAED;
-    border: 1px solid #CBCBCB;
-    border-radius: 5px;
-    padding: 3px;
-    z-index: 10;
+	display: none;
+	position: absolute;
+	top: 25px;
+	right: 1px;
+	background: #E9EAED;
+	border: 1px solid #CBCBCB;
+	border-radius: 5px;
+	padding: 3px;
+	z-index: 10;
 }
-    ul.categoria li, ul.actividad li, ul.tarea li  {
-        height: 20px;
-        padding-left: 15px; 
-    }
-        ul.categoria li a, ul.actividad li a, ul.tarea li a  {
-            text-decoration: none;
-            color: #000000;
-            font-size: 14px;
-        }
-    ul.categoria li.editar, ul.actividad li.editar {
-        background: url("../images/editar.png") no-repeat 0 center;
-    }
-        ul.categoria li.editar a:link, ul.categoria li.editar a:visited,
-        ul.actividad li.editar a:link, ul.actividad li.editar a:visited {
-            
-        }
-        ul.categoria li.editar a:hover, ul.actividad li.editar a:hover {
-            
-        }
-    ul.categoria li.eliminar, ul.actividad li.eliminar, ul.tarea li.eliminar {
-        margin-top: 2px;
-        background: url("../images/eliminar.png") no-repeat 0 center;
-    }
-        ul.categoria li.eliminar a:link, ul.categoria li.eliminar a:visited,
-        ul.actividad li.eliminar a:link, ul.actividad li.eliminar a:visited,
-        ul.tarea li.eliminar a:link, ul.tarea li.eliminar a:visited {
-            
-        }
-        ul.categoria li.eliminar a:hover, ul.actividad li.eliminar a:hover,
-        ul.tarea li.eliminar a:hover {
-            
-        }
+	ul.categoria li, ul.actividad li, ul.tarea li  {
+		height: 20px;
+		padding-left: 15px; 
+	}
+		ul.categoria li a, ul.actividad li a, ul.tarea li a  {
+			text-decoration: none;
+			color: #000000;
+			font-size: 14px;
+		}
+	ul.categoria li.editar, ul.actividad li.editar {
+		background: url("../images/editar.png") no-repeat 0 center;
+	}
+		ul.categoria li.editar a:link, ul.categoria li.editar a:visited,
+		ul.actividad li.editar a:link, ul.actividad li.editar a:visited {
+			
+		}
+		ul.categoria li.editar a:hover, ul.actividad li.editar a:hover {
+			
+		}
+	ul.categoria li.eliminar, ul.actividad li.eliminar, ul.tarea li.eliminar {
+		margin-top: 2px;
+		background: url("../images/eliminar.png") no-repeat 0 center;
+	}
+		ul.categoria li.eliminar a:link, ul.categoria li.eliminar a:visited,
+		ul.actividad li.eliminar a:link, ul.actividad li.eliminar a:visited,
+		ul.tarea li.eliminar a:link, ul.tarea li.eliminar a:visited {
+			
+		}
+		ul.categoria li.eliminar a:hover, ul.actividad li.eliminar a:hover,
+		ul.tarea li.eliminar a:hover {
+			
+		}
 ul.tarea li.eliminar {
-    margin: 0;
+	margin: 0;
 }
 /***** Menus categotia, actividad y tarea (fin) *****/
 
 #content-princ-izq .list-view .items .view {
-    padding: 5px 0 0 0;
+	padding: 5px 0 0 0;
 }
 #content-princ-izq .list-view .items .view:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 /***** Duración, botones play y pause (inicio) *****/
 .botones {
-    width: 30%;
-    min-width: 160px;
-    float: right;
-    margin-top: -17px;
-    margin-right: 25%;
+	width: 30%;
+	min-width: 160px;
+	float: right;
+	margin-top: -17px;
+	margin-right: 25%;
 }
-    .botones .play-tarea, .botones .pause-tarea {
-        display: block;
-        width: 28px;
-        height: 28px;
-        text-indent: -9999px;
-        overflow: hidden;
-        border: none;
-    }
-    .botones .play-tarea {
-        background: url("../images/play.png") no-repeat center;
-    }
-    .botones .pause-tarea {
-        float: left;
-        background: url("../images/pause.png") no-repeat center;
-        margin-top: -28px;
-        margin-left: 40px;
-    }
-    .botones .play-tarea:hover {
-        background: url("../images/play.png") no-repeat center;
-    }
-    .botones .pause-tarea:hover {
-        background: url("../images/pause.png") no-repeat center;
-    }
-    .botones p {
-        float: right;
-        margin-top: -25px;
-        padding: 0 !important;
-    }
+	.botones .play-tarea, .botones .pause-tarea {
+		display: block;
+		width: 28px;
+		height: 28px;
+		text-indent: -9999px;
+		overflow: hidden;
+		border: none;
+	}
+	.botones .play-tarea {
+		background: url("../images/play.png") no-repeat center;
+	}
+	.botones .pause-tarea {
+		float: left;
+		background: url("../images/pause.png") no-repeat center;
+		margin-top: -28px;
+		margin-left: 40px;
+	}
+	.botones .play-tarea:hover {
+		background: url("../images/play.png") no-repeat center;
+	}
+	.botones .pause-tarea:hover {
+		background: url("../images/pause.png") no-repeat center;
+	}
+	.botones p {
+		float: right;
+		margin-top: -25px;
+		padding: 0 !important;
+	}
 /***** Duración botones play y paluse (fin) *****/
 input[type="checkbox"] {
-    display: inline-block;
-    float: left;
-    margin: 3px 10px 0; 
-    background: none;
+	display: inline-block;
+	float: left;
+	margin: 3px 10px 0; 
+	background: none;
 }
 /***** Formulario editar actividad (inicio) *****/
 .form-editar-actividad, .form-editar-categoria {
-    width: 100%;
-    margin-top: 25px;
+	width: 100%;
+	margin-top: 25px;
 }
-    .form-editar-actividad .row, .form-editar-categoria .row {
-        width: 88%;
-    }
-    .form-editar-actividad .row input[type="text"],
-    .form-editar-categoria .row input[type="text"]{
-        display: block;
-        padding: 0 7px;
-        width: 90%;
-    }
-    .form-editar-actividad div:last-child,
-    .form-editar-categoria .buttons {
-        float: right;
-        margin-top: -34px;
-        width: 12%;
-    }
-    .form-editar-categoria .buttons {
-        margin: -34px 0 0 !important;
-    }
-    .form-editar-actividad .buttons input[type="submit"],
-    .form-editar-categoria .buttons input[type="submit"]{
-        background: url("../images/ok.png") no-repeat;
-        border: medium none;
-        display: block;
-        height: 24px;
-        width: 24px;
-        overflow: hidden;
-        text-indent: -9999px;        
-    }
+	.form-editar-actividad .row, .form-editar-categoria .row {
+		width: 88%;
+	}
+	.form-editar-actividad .row input[type="text"],
+	.form-editar-categoria .row input[type="text"]{
+		display: block;
+		padding: 0 7px;
+		width: 90%;
+	}
+	.form-editar-actividad div:last-child,
+	.form-editar-categoria .buttons {
+		float: right;
+		margin-top: -34px;
+		width: 12%;
+	}
+	.form-editar-categoria .buttons {
+		margin: -34px 0 0 !important;
+	}
+	.form-editar-actividad .buttons input[type="submit"],
+	.form-editar-categoria .buttons input[type="submit"]{
+		background: url("../images/ok.png") no-repeat;
+		border: medium none;
+		display: block;
+		height: 24px;
+		width: 24px;
+		overflow: hidden;
+		text-indent: -9999px;        
+	}
 /***** Formulario editar actividad (fin) *****/
+#regresar {
+	display: none;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+/***** Login (inicio) *****/
+div.form div.success input, div.form div.success textarea,
+div.form div.success select, div.form input.success,
+div.form textarea.success, div.form select.success {
+  background: #ffffff;
+}
+.login {
+	width: 320px;
+	border: 1px solid #BDC7D8;
+	border-radius: 5px;
+	margin: 10px auto;
+	padding: 10px;
+	background: #FFFFFF;
+}
+	.login h2 {
+		font-size: 20px;
+		padding-bottom: 20px;
+	}
+#login-form p {
+	font-size: 14px;
+	padding-bottom: 10px;
+}
+#login-form input[type="checkbox"] {
+	float: none;
+}
+#LoginForm_username, #LoginForm_password {
+	border: 1px solid #cdcdcd;;
+	width: 98%;
+	height: 30px;
+	font-size: 16px;
+}
+#LoginForm_username:focus , #LoginForm_password:focus {
+	border: 1px solid #90b3ec;
+	border-radius: 5px;
+}
+.registrarse {
+	width: 90px;
+	float: right;
+	margin-right: 10px;
+}
+/***** Login (fin) *****/
+
+/***** Registro (inicio) *****/
+.registro {
+	width: 320px;
+	padding: 5px;
+}
+	.registro h2 {
+		font-size: 19px;
+		padding-bottom: 20px;
+		padding-top: 5px;
+	}
+	#usuario-form p {
+		font-size: 14px;
+		padding-bottom: 10px;
+	}
+	
+	#usuario-form [type="text"], #usuario-form [type="password"] {
+		border: 1px solid #cdcdcd;;
+		width: 98%;
+		height: 30px;
+		font-size: 16px;
+	}
+	#usuario-form [type="text"]:focus, #usuario-form [type="password"]:focus {
+		border: 1px solid #90b3ec;
+		border-radius: 5px;
+	}
+	#usuario-form .regresar-login {
+		float: right;
+		margin-right: 2px;
+	}
+/***** Registro (fin) *****/
