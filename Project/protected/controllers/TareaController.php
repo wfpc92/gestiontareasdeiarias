@@ -28,7 +28,8 @@ class TareaController extends Controller {
                     'actualizarAjax',
                     'eliminarAjax',
                     'checkAjax',
-                    'vistaDiaria'
+                    'vistaDiaria',
+                    'crearTareaPool'
                 ),
                 'users' => array('*'),
             ),
@@ -218,7 +219,7 @@ class TareaController extends Controller {
 
         if (isset($_REQUEST['Tarea'])) {
             $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
-            $model->scenario = "actualizarAjax";
+            $model->scenario = "crearAjax";
             if ($model->validate()) {
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
                 $idActividad = $model->ID_ACTIVIDAD;
@@ -373,34 +374,35 @@ class TareaController extends Controller {
      * Funcion que crea una tarea y renderiza el formulario para editar la tarea. 
      */
     public function actionCrearTareaPool() {
-        $htmlTarea = "";
-        $htmlTareaEditar = "";
+        $htmlTarea = NULL;
+        $htmlTareaEditar = NULL;
         $idActividad = NULL;
         $idTarea = NULL;
-        $motivo = "";
+        $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
             $model->CORREO = $userId;
+            $model->ID_ACTIVIDAD = NULL;
             $model->PRIORIDAD = 0;
             $result = $model->save();
             if ($result) {
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar_diaria', array('model' => $model), true);
             } else {
-                $motivo = "ERROR: no se guardo la tarea";
+                $error = "ERROR: no se guardo la tarea";
             }
         } else {
-            $motivo = "ERROR: peticion de crear tarea mal formada.";
+            $error = "ERROR: peticion de crear tarea mal formada.";
         }
         echo CJavaScript::jsonEncode(array(
             'htmlTarea' => $htmlTarea,
             'htmlTareaEditar' => $htmlTareaEditar,
             'idActividad' => $model->ID_ACTIVIDAD,
             'idTarea' => $model->ID_TAREA,
-            'motivo' => $motivo
+            'error' => $error
         ));
     }
 

@@ -142,4 +142,23 @@ class Tarea extends CActiveRecord {
         return Actividad::model()->findByPk($this->ID_ACTIVIDAD)->progressBar();
     }
 
+    public function listaTareas() {
+        //$items[] = ;
+        //$items[] = 
+        $connection = Yii::app()->db;
+        $sql = 'select "" as "title", FECHA_INICIO as "start", FECHA_INICIO as "end"
+                    from tarea
+                    where ID_ACTIVIDAD is not null';
+        $command = $connection->createCommand($sql);
+        $dataReader = $command->query();
+        // using foreach to traverse through every row of data
+        //foreach ($dataReader as $row) { 
+        //}
+        // retrieving all rows at once in a single array
+        $rows = $dataReader->readAll();
+
+
+        return $rows;
+    }
+
 }

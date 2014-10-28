@@ -20,7 +20,7 @@ class CalendarioController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'CalendarEvents'),
+                'actions' => array('index', 'view', 'calendarEvents'),
                 //'actions'=>array('index','view'),
                 'users' => array('*'),
             ),
@@ -61,20 +61,8 @@ class CalendarioController extends Controller {
      * @param integer $id the ID of the model to be displayed
      */
     public function actionCalendarEvents() {
-        $items[] = array(
-            'title' => 'Meeting',
-            'start' => strtotime('2014-10-10'),
-            'color' => '#CC0000',
-            'allDay' => true,
-            'url' => 'http://anyurl.com'
-        );
-        $items[] = array(
-            'title' => 'Meeting reminder',
-            'start' => strtotime('2014-10-11'),
-            'end' => strtotime('2014-10-12'),
-            'color' => 'blue',
-        );
-        echo CJSON::encode($items);
+        $items = Tarea::model()->listaTareas();
+        echo CJavaScript::jsonEncode($items);
         Yii::app()->end();
     }
 

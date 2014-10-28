@@ -1,7 +1,7 @@
 <?php
 
 class CategoriaController extends Controller {
-    
+
     /**
      * @return array action filters
      */
@@ -20,7 +20,14 @@ class CategoriaController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'crearAjax', 'editarFormAjax', 'editarAjax', 'eliminarAjax'),
+                'actions' => array(
+                    'index',
+                    'view',
+                    'crearAjax',
+                    'editarFormAjax',
+                    'editarAjax',
+                    'eliminarAjax',
+                    'cargarActividadesAjax'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -274,6 +281,35 @@ class CategoriaController extends Controller {
         echo CJavaScript::jsonEncode(array(
             'idCategoria' => $idCategoria,
             'borrar' => $borrar,
+            'error' => $error
+        ));
+    }
+
+    /**
+     * Cargar las actividades de una categoria
+     */
+    public function actionCargarActividadesAjax() {
+        $idCategoria = NULL;
+        $htmlActividades = NULL;
+        $error = NULL;
+
+        if (isset($_REQUEST['ID_CATEGORIA'])) {
+            $idCategoria = $_REQUEST['ID_CATEGORIA'];
+            $actividades = Actividad::model()->findAll("ID_CATEGORIA={$idCategoria}");
+            $lstActividades = CHtml::listData($actividades, 'ID_ACTIVIDAD', 'NOMBRE_ACTIVIDAD');
+            $htmlActividades = CHtml::label("Seleccione una Actividad:", "ID_ACTIVIDAD");
+            $htmlActividades .= CHtml::dropDownList('ID_ACTIVIDAD'
+                            , 'Seleccione...'
+                            , array('Seleccione...') + $lstActividades
+                            , array()
+            );
+        } else {
+            $error = "Error en el envio del formulario.";
+        }
+
+        echo CJavaScript::jsonEncode(array(
+            'idCategoria' => $idCategoria,
+            'htmlActividades' => $htmlActividades,
             'error' => $error
         ));
     }

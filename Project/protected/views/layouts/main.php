@@ -25,6 +25,7 @@
 
         $cs->registerScriptFile($bu . 'js/proyecto.js', CClientScript::POS_HEAD);
         $cs->registerScriptFile($bu . 'js/ajax/plantillas_ajax.js');
+        $cs->registerScriptFile($bu . 'js/ajax/categoria/cargar_actividades.js');
         $cs->registerScriptFile($bu . 'js/ajax/categoria/crear.js');
         $cs->registerScriptFile($bu . 'js/ajax/categoria/editar.js');
         $cs->registerScriptFile($bu . 'js/ajax/categoria/eliminar.js');
