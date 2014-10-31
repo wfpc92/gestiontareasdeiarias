@@ -18,7 +18,11 @@ $idTarea = $data->ID_TAREA;
     ));
 
     echo $form->hiddenField($data, 'ID_TAREA');
-
+    if ($data->FECHA_INICIO != NULL){
+        echo $form->hiddenField($data, 'FECHA_INICIO');
+    }
+    echo CHtml::hiddenField('FECHA_HOY',  Calendario::getFechaFormato());
+    
     $check = false;
     if ($data->ESTADO == 1) {
         $check = true;

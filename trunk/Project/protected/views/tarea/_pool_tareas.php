@@ -1,6 +1,6 @@
 <?php
 
-$fechaFormato = date_format($fecha, "Y-m-d");
+$fechaFormato = Calendario::getFechaFormato();
 $userId = Yii::app()->user->getId();
 
 

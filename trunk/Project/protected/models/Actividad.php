@@ -106,23 +106,39 @@ class Actividad extends CActiveRecord {
         return $this->delete();
     }
 
-    public function progressBar() {
+    public function progressBar($fecha) {
         $idActividad = $this->ID_ACTIVIDAD;
+        
         $criteria = new CDbCriteria;
         $criteria2 = new CDbCriteria;
-
-        $criteria->compare('ID_ACTIVIDAD', $idActividad, true);
-        $dataProvider = new CActiveDataProvider('Tarea', array(
-            'pagination' => false,
-            'criteria' => $criteria
-        ));
-
-        $criteria2->compare('ID_ACTIVIDAD', $idActividad, true);
-        $criteria2->compare('ESTADO', 1, true);
-        $dataProvider2 = new CActiveDataProvider('Tarea', array(
-            'pagination' => false,
-            'criteria' => $criteria2
-        ));
+        
+        if ($fecha == NULL){
+            $criteria->compare('ID_ACTIVIDAD', $idActividad, true);
+            $dataProvider = new CActiveDataProvider('Tarea', array(
+                'pagination' => false,
+                'criteria' => $criteria
+            ));
+            
+            $criteria2->compare('ID_ACTIVIDAD', $idActividad, true);
+            $criteria2->compare('ESTADO', 1, true);
+            $dataProvider2 = new CActiveDataProvider('Tarea', array(
+                'pagination' => false,
+                'criteria' => $criteria2
+            ));
+        }else{
+            $criteria->compare('FECHA_INICIO', $fecha, true);
+            $dataProvider = new CActiveDataProvider('Tarea', array(
+                'pagination' => false,
+                'criteria' => $criteria
+            ));
+            
+            $criteria2->compare('FECHA_INICIO', $fecha, true);
+            $criteria2->compare('ESTADO', 1, true);
+            $dataProvider2 = new CActiveDataProvider('Tarea', array(
+                'pagination' => false,
+                'criteria' => $criteria2
+            ));
+        }
 
         $numTT = $dataProvider2->getItemCount();
         $numTTot = $dataProvider->getItemCount();

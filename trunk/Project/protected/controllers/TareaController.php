@@ -190,7 +190,7 @@ class TareaController extends Controller {
                 $idTarea = $model->ID_TAREA;
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
-                $progressBar = $model->progressBar();
+                $progressBar = $model->progressBar(NULL);
             }
             if ($model->hasErrors()) {
                 $error = $model->getErrors();
@@ -295,7 +295,7 @@ class TareaController extends Controller {
 
             if ($model->validate()) {
                 $model->delete();
-                $progressBar = $model->progressBar();
+                $progressBar = $model->progressBar(NULL);
                 $borrar = true;
             }
             if ($model->hasErrors()) {
@@ -322,15 +322,16 @@ class TareaController extends Controller {
         $idActividad = NULL;
         $progressBar = NULL;
         $error = NULL;
-
+        
         $estado = isset($_REQUEST["ESTADO"]) ? 1 : 0;
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
+            $fecha = isset($_REQUEST["FECHA_HOY"]) ? $_REQUEST["FECHA_HOY"] : NULL;
             $model = Tarea::model()->findByPk($idTarea);
             $idActividad = $model->ID_ACTIVIDAD;
             $model->ESTADO = $estado;
             $model->save();
-            $progressBar = $model->progressBar();
+            $progressBar = $model->progressBar($fecha);
         } else {
             $error = "Error en el envio del formulario.";
         }
@@ -338,6 +339,7 @@ class TareaController extends Controller {
             'idTarea' => $idTarea,
             'idActividad' => $idActividad,
             'progressBar' => $progressBar,
+            'fecha' => $fecha,
             'error' => $error
         ));
     }
@@ -355,12 +357,11 @@ class TareaController extends Controller {
             } else {
                 $fecha = date_create();
             }
+            Calendario::setFecha($fecha);
             $contentVistaDiaria = $this->renderPartial('_vista_diaria', array(
-                'fecha' => $fecha,
                 'userId' => $userId
                     ), true);
             $contentPoolTareas = $this->renderPartial('_pool_tareas', array(
-                'fecha' => $fecha,
                 'userId' => $userId
                     ), true);
             $this->render('../site/index', array(
