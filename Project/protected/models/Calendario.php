@@ -9,11 +9,38 @@
  */
 class Calendario extends CActiveRecord {
 
+    public static $fecha;
+
     /**
      * @return string the associated database table name
      */
     public function tableName() {
         return 'calendario';
+    }
+
+    public static function getFechaFormatoHoy(){
+        $dia = array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+        $mes = array(null, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+        $numdia = date_format(static::$fecha, "w"); //muestra el día de la semana
+        $nummes = date_format(static::$fecha, "n");
+        $diames = date_format(static::$fecha, "j"); //muestra el día del mes
+        $anho = date_format(static::$fecha, "Y");
+        return "Fecha: $dia[$numdia], $diames de $mes[$nummes] del $anho";
+    }
+    public static function getFechaFormato() {
+        if (static::$fecha == NULL){
+            return NULL;
+        }else{
+            return date_format(static::$fecha, "Y-m-d");
+        }
+    }
+
+    public static function setFecha($f) {
+        static::$fecha = $f;
+    }
+
+    public static function getFecha() {
+        return static::$fecha;
     }
 
     /**

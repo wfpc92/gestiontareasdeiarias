@@ -138,8 +138,8 @@ class Tarea extends CActiveRecord {
         return parent::model($className);
     }
 
-    public function progressBar() {
-        return Actividad::model()->findByPk($this->ID_ACTIVIDAD)->progressBar();
+    public function progressBar($fecha) {
+        return Actividad::model()->findByPk($this->ID_ACTIVIDAD)->progressBar($fecha);
     }
 
     public function listaTareas() {

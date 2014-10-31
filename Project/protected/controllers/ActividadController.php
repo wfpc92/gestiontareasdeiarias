@@ -210,7 +210,7 @@ class ActividadController extends Controller {
         if (isset($_REQUEST['Actividad'])) {
             $idActividad = $_REQUEST['Actividad']['ID_ACTIVIDAD'];
             $model = Actividad::model()->findByPk($idActividad);
-            $progressBar = $model->progressBar();
+            $progressBar = $model->progressBar(NULL);
             $htmlTareas = $this->renderPartial('_listar_tareas', array(
                 'model' => $model
                     ), true);

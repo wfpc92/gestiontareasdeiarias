@@ -29,13 +29,13 @@ class SiteController extends Controller {
             $this->redirect(Yii::app()->createUrl('site/login'));
         else {
             $fecha = date_create();
+            Calendario::setFecha($fecha);
+
             $userId = Yii::app()->user->getId();
             $contentVistaDiaria = $this->renderPartial('../tarea/_vista_diaria', array(
-                'fecha' => $fecha,
                 'userId' => $userId
                     ), true);
             $contentPoolTareas = $this->renderPartial('../tarea/_pool_tareas', array(
-                'fecha' => $fecha,
                 'userId' => $userId
                     ), true);
             $this->render('index', array(
