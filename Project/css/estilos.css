@@ -244,20 +244,24 @@ div.clearFix {
 /***** Formularios (fin) *****/
 
 /***** Barra de progreso (inicio) *****/
-#contentDer  .progreso {
+#contentDer .progreso {
 	width: 99%;
-	height: 57px;
+	height: 45px;
 	font-size: 18px;
-	line-height: 45px;
-}
+}  
+	#progressbar span {
+		float: left;
+		line-height: 32px;
+		padding-right: 10px; 
+	}
 #progressbar {
 	width: 90%;
-	float: right;
+	float: left;
 	margin-top: 8px;
 }
 .ui-progressbar .ui-progressbar-value {
 	background: url("../images/fondoBarra.png") repeat-x;
-        border-radius: 17px;
+		border-radius: 17px;
 }
 #progressbar .ui-corner-all, #progressbar .ui-corner-bottom,
 #progressbar .ui-corner-right, #progressbar .ui-corner-br {
@@ -539,3 +543,39 @@ div.form textarea.success, div.form select.success {
 		margin-right: 2px;
 	}
 /***** Registro (fin) *****/
+
+/***** Mensasjes de cargando y erro (inicio) *****/
+#cargando-principal {
+    display: none;
+    padding: 40px 14px 0px 14px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #c09853;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #3a87ad;    
+    background: url("../images/load.gif") no-repeat center 5px;
+    background-color: #ffffff;
+    height: 25px;
+}
+.error {
+    display: none;
+    margin-top: 5px;
+    padding: 30px 14px 8px 14px;
+    margin-bottom: 18px;
+    color: #c09853;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #fcf8e3;
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #b94a48;
+    background: url("../images/error.png") no-repeat center 5px;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+/***** Mensasjes de cargando y erro (fin) *****/

@@ -3,6 +3,8 @@
 ?>
 
 <div id="contentIzq">
+    <div id="cargando-principal"></div>
+    <div id="error-principal"></div>
     <?php
     $form = '../categoria/_form';
     $modelCategoria = new Categoria;
@@ -28,12 +30,10 @@
 
 <div class="fluida">
     <div id="contentDer">
-        <div id="cargando-principal"></div>
-        <div id="error-principal"></div>
-
         <div id="actividad_progress_bar" class="progreso">
-            Progreso: 
-            <div id="progressbar" style="width:91%; float: right; margin-top: 5px;">
+            
+            <div id="progressbar"> 
+                <span>Progreso: </span>
                 <?php
                 $this->widget('zii.widgets.jui.CJuiProgressBar', array(
                     'value' => 1000,
@@ -43,6 +43,7 @@
                 ));
                 ?>
             </div>
+            <div class="clear"></div>
         </div>
 
         <div class="menu">

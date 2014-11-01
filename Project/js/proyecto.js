@@ -8,6 +8,7 @@ $(document).ready(function() {
     $("ul.categoria").mouseleave(function() {
         $("ul.categoria").hide();
     });
+    
 
     $("ul.actividad").mouseleave(function() {
         $("ul.actividad").hide();
@@ -17,12 +18,7 @@ $(document).ready(function() {
         $("ul.tarea").hide();
     });
 
-    if ($(window).width() <= 700) {
-        $(".actividadesPorCate .list-view .items .view form div a").click(function() {
-            $("#contentIzq").hide();
-            $("#contentDer").show();
-        });
-    }
+    
 
     $("#regresar").click(function() {
         $("#contentDer").hide();
@@ -43,40 +39,18 @@ var mostrarMensaje = function(div, mensaje) {
 };
 var mostrarCargando = function(div) {
     div.css('display', 'block')
-            .css('padding', '8px 35px 8px 14px')
-            .css('margin-bottom', '18px')
-            .css('color', '#c09853')
-            .css('text-shadow', '0 1px 0 rgba(255, 255, 255, 0.5')
-            .css('background-color', '#fcf8e3')
-            .css('border', '1px solid #fbeed5')
-            .css('-webkit-border-radius', '4px')
-            .css('-moz-border-radius', '4px')
-            .css('border-radius', '4px')
-            .css('color', '#3a87ad')
-            .css('background-color', '#d9edf7')
-            .css('border-color', '#bce8f1')
             .text("Cargando, un momento por favor...");
 };
 
 var ocultarCargando = function(div) {
     div.css('display', 'none')
+            .addClass("cargando")
             .text("");
 }
 
 var mostrarError = function(div, mensaje) {
     div.css('display', 'block')
-            .css('padding', '8px 35px 8px 14px')
-            .css('margin-bottom', '18px')
-            .css('color', '#c09853')
-            .css('text-shadow', '0 1px 0 rgba(255, 255, 255, 0.5')
-            .css('background-color', '#fcf8e3')
-            .css('border', '1px solid #fbeed5')
-            .css('-webkit-border-radius', '4px')
-            .css('-moz-border-radius', '4px')
-            .css('border-radius', '4px')
-            .css('color', '#b94a48')
-            .css('background-color', '#f2dede')
-            .css('border-color', '#eed3d7')
+            .addClass("error")
             .html(mensaje);
 };
 var ocultarError = function(div) {
