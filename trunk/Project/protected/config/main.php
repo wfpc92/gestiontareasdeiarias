@@ -23,10 +23,10 @@ function cadenaConexion() {
     } else {
         return array(
             'class' => 'CDbConnection',
-            'connectionString' => 'mysql:host=localhost;dbname=u974710561_proy2',
+            'connectionString' => 'mysql:host=localhost;dbname=proyecto2',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
         );
     }

@@ -8,7 +8,7 @@
         $cs->registerMetaTag(
                 'text/html; charset=utf-8', 'content-type', 'Content-Type');
         $cs->registerMetaTag('en', 'language');
-        $cs->registerMetaTag('viewport', 'width-device-width, initial-scale=1');
+        $cs->registerMetaTag( 'width-device-width, initial-scale=1', 'viewport');
 
         $cs->registerCssFile($bu . 'css/screen.css', 'screen, projection');
         $cs->registerCssFile($bu . 'css/print.css', 'print');
