@@ -1,4 +1,9 @@
+function posCalendario() {
+    $("#content-princ-izq").css("width", "95%");
+    $("#content-princ-der").hide();
+}
 $(document).ready(function() {
+    
     $("#content-princ-der")
             .css("width", "38%");
     $("#content-princ-izq")
@@ -18,11 +23,13 @@ $(document).ready(function() {
         $("ul.tarea").hide();
     });
 
-    
-
     $("#regresar").click(function() {
         $("#contentDer").hide();
         $("#contentIzq").show();
+    });
+    
+    $("#menu .calendario a").click(function() {
+        posCalendario();
     });
 });
 
@@ -70,9 +77,9 @@ var mostrarPanelDerecho = function(html) {
         $(".botones").css("margin-right", "40px");
     }
     else {
-        $("#content-princ-izq").css("width", "38%");
+        $("#content-princ-izq").css("width", "58%");
         $("#content-princ-der")
-                .css("width", "58%")
+                .css("width", "38%")
                 .show()
                 .html(html);
 
