@@ -12,7 +12,7 @@ $this->breadcrumbs = array(
 
 
 <div class="form login">
-    <h2>Login</h2>
+    <h2>Inicio de Sesión</h2>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'login-form',
@@ -22,8 +22,6 @@ $this->breadcrumbs = array(
         ),
     ));
     ?>
-
-    <p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
     <div class="row">
         <?php echo $form->labelEx($model, 'Correo'); ?>
@@ -44,7 +42,7 @@ $this->breadcrumbs = array(
     </div>
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton('Login'); ?>
+        <?php echo CHtml::submitButton('Iniciar Sesión'); ?>
     </div>
 
     <div class="registrarse">
