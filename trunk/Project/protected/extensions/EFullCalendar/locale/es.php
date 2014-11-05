@@ -2,23 +2,23 @@
 
 return array(
     'monthNames'=>array(
-        'Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec',
-        'Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'
+        'Enero','Febrero','Marzo','Abril','Mayo','Junio',
+        'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'
     ),
     'monthNamesShort'=>array(
-        'Sty','Lut','Mar','Kwi','Maj','Cze','Lip','Sie','Wrz','Paź','Lis','Gru'
+        'Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'
     ),
     'firstDay'=>1,
     'dayNames'=>array(
-        'Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'
+        'Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'
     ),
     'dayNamesShort'=>array(
-        'Nie','Pon','Wto','Śro','Czw','Pią','Sob'
+        'Dom','Lun','Mar','Mie','Jue','Vie','Sab'
     ),
     'buttonText'=>array(
-        'today'=>'dziś',
-        'month'=>'miesiąc',
-        'week'=>'tydzień',
-        'day'=>'dzień'
+        'today'=>'hoy',
+        'month'=>'mes',
+        'week'=>'semana',
+        'day'=>'día'
     ),
 );
