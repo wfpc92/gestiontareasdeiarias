@@ -1,6 +1,26 @@
-
+var tareaEliminarModal = function(self) {    
+    $("<div>")
+            .html("¿Estas seguro que deseas eliminar esta Tarea?")
+            .dialog({
+                title: "Eliminar Tarea",
+                resizable: false,
+                width: 500,
+                modal: true,
+                buttons: {
+                    "Borrar Actividad": function() {
+                        tareaEliminarAjax(self);
+                        $(this).dialog("close");
+                    },
+                    Cancelar: function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+    return false;
+};
 var tareaEliminarAjax = function(self) {
     var form = $(self).parents("form");
+    console.log(form);
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/eliminarAjax',

@@ -10,9 +10,9 @@ $dataProvider = new CActiveDataProvider('Tarea', array(
     'criteria' => array(
         'condition' => "FECHA_INICIO = '{$fechaFormato}' "
         . " AND CORREO = '{$userId}'"
-        . " AND ID_ACTIVIDAD IS NOT NULL"
+        . " AND ID_ACTIVIDAD != 0"
     ))
-);
+);        
 
 $this->widget('zii.widgets.CListView', array(
     'dataProvider' => $dataProvider,
