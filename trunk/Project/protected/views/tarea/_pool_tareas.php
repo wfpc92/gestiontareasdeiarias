@@ -14,13 +14,13 @@ $dataProvider = new CActiveDataProvider('Tarea', array(
     'criteria' => array(
         'condition' => "FECHA_INICIO = '{$fechaFormato}' "
         . " AND CORREO = '{$userId}'"
-        . " AND ID_ACTIVIDAD IS NULL    "
+        . " AND ID_ACTIVIDAD = 0 "
     ))
 );
 
 $this->widget('zii.widgets.CListView', array(
     'dataProvider' => $dataProvider,
-    'itemView' => '../tarea/_view',
+    'itemView' => '../tarea/_view_pool',
     'enablePagination' => false,
     'htmlOptions' => array(
     ))

@@ -1,3 +1,11 @@
+var tareaEditarAjax = function (form){
+    //console.log(form);
+    form.action += '/tarea/actualizarAjax';
+    console.log(form);
+    tareaActualizarAjax(form)
+    return false;
+}
+
 var tareaActualizarAjax = function(form) {
     var confAjax = {
         type: 'POST',

@@ -23,6 +23,7 @@ $idTarea = $data->ID_TAREA;
     }
     echo CHtml::hiddenField('FECHA_HOY',  Calendario::getFechaFormato());
     
+    /*
     $check = false;
     if ($data->ESTADO == 1) {
         $check = true;
@@ -31,14 +32,15 @@ $idTarea = $data->ID_TAREA;
         'onchange' => 'return tareaCheckAjax(this)',
         'title' => 'Verifique la casilla si finalizó la tarea.'
     ));
-
+    */
     echo CHtml::tag('p', array(
         'id' => 'p-tarea-nombre-' . $idTarea,
-        'onclick' => 'return tareaMostrarAjax(this)',
+        'onclick' => 'return tareaMostrarPoolAjax(this)',
             ), CHtml::encode($data->NOMBRE_TAREA));
     ?>
     <div class="botones">
         <?php
+        /*
         $label = "Play Tarea";
         $htmlOptions = array(
             'id' => 'btn-play-tarea-' . $idTarea,
@@ -54,7 +56,7 @@ $idTarea = $data->ID_TAREA;
             'class' => 'pause-tarea'
         );
         echo CHtml::button($label, $htmlOptions);
-
+        */
         echo CHtml::tag('p', array(
             'id' => 'p-duracion-tarea-' . $idTarea
                 ), $data->DURACION);
@@ -81,7 +83,7 @@ $idTarea = $data->ID_TAREA;
             <?php
             echo CHtml::link("Eliminar", "#", array(
                 'id' => 'lnk-tarea-eliminar-' . $idTarea,
-                'onclick' => 'return tareaEliminarModal(this)'
+                'onclick' => 'return tareaEliminarAjax(this)'
             ));
             ?>
         </li>

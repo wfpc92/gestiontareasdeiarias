@@ -1,7 +1,7 @@
 <div class="form">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'SUP',
+        'id' => 'agregar-tarea-diaria',
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/tarea/crearTareaPool',
         'htmlOptions' => array(
@@ -17,7 +17,7 @@
         echo $form->hiddenField($model, 'FECHA_INICIO');
         echo $form->labelEx($model, 'NOMBRE_TAREA');
         echo $form->textField($model, 'NOMBRE_TAREA', array(
-            'id' => 'SUP',
+            'id' => 'txt-tarea',
             'size' => 60,
             'maxlength' => 100,
             'placeholder' => 'Nueva Tarea'));
@@ -30,8 +30,8 @@
         <?php
         $label = "agregar tarea";
         $htmlOptions = array(
-            'id' => 'SUP',
-            'name' => 'SUP'
+            'id' => 'btn-crear-tarea',
+            'name' => 'btn-crear-tarea'
         );
         echo CHtml::submitButton($label, $htmlOptions);
         ?>
