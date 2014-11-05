@@ -29,7 +29,8 @@ class TareaController extends Controller {
                     'eliminarAjax',
                     'checkAjax',
                     'vistaDiaria',
-                    'crearTareaPool'
+                    'crearTareaPool',
+                    'mostrarPoolAjax'
                 ),
                 'users' => array('*'),
             ),
@@ -239,21 +240,54 @@ class TareaController extends Controller {
         ));
     }
 
+    public function actionMostrarPoolAjax() {
+        $idActividad = NULL;
+        $idTarea = NULL;
+        $htmlTareaEditar = NULL;
+        $error = NULL;
+
+        if (isset($_REQUEST['Tarea'])) {
+            $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
+            $model->scenario = "crearAjax";
+            if ($model->validate()) {
+                $htmlTareaEditar = $this->renderPartial('_editar_diaria', array('model' => $model), true);
+                $idActividad = $model->ID_ACTIVIDAD;
+                $idTarea = $model->ID_TAREA;
+            }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
+        } else {
+            $error = "Error en el envio del formulario.";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'idActividad' => $idActividad,
+            'idTarea' => $idTarea,
+            'htmlTareaEditar' => $htmlTareaEditar,
+            'error' => $error
+        ));
+    }
+    
     /**
      * Funcion que actualizar una tarea. 
      */
     public function actionActualizarAjax() {
-        $idActividad = NULL;
+        $idActividad = (isset($_REQUEST['ID_ACTIVIDAD'])? $_REQUEST['ID_ACTIVIDAD'] : NULL);
         $idTarea = NULL;
         $actualizar = FALSE;
         $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
-            $model = Tarea::model()->findByPk($idTarea);
+            $model = Tarea::model()->findByPk($idTarea);            
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
-            $idActividad = $model->ID_ACTIVIDAD;
+            if($idActividad!=NULL){
+                $model->ID_ACTIVIDAD = $idActividad;
+            }
+            else{
+                $idActividad = $model->ID_ACTIVIDAD;
+            }            
             $model->CORREO = $userId;
             $model->scenario = "actualizarAjax";
 
