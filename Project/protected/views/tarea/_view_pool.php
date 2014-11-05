@@ -83,7 +83,7 @@ $idTarea = $data->ID_TAREA;
             <?php
             echo CHtml::link("Eliminar", "#", array(
                 'id' => 'lnk-tarea-eliminar-' . $idTarea,
-                'onclick' => 'return tareaEliminarAjax(this)'
+                'onclick' => 'return tareaEliminarModal(this)'
             ));
             ?>
         </li>

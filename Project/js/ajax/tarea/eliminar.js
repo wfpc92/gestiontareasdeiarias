@@ -7,7 +7,7 @@ var tareaEliminarModal = function(self) {
                 width: 500,
                 modal: true,
                 buttons: {
-                    "Borrar Actividad": function() {
+                    "Borrar Tarea": function() {
                         tareaEliminarAjax(self);
                         $(this).dialog("close");
                     },
