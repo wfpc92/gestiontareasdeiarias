@@ -30,7 +30,8 @@ class TareaController extends Controller {
                     'checkAjax',
                     'vistaDiaria',
                     'crearTareaPool',
-                    'mostrarPoolAjax'
+                    'mostrarPoolAjax',
+                    'pooladiariaAjax'
                 ),
                 'users' => array('*'),
             ),
@@ -454,6 +455,39 @@ class TareaController extends Controller {
         foreach ($data as $value => $NOMBRE_ACTIVIDAD) {
             echo CHtml::tag('option', array('value' => $value), CHtml::encode($NOMBRE_ACTIVIDAD), true);
         }
+    }
+    
+    public function actionPooladiariaAjax() {
+        $htmlTarea = NULL;
+        $htmlTareaEditar = NULL;
+        $idActividad = NULL;
+        $idTarea = NULL;
+        $error = NULL;
+
+        if (isset($_REQUEST['Tarea'])) {
+            $model = new Tarea;
+            $model->attributes = $_REQUEST['Tarea'];
+            $userId = Yii::app()->user->getId();
+            $model->CORREO = $userId;
+            $model->ID_ACTIVIDAD = NULL;
+            $model->PRIORIDAD = 0;
+            $result = $model->save();
+            if ($result) {
+                //$htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
+                //$htmlTareaEditar = $this->renderPartial('_editar_diaria', array('model' => $model), true);
+            } else {
+                $error = "ERROR: no se guardo la tarea";
+            }
+        } else {
+            $error = "ERROR: peticion de arrastrar tarea mal formada.";
+        }
+        echo CJavaScript::jsonEncode(array(
+            //'htmlTarea' => $htmlTarea,
+            //'htmlTareaEditar' => $htmlTareaEditar,
+            //'idActividad' => $model->ID_ACTIVIDAD,
+            'idTarea' => $model->ID_TAREA,
+            'error' => $error
+        ));
     }
 
 }
