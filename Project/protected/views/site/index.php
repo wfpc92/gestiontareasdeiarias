@@ -55,6 +55,23 @@
                     $htmlOptions = array();
                     echo CHtml::link($text, $url, $htmlOptions);
                     ?>
+                    <script>
+                        function allowDrop(ev) {
+                            ev.preventDefault();
+                        }
+                        
+                        function drag(ev) {
+                            ev.dataTransfer.setData("text/html", ev.target.nodeName);
+                        }
+
+                        function drop(ev) {
+                            ev.preventDefault();
+                            //var data = ev.dataTransfer.getData("text/html");
+                            var data = ev.dataTransfer.getData("text/html");
+                            //ev.target.appendChild(document.getElementById(data));
+                            tareaPoolADiariaAjax(data);
+                        }
+                    </script>
                 </li>
                 <li class="calendario">
                     <?php
@@ -70,14 +87,14 @@
             </ul> 
         </div>
 
-        <div id="content-princ-izq">
+        <div id="content-princ-izq" ondrop="drop(event)" ondragover="allowDrop(event)">
             <?php
             if (isset($vistaIzquierda)) {
                 echo $vistaIzquierda;
             }
             ?>
         </div>
-        <div id = "content-princ-der">
+        <div id = "content-princ-der" ondrop="drop(event)" ondragover="allowDrop(event)">
             <?php
             if (isset($vistaDerecha)) {
                 echo $vistaDerecha;
