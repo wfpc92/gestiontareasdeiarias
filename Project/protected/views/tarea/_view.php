@@ -31,11 +31,15 @@ $idTarea = $data->ID_TAREA;
         'onchange' => 'return tareaCheckAjax(this)',
         'title' => 'Verifique la casilla si finalizó la tarea.'
     ));
-
+    
+    $nomCompleto = $data->NOMBRE_TAREA . " ";
+    $maxLog=30;
+    $nomAbreviado = substr($nomCompleto,0,strrpos(substr($nomCompleto,0,$maxLog)," "));  
+    
     echo CHtml::tag('p', array(
         'id' => 'p-tarea-nombre-' . $idTarea,
         'onclick' => 'return tareaMostrarAjax(this)',
-            ), CHtml::encode($data->NOMBRE_TAREA));
+            ), $nomAbreviado);
     ?>
     <div class="botones">
         <?php

@@ -9,20 +9,6 @@ $(document).ready(function() {
     $("#content-princ-izq")
             .css("width", "58%");
 
-
-    $("ul.categoria").mouseleave(function() {
-        $("ul.categoria").hide();
-    });
-    
-
-    $("ul.actividad").mouseleave(function() {
-        $("ul.actividad").hide();
-    });
-
-    $("ul.tarea").mouseleave(function() {
-        $("ul.tarea").hide();
-    });
-
     $("#regresar").click(function() {
         $("#contentDer").hide();
         $("#contentIzq").show();
@@ -31,6 +17,8 @@ $(document).ready(function() {
     $("#menu .calendario a").click(function() {
         posCalendario();
     });
+    
+    menus();
 });
 
 
@@ -83,11 +71,8 @@ var mostrarPanelDerecho = function(html) {
                 .show()
                 .html(html);
 
-        if ($("#content-princ-izq").width() <= 500) {
-            $(".botones").css("float", "none")
-                    .css("margin-left", "30px")
-                    .css("margin-top", "0px");
-            $(".form-tarea p").css("padding", "0 40px 10px 33px");
+        if ($("#content-princ-izq").width() <= 600) {
+            $(".botones").css("margin-right", "40px");
         } else {
             $(".botones").css("margin-right", "25%");
         }
@@ -95,4 +80,16 @@ var mostrarPanelDerecho = function(html) {
 
     $anchoizq = $("#content-princ-izq").width();
 };
+var menus = function() {
+     $("ul.categoria").mouseleave(function() {
+        $("ul.categoria").hide();
+    });    
 
+    $("ul.actividad").mouseleave(function() {
+        $("ul.actividad").hide();
+    });
+
+    $("ul.tarea").mouseleave(function() {
+        $("ul.tarea").hide();
+    });
+};

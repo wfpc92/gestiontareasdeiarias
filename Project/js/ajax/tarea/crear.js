@@ -21,6 +21,7 @@ var tareaCrearAjax = function(form) {
 
             mostrarPanelDerecho(htmlTareaEditar);
             actualizarProgressBar(progressBar);
+            menus();
         }
     };
     var selectores = {

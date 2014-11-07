@@ -13,6 +13,7 @@ var actividadListarTareasAjax = function(self) {
             panel.html(htmlTareas);
             actualizarProgressBar(progressBar);
             situacionPaneles1();
+            menus();
         }
     };
     var selectores = {
@@ -24,7 +25,10 @@ var actividadListarTareasAjax = function(self) {
 }
       
       var situacionPaneles1 =
-              function(){if ($(window).width() <= 700) {
+              function(){
+                  $("#content-princ-der").hide();
+                  $("#content-princ-izq").css("width", "100%");
+                  if ($(window).width() <= 700) {
                 $("#contentIzq").hide();
                 $("#contentDer").show();
             }}

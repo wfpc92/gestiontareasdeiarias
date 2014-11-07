@@ -77,6 +77,11 @@ div.view {
 div.clearFix {
 	clear: both;
 }
+div.nombre-actividad {
+    color: #0066CC;
+    font-size: 25px;
+    padding-bottom: 20px;
+}
 /***** Header (inicio) *****/
 #header {
 	position: relative;
@@ -255,7 +260,7 @@ div.clearFix {
 		padding-right: 10px; 
 	}
 #progressbar {
-	width: 90%;
+	width: 76%;
 	float: left;
 	margin-top: 8px;
 }
@@ -266,7 +271,7 @@ div.clearFix {
 #progressbar .ui-corner-all, #progressbar .ui-corner-bottom,
 #progressbar .ui-corner-right, #progressbar .ui-corner-br {
 	border-radius: 17px;
-	height: 30px;
+	height: 25px;
 }
 /***** Barra de progreso (fin) *****/
 
@@ -547,9 +552,13 @@ div.form textarea.success, div.form select.success {
 /***** Mensasjes de cargando y erro (inicio) *****/
 #cargando-principal {
     display: none;
+    position: absolute;
+    width: 300px;
+    z-index: 10;
     padding: 40px 14px 0px 14px;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    top: 5px;
+    left: 50%;
+    margin-left: -150px;
     color: #c09853;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     border: 1px solid #fbeed5;
@@ -564,7 +573,7 @@ div.form textarea.success, div.form select.success {
 .error {
     display: none;
     margin-top: 5px;
-    padding: 30px 14px 8px 14px;
+    padding: 8px 5px 8px 30px;
     margin-bottom: 18px;
     color: #c09853;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -574,8 +583,28 @@ div.form textarea.success, div.form select.success {
     -moz-border-radius: 4px;
     border-radius: 4px;
     color: #b94a48;
-    background: url("../images/error.png") no-repeat center 5px;
+    background: url("../images/error.png") no-repeat 4px center;
     background-color: #f2dede;
     border-color: #eed3d7;
+}
+#confirmacion {
+    display: none;
+    position: absolute;
+    width: 300px;
+    z-index: 10;
+    padding: 10px 5px 3px 30px;
+    top: 5px;
+    left: 50%;
+    margin-left: -150px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #3a87ad;    
+    background: url("../images/visto_bueno.png") no-repeat 5px center;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    height: 25px;
 }
 /***** Mensasjes de cargando y erro (fin) *****/
