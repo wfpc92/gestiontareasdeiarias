@@ -2,8 +2,10 @@
 /* @var $this SiteController */
 ?>
 
+<div id="cargando-principal"></div>
+<div id="confirmacion">Acción realizada correctamente....</div>
 <div id="contentIzq">
-    <div id="cargando-principal"></div>
+    
     <div id="error-principal"></div>
     <?php
     $form = '../categoria/_form';
@@ -102,6 +104,6 @@
             ?>
         </div>
         <div class="clear"></div>
-        <?php echo CHtml::Button(yii::t('app', 'Regresar'), array('id' => 'regresar')); ?>
+        <?php echo CHtml::Button(yii::t('app', 'Regresar'), array('id' => 'regresar'));?>
     </div>    
 </div>

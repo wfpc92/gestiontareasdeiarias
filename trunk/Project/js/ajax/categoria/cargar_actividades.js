@@ -11,6 +11,7 @@ var categoriaCargarAjax = function(select) {
             var htmlActividades = data.htmlActividades;
             var error = data.error;
             $("#div-lst-actividades").html(htmlActividades);
+            menus();
         }
     };
     var selectores = {

@@ -14,6 +14,7 @@ var actividadCrearAjax = function(form) {
             }
             items.append(htmlActividad);
             $("#txt-actividad-" + idCategoria).val("");
+            menus();
         }
     };
     var selectores = {

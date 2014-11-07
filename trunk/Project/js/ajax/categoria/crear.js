@@ -16,6 +16,7 @@ var categoriaCrearAjax = function(form) {
             }
             items.append(htmlCategoria);
             $("#txt-categoria").val("");
+            menus();
         }
     };
     var selectores = {
