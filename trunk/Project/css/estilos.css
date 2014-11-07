@@ -555,7 +555,7 @@ div.form textarea.success, div.form select.success {
     position: absolute;
     width: 300px;
     z-index: 10;
-    padding: 40px 14px 0px 14px;
+    padding: 45px 14px 0px 14px;
     top: 5px;
     left: 50%;
     margin-left: -150px;
@@ -569,6 +569,7 @@ div.form textarea.success, div.form select.success {
     background: url("../images/load.gif") no-repeat center 5px;
     background-color: #ffffff;
     height: 25px;
+    text-align: center;
 }
 .error {
     display: none;
