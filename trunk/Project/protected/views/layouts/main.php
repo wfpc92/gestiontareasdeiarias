@@ -40,6 +40,7 @@
         $cs->registerScriptFile($bu . 'js/ajax/tarea/guardar.js');
         $cs->registerScriptFile($bu . 'js/ajax/tarea/eliminar.js');
         $cs->registerScriptFile($bu . 'js/ajax/tarea/mostrar.js');
+        $cs->registerScriptFile($bu . 'js/ajax/tarea/arrastre.js');
         ?>
 
         <link rel="shortcut icon" href="favicon.ico">

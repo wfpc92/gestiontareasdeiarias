@@ -160,5 +160,14 @@ class Tarea extends CActiveRecord {
 
         return $rows;
     }
+    
+    public function cambiarADiaria($id){
+        $this->FECHA_INICIO = date('Y-m-d');//Calendario::getFechaFormatoHoy();
+        //$this->FECHA_INICIO = date(Calendario::getFechaFormatoHoy());
+        $this->ID_ACTIVIDAD = $id;
+        $this->validate();
+        return $this->save();
+        
+    }
 
 }

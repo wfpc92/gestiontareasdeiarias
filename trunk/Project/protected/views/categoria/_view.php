@@ -9,7 +9,7 @@ $idCategoria = $data->ID_CATEGORIA;
 <div id="categoria-<?php echo $idCategoria; ?>" 
      class="view">    
 
-    <div id="categoria-content-<?php echo $idCategoria; ?>" >
+    <div id="categoria-content-<?php echo $idCategoria; ?>">
         <?php
         echo CHtml::link($data->NOMBRE_CATEGORIA, "#", array(
             'class' => 'categoria',

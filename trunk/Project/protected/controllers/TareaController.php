@@ -459,33 +459,24 @@ class TareaController extends Controller {
     
     public function actionPooladiariaAjax() {
         $htmlTarea = NULL;
-        $htmlTareaEditar = NULL;
         $idActividad = NULL;
-        $idTarea = NULL;
         $error = NULL;
-
+        
+        var_dump($_REQUEST);
+        $idActividad = $_REQUEST['Tarea']['ID_ACTIVIDAD'];
+        
         if (isset($_REQUEST['Tarea'])) {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            $model->ID_ACTIVIDAD = NULL;
-            $model->PRIORIDAD = 0;
-            $result = $model->save();
-            if ($result) {
-                //$htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
-                //$htmlTareaEditar = $this->renderPartial('_editar_diaria', array('model' => $model), true);
-            } else {
-                $error = "ERROR: no se guardo la tarea";
-            }
+            
+            $model->cambiarADiaria($idActividad); //asignarle fecha de inicio, precondicion es que haya un id actividad.
+            $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
         } else {
             $error = "ERROR: peticion de arrastrar tarea mal formada.";
         }
         echo CJavaScript::jsonEncode(array(
-            //'htmlTarea' => $htmlTarea,
-            //'htmlTareaEditar' => $htmlTareaEditar,
-            //'idActividad' => $model->ID_ACTIVIDAD,
-            'idTarea' => $model->ID_TAREA,
+            'htmlTarea' => $htmlTarea,
+            'idActividad' => $model->ID_ACTIVIDAD,
             'error' => $error
         ));
     }
