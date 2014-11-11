@@ -31,7 +31,7 @@
                 , array('onchange' => 'return categoriaCargarAjax(this)')
         );
         ?>
-        <div id="div-lst-actividades"></div>
+        <div id="div-lst-actividades" ></div>
         <?php
         $this->renderPartial('_editar',array('model' => $model));
         /*
