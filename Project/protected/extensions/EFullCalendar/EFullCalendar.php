@@ -33,7 +33,7 @@ class EFullCalendar extends CWidget
     public $lang;
 
     public function run()
-    {
+    {            
         if ($this->lang) {
             $this->registerLocale();
         }

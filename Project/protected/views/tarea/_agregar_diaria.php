@@ -5,7 +5,7 @@
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/tarea/crearTareaPool',
         'htmlOptions' => array(
-            'onsubmit' => 'return tareaCrearAjax(this)',
+            'onsubmit' => 'return tareaCrearPoolAjax(this)',
             'class' => 'formTarea'
         )
     ));

@@ -25,23 +25,11 @@ class SiteController extends Controller {
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
+        //si el usuario no se ha logueado lo redirecciona al login
         if (Yii::app()->user->isGuest)
             $this->redirect(Yii::app()->createUrl('site/login'));
         else {
-            $fecha = date_create();
-            Calendario::setFecha($fecha);
-
-            $userId = Yii::app()->user->getId();
-            $contentVistaDiaria = $this->renderPartial('../tarea/_vista_diaria', array(
-                'userId' => $userId
-                    ), true);
-            $contentPoolTareas = $this->renderPartial('../tarea/_pool_tareas', array(
-                'userId' => $userId
-                    ), true);
-            $this->render('index', array(
-                'vistaIzquierda' => $contentVistaDiaria,
-                'vistaDerecha' => $contentPoolTareas
-            ));
+            $this->redirect(Yii::app()->createUrl('tarea/vistaDiaria'));
         }
     }
 

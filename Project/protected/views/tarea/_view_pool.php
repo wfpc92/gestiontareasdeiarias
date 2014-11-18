@@ -7,7 +7,7 @@ $idTarea = $data->ID_TAREA;
 ?>
 
 <div id="tarea-view-<?php echo $idTarea; ?>" class="view">
-    <?php
+    <?php    
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tarea-mostrar-form-' . $idTarea,
         'enableAjaxValidation' => false,
@@ -83,7 +83,7 @@ $idTarea = $data->ID_TAREA;
             <?php
             echo CHtml::link("Eliminar", "#", array(
                 'id' => 'lnk-tarea-eliminar-' . $idTarea,
-                'onclick' => 'return tareaEliminarModal(this)'
+                'onclick' => 'return tareaEliminarPoolModal(this)'
             ));
             ?>
         </li>

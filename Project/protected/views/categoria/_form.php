@@ -8,7 +8,8 @@
 <div class="form">
     <div id="error-form-categoria" class="error"></div>
     <?php
-    $form = $this->beginWidget('CActiveForm', array(
+    $idUsuario = $model->CORREO;    
+    $form = $this->beginWidget('CActiveForm', array(        
         'id' => 'categoria-form',
         'enableAjaxValidation' => false,
         'enableClientValidation' => true,
@@ -28,7 +29,7 @@
             'id' => 'txt-categoria',
             'size' => 60,
             'maxlength' => 100,
-            'placeholder' => 'Nueva Categoría'));
+            'placeholder' => 'Nombre Categoría'));
         echo $form->error($model, 'NOMBRE_CATEGORIA');
         ?>
     </div>
@@ -38,7 +39,8 @@
         $label = "Nueva categoria";
         $htmlOptions = array(
             'id' => 'btn-crear-categoria',
-            'name' => 'btn-crear-categoria'
+            'name' => 'btn-crear-categoria',
+            '' => ''
         );
         echo CHtml::submitButton($label, $htmlOptions);
         ?>
