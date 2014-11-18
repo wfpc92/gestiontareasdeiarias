@@ -30,7 +30,7 @@ $idCategoria = $model->ID_CATEGORIA;
             'class' => 'input-categoria',
             'size' => 60,
             'maxlength' => 100,
-            'placeholder' => 'Nueva Actividad'));
+            'placeholder' => 'Nombre Actividad'));
         echo $form->error($model, 'NOMBRE_ACTIVIDAD');
         ?>
     </div>

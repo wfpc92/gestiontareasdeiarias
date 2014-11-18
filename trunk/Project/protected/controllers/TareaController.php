@@ -268,27 +268,26 @@ class TareaController extends Controller {
             'error' => $error
         ));
     }
-    
+
     /**
      * Funcion que actualizar una tarea. 
      */
     public function actionActualizarAjax() {
-        $idActividad = (isset($_REQUEST['ID_ACTIVIDAD'])? $_REQUEST['ID_ACTIVIDAD'] : NULL);
+        $idActividad = (isset($_REQUEST['ID_ACTIVIDAD']) ? $_REQUEST['ID_ACTIVIDAD'] : NULL);
         $idTarea = NULL;
         $actualizar = FALSE;
         $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
-            $model = Tarea::model()->findByPk($idTarea);            
+            $model = Tarea::model()->findByPk($idTarea);
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
-            if($idActividad!=NULL){
+            if ($idActividad != NULL) {
                 $model->ID_ACTIVIDAD = $idActividad;
-            }
-            else{
+            } else {
                 $idActividad = $model->ID_ACTIVIDAD;
-            }            
+            }
             $model->CORREO = $userId;
             $model->scenario = "actualizarAjax";
 
@@ -323,18 +322,12 @@ class TareaController extends Controller {
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
             $model = Tarea::model()->findByPk($idTarea);
-            $model->attributes = $_REQUEST['Tarea'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            $idActividad = $model->ID_ACTIVIDAD;
-
-            if ($model->validate()) {
+            
+            if ($model != NULL) {
+                $idActividad = $model->ID_ACTIVIDAD;
                 $model->delete();
-                $progressBar = $model->progressBar(NULL);
+                //$progressBar = $model->progressBar(NULL);
                 $borrar = true;
-            }
-            if ($model->hasErrors()) {
-                $error = $model->getErrors();
             }
         } else {
             $error = "Error en el envio del formulario.";
@@ -357,7 +350,7 @@ class TareaController extends Controller {
         $idActividad = NULL;
         $progressBar = NULL;
         $error = NULL;
-        
+
         $estado = isset($_REQUEST["ESTADO"]) ? 1 : 0;
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
@@ -423,12 +416,17 @@ class TareaController extends Controller {
             $model->CORREO = $userId;
             $model->ID_ACTIVIDAD = NULL;
             $model->PRIORIDAD = 0;
-            $result = $model->save();
-            if ($result) {
+            $model->scenario = 'crearAjax';
+            if ($model->validate()) {
+                $model->save();
+                $idActividad = $model->ID_ACTIVIDAD;
+                $idTarea = $model->ID_TAREA;
+
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
-                $htmlTareaEditar = $this->renderPartial('_editar_diaria', array('model' => $model), true);
-            } else {
-                $error = "ERROR: no se guardo la tarea";
+                $htmlTareaEditar = $this->renderPartial('_pool_tareas', array('userId' => $userId), true);
+            }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
             }
         } else {
             $error = "ERROR: peticion de crear tarea mal formada.";
@@ -436,8 +434,8 @@ class TareaController extends Controller {
         echo CJavaScript::jsonEncode(array(
             'htmlTarea' => $htmlTarea,
             'htmlTareaEditar' => $htmlTareaEditar,
-            'idActividad' => $model->ID_ACTIVIDAD,
-            'idTarea' => $model->ID_TAREA,
+            'idActividad' => $idActividad,
+            'idTarea' => $idTarea,
             'error' => $error
         ));
     }
@@ -456,7 +454,7 @@ class TareaController extends Controller {
             echo CHtml::tag('option', array('value' => $value), CHtml::encode($NOMBRE_ACTIVIDAD), true);
         }
     }
-    
+
     public function actionPooladiariaAjax() {
         $htmlTarea = NULL;
         $idActividad = NULL;

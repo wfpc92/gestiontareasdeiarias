@@ -16,7 +16,7 @@ $this->breadcrumbs = array(
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'login-form',
-        'enableClientValidation' => true,
+        'enableClientValidation' => false,
         'clientOptions' => array(
             'validateOnSubmit' => true,
         ),
@@ -30,7 +30,7 @@ $this->breadcrumbs = array(
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'Contrasena'); ?>
+        <?php echo $form->labelEx($model, 'Contraseña'); ?>
         <?php echo $form->passwordField($model, 'password'); ?>
         <?php echo $form->error($model, 'password'); ?>		
     </div>
