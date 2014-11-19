@@ -460,7 +460,6 @@ class TareaController extends Controller {
         $idActividad = NULL;
         $error = NULL;
         
-        var_dump($_REQUEST);
         $idActividad = $_REQUEST['Tarea']['ID_ACTIVIDAD'];
         
         if (isset($_REQUEST['Tarea'])) {
@@ -474,7 +473,7 @@ class TareaController extends Controller {
         }
         echo CJavaScript::jsonEncode(array(
             'htmlTarea' => $htmlTarea,
-            'idActividad' => $model->ID_ACTIVIDAD,
+            'idActividad' => $idActividad,
             'error' => $error
         ));
     }

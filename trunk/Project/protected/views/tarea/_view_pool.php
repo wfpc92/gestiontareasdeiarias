@@ -6,7 +6,7 @@
 $idTarea = $data->ID_TAREA;
 ?>
 
-<div id="tarea-view-<?php echo $idTarea; ?>" class="view">
+<div id="tarea-view-<?php echo $idTarea; ?>" class="view" draggable="true" ondragstart="drag(event)">
     <?php    
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tarea-mostrar-form-' . $idTarea,
