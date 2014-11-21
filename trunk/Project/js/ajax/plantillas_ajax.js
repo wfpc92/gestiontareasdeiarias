@@ -52,7 +52,7 @@ var templateAjax1 = function(confAjax, selectores) {
                 }
             }
             if (confAjax.error) {
-                confAjax.error(jqXHR, text, thr);
+                confAjax.error(obj, text, thr);
             }
         }
     });
