@@ -4,6 +4,7 @@
 /* @var $form CActiveForm */
 
 $idTarea = $data->ID_TAREA;
+$fechaFormato = Calendario::getFechaFormato();
 ?>
 
 <div id="tarea-view-<?php echo $idTarea; ?>" class="view">

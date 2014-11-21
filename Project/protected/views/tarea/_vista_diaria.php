@@ -7,7 +7,7 @@ $fechaFormato = Calendario::getFechaFormato();
 $dataProvider = new CActiveDataProvider('Tarea', array(
     'pagination' => false,
     'criteria' => array(
-        'condition' => "Diaria != 0"
+        'condition' => "Diaria != 0 AND FECHA_INICIO='{$fechaFormato}'"
     ))
 );
 

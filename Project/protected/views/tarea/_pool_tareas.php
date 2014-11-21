@@ -13,7 +13,7 @@ $dataProvider = new CActiveDataProvider('Tarea', array(
     'pagination' => false,
     'criteria' => array(
         //'condition' => "FECHA_INICIO = '{$fechaFormato}' "
-        'condition' =>"CORREO = '{$userId}'" . "AND Diaria != 1"
+        'condition' =>"CORREO = '{$userId}' AND Diaria != 1"
     ))
 );
 

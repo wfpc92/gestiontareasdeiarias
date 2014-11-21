@@ -455,25 +455,27 @@ class TareaController extends Controller {
         }
     }
 
+    /* @var $model Tarea */
     public function actionPooladiariaAjax() {
         $htmlTarea = NULL;
         $idActividad = NULL;
         $error = NULL;
-        $idActividad = isset($_REQUEST['Tarea']['ID_ACTIVIDAD']) ? $_REQUEST['Tarea']['ID_ACTIVIDAD'] : NULL;
+        //$idActividad = isset($_REQUEST['Tarea']['ID_ACTIVIDAD']) ? $_REQUEST['Tarea']['ID_ACTIVIDAD'] : NULL;
         //var_dump($_REQUEST['Tarea']['NOMBRE_TAREA']);
 
-        if ($idActividad == NULL) {
-            if (isset($_REQUEST['Tarea'])) {
-                $idTarea = $_REQUEST['Tarea']['ID_TAREA'];
-                $model = Tarea::model()->findByPk($idTarea);
-
-                $model->cambiarADiaria($idActividad); //asignarle fecha de inicio, precondicion es que haya un id actividad.
+        if (isset($_REQUEST['Tarea'])) {
+            $idTarea = $_REQUEST['Tarea']['ID_TAREA'];
+            $hoy = ($_REQUEST['FECHA_HOY']);
+            $model = Tarea::model()->findByPk($idTarea);
+            $idActividad = $model->ID_ACTIVIDAD;
+            if($idActividad != NULL){
+                $model->cambiarADiaria($idActividad,$hoy); //asignarle fecha de inicio, precondicion es que haya un id actividad.
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
-            } else {
-                $error = "ERROR: peticion de arrastrar tarea mal formada.";
+            }else{
+                $error = 'No puede mover esta tarea porque no tiene una actividad asociada.';
             }
         } else {
-            $error = 'ERROR: La tarea no tiene una actividad asociada';
+            $error = "ERROR: peticion de arrastrar tarea mal formada.";
         }
         echo CJavaScript::jsonEncode(array(
             'htmlTarea' => $htmlTarea,
