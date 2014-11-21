@@ -33,7 +33,6 @@
 <div class="fluida">
     <div id="contentDer">
         <div id="actividad_progress_bar" class="progreso">
-            
             <div id="progressbar"> 
                 <span>Progreso: </span>
                 <?php
@@ -72,14 +71,14 @@
             </ul> 
         </div>
 
-        <div id="content-princ-izq" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div id="content-princ-izq">
             <?php
             if (isset($vistaIzquierda)) {
                 echo $vistaIzquierda;
             }
             ?>
         </div>
-        <div id = "content-princ-der" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div id = "content-princ-der">
             <?php
             if (isset($vistaDerecha)) {
                 echo $vistaDerecha;

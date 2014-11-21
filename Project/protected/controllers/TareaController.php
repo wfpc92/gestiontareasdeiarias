@@ -322,7 +322,7 @@ class TareaController extends Controller {
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
             $model = Tarea::model()->findByPk($idTarea);
-            
+
             if ($model != NULL) {
                 $idActividad = $model->ID_ACTIVIDAD;
                 $model->delete();
@@ -459,17 +459,21 @@ class TareaController extends Controller {
         $htmlTarea = NULL;
         $idActividad = NULL;
         $error = NULL;
-        
-        $idActividad = $_REQUEST['Tarea']['ID_ACTIVIDAD'];
-        
-        if (isset($_REQUEST['Tarea'])) {
-            $model = new Tarea;
-            $model->attributes = $_REQUEST['Tarea'];
-            
-            $model->cambiarADiaria($idActividad); //asignarle fecha de inicio, precondicion es que haya un id actividad.
-            $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
+        $idActividad = isset($_REQUEST['Tarea']['ID_ACTIVIDAD']) ? $_REQUEST['Tarea']['ID_ACTIVIDAD'] : NULL;
+        //var_dump($_REQUEST['Tarea']['NOMBRE_TAREA']);
+
+        if ($idActividad == NULL) {
+            if (isset($_REQUEST['Tarea'])) {
+                $idTarea = $_REQUEST['Tarea']['ID_TAREA'];
+                $model = Tarea::model()->findByPk($idTarea);
+
+                $model->cambiarADiaria($idActividad); //asignarle fecha de inicio, precondicion es que haya un id actividad.
+                $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
+            } else {
+                $error = "ERROR: peticion de arrastrar tarea mal formada.";
+            }
         } else {
-            $error = "ERROR: peticion de arrastrar tarea mal formada.";
+            $error = 'ERROR: La tarea no tiene una actividad asociada';
         }
         echo CJavaScript::jsonEncode(array(
             'htmlTarea' => $htmlTarea,
