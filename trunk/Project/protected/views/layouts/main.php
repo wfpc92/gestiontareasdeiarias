@@ -20,6 +20,7 @@
         $cs->registerCssFile($bu . 'css/estilos.css');
         $cs->registerCssFile($bu . 'css/responsive1200.css', 'screen and (max-width: 1200px)');
         $cs->registerCssFile($bu . 'css/responsive920.css', 'screen and (max-width: 920px)');
+        $cs->registerCssFile($bu . 'css/responsive768.css', 'screen and (max-width: 768px)');
         $cs->registerCssFile($bu . 'css/responsive700.css', 'screen and (max-width: 700px)');
         $cs->registerCssFile($bu . 'css/responsive360.css', 'screen and (max-width: 360px)');
 

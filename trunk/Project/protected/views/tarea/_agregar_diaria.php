@@ -6,7 +6,7 @@
         'action' => Yii::app()->homeUrl . '/tarea/crearTareaPool',
         'htmlOptions' => array(
             'onsubmit' => 'return tareaCrearPoolAjax(this)',
-            'class' => 'formTarea'
+            'class' => 'formTarea formPool'
         )
     ));
     ?>

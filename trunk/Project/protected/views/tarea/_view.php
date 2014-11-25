@@ -34,7 +34,7 @@ $fechaFormato = Calendario::getFechaFormato();
     ));
     
     $nomCompleto = $data->NOMBRE_TAREA . " ";
-    $maxLog=30;
+    $maxLog=25;
     $nomAbreviado = substr($nomCompleto,0,strrpos(substr($nomCompleto,0,$maxLog)," "));  
     
     echo CHtml::tag('p', array(
