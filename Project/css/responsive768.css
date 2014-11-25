@@ -1,8 +1,16 @@
-/***** Contenedores principales (inicio) *****/
-#contentIzq {
-    width: 30%;
+#logo a {
+    margin-left: -10px;
 }
-#contentDer {
-    width: 68%;
+#mainmenu {
+    right: 0px;
 }
-/***** Contenedores principales (fin) *****/
+.botones {
+    margin-right: 30px;
+}
+
+#content-princ-izq {
+    
+}
+#content-princ-der {
+    width: 100%;
+}

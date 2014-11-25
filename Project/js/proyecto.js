@@ -4,10 +4,21 @@ function posCalendario() {
 }
 $(document).ready(function() {
     
-    $("#content-princ-der")
+    if ($(window).width() <= 768) {
+        $("#content-princ-der").css("width", "100%");
+    }
+    else {
+        $("#content-princ-der")
             .css("width", "38%");
-    $("#content-princ-izq")
+        $("#content-princ-izq")
             .css("width", "58%");
+    }
+    
+    if ($("#content-princ-izq").width() <= 1200) {
+            $(".botones").css("margin-right", "30px");
+    } else {
+        $(".botones").css("margin-right", "25%");
+    }
 
     $("#regresar").click(function() {
         $("#contentDer").hide();
@@ -45,7 +56,7 @@ var ocultarCargando = function(div) {
 
 var mostrarError = function(div, mensaje) {
     div.css('display', 'block')
-            .addClass("error")
+            .addClass("mensaje-error")
             .html(mensaje);
 };
 var ocultarError = function(div) {
@@ -62,7 +73,7 @@ var mostrarPanelDerecho = function(html) {
                 .css("width", "100%")
                 .show()
                 .html(html);
-        $(".botones").css("margin-right", "40px");
+        $(".botones").css("margin-right", "30px");
     }
     else {
         $("#content-princ-izq").css("width", "58%");
@@ -72,7 +83,7 @@ var mostrarPanelDerecho = function(html) {
                 .html(html);
 
         if ($("#content-princ-izq").width() <= 600) {
-            $(".botones").css("margin-right", "40px");
+            $(".botones").css("margin-right", "30px");
         } else {
             $(".botones").css("margin-right", "25%");
         }

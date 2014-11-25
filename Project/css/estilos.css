@@ -66,6 +66,7 @@ div.view {
 	margin: 1px 0px;
 	font-size: 17px;
 	padding: 7px;
+        border-radius: 3px;
 }
 #categoria-list-view .items .view:hover,
 #content-princ-izq .list-view .items .view:hover {
@@ -176,7 +177,7 @@ div.nombre-actividad {
 }
 
 /***** Formularios (inicio) *****/
-#categoria-form, .formActividad {
+#categoria-form, .formActividad, .formPool {
 	width: 100%;
 }
 	#categoria-form .row {
@@ -201,8 +202,9 @@ div.nombre-actividad {
 }
 #categoria-form .row label,
 .actividadesPorCate .form .formActividad label,
-#content-princ-izq .form .formTarea label {
-	display: none;
+#content-princ-izq .form .formTarea label,
+.form .formPool label {
+    display: none;
 }
 #categoria-form .row input[type="text"],
 .actividadesPorCate .form .formActividad .row input[type="text"] {
@@ -215,7 +217,8 @@ div.nombre-actividad {
 }
 #categoria-form div.buttons input[type="submit"],
 .actividadesPorCate .form .formActividad .buttons input[type="submit"],
-#content-princ-izq .form .formTarea .buttons input[type="submit"] {
+#content-princ-izq .form .formTarea .buttons input[type="submit"],
+.form .formPool .buttons input[type="submit"] {
 	display: block;
 	width: 24px;
 	height: 23px;
@@ -224,7 +227,14 @@ div.nombre-actividad {
 	background: url("../images/agregar.png") no-repeat center;
 	border: none;
 }
-#content-princ-izq .form .formTarea .buttons input[type="submit"] {
+#categoria-form div.buttons input[type="submit"]:hover,
+.actividadesPorCate .form .formActividad .buttons input[type="submit"]:hover ,
+#content-princ-izq .form .formTarea .buttons input[type="submit"]:hover ,
+.form .formPool .buttons input[type="submit"]:hover {
+	background: url("../images/agregarHover.png") no-repeat center;
+}
+#content-princ-izq .form .formTarea .buttons input[type="submit"],
+.form .formPool .buttons input[type="submit"] {
 	float: right;
 	margin-top: -34px;
 }
@@ -234,6 +244,13 @@ div.nombre-actividad {
 .form .formTarea .row input[type="text"] {
 	padding: 0px 7px;
 	width: 85%;
+}
+#content-princ-der div.form {
+	width: 100%;
+}
+.form .formPool .row input[type="text"] {
+	padding: 0px 7px;
+	width: 80%;
 }
 #content-princ-izq .form .formTarea .buttons input[type="submit"] {
 	margin-top: -35px;
@@ -256,7 +273,7 @@ div.nombre-actividad {
 }  
 	#progressbar span {
 		float: left;
-		line-height: 32px;
+		line-height: 24px;
 		padding-right: 10px; 
 	}
 #progressbar {
@@ -315,7 +332,8 @@ div.nombre-actividad {
 /***** Menus categotia, actividad y tarea (inicio) *****/
 #categoria-list-view .items .view a.menu-categoria,
 .actividadesPorCate .list-view .items .view a.menu-actividad,
-#content-princ-izq .list-view .items .view a.menu-tarea {
+#content-princ-izq .list-view .items .view a.menu-tarea,
+a.menu-tarea {
 	display: none;
 	position: absolute;
 	width: 36px;
@@ -331,12 +349,14 @@ div.nombre-actividad {
 }
 #categoria-list-view .items .view:hover a.menu-categoria,
 .actividadesPorCate .list-view .items .view:hover a.menu-actividad,
-#content-princ-izq .list-view .items .view:hover a.menu-tarea {
+#content-princ-izq .list-view .items .view:hover a.menu-tarea,
+.pool-tarea:hover a.menu-tarea {
 	display: block; 
 }
 #categoria-list-view .items .view a.menu-categoria:hover,
 .actividadesPorCate .list-view .items .view a.menu-actividad:hover,
-#content-princ-izq .list-view .items .view a.menu-tarea:hover {
+#content-princ-izq .list-view .items .view a.menu-tarea:hover,
+.pool-tarea a.menu-tarea:hover {
 	background: url("../images/bt-menuHover.png") no-repeat;
 }
 ul.categoria, ul.actividad, ul.tarea  {
@@ -361,6 +381,12 @@ ul.categoria, ul.actividad, ul.tarea  {
 		}
 	ul.categoria li.editar, ul.actividad li.editar {
 		background: url("../images/editar.png") no-repeat 0 center;
+	}
+        ul.categoria li.editar:hover, ul.actividad li.editar:hover, 
+        ul.categoria li.eliminar:hover, ul.actividad li.eliminar:hover,
+        ul.tarea li.eliminar:hover {
+                background-color: #CAC6D5;
+                border-radius: 3px;
 	}
 		ul.categoria li.editar a:link, ul.categoria li.editar a:visited,
 		ul.actividad li.editar a:link, ul.actividad li.editar a:visited {
@@ -420,7 +446,7 @@ ul.tarea li.eliminar {
 		margin-left: 40px;
 	}
 	.botones .play-tarea:hover {
-		background: url("../images/play.png") no-repeat center;
+		background: url("../images/playHover.png") no-repeat center;
 	}
 	.botones .pause-tarea:hover {
 		background: url("../images/pause.png") no-repeat center;
@@ -431,7 +457,7 @@ ul.tarea li.eliminar {
 		padding: 0 !important;
 	}
 /***** Duración botones play y paluse (fin) *****/
-input[type="checkbox"] {
+.view .form-tarea input[type="checkbox"] {
 	display: inline-block;
 	float: left;
 	margin: 3px 10px 0; 
@@ -483,20 +509,20 @@ div.form textarea.success, div.form select.success {
   background: #ffffff;
 }
 .login {
-	width: 320px;
-	border: 1px solid #BDC7D8;
-	border-radius: 5px;
-	margin: 10px auto;
-	padding: 10px;
-	background: #FFFFFF;
+    width: 320px;
+    border: 1px solid #BDC7D8;
+    border-radius: 5px;
+    margin: 10px auto;
+    padding: 10px;
+    background: #FFFFFF;
 }
-	.login h2 {
-		font-size: 20px;
-		padding-bottom: 20px;
-	}
+    .login h2 {
+        font-size: 20px;
+        padding-bottom: 20px;
+    }
 #login-form p {
-	font-size: 14px;
-	padding-bottom: 10px;
+    font-size: 14px;
+    padding-bottom: 10px;
 }
 #login-form input[type="checkbox"] {
 	float: none;
@@ -571,7 +597,7 @@ div.form textarea.success, div.form select.success {
     height: 25px;
     text-align: center;
 }
-.error {
+.mensaje-error {
     display: none;
     margin-top: 5px;
     padding: 8px 5px 8px 30px;
@@ -609,3 +635,12 @@ div.form textarea.success, div.form select.success {
     height: 25px;
 }
 /***** Mensasjes de cargando y erro (fin) *****/
+
+#content-princ-izq h2 {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+div.pool-tarea:hover {
+    background-color: #E1E2E5;
+    cursor: pointer;
+}
