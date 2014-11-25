@@ -66,7 +66,12 @@
                     ?>
                 </li>
                 <li class="reportes">
-                    <a href="#">Reportes</a>
+                    <?php
+                    $text = "Reportes";
+                    $url = Yii::app()->urlManager->createUrl("reportes");
+                    $htmlOptions = array();
+                    echo CHtml::link($text, $url, $htmlOptions);
+                    ?>
                 </li>
             </ul> 
         </div>
