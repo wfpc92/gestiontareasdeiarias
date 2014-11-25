@@ -12,8 +12,9 @@ $this->renderPartial($form, array('model' => $modelTarea));
 $dataProvider = new CActiveDataProvider('Tarea', array(
     'pagination' => false,
     'criteria' => array(
-        //'condition' => "FECHA_INICIO = '{$fechaFormato}' "
-        'condition' =>"CORREO = '{$userId}' AND Diaria != 1"
+        'condition' => "CORREO = '{$userId}'"
+        . " AND ID_ACTIVIDAD = 0 "
+        ."AND FECHA_INICIO = '{$fechaFormato}' "
     ))
 );
 
