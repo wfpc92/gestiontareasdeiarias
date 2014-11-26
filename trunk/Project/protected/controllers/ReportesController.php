@@ -34,10 +34,8 @@ class ReportesController extends Controller
                 $fechaInicio = $_REQUEST['Tarea']['FECHA_INICIO'];
                 $fechaFin = $_REQUEST['Tarea']['FECHA_FIN'];
             }            
-            $productividad = $model->getProductividad($fechaInicio,$fechaFin);
-            $fechasProductividad = $model->getFechasProductividad($fechaInicio,$fechaFin);
-            $this->render('esfuerzoDiaGraficas',array('productividad'=>$productividad,
-                    'fechasProductividad'=>$fechasProductividad));
+            $productividad = $model->getProductividad($fechaInicio,$fechaFin);            
+            $this->render('esfuerzoDiaGraficas',array('productividad'=>$productividad));
         }
 	// Uncomment the following methods and override them if needed
 	/*

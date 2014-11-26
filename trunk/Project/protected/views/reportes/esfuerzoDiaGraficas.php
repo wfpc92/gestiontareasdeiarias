@@ -1,7 +1,7 @@
-<?php
-
+<?php    
     $producNumero = array();
-    foreach($productividad as $prod){
+    $producFecha = array();
+    foreach($productividad as $prod){        
         switch($prod['productividad']){
             case 'alta':
                 $producNumero[] = 3;
@@ -13,8 +13,8 @@
                 $producNumero[] = 1;
                 break;
         }
-    }
-    var_dump($producNumero);
+        $producFecha[] = $prod['fecha_productividad'];
+    }        
 ?>
 <?php 
         $this->widget(
@@ -23,7 +23,7 @@
                 'width' => 600,
                 'height' => 300,
                 'htmlOptions' => array(),
-                'labels' => array("January"),
+                'labels' => $producFecha,
                 'datasets' => array(
                     array(
                         "fillColor" => "rgba(220,220,220,0.5)",
@@ -43,15 +43,15 @@
         <th>Día</th>
     </tr>        
         <?php
-        foreach($fechasProductividad as $fech){
+        foreach($productividad as $prod){
         ?>
-        <tr>
-            <td>
-            <?php
-                echo $fech['fecha_productividad'];
-            }
-            ?>
-            </td>
+    <tr>
+        <td>
+        <?php
+            echo $prod['fecha_productividad'].'  ';
+        }
+        ?>
+        </td>
     </tr>
 </table>
 <table>
@@ -68,5 +68,6 @@
         }
         ?>
         </td>
+    </tr>
 </table>
 
