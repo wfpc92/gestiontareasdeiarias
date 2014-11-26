@@ -86,30 +86,12 @@ class Reportes {
     public function getProductividad($fechaInicio,$fechaFin){
         $connection = Yii::app()->db;
         $userId = Yii::app()->user->getId();
-        $sql = 'SELECT productividad
+        $sql = 'SELECT productividad, fecha_productividad
                 FROM productividad
                 WHERE fecha_productividad <= \''.$fechaFin.'\'
                 AND fecha_productividad >= \''.$fechaInicio.'\'
-                AND id_usuario = \''.$userId.'\'';
-        $command = $connection->createCommand($sql);
-        $dataReader = $command->query();
-        // using foreach to traverse through every row of data
-        //foreach ($dataReader as $row) { 
-        //}
-        // retrieving all rows at once in a single array
-        $rows = $dataReader->readAll();
-        
-        return $rows;
-    }
-    
-    public function getFechasProductividad($fechaInicio,$fechaFin){
-        $connection = Yii::app()->db;
-        $userId = Yii::app()->user->getId();
-        $sql = 'SELECT fecha_productividad
-                FROM productividad
-                WHERE fecha_productividad <= \''.$fechaFin.'\'
-                AND fecha_productividad >= \''.$fechaInicio.'\'
-                AND id_usuario = \''.$userId.'\'';
+                AND id_usuario = \''.$userId.'\'
+                ORDER BY `fecha_productividad` ASC';
         $command = $connection->createCommand($sql);
         $dataReader = $command->query();
         // using foreach to traverse through every row of data
