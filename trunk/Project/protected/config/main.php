@@ -9,26 +9,20 @@
 function cadenaConexion() {
     $servidor = $_SERVER['SERVER_NAME'];
     $clave = "wfpc92.tk";
-    
-    //Yii::setPathOfAlias('ecalendarview', dirname(__FILE__).'/../extensions/ecalendarview');
+
     if (strpos($servidor, $clave) !== FALSE) {
-        return array(
-            'class' => 'CDbConnection',
-            'connectionString' => 'mysql:host=mysql.nixiweb.com;dbname=u974710561_proy2',
-            'emulatePrepare' => true,
+        $conn = ['connectionString' => 'mysql:host=mysql.nixiweb.com;dbname=u974710561_proy2',
             'username' => 'u974710561_proy2',
-            'password' => 'u974710561_proy2',
-            'charset' => 'utf8',
-        );
+            'password' => 'u974710561_proy2'];
     } else {
-        return array(
-            'connectionString' => 'mysql:host=localhost;dbname=proyecto2',
-            'emulatePrepare' => true,
+        $conn = [ 'connectionString' => 'mysql:host=localhost;dbname=u974710561_proy2',
             'username' => 'root',
-            'password' => 'root',
-            'charset' => 'utf8',
-        );
+            'password' => ''];
     }
+    return ['class' => 'CDbConnection',
+        'emulatePrepare' => true,
+        'charset' => 'utf8',
+        'tablePrefix' => 'hola'] + $conn;
 }
 
 // uncomment the following to define a path alias
@@ -40,7 +34,7 @@ return array(
     'name' => 'Planificación de Actividades Diarias',
     'theme' => 'classic', // requires you to copy the theme under your themes directory
     // preloading 'log' component
-    'preload' => array('log'),
+    'preload' => array(),//'log'),
     'language' => 'es',
     // autoloading model and component classes
     'import' => array(
@@ -81,6 +75,7 @@ return array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
+        /*
         'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
@@ -93,9 +88,9 @@ return array(
               array(
               'class'=>'CWebLogRoute',
               ),
-             */
+             
             ),
-        ),
+        ),*/
         'clientScript' => array(
             'enableJavaScript' => true
         ),
@@ -106,5 +101,4 @@ return array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
     ),
-    
 );

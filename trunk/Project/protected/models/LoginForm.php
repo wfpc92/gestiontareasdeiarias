@@ -20,9 +20,11 @@ class LoginForm extends CFormModel {
     public function rules() {
         return array(
             // username and password are required
-            array('username, password', 'required'),
+            array('username, password', 'required',
+                'message' => 'El campo {attribute} no debe estar vacio.'),
             // rememberMe needs to be a boolean
             array('rememberMe', 'boolean'),
+            array('username', 'email'),
             // password needs to be authenticated
             array('password', 'authenticate'),
         );
@@ -33,7 +35,9 @@ class LoginForm extends CFormModel {
      */
     public function attributeLabels() {
         return array(
-            'rememberMe' => 'Remember me next time',
+            'username' => 'Correo',
+            'password' => 'Contraseña',
+            'rememberMe' => 'Recordarme.',
         );
     }
 
@@ -44,8 +48,9 @@ class LoginForm extends CFormModel {
     public function authenticate($attribute, $params) {
         if (!$this->hasErrors()) {
             $this->_identity = new UserIdentity($this->username, $this->password);
-            if (!$this->_identity->authenticate())
-                $this->addError('password', 'Correo o Contraseña incorrectos');
+            if (!$this->_identity->authenticate()) {
+                $this->addError('password', 'Correo o constraseña incorrectos.');
+            }
         }
     }
 
@@ -62,8 +67,9 @@ class LoginForm extends CFormModel {
             $duration = $this->rememberMe ? 3600 * 24 * 30 : 0; // 30 days
             Yii::app()->user->login($this->_identity, $duration);
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 
 }

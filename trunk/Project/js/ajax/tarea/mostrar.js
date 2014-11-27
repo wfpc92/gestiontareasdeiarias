@@ -1,5 +1,6 @@
 var tareaMostrarAjax = function(self) {
-    var form = $(self).parent("form");
+    var form = $(self).parents("form");
+    console.log(form)
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/mostrarAjax',
@@ -15,7 +16,7 @@ var tareaMostrarAjax = function(self) {
         }
     };
     var selectores = {
-        divCargando: $("#cargando-principal"),
+        divCargandto: $("#cargando-principal"),
         divError: $("#error-principal")
     };
     templateAjax1(confAjax, selectores);

@@ -24,9 +24,3 @@ var actividadCrearAjax = function(form) {
     templateAjax1(confAjax, selectores);
     return false;
 };
-
-var actividadMenu = function(self) {
-    var contenedor = $(self);
-    $(contenedor).siblings("ul").eq(0).slideToggle();
-    return false;
-}

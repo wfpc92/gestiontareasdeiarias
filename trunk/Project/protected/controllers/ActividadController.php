@@ -21,121 +21,17 @@ class ActividadController extends Controller {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array(
-                    'index',
-                    'view',
                     'crearAjax',
                     'listarTareasAjax',
                     'editarFormAjax',
                     'editarAjax',
                     'eliminarAjax'),
-                'users' => array('*'),
-            ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
                 'users' => array('@'),
-            ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
-    }
-
-    /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
-
-    /**
-     * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     */
-    public function actionCreate() {
-        $model = new Actividad;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Actividad'])) {
-            $model->attributes = $_POST['Actividad'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->ID_ACTIVIDAD));
-        }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
-    }
-
-    /**
-     * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id the ID of the model to be updated
-     */
-    public function actionUpdate($id) {
-        $model = $this->loadModel($id);
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Actividad'])) {
-            $model->attributes = $_POST['Actividad'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->ID_ACTIVIDAD));
-        }
-
-        $this->render('update', array(
-            'model' => $model,
-        ));
-    }
-
-    /**
-     * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
-     * @param integer $id the ID of the model to be deleted
-     */
-    public function actionDelete($id) {
-        $this->loadModel($id)->delete();
-
-        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-    }
-
-    /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Actividad');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
-        $model = new Actividad('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Actividad']))
-            $model->attributes = $_GET['Actividad'];
-
-        $this->render('admin', array(
-            'model' => $model,
-        ));
     }
 
     /**
@@ -175,12 +71,11 @@ class ActividadController extends Controller {
         if (isset($_REQUEST['Actividad'])) {
             $model = new Actividad;
             $model->attributes = $_REQUEST['Actividad'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
+
             if ($model->validate()) {
                 $model->save();
-                $idCategoria = $model->ID_CATEGORIA;
-                $idActividad = $model->ID_ACTIVIDAD;
+                $idCategoria = $model->id_categoria;
+                $idActividad = $model->id_actividad;
                 $htmlActividad = $this->renderPartial('_view', array('data' => $model), true);
             }
             if ($model->hasErrors()) {
@@ -208,7 +103,7 @@ class ActividadController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Actividad'])) {
-            $idActividad = $_REQUEST['Actividad']['ID_ACTIVIDAD'];
+            $idActividad = $_REQUEST['Actividad']['id_actividad'];
             $model = Actividad::model()->findByPk($idActividad);
             $progressBar = $model->progressBar(NULL);
             $htmlTareas = $this->renderPartial('_listar_tareas', array(
@@ -232,7 +127,7 @@ class ActividadController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Actividad'])) {
-            $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
+            $idActividad = $_REQUEST["Actividad"]["id_actividad"];
             $model = Actividad::model()->findByPk($idActividad);
             if ($model !== NULL) {
                 $htmlEditarForm = $this->renderPartial('_editar', array(
@@ -258,12 +153,12 @@ class ActividadController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Actividad'])) {
-            $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
+            $idActividad = $_REQUEST["Actividad"]["id_actividad"];
             $model = Actividad::model()->findByPk($idActividad);
             $model->attributes = $_REQUEST['Actividad'];
             if ($model->validate()) {
                 $model->save();
-                $htmlActividad = CHtml::link($model->NOMBRE_ACTIVIDAD, "#", array(
+                $htmlActividad = CHtml::link($model->nombre_actividad, "#", array(
                             'id' => 'lnk-tarea-listar-' . $idActividad,
                             'class' => 'actividad',
                             'onclick' => 'return actividadListarTareasAjax(this)'
@@ -291,7 +186,7 @@ class ActividadController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Actividad'])) {
-            $idActividad = $_REQUEST["Actividad"]["ID_ACTIVIDAD"];
+            $idActividad = $_REQUEST["Actividad"]["id_actividad"];
             $model = Actividad::model()->findByPk($idActividad);
             if ($model->validate()) {
                 $model->eliminarActividad();

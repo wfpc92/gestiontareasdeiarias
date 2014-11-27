@@ -3,7 +3,7 @@
 /* @var $data Tarea */
 /* @var $form CActiveForm */
 
-$idTarea = $data->ID_TAREA;
+$idTarea = $data->id_tarea;
 $fechaFormato = Calendario::getFechaFormato();
 ?>
 
@@ -18,70 +18,73 @@ $fechaFormato = Calendario::getFechaFormato();
         )
     ));
 
-    echo $form->hiddenField($data, 'ID_TAREA');
-    if ($data->FECHA_INICIO != NULL){
-        echo $form->hiddenField($data, 'FECHA_INICIO');
-    }
-    echo CHtml::hiddenField('FECHA_HOY',  Calendario::getFechaFormato());
-    
+    echo $form->hiddenField($data, 'id_tarea');
+    echo $form->hiddenField($data, 'fecha_inicio');
+    echo CHtml::hiddenField('FECHA_HOY', Calendario::getFechaFormato());
+
     $check = false;
-    if ($data->ESTADO == 1) {
+    if ($data->estado == Tarea::ESTADOFINALIZADA) {
         $check = true;
     }
-    echo CHtml::checkBox("ESTADO", $check, array(
+    echo CHtml::checkBox("estado", $check, array(
         'onchange' => 'return tareaCheckAjax(this)',
         'title' => 'Verifique la casilla si finalizó la tarea.'
     ));
-    
-    $nomCompleto = $data->NOMBRE_TAREA . " ";
-    $maxLog=25;
-    $nomAbreviado = substr($nomCompleto,0,strrpos(substr($nomCompleto,0,$maxLog)," "));  
-    
+
+    $nomCompleto = "{$data->nombre_tarea} ";
+    $maxLog = 25;
+    $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
+
     echo CHtml::tag('p', array(
         'id' => 'p-tarea-nombre-' . $idTarea,
-        'onclick' => 'return tareaMostrarAjax(this)',
+        'onclick' => 'return tareaToogle(this)',
+            ), $nomAbreviado);
+
+    $nomCompleto = "{$data->idActividad->nombre_actividad} ";
+    $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
+
+    echo CHtml::tag('p', array(
+        'id' => 'p-tarea-actividad-' . $idTarea
             ), $nomAbreviado);
     ?>
     <div class="botones">
         <?php
-        $label = "Play Tarea";
-        $htmlOptions = array(
+        echo CHtml::button("Play Tarea", array(
             'id' => 'btn-play-tarea-' . $idTarea,
             'name' => 'btn-play-tarea-' . $idTarea,
-            'class' => 'play-tarea'
-        );
-        echo CHtml::button($label, $htmlOptions);
+            'class' => 'play-tarea',
+            'onclick' => 'return tareaIniciarAjax(this)'
+        ));
 
-        $label = "Pausar Tarea";
-        $htmlOptions = array(
+        echo CHtml::button("Pausar Tarea", array(
             'id' => 'lnk-pausar-tarea-' . $idTarea,
             'name' => 'lnk-pausar-tarea-' . $idTarea,
-            'class' => 'pause-tarea'
-        );
-        echo CHtml::button($label, $htmlOptions);
+            'class' => 'pause-tarea',
+            'onclick' => 'return tareaPausarAjax(this)'
+        ));
 
+        echo CHtml::label("Duracion", "p-duracion-tarea-{$idTarea}");
         echo CHtml::tag('p', array(
-            'id' => 'p-duracion-tarea-' . $idTarea
-                ), $data->DURACION);
+            'id' => "p-duracion-tarea-{$idTarea}"
+                ), $data->getDuracion());
         ?>
         <div class="clearFix"></div>
     </div>
     <?php
-    /* $label = "Eliminar Tarea";
-      $htmlOptions = array(
-      'id' => 'lnk-eliminar-tarea-' . $idTarea,
-      'name' => 'lnk-eliminar-tarea-' . $idTarea,
-      'class' => 'eliminar-tarea',
-      'onclick' => 'return tareaEliminarAjax(this)'
-      );
-      echo CHtml::link($label, "#", $htmlOptions); */
-
     echo CHtml::link("Menú Tarea", "", array(
         'class' => 'menu-tarea',
         'onclick' => 'return tareaMenu(this)'
     ));
     ?>
     <ul class="tarea">
+        <li class="editar">
+            <?php
+            echo CHtml::link("Editar", "#", array(
+                'id' => 'lnk-tarea-editar-form-' . $idTarea,
+                'onclick' => 'return tareaMostrarAjax(this)'
+            ));
+            ?>
+        </li>
         <li class="eliminar">
             <?php
             echo CHtml::link("Eliminar", "#", array(
@@ -92,7 +95,30 @@ $fechaFormato = Calendario::getFechaFormato();
         </li>
     </ul>
     <br />
-    <?php
-    $this->endWidget();
-    ?>
+
+    <div class="desplegable">
+        <?php
+        $dataProvider = new CActiveDataProvider('RegistroTarea', array(
+            'pagination' => false,
+            'criteria' => array(
+                'condition' => "id_tarea={$idTarea}"
+            )
+        ));
+
+        $this->widget('zii.widgets.CListView', array(
+            'dataProvider' => $dataProvider,
+            'itemView' => '../registro_tarea/_view',
+            'enablePagination' => false,
+            'htmlOptions' => array(
+                'id' => "lst-registro-tarea-{$idTarea}"
+            )
+        ));
+        ?>
+
+
+        <div class="clearFix"></div>
+    </div>
+    <?php $this->endWidget(); ?>
+
+
 </div>

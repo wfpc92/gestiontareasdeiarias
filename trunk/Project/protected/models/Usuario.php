@@ -4,14 +4,21 @@
  * This is the model class for table "usuario".
  *
  * The followings are the available columns in table 'usuario':
- * @property string $NOMBRES
- * @property string $APELLIDOS
- * @property string $CORREO
- * @property string $CONTRASENA
+ * @property string $id_usuario
+ * @property string $correo
+ * @property string $nombres
+ * @property string $apellidos
+ * @property string $contrasena
+ * @property integer $nivel_admin
+ * @property string $fecha_registro
+ *
+ * The followings are the available model relations:
+ * @property Categoria[] $categorias
+ * @property Tarea[] $tareas
  */
 class Usuario extends CActiveRecord {
 
-    public $repeat_password;
+    public $repetir_contrasena;
 
     /**
      * @return string the associated database table name
@@ -27,13 +34,17 @@ class Usuario extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('CORREO', 'required'),
-            array('NOMBRES, APELLIDOS, CORREO', 'length', 'max' => 100),
-            array('CONTRASENA, repeat_password', 'length', 'max' => 50),
-            array('CONTRASENA', 'compare', 'compareAttribute' => 'repeat_password'),
+            array('correo, nombres, apellidos, contrasena, repetir_contrasena', 'required',
+                'message' => 'El campo {attribute} no debe estar vacio.'),
+            array('nivel_admin', 'numerical', 'integerOnly' => true),
+            array('correo, nombres, apellidos', 'length', 'max' => 100),
+            array('contrasena, repetir_contrasena', 'length', 'max' => 50),
+            array('contrasena', 'compare', 'compareAttribute' => 'repetir_contrasena'),
+            array('correo', 'unique', 'className' => 'Usuario'),
+            array('correo', 'email'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('NOMBRES, APELLIDOS, CORREO, CONTRASENA', 'safe', 'on' => 'search'),
+            array('id_usuario, correo, nombres, apellidos, contrasena, nivel_admin, fecha_registro', 'safe', 'on' => 'search'),
         );
     }
 
@@ -44,6 +55,8 @@ class Usuario extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'categorias' => array(self::HAS_MANY, 'Categoria', 'id_usuario'),
+            'tareas' => array(self::HAS_MANY, 'Tarea', 'id_usuario'),
         );
     }
 
@@ -52,11 +65,13 @@ class Usuario extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'NOMBRES' => 'Nombres',
-            'APELLIDOS' => 'Apellidos',
-            'CORREO' => 'Correo',
-            'CONTRASENA' => 'Contrasena',
-            'repeat_password' => 'Confirmar contrasena'
+            'id_usuario' => 'Id Usuario',
+            'correo' => 'Correo',
+            'nombres' => 'Nombres',
+            'apellidos' => 'Apellidos',
+            'contrasena' => 'Contrasena',
+            'nivel_admin' => 'Nivel Admin',
+            'fecha_registro' => 'Fecha Registro',
         );
     }
 
@@ -77,10 +92,13 @@ class Usuario extends CActiveRecord {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('NOMBRES', $this->NOMBRES, true);
-        $criteria->compare('APELLIDOS', $this->APELLIDOS, true);
-        $criteria->compare('CORREO', $this->CORREO, true);
-        $criteria->compare('CONTRASENA', $this->CONTRASENA, true);
+        $criteria->compare('id_usuario', $this->id_usuario, true);
+        $criteria->compare('correo', $this->correo, true);
+        $criteria->compare('nombres', $this->nombres, true);
+        $criteria->compare('apellidos', $this->apellidos, true);
+        $criteria->compare('contrasena', $this->contrasena, true);
+        $criteria->compare('nivel_admin', $this->nivel_admin);
+        $criteria->compare('fecha_registro', $this->fecha_registro, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -95,6 +113,15 @@ class Usuario extends CActiveRecord {
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
+    }
+
+    public function nombreUsuarioActual() {
+        $nombre = "";
+        $usuario = Usuario::model()->findByPk(Yii::app()->user->getId());
+        if ($usuario !== NULL) {
+            $nombre = $usuario->nombres;
+        }
+        return $nombre;
     }
 
 }

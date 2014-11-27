@@ -3,8 +3,8 @@
 /* @var $data Actividad */
 /* @var $form CActiveForm  */
 
-$idActividad = $data->ID_ACTIVIDAD;
-$nombreActividad = $data->NOMBRE_ACTIVIDAD;
+$idActividad = $data->id_actividad;
+$nombreActividad = $data->nombre_actividad;
 ?>
 
 <div id="actividad-<?php echo CHtml::encode($idActividad); ?>" class="view">
@@ -15,7 +15,7 @@ $nombreActividad = $data->NOMBRE_ACTIVIDAD;
         'action' => Yii::app()->homeUrl . '/actividad'
     ));
 
-    echo $form->hiddenField($data, "ID_ACTIVIDAD");
+    echo $form->hiddenField($data, "id_actividad");
     ?>
 
     <div id="actividad-error-<?php echo $idActividad; ?>" class="error"></div>
@@ -61,9 +61,4 @@ $nombreActividad = $data->NOMBRE_ACTIVIDAD;
     <?php
     $this->endWidget();
     ?>
-
-
 </div>
-
-
-

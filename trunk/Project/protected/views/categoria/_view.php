@@ -3,7 +3,8 @@
 /* @var $data Categoria */
 /* @var $form CActiveForm */
 
-$idCategoria = $data->ID_CATEGORIA;
+$idCategoria = $data->id_categoria;
+$nombreCategoria = $data->nombre_categoria;
 ?>
 
 <div id="categoria-<?php echo $idCategoria; ?>" 
@@ -11,7 +12,7 @@ $idCategoria = $data->ID_CATEGORIA;
 
     <div id="categoria-content-<?php echo $idCategoria; ?>">
         <?php
-        echo CHtml::link($data->NOMBRE_CATEGORIA, "#", array(
+        echo CHtml::link($nombreCategoria, "#", array(
             'class' => 'categoria',
             'onclick' => 'return categoriaToogle(this)'
         ));
@@ -24,7 +25,7 @@ $idCategoria = $data->ID_CATEGORIA;
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/categoria'
     ));
-    echo $form->hiddenField($data, 'ID_CATEGORIA');
+    echo $form->hiddenField($data, 'id_categoria');
 
     echo CHtml::link("Menú Categoría", "", array(
         'class' => 'menu-categoria',
@@ -53,17 +54,16 @@ $idCategoria = $data->ID_CATEGORIA;
     <?php $this->endWidget(); ?>
 
 
-    <div class="actividadesPorCate">
+    <div class="actividadesPorCate desplegable">
         <?php
-        $form = '../actividad/_form';
         $modelActividad = new Actividad;
-        $modelActividad->ID_CATEGORIA = $data->ID_CATEGORIA;
-        $this->renderPartial($form, array('model' => $modelActividad));
+        $modelActividad->id_categoria = $idCategoria;
+        $this->renderPartial('../actividad/_form', array('model' => $modelActividad));
 
         $dataProvider = new CActiveDataProvider('Actividad', array(
             'pagination' => false,
             'criteria' => array(
-                'condition' => 'ID_CATEGORIA=' . $data->ID_CATEGORIA
+                'condition' => "id_categoria={$data->id_categoria}"
             )
         ));
 

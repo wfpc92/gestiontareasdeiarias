@@ -6464,7 +6464,8 @@ class CClientScript extends CApplicationComponent
 		$this->recordCachingAction('clientScript','registerMetaTag',$params);
 		return $this;
 	}
-	public function registerLinkTag($relation=null,$type=null,$href=null,$media=null,$options=array())
+	public function registerLinkTag(
+                $relation=null,$type=null,$href=null,$media=null,$options=array())
 	{
 		$this->hasScripts=true;
 		if($relation!==null)

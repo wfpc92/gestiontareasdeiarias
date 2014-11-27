@@ -21,121 +21,17 @@ class CategoriaController extends Controller {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array(
-                    'index',
-                    'view',
                     'crearAjax',
                     'editarFormAjax',
                     'editarAjax',
                     'eliminarAjax',
                     'cargarActividadesAjax'),
-                'users' => array('*'),
-            ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
                 'users' => array('@'),
-            ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
-    }
-
-    /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
-
-    /**
-     * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     */
-    public function actionCreate() {
-        $model = new Categoria;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Categoria'])) {
-            $model->attributes = $_POST['Categoria'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->ID_CATEGORIA));
-        }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
-    }
-
-    /**
-     * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id the ID of the model to be updated
-     */
-    public function actionUpdate($id) {
-        $model = $this->loadModel($id);
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Categoria'])) {
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            $model->attributes = $_POST['Categoria'];
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->ID_CATEGORIA));
-        }
-
-        $this->render('update', array(
-            'model' => $model,
-        ));
-    }
-
-    /**
-     * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
-     * @param integer $id the ID of the model to be deleted
-     */
-    public function actionDelete($id) {
-        $this->loadModel($id)->delete();
-
-        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-    }
-
-    /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Categoria');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
-        $model = new Categoria('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Categoria']))
-            $model->attributes = $_GET['Categoria'];
-
-        $this->render('admin', array(
-            'model' => $model,
-        ));
     }
 
     /**
@@ -174,11 +70,10 @@ class CategoriaController extends Controller {
         if (isset($_REQUEST['Categoria'])) {
             $model = new Categoria;
             $model->attributes = $_REQUEST['Categoria'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
+            $model->id_usuario = Yii::app()->user->getId();
             if ($model->validate()) {
                 $model->save();
-                $idCategoria = $model->ID_CATEGORIA;
+                $idCategoria = $model->id_categoria;
                 $htmlCategoria = $this->renderPartial('_view', array('data' => $model), true);
             }
             if ($model->hasErrors()) {
@@ -200,11 +95,11 @@ class CategoriaController extends Controller {
      */
     public function actionEditarFormAjax() {
         $idCategoria = NULL;
-        $htmlEditarForm = "";
+        $htmlEditarForm = NULL;
         $error = NULL;
 
         if (isset($_REQUEST['Categoria'])) {
-            $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
+            $idCategoria = $_REQUEST["Categoria"]["id_categoria"];
             $model = Categoria::model()->findByPk($idCategoria);
             if ($model !== NULL) {
                 $htmlEditarForm = $this->renderPartial('_editar', array(
@@ -232,12 +127,12 @@ class CategoriaController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Categoria'])) {
-            $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
+            $idCategoria = $_REQUEST["Categoria"]["id_categoria"];
             $model = Categoria::model()->findByPk($idCategoria);
             $model->attributes = $_REQUEST['Categoria'];
             if ($model->validate()) {
                 $model->save();
-                $htmlCategoria = CHtml::link($model->NOMBRE_CATEGORIA, "#", array(
+                $htmlCategoria = CHtml::link($model->nombre_categoria, "#", array(
                             'class' => 'categoria',
                             'onclick' => 'return categoriaToogle(this)'
                 ));
@@ -264,7 +159,7 @@ class CategoriaController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Categoria'])) {
-            $idCategoria = $_REQUEST["Categoria"]["ID_CATEGORIA"];
+            $idCategoria = $_REQUEST["Categoria"]["id_categoria"];
             $model = Categoria::model()->findByPk($idCategoria);
             if ($model->validate()) {
                 $model->eliminarCategoria();
@@ -293,12 +188,12 @@ class CategoriaController extends Controller {
         $htmlActividades = NULL;
         $error = NULL;
 
-        if (isset($_REQUEST['ID_CATEGORIA'])) {
-            $idCategoria = $_REQUEST['ID_CATEGORIA'];
-            $actividades = Actividad::model()->findAll("ID_CATEGORIA={$idCategoria}");
-            $lstActividades = CHtml::listData($actividades, 'ID_ACTIVIDAD', 'NOMBRE_ACTIVIDAD');
-            $htmlActividades = CHtml::label("Seleccione una Actividad:", "ID_ACTIVIDAD");
-            $htmlActividades .= CHtml::dropDownList('ID_ACTIVIDAD'
+        if (isset($_REQUEST['id_categoria'])) {
+            $idCategoria = $_REQUEST['id_categoria'];
+            $actividades = Actividad::model()->findAll("id_categoria={$idCategoria}");
+            $lstActividades = CHtml::listData($actividades, 'id_actividad', 'nombre_actividad');
+            $htmlActividades = CHtml::label("Seleccione una Actividad:", "id_actividad");
+            $htmlActividades .= CHtml::dropDownList('id_actividad'
                             , 'Seleccione...'
                             , array('Seleccione...') + $lstActividades
                             , array()
