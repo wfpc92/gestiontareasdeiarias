@@ -13,15 +13,15 @@
 
     <div class="row">
         <?php
-        echo $form->hiddenField($model, 'ID_ACTIVIDAD');
-        echo $form->hiddenField($model, 'FECHA_INICIO');
-        echo $form->labelEx($model, 'NOMBRE_TAREA');
-        echo $form->textField($model, 'NOMBRE_TAREA', array(
+        echo $form->hiddenField($model, 'id_actividad');
+        echo $form->hiddenField($model, 'fecha_inicio');
+        echo $form->labelEx($model, 'nombre_tarea');
+        echo $form->textField($model, 'nombre_tarea', array(
             'id' => 'txt-tarea',
             'size' => 60,
             'maxlength' => 100,
             'placeholder' => 'Nueva Tarea'));
-        echo $form->error($model, 'NOMBRE_TAREA');
+        echo $form->error($model, 'nombre_tarea');
         ?>
     </div>
 

@@ -196,10 +196,11 @@ div.nombre-actividad {
 	float: right;
 	margin-top: -34px;
 }
-.actividadesPorCate {
+.desplegable {
 	display: none;
 	margin-top: 20px;
 }
+
 #categoria-form .row label,
 .actividadesPorCate .form .formActividad label,
 #content-princ-izq .form .formTarea label,

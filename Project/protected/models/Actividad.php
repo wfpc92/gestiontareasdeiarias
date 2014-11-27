@@ -4,10 +4,14 @@
  * This is the model class for table "actividad".
  *
  * The followings are the available columns in table 'actividad':
- * @property integer $ID_ACTIVIDAD
- * @property string $CORREO
- * @property integer $ID_CATEGORIA
- * @property string $NOMBRE_ACTIVIDAD
+ * @property string $id_actividad
+ * @property string $nombre_actividad
+ * @property string $id_categoria
+ * @property string $fecha_creacion
+ *
+ * The followings are the available model relations:
+ * @property Categoria $idCategoria
+ * @property Tarea[] $tareas
  */
 class Actividad extends CActiveRecord {
 
@@ -25,16 +29,14 @@ class Actividad extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('NOMBRE_ACTIVIDAD', 'required',
-                'message' => 'Este campo no puede estar vacio.'),
-            array('NOMBRE_ACTIVIDAD', 'match',
-                'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/',
+            array('nombre_actividad', 'required', 'message' => 'Este campo no puede estar vacio.'),
+            array('nombre_actividad', 'match', 'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/',
                 'message' => 'Este campo solo puede contener letras, tildes, números y espacios.'),
-            array('ID_CATEGORIA', 'numerical', 'integerOnly' => true),
-            array('CORREO, NOMBRE_ACTIVIDAD', 'length', 'max' => 100),
+            array('nombre_actividad', 'length', 'max' => 100),
+            array('id_categoria', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('ID_ACTIVIDAD, CORREO, ID_CATEGORIA, NOMBRE_ACTIVIDAD', 'safe', 'on' => 'search'),
+            array('id_actividad, nombre_actividad, id_categoria, fecha_creacion', 'safe', 'on' => 'search'),
         );
     }
 
@@ -45,6 +47,8 @@ class Actividad extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'idCategoria' => array(self::BELONGS_TO, 'Categoria', 'id_categoria'),
+            'tareas' => array(self::HAS_MANY, 'Tarea', 'id_actividad'),
         );
     }
 
@@ -53,10 +57,10 @@ class Actividad extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'ID_ACTIVIDAD' => 'Id Actividad',
-            'CORREO' => 'Correo',
-            'ID_CATEGORIA' => 'Id Categoria',
-            'NOMBRE_ACTIVIDAD' => 'Nombre Actividad',
+            'id_actividad' => 'Id Actividad',
+            'nombre_actividad' => 'Nombre Actividad',
+            'id_categoria' => 'Id Categoria',
+            'fecha_creacion' => 'Fecha Creacion',
         );
     }
 
@@ -77,10 +81,10 @@ class Actividad extends CActiveRecord {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('ID_ACTIVIDAD', $this->ID_ACTIVIDAD);
-        $criteria->compare('CORREO', $this->CORREO, true);
-        $criteria->compare('ID_CATEGORIA', $this->ID_CATEGORIA);
-        $criteria->compare('NOMBRE_ACTIVIDAD', $this->NOMBRE_ACTIVIDAD, true);
+        $criteria->compare('id_actividad', $this->id_actividad, true);
+        $criteria->compare('nombre_actividad', $this->nombre_actividad, true);
+        $criteria->compare('id_categoria', $this->id_categoria, true);
+        $criteria->compare('fecha_creacion', $this->fecha_creacion, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -97,43 +101,53 @@ class Actividad extends CActiveRecord {
         return parent::model($className);
     }
 
+    /**
+     * Eliminar esta actividad y las tareas asociadas.
+     * @return type
+     */
     public function eliminarActividad() {
-        $idActividad = $this->ID_ACTIVIDAD;
-        $tareas = Tarea::model()->findAll("ID_ACTIVIDAD={$idActividad}");
+        $idActividad = $this->id_actividad;
+        $tareas = Tarea::model()->findAll("id_actividad={$idActividad}");
         foreach ($tareas as $tarea) {
             $tarea->delete();
         }
         return $this->delete();
     }
 
+    /**
+     * Busca en la base de datos el numero de tareas y retorna la cantidad de tareas
+     * en esta actividad.
+     * @param type $fecha
+     * @return type
+     */
     public function progressBar($fecha) {
-        $idActividad = $this->ID_ACTIVIDAD;
-        
+        $idActividad = $this->id_actividad;
+
         $criteria = new CDbCriteria;
         $criteria2 = new CDbCriteria;
-        
-        if ($fecha == NULL){
-            $criteria->compare('ID_ACTIVIDAD', $idActividad, true);
+
+        if ($fecha == NULL) {
+            $criteria->compare('id_actividad', $idActividad, true);
             $dataProvider = new CActiveDataProvider('Tarea', array(
                 'pagination' => false,
                 'criteria' => $criteria
             ));
-            
-            $criteria2->compare('ID_ACTIVIDAD', $idActividad, true);
-            $criteria2->compare('ESTADO', 1, true);
+
+            $criteria2->compare('id_actividad', $idActividad, true);
+            $criteria2->compare('estado', Tarea::ESTADOFINALIZADA, true);
             $dataProvider2 = new CActiveDataProvider('Tarea', array(
                 'pagination' => false,
                 'criteria' => $criteria2
             ));
-        }else{
-            $criteria->compare('FECHA_INICIO', $fecha, true);
+        } else {
+            $criteria->compare('fecha_inicio', $fecha, true);
             $dataProvider = new CActiveDataProvider('Tarea', array(
                 'pagination' => false,
                 'criteria' => $criteria
             ));
-            
-            $criteria2->compare('FECHA_INICIO', $fecha, true);
-            $criteria2->compare('ESTADO', 1, true);
+
+            $criteria2->compare('fecha_inicio', $fecha, true);
+            $criteria2->compare('estado', Tarea::ESTADOFINALIZADA, true);
             $dataProvider2 = new CActiveDataProvider('Tarea', array(
                 'pagination' => false,
                 'criteria' => $criteria2

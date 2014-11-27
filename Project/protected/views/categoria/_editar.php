@@ -3,7 +3,7 @@
 /* @var $model Categoria */
 /* @var $form CActiveForm */
 
-$idCategoria = $model->ID_CATEGORIA;
+$idCategoria = $model->id_categoria;
 ?>
 
 <div class="form form-editar-categoria">
@@ -21,13 +21,13 @@ $idCategoria = $model->ID_CATEGORIA;
 
     <div class="row">
         <?php
-        echo $form->hiddenField($model, 'ID_CATEGORIA');
-        echo $form->textField($model, 'NOMBRE_CATEGORIA', array(
+        echo $form->hiddenField($model, 'id_categoria');
+        echo $form->textField($model, 'nombre_categoria', array(
             'id' => 'txt-categoria-editar-form' . $idCategoria,
             'size' => 60,
             'maxlength' => 100,
             'placeholder' => 'Editar Categoría'));
-        echo $form->error($model, 'NOMBRE_CATEGORIA');
+        echo $form->error($model, 'nombre_categoria');
         ?>
     </div>
 

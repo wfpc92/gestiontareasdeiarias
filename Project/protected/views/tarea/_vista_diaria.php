@@ -4,10 +4,15 @@ $fechaFormato = Calendario::getFechaFormato();
 <h2><?php echo Calendario::getFechaFormatoHoy(); ?></h2>
 
 <?php
+/**
+ * Obtener las tareas que hay para el dia
+ */
 $dataProvider = new CActiveDataProvider('Tarea', array(
     'pagination' => false,
     'criteria' => array(
-    'condition' => "Diaria != 0 AND FECHA_INICIO='{$fechaFormato}'"
+        'condition' => " id_usuario = {$userId}"
+        . " and fecha_inicio = '{$fechaFormato}' "
+        . " and Diaria != 0"
     ))
 );
 

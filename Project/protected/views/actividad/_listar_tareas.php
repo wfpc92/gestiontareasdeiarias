@@ -1,13 +1,14 @@
 <?php
 /* @var $model Actividad */
 
-$idActividad = $model->ID_ACTIVIDAD;
+$idActividad = $model->id_actividad;
+$nombreActividad = $model->nombre_actividad;
 
 $modelTarea = new Tarea;
-$modelTarea->ID_ACTIVIDAD = $idActividad;
+$modelTarea->id_actividad = $idActividad;
 ?>
 
-<div class="nombre-actividad"><?php echo $model->NOMBRE_ACTIVIDAD; ?></div>
+<div class="nombre-actividad"><?php echo $nombreActividad; ?></div>
 
 <?php
 $this->renderPartial('../tarea/_form', array(
@@ -17,7 +18,7 @@ $this->renderPartial('../tarea/_form', array(
 $dataProvider = new CActiveDataProvider('Tarea', array(
     'pagination' => false,
     'criteria' => array(
-        'condition' => "ID_ACTIVIDAD={$idActividad}"
+        'condition' => "id_actividad={$idActividad}"
     ))
 );
 

@@ -1,6 +1,6 @@
 <?php
-/* @var $this CategoriaController 
-  /* @var $model Categoria */
+/* @var $this CategoriaController */
+/* @var $model Categoria */
 /* @var $form CActiveForm */
 ?>
 
@@ -8,8 +8,8 @@
 <div class="form">
     <div id="error-form-categoria" class="error"></div>
     <?php
-    $idUsuario = $model->CORREO;    
-    $form = $this->beginWidget('CActiveForm', array(        
+    $idUsuario = $model->id_usuario;
+    $form = $this->beginWidget('CActiveForm', array(
         'id' => 'categoria-form',
         'enableAjaxValidation' => false,
         'enableClientValidation' => true,
@@ -24,13 +24,13 @@
 
     <div class="row">
         <?php
-        echo $form->labelEx($model, 'NOMBRE_CATEGORIA');
-        echo $form->textField($model, 'NOMBRE_CATEGORIA', array(
+        echo $form->labelEx($model, 'nombre_categoria');
+        echo $form->textField($model, 'nombre_categoria', array(
             'id' => 'txt-categoria',
             'size' => 60,
             'maxlength' => 100,
             'placeholder' => 'Nombre Categoría'));
-        echo $form->error($model, 'NOMBRE_CATEGORIA');
+        echo $form->error($model, 'nombre_categoria');
         ?>
     </div>
 

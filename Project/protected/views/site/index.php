@@ -5,19 +5,19 @@
 <div id="cargando-principal"></div>
 <div id="confirmacion">Acción realizada correctamente....</div>
 <div id="contentIzq">
-    
+
     <div id="error-principal"></div>
     <?php
     $form = '../categoria/_form';
     $modelCategoria = new Categoria;
-    $modelCategoria->CORREO = Yii::app()->user->getId();
+    $modelCategoria->id_usuario = Yii::app()->user->getId();
     $this->renderPartial($form, array('model' => $modelCategoria));
     ?> 
     <div id="itemsCategoria">
         <?php
         $dataProvider = new CActiveDataProvider('Categoria', array(
             'criteria' => array(
-                'condition' => 'CORREO=\'' . $modelCategoria->CORREO . '\''),
+                'condition' => "id_usuario='{$modelCategoria->id_usuario}'"),
             'pagination' => false
         ));
         $this->widget('zii.widgets.CListView', array(
@@ -51,27 +51,16 @@
             <ul id="menu">
                 <li class="lista">
                     <?php
-                    $text = "Hoy";
-                    $url = Yii::app()->createUrl("tarea/vistaDiaria");
-                    $htmlOptions = array();
-                    echo CHtml::link($text, $url, $htmlOptions);
+                    echo CHtml::link("Hoy", Yii::app()->createUrl("tarea/vistaDiaria"));
                     ?>
                 </li>
                 <li class="calendario">
                     <?php
-                    $text = "Calendario";
-                    $url = Yii::app()->urlManager->createUrl("calendario");
-                    $htmlOptions = array();
-                    echo CHtml::link($text, $url, $htmlOptions);
+                    echo CHtml::link("Calendario", Yii::app()->urlManager->createUrl("calendario"));
                     ?>
                 </li>
                 <li class="reportes">
-                    <?php
-                    $text = "Reportes";
-                    $url = Yii::app()->urlManager->createUrl("reportes");
-                    $htmlOptions = array();
-                    echo CHtml::link($text, $url, $htmlOptions);
-                    ?>
+                    <a href="#">Reportes</a>
                 </li>
             </ul> 
         </div>
@@ -91,6 +80,5 @@
             ?>
         </div>
         <div class="clear"></div>
-        <?php echo CHtml::Button(yii::t('app', 'Regresar'), array('id' => 'regresar'));?>
     </div>    
 </div>

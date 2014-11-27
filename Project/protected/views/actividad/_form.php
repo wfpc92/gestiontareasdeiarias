@@ -3,7 +3,7 @@
 /* @var $model Actividad */
 /* @var $form CActiveForm */
 
-$idCategoria = $model->ID_CATEGORIA;
+$idCategoria = $model->id_categoria;
 ?>
 
 <div class="form">
@@ -23,15 +23,15 @@ $idCategoria = $model->ID_CATEGORIA;
 
     <div class="row">
         <?php
-        echo $form->hiddenField($model, 'ID_CATEGORIA');
-        echo $form->labelEx($model, 'NOMBRE_ACTIVIDAD');
-        echo $form->textField($model, 'NOMBRE_ACTIVIDAD', array(
+        echo $form->hiddenField($model, 'id_categoria');
+        echo $form->labelEx($model, 'nombre_actividad');
+        echo $form->textField($model, 'nombre_actividad', array(
             'id' => 'txt-actividad-' . $idCategoria,
             'class' => 'input-categoria',
             'size' => 60,
             'maxlength' => 100,
             'placeholder' => 'Nombre Actividad'));
-        echo $form->error($model, 'NOMBRE_ACTIVIDAD');
+        echo $form->error($model, 'nombre_actividad');
         ?>
     </div>
 

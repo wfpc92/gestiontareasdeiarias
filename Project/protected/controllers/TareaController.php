@@ -21,8 +21,6 @@ class TareaController extends Controller {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array(
-                    'index',
-                    'view',
                     'crearAjax',
                     'mostrarAjax',
                     'actualizarAjax',
@@ -31,116 +29,15 @@ class TareaController extends Controller {
                     'vistaDiaria',
                     'crearTareaPool',
                     'mostrarPoolAjax',
-                    'pooladiariaAjax'
+                    'pooladiariaAjax',
+                    'crearRegistroTareaAjax'
                 ),
-                'users' => array('*'),
-            ),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
                 'users' => array('@'),
-            ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),
             ),
         );
-    }
-
-    /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
-
-    /**
-     * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     */
-    public function actionCreate() {
-        $model = new Tarea;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Tarea'])) {
-            $model->attributes = $_POST['Tarea'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            if ($model->save())
-                $this->redirect(array('view', $model->ID_TAREA));
-        }
-
-        $this->render('create', array(
-            'model' => $model,
-        ));
-    }
-
-    /**
-     * Updates a particular model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id the ID of the model to be updated
-     */
-    public function actionUpdate($id) {
-        $model = $this->loadModel($id);
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Tarea'])) {
-            $model->attributes = $_POST['Tarea'];
-            $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
-            if ($model->save())
-                $this->redirect(array('view', 'id' => $model->ID_TAREA));
-        }
-
-        $this->render('update', array(
-            'model' => $model,
-        ));
-    }
-
-    /**
-     * Deletes a particular model.
-     * If deletion is successful, the browser will be redirected to the 'admin' page.
-     * @param integer $id the ID of the model to be deleted
-     */
-    public function actionDelete($id) {
-        $this->loadModel($id)->delete();
-
-        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-        if (!isset($_GET['ajax']))
-            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-    }
-
-    /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Tarea');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin() {
-        $model = new Tarea('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Tarea']))
-            $model->attributes = $_GET['Tarea'];
-
-        $this->render('admin', array(
-            'model' => $model,
-        ));
     }
 
     /**
@@ -182,14 +79,14 @@ class TareaController extends Controller {
         if (isset($_REQUEST['Tarea'])) {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
-            $model->CORREO = Yii::app()->user->getId();
-            $model->PRIORIDAD = 0;
             $model->scenario = "crearAjax";
 
             if ($model->validate()) {
                 $model->save();
-                $idActividad = $model->ID_ACTIVIDAD;
-                $idTarea = $model->ID_TAREA;
+                $idActividad = $model->id_actividad;
+                $idTarea = $model->id_tarea;
+                //actualizar con los campos por defecto
+                $model = Tarea::model()->findByPk($idTarea);
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
                 $progressBar = $model->progressBar(NULL);
@@ -220,12 +117,12 @@ class TareaController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
-            $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
+            $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["id_tarea"]);
             $model->scenario = "crearAjax";
             if ($model->validate()) {
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
-                $idActividad = $model->ID_ACTIVIDAD;
-                $idTarea = $model->ID_TAREA;
+                $idActividad = $model->id_actividad;
+                $idTarea = $model->id_tarea;
             }
             if ($model->hasErrors()) {
                 $error = $model->getErrors();
@@ -248,12 +145,12 @@ class TareaController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
-            $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["ID_TAREA"]);
+            $model = Tarea::model()->findByPk($_REQUEST["Tarea"]["id_tarea"]);
             $model->scenario = "crearAjax";
             if ($model->validate()) {
                 $htmlTareaEditar = $this->renderPartial('_editar_diaria', array('model' => $model), true);
-                $idActividad = $model->ID_ACTIVIDAD;
-                $idTarea = $model->ID_TAREA;
+                $idActividad = $model->id_actividad;
+                $idTarea = $model->id_tarea;
             }
             if ($model->hasErrors()) {
                 $error = $model->getErrors();
@@ -273,22 +170,20 @@ class TareaController extends Controller {
      * Funcion que actualizar una tarea. 
      */
     public function actionActualizarAjax() {
-        $idActividad = (isset($_REQUEST['ID_ACTIVIDAD']) ? $_REQUEST['ID_ACTIVIDAD'] : NULL);
+        $idActividad = (isset($_REQUEST['id_actividad']) ? $_REQUEST['id_actividad'] : NULL);
         $idTarea = NULL;
         $actualizar = FALSE;
         $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
-            $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
+            $idTarea = $_REQUEST["Tarea"]["id_tarea"];
             $model = Tarea::model()->findByPk($idTarea);
             $model->attributes = $_REQUEST['Tarea'];
-            $userId = Yii::app()->user->getId();
             if ($idActividad != NULL) {
-                $model->ID_ACTIVIDAD = $idActividad;
+                $model->id_actividad = $idActividad;
             } else {
-                $idActividad = $model->ID_ACTIVIDAD;
+                $idActividad = $model->id_actividad;
             }
-            $model->CORREO = $userId;
             $model->scenario = "actualizarAjax";
 
             if ($model->validate()) {
@@ -312,6 +207,7 @@ class TareaController extends Controller {
     /**
      * Funcion que eliminar una tarea. 
      */
+    /* @var $model Tarea */
     public function actionEliminarAjax() {
         $idActividad = NULL;
         $idTarea = NULL;
@@ -320,11 +216,13 @@ class TareaController extends Controller {
         $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
-            $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
+            $idTarea = $_REQUEST["Tarea"]["id_tarea"];
             $model = Tarea::model()->findByPk($idTarea);
+            $model->attributes = $_REQUEST['Tarea'];
 
             if ($model != NULL) {
                 $idActividad = $model->ID_ACTIVIDAD;
+                $idActividad = $model->id_actividad;
                 $model->delete();
                 //$progressBar = $model->progressBar(NULL);
                 $borrar = true;
@@ -353,10 +251,10 @@ class TareaController extends Controller {
 
         $estado = isset($_REQUEST["ESTADO"]) ? 1 : 0;
         if (isset($_REQUEST['Tarea'])) {
-            $idTarea = $_REQUEST["Tarea"]["ID_TAREA"];
+            $idTarea = $_REQUEST["Tarea"]["id_tarea"];
             $fecha = isset($_REQUEST["FECHA_HOY"]) ? $_REQUEST["FECHA_HOY"] : NULL;
             $model = Tarea::model()->findByPk($idTarea);
-            $idActividad = $model->ID_ACTIVIDAD;
+            $idActividad = $model->id_actividad;
             $model->ESTADO = $estado;
             $model->save();
             $progressBar = $model->progressBar($fecha);
@@ -414,7 +312,7 @@ class TareaController extends Controller {
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
             $model->CORREO = $userId;
-            $model->ID_ACTIVIDAD = NULL;
+            $model->id_actividad = NULL;
             $model->PRIORIDAD = 0;
             $model->scenario = 'crearAjax';
             if ($model->validate()) {
@@ -434,8 +332,8 @@ class TareaController extends Controller {
         echo CJavaScript::jsonEncode(array(
             'htmlTarea' => $htmlTarea,
             'htmlTareaEditar' => $htmlTareaEditar,
-            'idActividad' => $idActividad,
-            'idTarea' => $idTarea,
+            'idActividad' => $model->id_actividad,
+            'idTarea' => $model->id_tarea,
             'error' => $error
         ));
     }
@@ -448,7 +346,7 @@ class TareaController extends Controller {
 
         $data = Actividad::model()->findAll('ID_CATEGORIA=' . $categoriaModel->ID_CATEGORIA);
 
-        $data = CHtml::listData($data, 'ID_ACTIVIDAD', 'NOMBRE_ACTIVIDAD');
+        $data = CHtml::listData($data, 'id_actividad', 'NOMBRE_ACTIVIDAD');
 
         foreach ($data as $value => $NOMBRE_ACTIVIDAD) {
             echo CHtml::tag('option', array('value' => $value), CHtml::encode($NOMBRE_ACTIVIDAD), true);
@@ -456,22 +354,23 @@ class TareaController extends Controller {
     }
 
     /* @var $model Tarea */
+
     public function actionPooladiariaAjax() {
         $htmlTarea = NULL;
         $idActividad = NULL;
         $error = NULL;
-        //$idActividad = isset($_REQUEST['Tarea']['ID_ACTIVIDAD']) ? $_REQUEST['Tarea']['ID_ACTIVIDAD'] : NULL;
-        //var_dump($_REQUEST['Tarea']['NOMBRE_TAREA']);
+
+        $idActividad = $_REQUEST['Tarea']['id_actividad'];
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST['Tarea']['ID_TAREA'];
             $hoy = ($_REQUEST['FECHA_HOY']);
             $model = Tarea::model()->findByPk($idTarea);
             $idActividad = $model->ID_ACTIVIDAD;
-            if($idActividad != NULL){
-                $model->cambiarADiaria($idActividad,$hoy); //asignarle fecha de inicio, precondicion es que haya un id actividad.
+            if ($idActividad != NULL) {
+                $model->cambiarADiaria($idActividad, $hoy); //asignarle fecha de inicio, precondicion es que haya un id actividad.
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
-            }else{
+            } else {
                 $error = 'No puede mover esta tarea porque no tiene una actividad asociada.';
             }
         } else {
@@ -479,7 +378,38 @@ class TareaController extends Controller {
         }
         echo CJavaScript::jsonEncode(array(
             'htmlTarea' => $htmlTarea,
-            'idActividad' => $idActividad,
+            'idActividad' => $model->id_actividad,
+            'error' => $error
+        ));
+    }
+
+    public function actionCrearRegistroTareaAjax() {
+        $idTarea = NULL;
+        $idRegistroTarea = NULL;
+        $htmlRegistroTarea = NULL;
+        $error = NULL;
+
+        if (isset($_REQUEST['Tarea'])) {
+            $model = new Tarea;
+            $model->attributes = $_REQUEST['Tarea'];
+            $model = Tarea::model()->findByPk($model->id_tarea);
+            
+            if ($model->validate()) {
+                $nuevoRegistroTarea = $model->crearRegistroTarea();
+                $idTarea = $model->id_tarea;
+                $idRegistroTarea = $nuevoRegistroTarea->id_registro_tarea;
+                $htmlRegistroTarea = $this->renderPartial('../registro_tarea/_view', array('data' => $nuevoRegistroTarea), true);
+            }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
+        } else {
+            $error = "ERROR: peticion mal formada.";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'idTarea' => $idTarea,
+            'idRegistroTarea' => $idRegistroTarea,
+            'htmlRegistroTarea' => $htmlRegistroTarea,
             'error' => $error
         ));
     }

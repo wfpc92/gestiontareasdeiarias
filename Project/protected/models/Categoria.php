@@ -4,9 +4,14 @@
  * This is the model class for table "categoria".
  *
  * The followings are the available columns in table 'categoria':
- * @property integer $ID_CATEGORIA
- * @property string $CORREO
- * @property string $NOMBRE_CATEGORIA
+ * @property string $id_categoria
+ * @property string $nombre_categoria
+ * @property string $fecha_creacion
+ * @property string $id_usuario
+ *
+ * The followings are the available model relations:
+ * @property Actividad[] $actividads
+ * @property Usuario $idUsuario
  */
 class Categoria extends CActiveRecord {
 
@@ -24,16 +29,13 @@ class Categoria extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('NOMBRE_CATEGORIA', 'required',
-                'message' => 'Este campo no puede estar vacio.'),
-            array('NOMBRE_CATEGORIA', 'match',
-                'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/',
-                'message' => 'Este campo solo puede contener letras, tildes, números y espacios.'),
-            array('CORREO', 'required'),
-            array('CORREO, NOMBRE_CATEGORIA', 'length', 'max' => 100),
+            array('nombre_categoria', 'required', 'message' => 'Este campo no puede estar vacio.'),
+            array('nombre_categoria', 'match', 'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/', 'message' => 'Este campo solo puede contener letras, tildes, números y espacios.'),
+            array('nombre_categoria', 'length', 'max' => 100),
+            array('id_usuario', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('ID_CATEGORIA, CORREO, NOMBRE_CATEGORIA', 'safe', 'on' => 'search'),
+            array('id_categoria, nombre_categoria, fecha_creacion, id_usuario', 'safe', 'on' => 'search'),
         );
     }
 
@@ -44,6 +46,8 @@ class Categoria extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'actividads' => array(self::HAS_MANY, 'Actividad', 'id_categoria'),
+            'idUsuario' => array(self::BELONGS_TO, 'Usuario', 'id_usuario'),
         );
     }
 
@@ -52,9 +56,10 @@ class Categoria extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'ID_CATEGORIA' => 'Id Categoria',
-            'CORREO' => 'Correo',
-            'NOMBRE_CATEGORIA' => 'Nombre Categoria'
+            'id_categoria' => 'Id Categoria',
+            'nombre_categoria' => 'Nombre Categoria',
+            'fecha_creacion' => 'Fecha Creacion',
+            'id_usuario' => 'Id Usuario',
         );
     }
 
@@ -75,9 +80,10 @@ class Categoria extends CActiveRecord {
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('ID_CATEGORIA', $this->ID_CATEGORIA);
-        $criteria->compare('CORREO', $this->CORREO, true);
-        $criteria->compare('NOMBRE_CATEGORIA', $this->NOMBRE_CATEGORIA, true);
+        $criteria->compare('id_categoria', $this->id_categoria, true);
+        $criteria->compare('nombre_categoria', $this->nombre_categoria, true);
+        $criteria->compare('fecha_creacion', $this->fecha_creacion, true);
+        $criteria->compare('id_usuario', $this->id_usuario, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -94,9 +100,13 @@ class Categoria extends CActiveRecord {
         return parent::model($className);
     }
 
+    /**
+     * Eliminar esta categoria y todas las actividades asociadas.
+     * @return type
+     */
     public function eliminarCategoria() {
-        $idCategoria = $this->ID_CATEGORIA;
-        $actividades = Actividad::model()->findAll("ID_CATEGORIA={$idCategoria}");
+        $idCategoria = $this->id_categoria;
+        $actividades = Actividad::model()->findAll("id_categoria={$idCategoria}");
         if ($actividades !== NULL) {
             foreach ($actividades as $actividad) {
                 $actividad->eliminarActividad();

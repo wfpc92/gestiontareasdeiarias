@@ -16,28 +16,29 @@ $this->breadcrumbs = array(
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'login-form',
-        'enableClientValidation' => false,
-        'clientOptions' => array(
-            'validateOnSubmit' => true,
-        ),
+        'enableAjaxValidation' => false,
+        'enableClientValidation' => false
     ));
+
     ?>
+    
+    <p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'Correo'); ?>
+        <?php echo $form->labelEx($model, 'username'); ?>
         <?php echo $form->textField($model, 'username'); ?>
         <?php echo $form->error($model, 'username'); ?>
     </div>
 
     <div class="row">
-        <?php echo $form->labelEx($model, 'Contraseña'); ?>
+        <?php echo $form->labelEx($model, 'password'); ?>
         <?php echo $form->passwordField($model, 'password'); ?>
         <?php echo $form->error($model, 'password'); ?>		
     </div>
 
     <div class="row rememberMe">
         <?php echo $form->checkBox($model, 'rememberMe'); ?>
-        <?php echo $form->label($model, 'Recuerdame'); ?>
+        <?php echo $form->label($model, 'rememberMe'); ?>
         <?php echo $form->error($model, 'rememberMe'); ?>
     </div>
 
@@ -47,20 +48,10 @@ $this->breadcrumbs = array(
 
     <div class="registrarse">
         <?php
-        echo CHtml::link('Registrarse', Yii::app()->createUrl('Usuario/create'));
+        echo CHtml::link('Registrarse', Yii::app()->createUrl('usuario/registro'));
         ?>
     </div>
     <div class="clear"></div>
 
     <?php $this->endWidget(); ?>
-
-</div><!-- form -->
-<!--
-<h1>
-            Registrate
-        </h1>
-<?php
-$form = '../usuario/_form';
-$modelUsuario = new Usuario;
-$this->renderPartial($form, array('model' => $modelUsuario));
-?>
+</div>

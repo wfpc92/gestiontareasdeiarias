@@ -3,10 +3,11 @@
 /* @var $data Tarea */
 /* @var $form CActiveForm */
 
-$idTarea = $data->ID_TAREA;
+$idTarea = $data->id_tarea;
+$nombreTarea = $data->nombre_tarea;
 ?>
-<div id="tarea-view-pool-<?php echo $idTarea; ?>" class="view pool-tarea" draggable="true" ondragstart="drag(event)">
-    <?php
+<div id="tarea-view-pool-<?php echo $idTarea; ?>" class="view" draggable="true" ondragstart="drag(event)">
+    <?php    
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tarea-mostrar-form-' . $idTarea,
         'enableAjaxValidation' => false,
@@ -16,46 +17,17 @@ $idTarea = $data->ID_TAREA;
         )
     ));
 
-    echo $form->hiddenField($data, 'ID_TAREA');
-    if ($data->FECHA_INICIO != NULL){
-        echo $form->hiddenField($data, 'FECHA_INICIO');
-    }
-    echo CHtml::hiddenField('FECHA_HOY',  Calendario::getFechaFormato());
-    
-    /*
-    $check = false;
-    if ($data->ESTADO == 1) {
-        $check = true;
-    }
-    echo CHtml::checkBox("ESTADO", $check, array(
-        'onchange' => 'return tareaCheckAjax(this)',
-        'title' => 'Verifique la casilla si finalizó la tarea.'
-    ));
-    */
+    echo $form->hiddenField($data, 'id_tarea');
+    echo $form->hiddenField($data, 'fecha_inicio');
+    echo CHtml::hiddenField('FECHA_HOY', Calendario::getFechaFormato());
+
     echo CHtml::tag('p', array(
         'id' => 'p-tarea-nombre-' . $idTarea,
         'onclick' => 'return tareaMostrarPoolAjax(this)',
-            ), CHtml::encode($data->NOMBRE_TAREA));
+            ), $nombreTarea);
     ?>
     <div class="botones">
         <?php
-        /*
-        $label = "Play Tarea";
-        $htmlOptions = array(
-            'id' => 'btn-play-tarea-' . $idTarea,
-            'name' => 'btn-play-tarea-' . $idTarea,
-            'class' => 'play-tarea'
-        );
-        echo CHtml::button($label, $htmlOptions);
-
-        $label = "Pausar Tarea";
-        $htmlOptions = array(
-            'id' => 'lnk-pausar-tarea-' . $idTarea,
-            'name' => 'lnk-pausar-tarea-' . $idTarea,
-            'class' => 'pause-tarea'
-        );
-        echo CHtml::button($label, $htmlOptions);
-        */
         echo CHtml::tag('p', array(
             'id' => 'p-duracion-tarea-' . $idTarea
                 ), $data->DURACION);
@@ -63,15 +35,6 @@ $idTarea = $data->ID_TAREA;
         <div class="clearFix"></div>
     </div>
     <?php
-    /* $label = "Eliminar Tarea";
-      $htmlOptions = array(
-      'id' => 'lnk-eliminar-tarea-' . $idTarea,
-      'name' => 'lnk-eliminar-tarea-' . $idTarea,
-      'class' => 'eliminar-tarea',
-      'onclick' => 'return tareaEliminarAjax(this)'
-      );
-      echo CHtml::link($label, "#", $htmlOptions); */
-
     echo CHtml::link("Menú Tarea", "", array(
         'class' => 'menu-tarea',
         'onclick' => 'return tareaMenu(this)'
@@ -87,6 +50,7 @@ $idTarea = $data->ID_TAREA;
             ?>
         </li>
     </ul>
+    <br />
     <?php
     $this->endWidget();
     ?>

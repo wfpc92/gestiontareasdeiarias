@@ -1,10 +1,10 @@
-var tareaCrearAjax = function(form) {
+var tareaCrearAjax = function (form) {
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             var htmlTarea = data.htmlTarea;
             var htmlTareaEditar = data.htmlTareaEditar;
             var idActividad = data.idActividad;
@@ -32,13 +32,13 @@ var tareaCrearAjax = function(form) {
     return false;
 };
 
-var tareaCrearPoolAjax = function(form) {
+var tareaCrearPoolAjax = function (form) {
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             var htmlTarea = data.htmlTarea;
             var htmlTareaEditar = data.htmlTareaEditar;
             var idActividad = data.idActividad;
@@ -65,9 +65,3 @@ var tareaCrearPoolAjax = function(form) {
     templateAjax1(confAjax, selectores);
     return false;
 };
-
-var tareaMenu = function(self) {
-    var contenedor = $(self);
-    $(contenedor).siblings("ul").eq(0).slideToggle();
-    return false;
-}

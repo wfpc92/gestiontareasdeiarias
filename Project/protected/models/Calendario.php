@@ -18,7 +18,7 @@ class Calendario extends CActiveRecord {
         return 'calendario';
     }
 
-    public static function getFechaFormatoHoy(){
+    public static function getFechaFormatoHoy() {
         $dia = array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
         $mes = array(null, "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
         $numdia = date_format(static::$fecha, "w"); //muestra el día de la semana
@@ -27,10 +27,11 @@ class Calendario extends CActiveRecord {
         $anho = date_format(static::$fecha, "Y");
         return "Fecha: $dia[$numdia], $diames de $mes[$nummes] del $anho";
     }
+
     public static function getFechaFormato() {
-        if (static::$fecha == NULL){
+        if (static::$fecha == NULL) {
             return NULL;
-        }else{
+        } else {
             return date_format(static::$fecha, "Y-m-d");
         }
     }
@@ -41,6 +42,28 @@ class Calendario extends CActiveRecord {
 
     public static function getFecha() {
         return static::$fecha;
+    }
+
+    public static function fechaFormatoPicker($fecha) {
+        $fecha = date_create($fecha);
+        return date_format($fecha, "Y-m-d");
+    }
+
+    public static function horaFormatoPicker($fecha) {
+        $fecha = date_create($fecha);
+        return date_format($fecha, "h : i : A");
+    }
+
+    public static function horaFormatoDate($fecha) {
+        $fecha = date_create($fecha);
+        return array(
+            'anio' => date_format($fecha, "Y"),
+            'mes' => date_format($fecha, "m"),
+            'dia' => date_format($fecha, "d"),
+            'horas' => date_format($fecha, "H"),
+            'minutos' => date_format($fecha, "i"),
+            'segundos' => date_format($fecha, "s"),
+        );
     }
 
     /**
