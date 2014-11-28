@@ -11,7 +11,9 @@ $idRegistroTarea = $data->id_registro_tarea;
         'id' => 'registro-tarea-form-' . $idRegistroTarea,
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl,
-        'htmlOptions' => array()
+        'htmlOptions' => array(
+            'onchange' => 'return registroTareaActualizarAjax(this)'
+        )
     ));
 
     echo $form->hiddenField($data, 'id_tarea');

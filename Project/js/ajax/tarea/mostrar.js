@@ -16,7 +16,7 @@ var tareaMostrarAjax = function(self) {
         }
     };
     var selectores = {
-        divCargandto: $("#cargando-principal"),
+        divCargando: $("#cargando-principal"),
         divError: $("#error-principal")
     };
     templateAjax1(confAjax, selectores);

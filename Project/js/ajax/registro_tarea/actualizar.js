@@ -1,7 +1,19 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+var registroTareaActualizarAjax = function(self) {
+    var form = $(self);
+    
+    var confAjax = {
+        type: 'POST',
+        url: $(form).attr('action') + '/tarea/actualizarRegistroTareaAjax',
+        data: $(form).serialize(),
+        dataType: 'json',
+        success: function(data) {
 
-
+        }
+    };
+    var selectores = {
+        divCargando: $("#cargando-principal"),
+        divError: $("#error-principal")
+    };
+    templateAjax1(confAjax, selectores);
+    return false;
+};
