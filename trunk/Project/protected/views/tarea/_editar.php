@@ -6,7 +6,8 @@
 $idTarea = $model->id_tarea;
 ?>
 
-<div class="form">
+<div class="form editar-tarea">
+    <h3>Editar tarea </h3>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tarea-editar-form-' . $idTarea,
@@ -45,7 +46,7 @@ $idTarea = $model->id_tarea;
         ?>
     </div>
 
-    <div class="row">
+    <div class="row fecha-inicio">
         <?php
         $fechaInicio = $model->fechaInicioFormatoPicker();
         echo $form->labelEx($model, 'fecha_inicio');

@@ -3,7 +3,7 @@
 ?>
 
 <div id="cargando-principal"></div>
-<div id="confirmacion">Acción realizada correctamente....</div>
+<div id="exito-principal">Acción realizada correctamente....</div>
 <div id="contentIzq">
 
     <div id="error-principal"></div>

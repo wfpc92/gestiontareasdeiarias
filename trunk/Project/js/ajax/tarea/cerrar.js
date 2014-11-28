@@ -5,11 +5,11 @@ var tareaCerrar = function(self) {
             .css("width", "0%")
             .html("");
     if ($(window).width() <= 1200) {
-        $(".botones").css("margin-right", "30px")
+        $(".botones").css("margin-right", "50px")
     } else {
         $(".botones").css("float", "right")
                 .css("margin-right", "25%")
-                .css("margin-top", "-17px");
+                .css("margin-top", "-28px");
     }
     /**if ($(window).width() <= 920) {
         $(".form-tarea p").css("padding", "0 40px 10px 33px");
