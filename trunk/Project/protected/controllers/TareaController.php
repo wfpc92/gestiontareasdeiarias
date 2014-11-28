@@ -30,7 +30,8 @@ class TareaController extends Controller {
                     'crearTareaPool',
                     'mostrarPoolAjax',
                     'pooladiariaAjax',
-                    'crearRegistroTareaAjax'
+                    'crearRegistroTareaAjax',
+                    'eliminarRegistroTareaAjax'
                 ),
                 'users' => array('@'),
             ),
@@ -393,7 +394,7 @@ class TareaController extends Controller {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
             $model = Tarea::model()->findByPk($model->id_tarea);
-            
+
             if ($model->validate()) {
                 $nuevoRegistroTarea = $model->crearRegistroTarea();
                 $idTarea = $model->id_tarea;
@@ -411,6 +412,25 @@ class TareaController extends Controller {
             'idRegistroTarea' => $idRegistroTarea,
             'htmlRegistroTarea' => $htmlRegistroTarea,
             'error' => $error
+        ));
+    }
+
+    public function actionEliminarRegistroTareaAjax() {
+        $error = NULL;
+        $idRegistroTarea = NULL;
+
+        if (isset($_REQUEST['RegistroTarea'])) {
+            $idRegistroTarea = $_REQUEST['RegistroTarea']['id_registro_tarea'] ? $_REQUEST['RegistroTarea']['id_registro_tarea'] : NULL;
+            $model = RegistroTarea::model()->findByPk($idRegistroTarea);
+            if ($model != NULL && !$model->delete()) {
+                $error = "Error: no se elimina el registro, actualice la página.";
+            }
+        } else {
+            $error = "ERROR: peticion mal formada.";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'error' => $error,
+            'idRegistroTarea' => $idRegistroTarea,
         ));
     }
 

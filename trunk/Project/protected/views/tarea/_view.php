@@ -94,7 +94,10 @@ $fechaFormato = Calendario::getFechaFormato();
             ?>
         </li>
     </ul>
+
     <br />
+
+    <?php $this->endWidget(); ?>
 
     <div class="desplegable">
         <?php
@@ -118,7 +121,6 @@ $fechaFormato = Calendario::getFechaFormato();
 
         <div class="clearFix"></div>
     </div>
-    <?php $this->endWidget(); ?>
 
 
 </div>

@@ -1,14 +1,16 @@
 var categoriaEliminarModal = function(self) {
     var form = $(self).parents("form");
+    var nombreCategoria = $(self);
+    console.log(nombreCategoria)
     $("<div>")
-            .html("¿Estas seguro que deseas eliminar esta categoria?")
+            .html("¿Estas seguro que deseas eliminar la Categoría: \""+nombreCategoria+"\"?")
             .dialog({
-                title: "Eliminar Categoria",
+                title: "Eliminar Categoría",
                 resizable: false,
                 width: 500,
                 modal: true,
                 buttons: {
-                    "Borrar Categoria": function() {
+                    "Borrar Categoría": function() {
                         categoriaEliminarAjax(form);
                         $(this).dialog("close");
                     },
