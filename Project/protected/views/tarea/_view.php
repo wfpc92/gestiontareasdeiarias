@@ -44,7 +44,8 @@ $fechaFormato = Calendario::getFechaFormato();
     $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
 
     echo CHtml::tag('p', array(
-        'id' => 'p-tarea-actividad-' . $idTarea
+        'id' => 'p-tarea-actividad-' . $idTarea,
+        'class' => 'tarea-actividad'
             ), $nomAbreviado);
     ?>
     <div class="botones">
@@ -62,11 +63,11 @@ $fechaFormato = Calendario::getFechaFormato();
             'class' => 'pause-tarea',
             'onclick' => 'return tareaPausarAjax(this)'
         ));
-
-        echo CHtml::label("Duracion", "p-duracion-tarea-{$idTarea}");
+        
+        //echo CHtml::label("Duracion", "p-duracion-tarea-{$idTarea}");
         echo CHtml::tag('p', array(
             'id' => "p-duracion-tarea-{$idTarea}"
-                ), $data->getDuracion());
+                ),"Duración: " . $data->getDuracion());
         ?>
         <div class="clearFix"></div>
     </div>
@@ -95,8 +96,6 @@ $fechaFormato = Calendario::getFechaFormato();
         </li>
     </ul>
 
-    <br />
-
     <?php $this->endWidget(); ?>
 
     <div class="desplegable">
@@ -117,8 +116,7 @@ $fechaFormato = Calendario::getFechaFormato();
             )
         ));
         ?>
-
-
+        
         <div class="clearFix"></div>
     </div>
 

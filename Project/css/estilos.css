@@ -83,6 +83,12 @@ div.nombre-actividad {
     font-size: 25px;
     padding-bottom: 20px;
 }
+    div.nombre-actividad span {
+        display: block;
+        font-size: 15px;
+        color: #000000;
+        padding-bottom: 3px;
+    }
 /***** Header (inicio) *****/
 #header {
 	position: relative;
@@ -330,11 +336,11 @@ div.nombre-actividad {
 		}
 /***** Menu lista y calendario (fin) 
 
-/***** Menus categotia, actividad y tarea (inicio) *****/
+/***** Menus categotia, actividad, tarea y registro (inicio) *****/
 #categoria-list-view .items .view a.menu-categoria,
 .actividadesPorCate .list-view .items .view a.menu-actividad,
 #content-princ-izq .list-view .items .view a.menu-tarea,
-a.menu-tarea {
+a.menu-tarea, a.menu-registro-tarea {
 	display: none;
 	position: absolute;
 	width: 36px;
@@ -351,16 +357,17 @@ a.menu-tarea {
 #categoria-list-view .items .view:hover a.menu-categoria,
 .actividadesPorCate .list-view .items .view:hover a.menu-actividad,
 #content-princ-izq .list-view .items .view:hover a.menu-tarea,
-.pool-tarea:hover a.menu-tarea {
+.pool-tarea:hover a.menu-tarea, .registro-tarea:hover a.menu-registro-tarea,
+.registro-tarea form:hover a.menu-registro-tarea {
 	display: block; 
 }
 #categoria-list-view .items .view a.menu-categoria:hover,
 .actividadesPorCate .list-view .items .view a.menu-actividad:hover,
 #content-princ-izq .list-view .items .view a.menu-tarea:hover,
-.pool-tarea a.menu-tarea:hover {
+.pool-tarea a.menu-tarea:hover, .registro-tarea form a.menu-registro-tarea:hover{
 	background: url("../images/bt-menuHover.png") no-repeat;
 }
-ul.categoria, ul.actividad, ul.tarea  {
+ul.categoria, ul.actividad, ul.tarea, ul.registro-tarea  {
 	display: none;
 	position: absolute;
 	top: 25px;
@@ -371,21 +378,22 @@ ul.categoria, ul.actividad, ul.tarea  {
 	padding: 3px;
 	z-index: 10;
 }
-	ul.categoria li, ul.actividad li, ul.tarea li  {
+	ul.categoria li, ul.actividad li, ul.tarea li, ul.registro-tarea li {
 		height: 20px;
 		padding-left: 15px; 
 	}
-		ul.categoria li a, ul.actividad li a, ul.tarea li a  {
+		ul.categoria li a, ul.actividad li a, ul.tarea li a, ul.registro-tarea li a {
 			text-decoration: none;
 			color: #000000;
 			font-size: 14px;
 		}
-	ul.categoria li.editar, ul.actividad li.editar {
+	ul.categoria li.editar, ul.actividad li.editar, ul.tarea li.editar {
 		background: url("../images/editar.png") no-repeat 0 center;
 	}
-        ul.categoria li.editar:hover, ul.actividad li.editar:hover, 
+        ul.categoria li.editar:hover, ul.actividad li.editar:hover,
         ul.categoria li.eliminar:hover, ul.actividad li.eliminar:hover,
-        ul.tarea li.eliminar:hover {
+        ul.tarea li.editar:hover, ul.tarea li.eliminar:hover,
+        ul.registro-tarea li.eliminar:hover {
                 background-color: #CAC6D5;
                 border-radius: 3px;
 	}
@@ -396,7 +404,8 @@ ul.categoria, ul.actividad, ul.tarea  {
 		ul.categoria li.editar a:hover, ul.actividad li.editar a:hover {
 			
 		}
-	ul.categoria li.eliminar, ul.actividad li.eliminar, ul.tarea li.eliminar {
+	ul.categoria li.eliminar, ul.actividad li.eliminar, ul.tarea li.eliminar,
+        ul.registro-tarea li.eliminar {
 		margin-top: 2px;
 		background: url("../images/eliminar.png") no-repeat 0 center;
 	}
@@ -415,7 +424,7 @@ ul.tarea li.eliminar {
 /***** Menus categotia, actividad y tarea (fin) *****/
 
 #content-princ-izq .list-view .items .view {
-	padding: 5px 0 0 0;
+	padding: 5px 0;
 }
 #content-princ-izq .list-view .items .view:hover {
 	cursor: pointer;
@@ -426,7 +435,7 @@ ul.tarea li.eliminar {
 	width: 30%;
 	min-width: 160px;
 	float: right;
-	margin-top: -17px;
+	margin-top: -28px;
 	margin-right: 25%;
 }
 	.botones .play-tarea, .botones .pause-tarea {
@@ -463,6 +472,10 @@ ul.tarea li.eliminar {
 	float: left;
 	margin: 3px 10px 0; 
 	background: none;
+}
+p.tarea-actividad {
+    font-size: 13px;
+    padding-left: 32px;
 }
 /***** Formulario editar actividad (inicio) *****/
 .form-editar-actividad, .form-editar-categoria {
@@ -615,8 +628,7 @@ div.form textarea.success, div.form select.success {
     background-color: #f2dede;
     border-color: #eed3d7;
 }
-#confirmacion {
-    display: none;
+#exito-principal {
     position: absolute;
     width: 300px;
     z-index: 10;
@@ -645,3 +657,72 @@ div.pool-tarea:hover {
     background-color: #E1E2E5;
     cursor: pointer;
 }
+
+/***** Registro de tareas (inicio) *****/
+.desplegable .list-view {
+    margin: 0 5px ;
+}
+div.registro-tarea {
+    position: relative;
+    margin-bottom: 2px;
+    padding: 3px;
+    max-width: 620px;
+}
+div.registro-tarea form div {
+    position: relative;
+    float: left;
+    margin: 0 5px;
+}
+div.registro-tarea form div label {
+    padding-right: 5px;
+}
+div.registro-tarea form div.fecha-inicio {
+   padding-right: 20px;
+}
+div.registro-tarea form div input {
+   padding: 0 5px;
+   width: 75px;
+}
+div.registro-tarea form div.hora-inicio label {
+   float: left;
+   line-height: 20px;
+}
+div.registro-tarea form div.hora-inicio input {
+   float: right;
+}
+.ui-datepicker-trigger {
+    position: absolute;
+    top: 4px;
+    right: 0px;
+}
+/***** Registro de tareas (fin) *****/
+
+/***** Editar tarea (inicio) *****/
+div.editar-tarea {
+    padding: 5px;
+    border: 1px solid #CBCBCB;
+    border-radius: 3px;
+}
+div.editar-tarea h3 {
+    color: #0066cc;
+    font-size: 15px;
+}
+div.editar-tarea textarea, div.editar-tarea input[type="text"] {
+    width: 95%;
+    padding: 0 5px;
+}
+div.editar-tarea div.fecha-inicio input[type="text"] {
+    width: 85px;
+}
+div.editar-tarea textarea {
+    height: 100px;
+    border: medium none;
+    border-radius: 5px;
+    display: inline-block;
+    font-family: "asapregular";
+}
+div.editar-tarea select {
+    height: 22px;
+    border: medium none;
+}
+/***** Editar tarea (fin) *****/

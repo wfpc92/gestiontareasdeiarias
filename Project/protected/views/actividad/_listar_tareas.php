@@ -8,7 +8,7 @@ $modelTarea = new Tarea;
 $modelTarea->id_actividad = $idActividad;
 ?>
 
-<div class="nombre-actividad"><?php echo $nombreActividad; ?></div>
+<div class="nombre-actividad"><span>Actividad: </span><?php echo $nombreActividad; ?></div>
 
 <?php
 $this->renderPartial('../tarea/_form', array(

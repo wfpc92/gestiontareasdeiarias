@@ -5,7 +5,7 @@
 $idTarea = $data->id_tarea;
 $idRegistroTarea = $data->id_registro_tarea;
 ?>
-<div id="registro-tarea-view-<?php echo $idRegistroTarea; ?>">
+<div id="registro-tarea-view-<?php echo $idRegistroTarea; ?>" class="registro-tarea">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'registro-tarea-form-' . $idRegistroTarea,
@@ -21,27 +21,41 @@ $idRegistroTarea = $data->id_registro_tarea;
 
     $fechaInicio = $data->fechaInicioFormatoPicker();
     $idDatePicker = "d-picker-fecha-inicio-registro-tarea-{$idRegistroTarea}";
-    echo $form->labelEx($data, 'fecha_inicio');
-    echo CHtml::textField('fecha_inicio', $fechaInicio, array(
-        'id' => $idDatePicker,
-        'class' => 'dpicker',
-        'title' => 'Ingrese la fecha en que inicia la tarea.'
-    ));
-
+    ?>
+    <div class="fecha-inicio">
+        <?php
+        echo $form->labelEx($data, 'fecha_inicio');
+        echo CHtml::textField('fecha_inicio', $fechaInicio, array(
+            'id' => $idDatePicker,
+            'class' => 'dpicker',
+            'title' => 'Ingrese la fecha en que inicia la tarea.'
+        ));
+        ?>
+    </div>
+    <?php
     $horaInicio = $data->horaInicioFormatoPicker();
     $horaInicioFormatoDate = $data->horaInicioFormatoDate();
     $idTimePicker = "d-picker-hora-inicio-registro-tarea-{$idRegistroTarea}";
-    echo CHtml::label("Hora Inicio:", "hora_inicio");
-    echo CHtml::textField('hora_inicio', $horaInicio, array(
-        'id' => $idTimePicker,
-        'name' => 'timepicker',
-        'class' => 'time_element',
-        'title' => 'Ingrese la hora en que inicia la tarea.'
-    ));
-
-    echo $form->labelEx($data, 'duracion');
+    ?>
+    <div class="hora-inicio">
+         <?php
+            echo CHtml::label("Hora Inicio", "hora_inicio");
+            echo CHtml::textField('hora_inicio', $horaInicio, array(
+                'id' => $idTimePicker,
+                'name' => 'timepicker',
+                'class' => 'time_element',
+                'title' => 'Ingrese la hora en que inicia la tarea.'
+            ));
+        ?>
+        <div class="clearFix"></div>
+    </div>
+    <div class="duracion">
+    <?php
+    echo $form->labelEx($data, 'duración');
     echo $form->textField($data, 'duracion');
-
+    ?>
+    </div>
+    <?php
     echo CHtml::link("Menú Registro de Tarea", "", array(
         'class' => 'menu-registro-tarea',
         'onclick' => 'return registroTareaMenu(this)'
@@ -57,12 +71,12 @@ $idRegistroTarea = $data->id_registro_tarea;
             ?>
         </li>
     </ul>
-
     <?php
     $this->endWidget();
     ?>
-
+    <div class="clearFix"></div>
 </div>
+
 <script>
 
 
