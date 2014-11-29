@@ -27,6 +27,6 @@ $this->widget('zii.widgets.CListView', array(
     'itemView' => '../tarea/_view',
     'enablePagination' => false,
     'htmlOptions' => array(
-        'id' => "tarea-{$idActividad}"
+        'id' => "tareas-{$idActividad}"
     ))
 );

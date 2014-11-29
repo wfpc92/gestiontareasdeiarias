@@ -7,7 +7,7 @@ $idTarea = $data->id_tarea;
 $nombreTarea = $data->nombre_tarea;
 ?>
 <div id="tarea-view-pool-<?php echo $idTarea; ?>" class="view" draggable="true" ondragstart="drag(event)">
-    <?php    
+    <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tarea-mostrar-form-' . $idTarea,
         'enableAjaxValidation' => false,
@@ -22,14 +22,14 @@ $nombreTarea = $data->nombre_tarea;
     echo CHtml::hiddenField('FECHA_HOY', Calendario::getFechaFormato());
 
     echo CHtml::tag('p', array(
-        'id' => 'p-tarea-nombre-' . $idTarea,
+        'id' => "p-tarea-nombre-{$idTarea}",
         'onclick' => 'return tareaMostrarPoolAjax(this)',
             ), $nombreTarea);
     ?>
     <div class="botones">
         <?php
         echo CHtml::tag('p', array(
-            'id' => 'p-duracion-tarea-' . $idTarea
+            'id' => "p-duracion-tarea-{$idTarea}"
                 ), $data->DURACION);
         ?>
         <div class="clearFix"></div>

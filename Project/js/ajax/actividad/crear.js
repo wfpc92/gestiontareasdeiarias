@@ -1,10 +1,10 @@
-var actividadCrearAjax = function(form) {
+var actividadCrearAjax = function (form) {
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             var idCategoria = data.idCategoria;
             var htmlActividad = data.htmlActividad;
             var items = $("#categoria-" + idCategoria + " .list-view .items");
@@ -19,6 +19,7 @@ var actividadCrearAjax = function(form) {
     };
     var selectores = {
         divCargando: $("#cargando-principal"),
+        divExito: $("#exito-principal"),
         divError: $(form).find(".error")
     };
     templateAjax1(confAjax, selectores);

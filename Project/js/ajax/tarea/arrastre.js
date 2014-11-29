@@ -1,7 +1,5 @@
 var tareaPoolADiariaAjax = function (self, target) {
-    var form = $("#" + self + " > form");
-    console.log(form);
-    
+    var form = $("#" + self + " > form");   
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/pooladiariaAjax',

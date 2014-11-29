@@ -21,6 +21,7 @@ var categoriaCrearAjax = function (form) {
     };
     var selectores = {
         divCargando: $("#cargando-principal"),
+        divExito: $("#exito-principal"),
         divError: $("#error-form-categoria")
     };
     templateAjax1(confAjax, selectores);

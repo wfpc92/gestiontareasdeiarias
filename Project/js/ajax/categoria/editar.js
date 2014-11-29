@@ -1,11 +1,11 @@
-var categoriaEditarFormAjax = function(self) {
+var categoriaEditarFormAjax = function (self) {
     var form = $(self).parents("form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/editarFormAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             var idCategoria = data.idCategoria;
             var htmlEditarForm = data.htmlEditarForm;
             $("#categoria-content-" + idCategoria).html(htmlEditarForm);
@@ -19,14 +19,14 @@ var categoriaEditarFormAjax = function(self) {
     return false;
 };
 
-var categoriaEditarAjax = function(self) {
+var categoriaEditarAjax = function (self) {
     var form = $(self);
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/editarAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             var idCategoria = data.idCategoria;
             var htmlCategoria = data.htmlCategoria;
             $("#categoria-content-" + idCategoria).html(htmlCategoria);
@@ -35,6 +35,7 @@ var categoriaEditarAjax = function(self) {
     };
     var selectores = {
         divCargando: $("#cargando-principal"),
+        divExito: $("#exito-principal"),
         divError: form.find(".error")
     };
     templateAjax1(confAjax, selectores);

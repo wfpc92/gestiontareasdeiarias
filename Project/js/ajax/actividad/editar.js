@@ -1,11 +1,11 @@
-var actividadEditarFormAjax = function(self) {
+var actividadEditarFormAjax = function (self) {
     var form = $(self).parents("form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/editarFormAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             var idActividad = data.idActividad;
             var htmlEditarForm = data.htmlEditarForm;
             $("#actividad-content-" + idActividad).html(htmlEditarForm);
@@ -19,14 +19,14 @@ var actividadEditarFormAjax = function(self) {
     return false;
 };
 
-var actividadEditarAjax = function(self) {
+var actividadEditarAjax = function (self) {
     var form = $(self).parents("form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/editarAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             var idActividad = data.idActividad;
             var htmlActividad = data.htmlActividad;
             $("#actividad-content-" + idActividad).html(htmlActividad);
@@ -34,6 +34,7 @@ var actividadEditarAjax = function(self) {
     };
     var selectores = {
         divCargando: $("#cargando-principal"),
+        divExito: $("#exito-principal"),
         divError: form.find(".error")
     };
     templateAjax1(confAjax, selectores);

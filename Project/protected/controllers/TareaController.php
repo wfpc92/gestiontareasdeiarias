@@ -222,10 +222,9 @@ class TareaController extends Controller {
             $model->attributes = $_REQUEST['Tarea'];
 
             if ($model != NULL) {
-                $idActividad = $model->ID_ACTIVIDAD;
                 $idActividad = $model->id_actividad;
                 $model->delete();
-                //$progressBar = $model->progressBar(NULL);
+                $progressBar = $model->progressBar(NULL);
                 $borrar = true;
             }
         } else {

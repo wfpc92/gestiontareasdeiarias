@@ -16,7 +16,6 @@ var tareaIniciarAjax = function (self) {
 
             //seleccionar la lista donde se van a agregar el registro.
             var items = $("#lst-registro-tarea-" + idTarea + " .items");
-            console.log(items)
             var divsItems = $("#lst-registro-tarea-" + idTarea + " .items > div");
             if (divsItems.length === 0) {
                 items.html("");

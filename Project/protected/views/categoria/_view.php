@@ -63,11 +63,12 @@ $nombreCategoria = $data->nombre_categoria;
         $dataProvider = new CActiveDataProvider('Actividad', array(
             'pagination' => false,
             'criteria' => array(
-                'condition' => "id_categoria={$data->id_categoria}"
+                'condition' => "id_categoria={$idCategoria}"
             )
         ));
 
         $this->widget('zii.widgets.CListView', array(
+            'id' => "actividades-{$idCategoria}",
             'dataProvider' => $dataProvider,
             'itemView' => '../actividad/_view',
             'enablePagination' => false,

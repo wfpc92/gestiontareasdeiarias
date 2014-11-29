@@ -628,7 +628,9 @@ div.form textarea.success, div.form select.success {
     background-color: #f2dede;
     border-color: #eed3d7;
 }
+
 #exito-principal {
+    display : none;
     position: absolute;
     width: 300px;
     z-index: 10;
