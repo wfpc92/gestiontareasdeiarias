@@ -8,11 +8,10 @@ var tareaCrearAjax = function (form) {
             var htmlTarea = data.htmlTarea;
             var htmlTareaEditar = data.htmlTareaEditar;
             var idActividad = data.idActividad;
-            //var idTarea = data.idTarea;
             var progressBar = data.progressBar;
-            var items = $("#tarea-" + idActividad + " .items");
-            var divsItems = $("#tarea-" + idActividad + " .items > div");
 
+            var items = $("#tareas-" + idActividad + " .items");
+            var divsItems = $("#tareas-" + idActividad + " .items > div");
             if (divsItems.length === 0) {
                 items.html("");
             }
@@ -26,6 +25,7 @@ var tareaCrearAjax = function (form) {
     };
     var selectores = {
         divCargando: $("#cargando-principal"),
+        divExito: $("#exito-principal"),
         divError: $(form).find(".error")
     };
     templateAjax1(confAjax, selectores);
@@ -44,8 +44,8 @@ var tareaCrearPoolAjax = function (form) {
             var idActividad = data.idActividad;
             //var idTarea = data.idTarea;
             var progressBar = data.progressBar;
-            var items = $("#tarea-" + idActividad + " .items");
-            var divsItems = $("#tarea-" + idActividad + " .items > div");
+            var items = $("#tareas-" + idActividad + " .items");
+            var divsItems = $("#tareas-" + idActividad + " .items > div");
 
             if (divsItems.length === 0) {
                 items.html("");

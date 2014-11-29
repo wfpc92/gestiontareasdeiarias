@@ -10,7 +10,7 @@ $fechaFormato = Calendario::getFechaFormato();
 <div id="tarea-view-<?php echo $idTarea; ?>" class="view">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'tarea-mostrar-form-' . $idTarea,
+        'id' => "tarea-mostrar-form-{$idTarea}",
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl,
         'htmlOptions' => array(
@@ -36,7 +36,7 @@ $fechaFormato = Calendario::getFechaFormato();
     $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
 
     echo CHtml::tag('p', array(
-        'id' => 'p-tarea-nombre-' . $idTarea,
+        'id' => "p-tarea-nombre-{$idTarea}",
         'onclick' => 'return tareaToogle(this)',
             ), $nomAbreviado);
 
@@ -44,22 +44,19 @@ $fechaFormato = Calendario::getFechaFormato();
     $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
 
     echo CHtml::tag('p', array(
-        'id' => 'p-tarea-actividad-' . $idTarea,
-        'class' => 'tarea-actividad'
+        'id' => "p-tarea-actividad-{$idTarea}"
             ), $nomAbreviado);
     ?>
     <div class="botones">
         <?php
         echo CHtml::button("Play Tarea", array(
-            'id' => 'btn-play-tarea-' . $idTarea,
-            'name' => 'btn-play-tarea-' . $idTarea,
+            'id' => "btn-play-tarea-{$idTarea}",
             'class' => 'play-tarea',
             'onclick' => 'return tareaIniciarAjax(this)'
         ));
 
         echo CHtml::button("Pausar Tarea", array(
-            'id' => 'lnk-pausar-tarea-' . $idTarea,
-            'name' => 'lnk-pausar-tarea-' . $idTarea,
+            'id' => "lnk-pausar-tarea-{$idTarea}",
             'class' => 'pause-tarea',
             'onclick' => 'return tareaPausarAjax(this)'
         ));
@@ -81,7 +78,7 @@ $fechaFormato = Calendario::getFechaFormato();
         <li class="editar">
             <?php
             echo CHtml::link("Editar", "#", array(
-                'id' => 'lnk-tarea-editar-form-' . $idTarea,
+                'id' => "lnk-tarea-editar-form-{$idTarea}",
                 'onclick' => 'return tareaMostrarAjax(this)'
             ));
             ?>
@@ -98,27 +95,29 @@ $fechaFormato = Calendario::getFechaFormato();
 
     <?php $this->endWidget(); ?>
 
-    <div class="desplegable">
-        <?php
-        $dataProvider = new CActiveDataProvider('RegistroTarea', array(
-            'pagination' => false,
-            'criteria' => array(
-                'condition' => "id_tarea={$idTarea}"
-            )
-        ));
+    <?php /* <div class="desplegable">
+      <?php
+      $dataProvider = new CActiveDataProvider('RegistroTarea', array(
+      'pagination' => false,
+      'criteria' => array(
+      'condition' => "id_tarea={$idTarea}"
+      )
+      ));
 
-        $this->widget('zii.widgets.CListView', array(
-            'dataProvider' => $dataProvider,
-            'itemView' => '../registro_tarea/_view',
-            'enablePagination' => false,
-            'htmlOptions' => array(
-                'id' => "lst-registro-tarea-{$idTarea}"
-            )
-        ));
-        ?>
-        
-        <div class="clearFix"></div>
-    </div>
+      $this->widget('zii.widgets.CListView', array(
+      'dataProvider' => $dataProvider,
+      'itemView' => '../registro_tarea/_view',
+      'enablePagination' => false,
+      'htmlOptions' => array(
+      'id' => "lst-registro-tarea-{$idTarea}"
+      )
+      ));
+      ?>
 
+
+      <div class="clearFix"></div>
+      </div>
+     */
+    ?>
 
 </div>

@@ -1,5 +1,6 @@
-var templateAjax1 = function(confAjax, selectores) {
+var templateAjax1 = function (confAjax, selectores) {
     var divCargando = selectores.divCargando;
+    var divExito = selectores.divExito;
     var divError = selectores.divError;
 
     $.ajax({
@@ -7,20 +8,24 @@ var templateAjax1 = function(confAjax, selectores) {
         url: confAjax.url,
         data: confAjax.data,
         dataType: confAjax.dataType,
-        beforeSend: function() {
+        beforeSend: function () {
             mostrarCargando(divCargando);
             ocultarError(divError);
             if (confAjax.beforeSend) {
                 confAjax.beforeSend();
             }
         },
-        complete: function() {
+        complete: function () {
             ocultarCargando(divCargando);
+            if (divExito) {
+                mostrarMensaje(divExito, "Se han guardado todos los cambios.")
+                divExito.delay(1600).fadeOut(300);
+            }
             if (confAjax.complete) {
                 confAjax.complete();
             }
         },
-        success: function(data, textStatus, jqXHR) {
+        success: function (data, textStatus, jqXHR) {
             if (data && data.error) {
                 this.error(jqXHR, textStatus, null);
                 return false;
@@ -29,7 +34,7 @@ var templateAjax1 = function(confAjax, selectores) {
                 confAjax.success(data, textStatus, jqXHR);
             }
         },
-        error: function(jqXHR, text, thr) {
+        error: function (jqXHR, text, thr) {
             var response = jqXHR.responseText;
             response = response.replace(/'/g, '"');
             var obj = $.parseJSON(response);

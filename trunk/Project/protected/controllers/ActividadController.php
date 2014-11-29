@@ -182,6 +182,7 @@ class ActividadController extends Controller {
      */
     public function actionEliminarAjax() {
         $borrar = false;
+        $idCategoria = NULL;
         $idActividad = NULL;
         $error = NULL;
 
@@ -189,6 +190,7 @@ class ActividadController extends Controller {
             $idActividad = $_REQUEST["Actividad"]["id_actividad"];
             $model = Actividad::model()->findByPk($idActividad);
             if ($model->validate()) {
+                $idCategoria = $model->id_categoria;
                 $model->eliminarActividad();
                 $borrar = true;
             }
@@ -200,6 +202,7 @@ class ActividadController extends Controller {
         }
         echo CJavaScript::jsonEncode(array(
             'borrar' => $borrar,
+            'idCategoria' => $idCategoria,
             'idActividad' => $idActividad,
             'error' => $error
         ));

@@ -109,7 +109,7 @@ class Actividad extends CActiveRecord {
         $idActividad = $this->id_actividad;
         $tareas = Tarea::model()->findAll("id_actividad={$idActividad}");
         foreach ($tareas as $tarea) {
-            $tarea->delete();
+            $tarea->eliminarTarea();
         }
         return $this->delete();
     }

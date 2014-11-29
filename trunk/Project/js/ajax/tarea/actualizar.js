@@ -13,6 +13,7 @@ var tareaActualizarAjax = function (form) {
     };
     var selectores = {
         divCargando: $("#cargando-principal"),
+        divExito: $("#exito-principal"),
         divError: $(form).find(".error")
     };
     templateAjax1(confAjax, selectores);

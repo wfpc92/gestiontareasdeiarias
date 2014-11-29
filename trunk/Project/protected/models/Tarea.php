@@ -197,4 +197,13 @@ class Tarea extends CActiveRecord {
         return $nuevoRegistroTarea;
     }
 
+    public function eliminarTarea() {
+        $idTarea = $this->id_tarea;
+        $registroTarea = RegistroTarea::model()->findAll("id_tarea={$idTarea}");
+        foreach ($registroTarea as $rt) {
+            $rt->delete();
+        }
+        return $this->delete();
+    }
+
 }

@@ -61,7 +61,6 @@ var tareaEliminarPoolModal = function(self) {
 
 var tareaEliminarPoolAjax = function(self) {
     var form = $(self).parents("form");
-    console.log(form);
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/eliminarAjax',
