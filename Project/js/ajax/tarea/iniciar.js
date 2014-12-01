@@ -27,7 +27,7 @@ var tareaIniciarAjax = function(self) {
              */
         }
     };
-    
+
     var selectores = {
         cargando: {
             div: $("#cargando-principal")
@@ -36,7 +36,7 @@ var tareaIniciarAjax = function(self) {
             div: $("#error-principal")
         }
     };
-    
+
     templateAjax1(confAjax, selectores);
     return false;
 };

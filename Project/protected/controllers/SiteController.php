@@ -25,20 +25,13 @@ class SiteController extends Controller {
         else {
             $fecha = date_create();
             Calendario::setFecha($fecha);
-            $userId = Yii::app()->user->getId();
-            
-            $contentVistaDiaria = $this->renderPartial('../tarea/_vista_diaria', array(
-                'userId' => $userId
-                    ), true);
-            $contentPoolTareas = $this->renderPartial('../tarea/_pool_tareas', array(
-                'userId' => $userId
-                    ), true);
+
+            $contentVistaDiaria = $this->renderPartial('../tarea/_vista_diaria', array(), true);
+            $contentPoolTareas = $this->renderPartial('../tarea/_pool_tareas', array(), true);
             $this->render('index', array(
                 'vistaIzquierda' => $contentVistaDiaria,
                 'vistaDerecha' => $contentPoolTareas
             ));
-
-            
         }
     }
 

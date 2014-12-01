@@ -5,12 +5,11 @@
 
 <div id="calendar"></div>
 <?php
-
 $this->widget('ext.EFullCalendar.EFullCalendar', array(
     'themeCssFile' => 'cupertino/theme.css',
     'htmlOptions' => array(
     ),
-    'lang'=>'es',
+    'lang' => 'es',
     'options' => array(
         'header' => array(
             'left' => 'prev,next',
@@ -37,7 +36,7 @@ $this->widget('ext.EFullCalendar.EFullCalendar', array(
 ?>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         tareaCerrar();
     });
 </script>

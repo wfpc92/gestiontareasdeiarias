@@ -12,10 +12,10 @@ var tareaCerrar = function(self) {
                 .css("margin-top", "-28px");
     }
     /**if ($(window).width() <= 920) {
-        $(".form-tarea p").css("padding", "0 40px 10px 33px");
-    } else {
-        $(".form-tarea p").css("padding", "0px");
-    }
-    **/
+     $(".form-tarea p").css("padding", "0 40px 10px 33px");
+     } else {
+     $(".form-tarea p").css("padding", "0px");
+     }
+     **/
     return false;
 };

@@ -1,10 +1,10 @@
-var categoriaCrearAjax = function (form) {
+var categoriaCrearAjax = function(form) {
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data, textStatus, jqXHR) {
+        success: function(data, textStatus, jqXHR) {
             var idCategoria = data.idCategoria;
             var htmlCategoria = data.htmlCategoria;
             var error = data.error;
@@ -19,16 +19,17 @@ var categoriaCrearAjax = function (form) {
             menus();
         }
     };
-    
+
     var selectores = {
         cargando: {
             div: $("#cargando-principal")
         },
         exito: {
-            div: $("#exito-principal")
+            div: $("#exito-principal"),
+            mensaje: "Categoria creada."
         },
         error: {
-            div:  $("#error-form-categoria")
+            div: $("#error-form-categoria")
         }
     };
     templateAjax1(confAjax, selectores);

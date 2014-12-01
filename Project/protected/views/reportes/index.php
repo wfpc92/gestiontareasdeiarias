@@ -1,23 +1,13 @@
 <?php
-/* @var $this ReportesController 
-    @var $model Reportes
- *
- *   
- */
-
-
-$this->breadcrumbs=array(
-	'Reportes',
-);
+/* @var $this ReportesController */
+/* @var $model Reportes */
 ?>
-<?php
-    $text = "Tareas Completadas";
-    $url = Yii::app()->createUrl("reportes/formularioTareasCompletadas");
-    $htmlOptions = array();
-    echo CHtml::link($text, $url, $htmlOptions);
-    
-    $text = "Sensación de productividad";
-    $url = Yii::app()->createUrl("reportes/formularioEsfuerzo");
-    $htmlOptions = array();
-    echo CHtml::link($text, $url, $htmlOptions);
-?>
+
+<ul>
+    <li>
+        <?php echo CHtml::link("Tareas Completadas", Yii::app()->createUrl("reportes/formularioTareasCompletadas")); ?>
+    </li>
+    <li>
+        <?php echo CHtml::link("Sensación de productividad", Yii::app()->createUrl("reportes/formularioEsfuerzo")); ?>
+    </li>
+</ul>

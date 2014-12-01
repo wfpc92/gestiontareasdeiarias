@@ -28,7 +28,7 @@ $fechaFormato = Calendario::getFechaFormato();
     }
     echo CHtml::checkBox("estado", $check, array(
         'onchange' => 'return tareaCheckAjax(this)',
-        'title' => 'Verifique la casilla si finalizó la tarea.'
+        'title' => 'Finalizar Tarea.'
     ));
 
     $nomCompleto = "{$data->nombre_tarea} ";
@@ -52,13 +52,15 @@ $fechaFormato = Calendario::getFechaFormato();
         echo CHtml::button("Play Tarea", array(
             'id' => "btn-play-tarea-{$idTarea}",
             'class' => 'play-tarea',
-            'onclick' => 'return tareaIniciarAjax(this)'
+            'onclick' => 'return tareaIniciarAjax(this)',
+            'title' => 'Iniciar Tiempo.'
         ));
 
         echo CHtml::button("Pausar Tarea", array(
             'id' => "lnk-pausar-tarea-{$idTarea}",
             'class' => 'pause-tarea',
-            'onclick' => 'return tareaPausarAjax(this)'
+            'onclick' => 'return tareaPausarAjax(this)',
+            'title' => 'Pausar Tiempo.'
         ));
 
         //echo CHtml::label("Duracion", "p-duracion-tarea-{$idTarea}");

@@ -3,7 +3,11 @@ var categoriaEliminarModal = function(self) {
     var nombreCategoria = form.siblings().children("a").text();
 
     $("<div>")
-            .html("¿Estas seguro que deseas eliminar la Categoría: \"" + nombreCategoria + "\"?")
+            .html("¿Está seguro de eliminar la Categoría: \n\
+                    \"" + nombreCategoria + "\"? \
+                    Si elimina la Categoría se eliminarán las \n\
+                    actividades actividades y las tareas \n\
+                    asociadas a ella.")
             .dialog({
                 title: "Eliminar Categoría",
                 resizable: false,
@@ -46,7 +50,8 @@ var categoriaEliminarAjax = function(form) {
             div: $("#cargando-principal")
         },
         exito: {
-            div: $("#exito-principal")
+            div: $("#exito-principal"),
+            mensaje: "Categoría eliminada."
         },
         error: {
             div: $("#error-form-categoria")

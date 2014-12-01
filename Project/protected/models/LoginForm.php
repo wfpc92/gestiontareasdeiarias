@@ -21,7 +21,7 @@ class LoginForm extends CFormModel {
         return array(
             // username and password are required
             array('username, password', 'required',
-                'message' => 'El campo {attribute} no debe estar vacio.'),
+                'message' => 'Ingresa tu {attribute}.'),
             // rememberMe needs to be a boolean
             array('rememberMe', 'boolean'),
             array('username', 'email'),
@@ -50,7 +50,7 @@ class LoginForm extends CFormModel {
         if (!$this->hasErrors()) {
             $this->_identity = new UserIdentity($this->username, $this->password);
             if (!$this->_identity->authenticate()) {
-                $this->addError('password', 'Correo o constraseña incorrectos.');
+                $this->addError('password', 'El correo o la contraseña que has introducido no son correctas.');
             }
         }
     }

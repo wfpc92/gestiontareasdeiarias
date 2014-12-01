@@ -3,10 +3,10 @@
 ?>
 
 <div id="cargando-principal"></div>
-<div id="exito-principal">Acción realizada correctamente....</div>
-<div id="contentIzq">
+<div id="exito-principal"></div>
+<div id="error-principal"></div>
 
-    <div id="error-principal"></div>
+<div id="contentIzq">
     <?php
     $form = '../categoria/_form';
     $modelCategoria = new Categoria;
@@ -60,7 +60,9 @@
                     ?>
                 </li>
                 <li class="reportes">
-                    <a href="#">Reportes</a>
+                    <?php
+                    echo CHtml::link("Reportes", Yii::app()->urlManager->createUrl("reportes"));
+                    ?>
                 </li>
             </ul> 
         </div>

@@ -9,7 +9,7 @@ $idCategoria = $model->id_categoria;
 <div class="form">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'actividad-form-' . $idCategoria,
+        'id' => "actividad-form-{$idCategoria}",
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/actividad/crearAjax',
         'htmlOptions' => array(
@@ -26,25 +26,25 @@ $idCategoria = $model->id_categoria;
         echo $form->hiddenField($model, 'id_categoria');
         echo $form->labelEx($model, 'nombre_actividad');
         echo $form->textField($model, 'nombre_actividad', array(
-            'id' => 'txt-actividad-' . $idCategoria,
+            'id' => "txt-actividad-{$idCategoria}",
             'class' => 'input-categoria',
             'size' => 60,
             'maxlength' => 100,
-            'placeholder' => 'Nombre Actividad'));
+            'placeholder' => 'Nombre Actividad'
+        ));
         echo $form->error($model, 'nombre_actividad');
         ?>
     </div>
 
     <div class="row buttons">
         <?php
-        $label = "Nueva actividad";
-        $htmlOptions = array(
-            'id' => 'btn-crear-actividad-' . $idCategoria,
-            'name' => 'btn-crear-actividad-' . $idCategoria
-        );
-        echo CHtml::submitButton($label, $htmlOptions);
+        echo CHtml::submitButton("Nueva actividad", array(
+            'id' => "btn-crear-actividad-{$idCategoria}",
+            'name' => "btn-crear-actividad-{$idCategoria}",
+            'title' => 'Agregar Actividad.'
+        ));
         ?>
     </div>
 
     <?php $this->endWidget(); ?>
-</div><!-- form -->
+</div>

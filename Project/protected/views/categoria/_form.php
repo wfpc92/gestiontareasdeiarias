@@ -36,13 +36,11 @@
 
     <div class="row buttons">
         <?php
-        $label = "Nueva categoria";
-        $htmlOptions = array(
+        echo CHtml::submitButton("Nueva categoria", array(
             'id' => 'btn-crear-categoria',
             'name' => 'btn-crear-categoria',
-            '' => ''
-        );
-        echo CHtml::submitButton($label, $htmlOptions);
+            'title' => 'Agregar Categoría'
+        ));
         ?>
     </div>
     <div class="clearFix"></div>

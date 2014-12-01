@@ -81,13 +81,17 @@ class TareaController extends Controller {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
             $model->scenario = "crearAjax";
+            $model->id_usuario = Yii::app()->user->getId();
 
             if ($model->validate()) {
                 $model->save();
                 $idActividad = $model->id_actividad;
                 $idTarea = $model->id_tarea;
+
                 //actualizar con los campos por defecto
                 $model = Tarea::model()->findByPk($idTarea);
+                $model->fecha_inicio = $model->fecha_creacion;
+                $model->save();
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
                 $htmlTareaEditar = $this->renderPartial('_editar', array('model' => $model), true);
                 $progressBar = $model->progressBar(NULL);
@@ -284,12 +288,8 @@ class TareaController extends Controller {
                 $fecha = date_create();
             }
             Calendario::setFecha($fecha);
-            $contentVistaDiaria = $this->renderPartial('_vista_diaria', array(
-                'userId' => $userId
-                    ), true);
-            $contentPoolTareas = $this->renderPartial('_pool_tareas', array(
-                'userId' => $userId
-                    ), true);
+            $contentVistaDiaria = $this->renderPartial('_vista_diaria', array(                ), true);
+            $contentPoolTareas = $this->renderPartial('_pool_tareas', array(                    ), true);
             $this->render('../site/index', array(
                 'vistaIzquierda' => $contentVistaDiaria,
                 'vistaDerecha' => $contentPoolTareas
@@ -311,17 +311,17 @@ class TareaController extends Controller {
             $model = new Tarea;
             $model->attributes = $_REQUEST['Tarea'];
             $userId = Yii::app()->user->getId();
-            $model->CORREO = $userId;
+            $model->id_usuario = $userId;
             $model->id_actividad = NULL;
-            $model->PRIORIDAD = 0;
+            $model->prioridad = Tarea::PRIORIDADMEDIA;
             $model->scenario = 'crearAjax';
+
             if ($model->validate()) {
                 $model->save();
-                $idActividad = $model->ID_ACTIVIDAD;
-                $idTarea = $model->ID_TAREA;
-
-                $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
-                $htmlTareaEditar = $this->renderPartial('_pool_tareas', array('userId' => $userId), true);
+                $idActividad = $model->id_actividad;
+                $idTarea = $model->id_tarea;
+                $htmlTarea = $this->renderPartial('_view_pool', array('data' => $model), true);
+                $htmlTareaEditar = $this->renderPartial('_pool_tareas', array(), true);
             }
             if ($model->hasErrors()) {
                 $error = $model->getErrors();
@@ -332,8 +332,8 @@ class TareaController extends Controller {
         echo CJavaScript::jsonEncode(array(
             'htmlTarea' => $htmlTarea,
             'htmlTareaEditar' => $htmlTareaEditar,
-            'idActividad' => $model->id_actividad,
-            'idTarea' => $model->id_tarea,
+            'idActividad' => $idActividad,
+            'idTarea' => $idTarea,
             'error' => $error
         ));
     }

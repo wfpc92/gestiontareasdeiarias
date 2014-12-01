@@ -28,12 +28,10 @@
 
     <div class="row buttons">
         <?php
-        $label = "agregar tarea";
-        $htmlOptions = array(
+        echo CHtml::submitButton("agregar tarea", array(
             'id' => 'btn-crear-tarea',
             'name' => 'btn-crear-tarea'
-        );
-        echo CHtml::submitButton($label, $htmlOptions);
+        ));
         ?>
         <div class="clearFix"></div>
     </div>
