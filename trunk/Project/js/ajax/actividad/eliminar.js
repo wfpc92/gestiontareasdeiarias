@@ -1,4 +1,4 @@
-var actividadEliminarModal = function (self) {
+var actividadEliminarModal = function(self) {
     var form = $(self).parents("form");
     var nombreActividad = form.children("div").eq(1).children("a").text();
     $("<div>")
@@ -9,11 +9,11 @@ var actividadEliminarModal = function (self) {
                 width: 500,
                 modal: true,
                 buttons: {
-                    "Borrar Actividad": function () {
+                    "Borrar Actividad": function() {
                         actividadEliminarAjax(form);
                         $(this).dialog("close");
                     },
-                    Cancel: function () {
+                    Cancel: function() {
                         $(this).dialog("close");
                     }
                 }
@@ -21,13 +21,13 @@ var actividadEliminarModal = function (self) {
     return false;
 };
 
-var actividadEliminarAjax = function (form) {
+var actividadEliminarAjax = function(form) {
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/eliminarAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var borrar = data.borrar;
             var error = data.error;
             var idCategoria = data.idCategoria;
@@ -41,10 +41,17 @@ var actividadEliminarAjax = function (form) {
             }
         }
     };
+
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divExito: $("#exito-principal"),
-        divError: form.find(".error")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        exito: {
+            div: $("#exito-principal")
+        },
+        error: {
+            div: form.find(".error")
+        }
     };
     templateAjax1(confAjax, selectores);
     return false;

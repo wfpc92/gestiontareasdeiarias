@@ -38,22 +38,22 @@ $idRegistroTarea = $data->id_registro_tarea;
     $idTimePicker = "d-picker-hora-inicio-registro-tarea-{$idRegistroTarea}";
     ?>
     <div class="hora-inicio">
-         <?php
-            echo CHtml::label("Hora Inicio", "hora_inicio");
-            echo CHtml::textField('hora_inicio', $horaInicio, array(
-                'id' => $idTimePicker,
-                'name' => 'timepicker',
-                'class' => 'time_element',
-                'title' => 'Ingrese la hora en que inicia la tarea.'
-            ));
+        <?php
+        echo CHtml::label("Hora Inicio", "hora_inicio");
+        echo CHtml::textField('hora_inicio', $horaInicio, array(
+            'id' => $idTimePicker,
+            'name' => 'timepicker',
+            'class' => 'time_element',
+            'title' => 'Ingrese la hora en que inicia la tarea.'
+        ));
         ?>
         <div class="clearFix"></div>
     </div>
     <div class="duracion">
-    <?php
-    echo $form->labelEx($data, 'duración');
-    echo $form->textField($data, 'duracion');
-    ?>
+        <?php
+        echo $form->labelEx($data, 'duración');
+        echo $form->textField($data, 'duracion');
+        ?>
     </div>
     <?php
     echo CHtml::link("Menú Registro de Tarea", "", array(

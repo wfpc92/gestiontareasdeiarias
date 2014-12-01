@@ -1,4 +1,4 @@
-var tareaEliminarModal = function (self) {
+var tareaEliminarModal = function(self) {
     var form = $(self).parents("form");
     var nombreTarea = form.children("p").eq(0).text()
     $("<div>")
@@ -9,25 +9,25 @@ var tareaEliminarModal = function (self) {
                 width: 500,
                 modal: true,
                 buttons: {
-                    "Borrar Tarea": function () {
+                    "Borrar Tarea": function() {
                         tareaEliminarAjax(form);
                         $(this).dialog("close");
                     },
-                    Cancelar: function () {
+                    Cancelar: function() {
                         $(this).dialog("close");
                     }
                 }
             });
     return false;
 };
-var tareaEliminarAjax = function (self) {
+var tareaEliminarAjax = function(self) {
     var form = $(self);
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/eliminarAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var borrar = data.borrar;
             var motivo = data.motivo;
             var idActividad = data.idActividad;
@@ -45,16 +45,24 @@ var tareaEliminarAjax = function (self) {
             return false;
         }
     };
+
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divExito: $("#exito-principal"),
-        divError: $("#error-principal")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        exito: {
+            div: $("#exito-principal")
+        },
+        error: {
+            div: $("#error-principal")
+        }
     };
+
     templateAjax1(confAjax, selectores);
     return false;
 };
 
-var tareaEliminarPoolModal = function (self) {
+var tareaEliminarPoolModal = function(self) {
     $("<div>")
             .html("¿Estas seguro que deseas eliminar esta Tarea?")
             .dialog({
@@ -63,11 +71,11 @@ var tareaEliminarPoolModal = function (self) {
                 width: 500,
                 modal: true,
                 buttons: {
-                    "Borrar Tarea": function () {
+                    "Borrar Tarea": function() {
                         tareaEliminarPoolAjax(self);
                         $(this).dialog("close");
                     },
-                    Cancelar: function () {
+                    Cancelar: function() {
                         $(this).dialog("close");
                     }
                 }
@@ -75,14 +83,14 @@ var tareaEliminarPoolModal = function (self) {
     return false;
 };
 
-var tareaEliminarPoolAjax = function (self) {
+var tareaEliminarPoolAjax = function(self) {
     var form = $(self).parents("form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/eliminarAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var borrar = data.borrar;
             var motivo = data.motivo;
             var idTarea = data.idTarea;
@@ -95,10 +103,16 @@ var tareaEliminarPoolAjax = function (self) {
             return false;
         }
     };
+
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divError: $("#error-principal")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        error: {
+            div: $("#error-principal")
+        }
     };
+
     templateAjax1(confAjax, selectores);
     return false;
 };

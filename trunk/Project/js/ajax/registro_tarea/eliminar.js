@@ -30,10 +30,16 @@ var registroTareaEliminarAjax = function(self) {
             $("#registro-tarea-view-" + idRegistroTarea).remove();
         }
     };
+
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divError: $("#error-principal")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        error: {
+            div: $("#error-principal")
+        }
     };
+
     templateAjax1(confAjax, selectores);
     return false;
 };
@@ -79,10 +85,16 @@ var tareaEliminarPoolAjax = function(self) {
             return false;
         }
     };
+
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divError: $("#error-principal")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        error: {
+            div: $("#error-principal")
+        }
     };
+
     templateAjax1(confAjax, selectores);
     return false;
 };

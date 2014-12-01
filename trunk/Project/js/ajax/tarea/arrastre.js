@@ -1,24 +1,30 @@
-var tareaPoolADiariaAjax = function (self, target) {
-    var form = $("#" + self + " > form");   
+var tareaPoolADiariaAjax = function(self, target) {
+    var form = $("#" + self + " > form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/pooladiariaAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var htmlTarea = data.htmlTarea;
             $("#lst-tarea-diaria > .items").append(htmlTarea);
             var div = $("#" + self);
             div.remove();
         },
-        error: function (data) {
+        error: function(data) {
             alert(data.error)
         }
     };
+
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divError: $(form).find(".error")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        error: {
+            div: $(form).find(".error")
+        }
     };
+
     templateAjax1(confAjax, selectores);
     return false;
 };

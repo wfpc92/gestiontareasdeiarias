@@ -14,9 +14,14 @@ var categoriaCargarAjax = function(select) {
             menus();
         }
     };
+
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divError: $("#error-form-categoria")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        error: {
+            div: $("#error-form-categoria")
+        }
     };
     templateAjax1(confAjax, selectores);
     return false;

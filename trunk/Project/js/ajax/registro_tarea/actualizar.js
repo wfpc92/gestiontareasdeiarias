@@ -1,6 +1,6 @@
 var registroTareaActualizarAjax = function(self) {
     var form = $(self);
-    
+
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/actualizarRegistroTareaAjax',
@@ -10,10 +10,16 @@ var registroTareaActualizarAjax = function(self) {
 
         }
     };
+
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divError: $("#error-principal")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        error: {
+            div: $("#error-principal")
+        }
     };
+
     templateAjax1(confAjax, selectores);
     return false;
 };

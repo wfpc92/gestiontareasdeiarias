@@ -19,10 +19,17 @@ var categoriaCrearAjax = function (form) {
             menus();
         }
     };
+    
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divExito: $("#exito-principal"),
-        divError: $("#error-form-categoria")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        exito: {
+            div: $("#exito-principal")
+        },
+        error: {
+            div:  $("#error-form-categoria")
+        }
     };
     templateAjax1(confAjax, selectores);
     return false;
