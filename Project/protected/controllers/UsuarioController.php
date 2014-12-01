@@ -9,7 +9,6 @@ class UsuarioController extends Controller {
 
     public function init() {
         if (!Yii::app()->user->isGuest) {
-            echo "perra";
             $this->userData = Usuario::model()->findByPk(Yii::app()->user->id);
         }
     }
@@ -79,13 +78,20 @@ class UsuarioController extends Controller {
     /**
      * Creates a new model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @var login LoginForm 
      */
     public function actionRegistro() {
         $model = new Usuario;
         if (isset($_POST['Usuario'])) {
             $model->attributes = $_POST['Usuario'];
             if ($model->save()) {
-                $this->redirect(Yii::app()->createUrl('site/login'));
+                $login = new LoginForm;
+                $login->username = $model->correo;
+                $login->password = $model->contrasena;
+
+                if ($login->validate() && $login->login()) {
+                    $this->redirect(Yii::app()->user->returnUrl);
+                }
             }
         }
         $this->render('create', array(

@@ -60,11 +60,11 @@ $fechaFormato = Calendario::getFechaFormato();
             'class' => 'pause-tarea',
             'onclick' => 'return tareaPausarAjax(this)'
         ));
-        
+
         //echo CHtml::label("Duracion", "p-duracion-tarea-{$idTarea}");
         echo CHtml::tag('p', array(
             'id' => "p-duracion-tarea-{$idTarea}"
-                ),"Duración: " . $data->getDuracion());
+                ), "Duración: " . $data->getDuracion());
         ?>
         <div class="clearFix"></div>
     </div>
@@ -95,29 +95,28 @@ $fechaFormato = Calendario::getFechaFormato();
 
     <?php $this->endWidget(); ?>
 
-    <?php /* <div class="desplegable">
-      <?php
-      $dataProvider = new CActiveDataProvider('RegistroTarea', array(
-      'pagination' => false,
-      'criteria' => array(
-      'condition' => "id_tarea={$idTarea}"
-      )
-      ));
+    <div class="desplegable">
+        <?php
+        $dataProvider = new CActiveDataProvider('RegistroTarea', array(
+            'pagination' => false,
+            'criteria' => array(
+                'condition' => "id_tarea={$idTarea}"
+            )
+        ));
 
-      $this->widget('zii.widgets.CListView', array(
-      'dataProvider' => $dataProvider,
-      'itemView' => '../registro_tarea/_view',
-      'enablePagination' => false,
-      'htmlOptions' => array(
-      'id' => "lst-registro-tarea-{$idTarea}"
-      )
-      ));
-      ?>
+        $this->widget('zii.widgets.CListView', array(
+            'dataProvider' => $dataProvider,
+            'itemView' => '../registro_tarea/_view',
+            'enablePagination' => false,
+            'htmlOptions' => array(
+                'id' => "lst-registro-tarea-{$idTarea}"
+            )
+        ));
+        ?>
 
 
-      <div class="clearFix"></div>
-      </div>
-     */
-    ?>
+        <div class="clearFix"></div>
+    </div>
+
 
 </div>

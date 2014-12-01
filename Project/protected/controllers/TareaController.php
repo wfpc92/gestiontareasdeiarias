@@ -223,7 +223,7 @@ class TareaController extends Controller {
 
             if ($model != NULL) {
                 $idActividad = $model->id_actividad;
-                $model->delete();
+                $model->eliminarTarea();
                 $progressBar = $model->progressBar(NULL);
                 $borrar = true;
             }

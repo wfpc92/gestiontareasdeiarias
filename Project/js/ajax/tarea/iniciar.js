@@ -1,18 +1,17 @@
-var tareaIniciarAjax = function (self) {
+var tareaIniciarAjax = function(self) {
     var form = $(self).parents("form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/crearRegistroTareaAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var idTarea = data.idTarea;
             var idRegistroTarea = data.idRegistroTarea;
             var htmlRegistroTarea = data.htmlRegistroTarea;
 
             //mostrar los registros.
-            var desple = form.children(".desplegable")
-            desple.show();
+            form.siblings(".desplegable").show();
 
             //seleccionar la lista donde se van a agregar el registro.
             var items = $("#lst-registro-tarea-" + idTarea + " .items");
@@ -28,10 +27,16 @@ var tareaIniciarAjax = function (self) {
              */
         }
     };
+    
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divError: $("#error-principal")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        error: {
+            div: $("#error-principal")
+        }
     };
+    
     templateAjax1(confAjax, selectores);
     return false;
 };

@@ -1,11 +1,11 @@
-var actividadListarTareasAjax = function (self) {
+var actividadListarTareasAjax = function(self) {
     var form = $(self).parents("form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/listarTareasAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var idActividad = data.idActividad;
             var htmlTareas = data.htmlTareas;
             var panel = $("#content-princ-izq");
@@ -17,15 +17,19 @@ var actividadListarTareasAjax = function (self) {
         }
     };
     var selectores = {
-        divCargando: $("#cargando-principal"),
-        divError: $("#error-principal")
+        cargando: {
+            div: $("#cargando-principal")
+        },
+        error: {
+            div: $("#error-principal")
+        }
     };
     templateAjax1(confAjax, selectores);
     return false;
 }
 
 var situacionPaneles1 =
-        function () {
+        function() {
             $("#content-princ-der").hide();
             $("#content-princ-izq").css("width", "100%");
             if ($(window).width() <= 700) {

@@ -3,8 +3,8 @@ function posCalendario() {
     $("#content-princ-der").hide();
 }
 $(document).ready(function() {
-     var alto = $(window).height();
-     $("#content").css("min-height", $(window).height() + "px");
+    var alto = $(window).height();
+    $("#content").css("min-height", $(window).height() + "px");
     if ($(window).width() <= 768) {
         $("#content-princ-der").css("width", "100%");
     }
@@ -21,56 +21,73 @@ $(document).ready(function() {
         $(".botones").css("margin-right", "25%");
     }
 
-    $("#regresar").click(function () {
+    $("#regresar").click(function() {
         $("#contentDer").hide();
         $("#contentIzq").show();
     });
 
-    $("#menu .calendario a").click(function () {
+    $("#menu .calendario a").click(function() {
         posCalendario();
     });
 
     setTimeout(function() {
         $("#exito-principal").fadeOut(1500);
-    },3000);
-    
+    }, 3000);
+
     menus();
 });
 
 
-var validarEntrada = function (input) {
+var validarEntrada = function(input) {
     var texto = input.val().trim();
     var longitud = texto.length;
     return longitud === 0 ? false : true;
 };
 
-var mostrarMensaje = function (div, mensaje) {
+var mostrarMensaje = function(div, mensaje) {
     div.css('display', 'block')
             .text(mensaje);
     return div;
 };
-var mostrarCargando = function (div) {
+
+var mostrarMensajeExito = function(div, mensaje) {
     div.css('display', 'block')
-            .text("Cargando, un momento por favor...");
+    if (mensaje) {
+        div.text(mensaje);
+    } else {
+        div.text("Se han guardado todos los cambios.");
+    }
+    return div;
+
 };
 
-var ocultarCargando = function (div) {
+var mostrarCargando = function(div, mensaje) {
+    div.css('display', 'block');
+    if (mensaje) {
+        div.text(mensaje)
+    } else {
+        div.text("Cargando, un momento por favor...");
+    }
+    return div;
+};
+
+var ocultarCargando = function(div) {
     div.css('display', 'none')
             .addClass("cargando")
             .text("");
 }
 
-var mostrarError = function (div, mensaje) {
+var mostrarError = function(div, mensaje) {
     div.css('display', 'block')
             .addClass("mensaje-error")
             .html(mensaje);
 };
-var ocultarError = function (div) {
+var ocultarError = function(div) {
     div.css('display', 'none')
             .text("");
 };
 
-var mostrarPanelDerecho = function (html) {
+var mostrarPanelDerecho = function(html) {
     $ancho = $(window).width();
 
     if ($ancho <= 1200) {
@@ -97,21 +114,21 @@ var mostrarPanelDerecho = function (html) {
 
     $anchoizq = $("#content-princ-izq").width();
 };
-var menus = function () {
-    $("ul.categoria").mouseleave(function () {
+var menus = function() {
+    $("ul.categoria").mouseleave(function() {
         $("ul.categoria").hide();
     });
 
-    $("ul.actividad").mouseleave(function () {
+    $("ul.actividad").mouseleave(function() {
         $("ul.actividad").hide();
     });
 
-    $("ul.tarea").mouseleave(function () {
+    $("ul.tarea").mouseleave(function() {
         $("ul.tarea").hide();
     });
-    
+
     $("ul.registro-tarea").mouseleave(function() {
         $("ul.registro-tarea").hide();
     });
-    
+
 };
