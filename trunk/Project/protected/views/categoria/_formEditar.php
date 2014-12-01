@@ -7,7 +7,7 @@
 <div class="form">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'categoria-form-'.$model->ID_CATEGORIA,
+        'id' => 'categoria-form-' . $model->ID_CATEGORIA,
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/categoria/editarAjax',
         'htmlOptions' => array(
@@ -29,9 +29,9 @@
         echo $form->error($model, 'NOMBRE_CATEGORIA');
         ?>
     </div>
-        
-    
-    
+
+
+
     <?php $this->endWidget(); ?>
 
 </div>

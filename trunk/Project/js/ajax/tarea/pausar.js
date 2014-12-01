@@ -1,4 +1,4 @@
-var tareaPausarAjax = function (self) {
+var tareaPausarAjax = function(self) {
     alert("pausar una tarea")
 };
 

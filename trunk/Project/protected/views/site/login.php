@@ -19,9 +19,8 @@ $this->breadcrumbs = array(
         'enableAjaxValidation' => false,
         'enableClientValidation' => false
     ));
-
     ?>
-    
+
     <p class="note">Los campos con <span class="required">*</span> son obligatorios.</p>
 
     <div class="row">

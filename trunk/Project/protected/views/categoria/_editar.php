@@ -34,7 +34,8 @@ $idCategoria = $model->id_categoria;
     <div class="row buttons">
         <?php
         echo CHtml::submitButton("Editar categoria", array(
-            'id' => 'btn-categoria-editar-form' . $idCategoria,
+            'id' => "btn-categoria-editar-form-{$idCategoria}",
+            'title' => 'Modificar Nombre de Categoría.'
         ));
         ?>
     </div>

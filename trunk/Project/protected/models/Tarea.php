@@ -50,12 +50,12 @@ class Tarea extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('nombre_tarea', 'required', 'on' => 'crearAjax',
-                'message' => 'El campo {attribute} no puede estar vacio.'),
+                'message' => 'Debe ingresar el nombre de la Tarea.'),
             array('nombre_tarea, fecha_inicio, prioridad, estado, inamovible ', 'required',
                 'on' => 'actualizarAjax', 'message' => 'El campo {attribute} no puede estar vacio.'),
             array('nombre_tarea, descripcion', 'match',
                 'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/',
-                'message' => 'Este campo solo puede contener letras, tildes, números y espacios.'),
+                'message' => 'El Nombre de la Tarea sólo puede contener letras, tildes, números y espacios.'),
             array('id_tarea, prioridad, estado, inamovible, id_actividad, id_usuario, id_tipo_tarea', 'length', 'max' => 10),
             array('nombre_tarea', 'length', 'max' => 100),
             array('descripcion', 'length', 'max' => 255),

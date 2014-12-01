@@ -18,7 +18,8 @@ var tareaGuardarAjax = function(form) {
             div: $("#cargando-principal")
         },
         exito: {
-            div: $("#exito-principal")
+            div: $("#exito-principal"),
+            mensaje: "Tarea Modificada."
         },
         error: {
             div: $(form).find(".error")

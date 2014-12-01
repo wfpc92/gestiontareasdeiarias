@@ -29,9 +29,9 @@ class Actividad extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('nombre_actividad', 'required', 'message' => 'Este campo no puede estar vacio.'),
+            array('nombre_actividad', 'required', 'message' => 'Debe ingresar el nombre de la Actividad.'),
             array('nombre_actividad', 'match', 'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/',
-                'message' => 'Este campo solo puede contener letras, tildes, números y espacios.'),
+                'message' => 'El Nombre de la Actividad solo puede contener letras, tildes, números y espacios.'),
             array('nombre_actividad', 'length', 'max' => 100),
             array('id_categoria', 'length', 'max' => 10),
             // The following rule is used by search().

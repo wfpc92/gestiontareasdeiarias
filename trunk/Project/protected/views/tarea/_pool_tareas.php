@@ -19,6 +19,7 @@ $dataProvider = new CActiveDataProvider('Tarea', array(
 );
 
 $this->widget('zii.widgets.CListView', array(
+    'id' => 'pool-tareas',
     'dataProvider' => $dataProvider,
     'itemView' => '../tarea/_view_pool',
     'enablePagination' => false,

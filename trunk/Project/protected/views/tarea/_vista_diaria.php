@@ -1,5 +1,6 @@
 <?php
 $fechaFormato = Calendario::getFechaFormato();
+$userId = Yii::app()->user->getId();
 ?>
 <h2><?php echo Calendario::getFechaFormatoHoy(); ?></h2>
 

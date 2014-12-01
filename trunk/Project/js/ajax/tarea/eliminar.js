@@ -2,7 +2,7 @@ var tareaEliminarModal = function(self) {
     var form = $(self).parents("form");
     var nombreTarea = form.children("p").eq(0).text()
     $("<div>")
-            .html("¿Estas seguro que deseas eliminar la Tarea: \"" + nombreTarea + "\"?")
+            .html("¿Está seguro de eliminar la Tarea: \"" + nombreTarea + "\"?")
             .dialog({
                 title: "Eliminar Tarea",
                 resizable: false,
@@ -51,7 +51,8 @@ var tareaEliminarAjax = function(self) {
             div: $("#cargando-principal")
         },
         exito: {
-            div: $("#exito-principal")
+            div: $("#exito-principal"),
+            mensaje: "Tarea eliminada."
         },
         error: {
             div: $("#error-principal")

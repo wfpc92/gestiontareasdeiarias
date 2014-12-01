@@ -100,11 +100,11 @@ class RegistroTarea extends CActiveRecord {
     public function fechaInicioFormatoPicker() {
         return Calendario::fechaFormatoPicker($this->fecha_inicio);
     }
-    
+
     public function horaInicioFormatoPicker() {
         return Calendario::horaFormatoPicker($this->fecha_inicio);
     }
-    
+
     public function horaInicioFormatoDate() {
         return Calendario::horaFormatoDate($this->fecha_inicio);
     }

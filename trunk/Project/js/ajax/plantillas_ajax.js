@@ -22,10 +22,6 @@ var templateAjax1 = function(confAjax, selectores) {
         },
         complete: function() {
             ocultarCargando(divCargando);
-            if (divExito) {
-                mostrarMensajeExito(divExito, mensajeExito)
-                divExito.delay(1600).fadeOut(300);
-            }
             if (confAjax.complete) {
                 confAjax.complete();
             }
@@ -38,6 +34,10 @@ var templateAjax1 = function(confAjax, selectores) {
             if (confAjax.success) {
                 confAjax.success(data, textStatus, jqXHR);
             }
+            if (divExito) {
+                mostrarMensajeExito(divExito, mensajeExito)
+                divExito.delay(1600).fadeOut(300);
+            }
         },
         error: function(jqXHR, text, thr) {
             var response = jqXHR.responseText;
@@ -47,7 +47,7 @@ var templateAjax1 = function(confAjax, selectores) {
                 if (typeof obj.error === "string") {
                     mostrarError(divError, obj.error);
                 } else if (typeof obj.error === "object") {
-                    var mensajeError = "";
+                    mensajeError = "";
                     var cont = 0;
                     for (var err in obj.error) {
                         if (cont++ !== 0) {

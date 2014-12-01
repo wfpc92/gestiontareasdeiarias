@@ -2,7 +2,10 @@ var actividadEliminarModal = function(self) {
     var form = $(self).parents("form");
     var nombreActividad = form.children("div").eq(1).children("a").text();
     $("<div>")
-            .html("¿Estas seguro que deseas eliminar la Actividad: \"" + nombreActividad + "\"?")
+            .html("¿Está seguro de eliminar la Actividad: \
+                    \"" + nombreActividad + "\"? \
+                    Si elimina la Actividad se eliminarán las \
+                    tareas asociadas a ellas.")
             .dialog({
                 title: "Eliminar Actividad",
                 resizable: false,
@@ -47,7 +50,8 @@ var actividadEliminarAjax = function(form) {
             div: $("#cargando-principal")
         },
         exito: {
-            div: $("#exito-principal")
+            div: $("#exito-principal"),
+            mensaje: "Actividad Eliminada."
         },
         error: {
             div: form.find(".error")

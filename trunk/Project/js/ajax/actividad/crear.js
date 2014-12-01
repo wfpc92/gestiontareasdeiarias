@@ -23,7 +23,8 @@ var actividadCrearAjax = function(form) {
             div: $("#cargando-principal")
         },
         exito: {
-            div: $("#exito-principal")
+            div: $("#exito-principal"),
+            mensaje: "Actividad Creada."
         },
         error: {
             div: $(form).find(".error")
