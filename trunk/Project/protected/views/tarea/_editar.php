@@ -10,7 +10,7 @@ $idTarea = $model->id_tarea;
     <h3>Editar tarea </h3>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'tarea-editar-form-' . $idTarea,
+        'id' => "tarea-editar-form-{$idTarea}",
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/tarea/actualizarAjax',
         'htmlOptions' => array(

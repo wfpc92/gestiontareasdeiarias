@@ -61,6 +61,8 @@
         $cs->registerScriptFile($bu . 'js/ajax/registro_tarea/actualizar.js');
         $cs->registerScriptFile($bu . 'js/ajax/registro_tarea/eliminar.js');
         $cs->registerScriptFile($bu . 'js/ajax/registro_tarea/menu.js');
+
+        $cs->registerScriptFile($bu . 'js/ajax/productividad/actualizar.js');
         ?>
 
 

@@ -82,5 +82,6 @@
             ?>
         </div>
         <div class="clear"></div>
+        <div>version: r83</div>
     </div>    
 </div>

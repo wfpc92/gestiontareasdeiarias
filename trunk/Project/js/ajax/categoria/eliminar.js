@@ -18,7 +18,7 @@ var categoriaEliminarModal = function(self) {
                         categoriaEliminarAjax(form);
                         $(this).dialog("close");
                     },
-                    Cancel: function() {
+                    Cancelar: function() {
                         $(this).dialog("close");
                     }
                 }

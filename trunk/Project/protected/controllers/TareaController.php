@@ -176,6 +176,7 @@ class TareaController extends Controller {
      */
     public function actionActualizarAjax() {
         $idActividad = (isset($_REQUEST['id_actividad']) ? $_REQUEST['id_actividad'] : NULL);
+        $fechaInicio = (isset($_REQUEST['fecha_inicio']) ? $_REQUEST['fecha_inicio'] : NULL);
         $idTarea = NULL;
         $actualizar = FALSE;
         $error = NULL;
@@ -184,6 +185,8 @@ class TareaController extends Controller {
             $idTarea = $_REQUEST["Tarea"]["id_tarea"];
             $model = Tarea::model()->findByPk($idTarea);
             $model->attributes = $_REQUEST['Tarea'];
+            $model->fecha_inicio = $fechaInicio;
+
             if ($idActividad != NULL) {
                 $model->id_actividad = $idActividad;
             } else {
@@ -288,8 +291,8 @@ class TareaController extends Controller {
                 $fecha = date_create();
             }
             Calendario::setFecha($fecha);
-            $contentVistaDiaria = $this->renderPartial('_vista_diaria', array(                ), true);
-            $contentPoolTareas = $this->renderPartial('_pool_tareas', array(                    ), true);
+            $contentVistaDiaria = $this->renderPartial('_vista_diaria', array(), true);
+            $contentPoolTareas = $this->renderPartial('_pool_tareas', array(), true);
             $this->render('../site/index', array(
                 'vistaIzquierda' => $contentVistaDiaria,
                 'vistaDerecha' => $contentPoolTareas

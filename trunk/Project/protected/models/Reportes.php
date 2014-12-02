@@ -48,6 +48,7 @@ class Reportes {
         $command = $connection->createCommand($sql);
         $dataReader = $command->query();
         $rows = $dataReader->readAll();
+
         return $rows;
     }
 
@@ -70,9 +71,10 @@ class Reportes {
         $userId = Yii::app()->user->getId();
         $sql = "SELECT productividad, fecha_productividad
                 FROM productividad
-                WHERE fecha_productividad between '{$fechaFin}' AND '{$fechaInicio}'
+                WHERE fecha_productividad between '{$fechaInicio}' AND '{$fechaFin}'
                 AND id_usuario = {$userId}
                 ORDER BY fecha_productividad ASC";
+
         $command = $connection->createCommand($sql);
         $dataReader = $command->query();
         $rows = $dataReader->readAll();
