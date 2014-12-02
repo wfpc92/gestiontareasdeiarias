@@ -1,4 +1,5 @@
-<div lass="form">
+<div class="reportes-tareas-completadas">
+    <p>Por favor ingrese la fecha inicial y final del reporte.</p>
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tareas-form',
@@ -9,7 +10,7 @@
         )
     ));
     ?>
-    <div class="row">
+    <div class="row fecha-inicio">
         <?php
         $model = new Tarea;
         echo $form->labelEx($model, 'FECHA_INICIO');
@@ -19,7 +20,10 @@
             'title' => 'Ingrese la fecha en que inicia la tarea.',
             'value' => '2014-01-01'
         ));
-
+        ?>
+    </div>
+    <div class="row fecha-fin">
+        <?php
         echo $form->labelEx($model, 'FECHA_FIN');
         echo $form->textField($model, 'FECHA_FIN', array(
             'id' => 'd-picker-fecha-fin',

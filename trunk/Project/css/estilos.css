@@ -69,7 +69,8 @@ div.view {
         border-radius: 3px;
 }
 #categoria-list-view .items .view:hover,
-#content-princ-izq .list-view .items .view:hover {
+#content-princ-izq .list-view .items .view:hover,
+#lst-pool-tareas .items .view:hover {
 	background: #E1E2E5;
 }
 .actividadesPorCate .list-view .items .view:hover {
@@ -205,6 +206,7 @@ div.nombre-actividad {
 .desplegable {
 	display: none;
 	margin-top: 20px;
+        margin-left: 20px;
 }
 
 #categoria-form .row label,
@@ -267,7 +269,7 @@ div.nombre-actividad {
 	.form-tarea p {
 		padding: 0px;
 	}
-.form-editar-tarea div.buttons input[type="submit"] {
+div.buttons input[type="submit"] {
 	margin-right: 10px;
 }
 /***** Formularios (fin) *****/
@@ -358,13 +360,14 @@ a.menu-tarea, a.menu-registro-tarea {
 .actividadesPorCate .list-view .items .view:hover a.menu-actividad,
 #content-princ-izq .list-view .items .view:hover a.menu-tarea,
 .pool-tarea:hover a.menu-tarea, .registro-tarea:hover a.menu-registro-tarea,
-.registro-tarea form:hover a.menu-registro-tarea {
+.registro-tarea form:hover a.menu-registro-tarea,
+#lst-pool-tareas .items .view:hover a.menu-tarea {
 	display: block; 
 }
 #categoria-list-view .items .view a.menu-categoria:hover,
 .actividadesPorCate .list-view .items .view a.menu-actividad:hover,
 #content-princ-izq .list-view .items .view a.menu-tarea:hover,
-.pool-tarea a.menu-tarea:hover, .registro-tarea form a.menu-registro-tarea:hover{
+.pool-tarea a.menu-tarea:hover, .registro-tarea form a.menu-registro-tarea:hover {
 	background: url("../images/bt-menuHover.png") no-repeat;
 }
 ul.categoria, ul.actividad, ul.tarea, ul.registro-tarea  {
@@ -426,7 +429,8 @@ ul.tarea li.eliminar {
 #content-princ-izq .list-view .items .view {
 	padding: 5px 0;
 }
-#content-princ-izq .list-view .items .view:hover {
+#content-princ-izq .list-view .items .view:hover,
+#lst-pool-tareas .items .view:hover {
 	cursor: pointer;
 }
 
@@ -662,13 +666,14 @@ div.pool-tarea:hover {
 
 /***** Registro de tareas (inicio) *****/
 .desplegable .list-view {
-    margin: 0 5px ;
+
 }
 div.registro-tarea {
     position: relative;
     margin-bottom: 2px;
     padding: 3px;
     max-width: 620px;
+    font-size: 15px;
 }
 div.registro-tarea form div {
     position: relative;
@@ -727,4 +732,100 @@ div.editar-tarea select {
     height: 22px;
     border: medium none;
 }
+
+div.inamovible label {
+    display: inline;
+    padding-right: 10px;
+}
 /***** Editar tarea (fin) *****/
+
+/***** Pool de Tareas (inicio) *****/
+h3.pool-tarea {
+    font-size: 18px;
+    font-family: 'asapbold';
+}
+/***** Pool de Tareas (fin) *****/
+
+/***** Productividad (inicio) *****/
+#form-productividad {
+    margin: 15px auto 0;
+    width: 190px;
+}
+#form-productividad label {
+    padding-right: 10px;
+}
+#form-productividad select {
+    border: medium none;
+    height: 22px;
+}
+/***** Productividad (fin) *****/
+
+/***** Reportes (inicio) *****/
+#reportes {
+    
+}
+    #reportes li {
+        margin-top: 15px;
+    }
+        #reportes li a {
+            text-decoration: none;
+            font-size: 18px;
+        }
+div.reportes-tareas-completadas {
+    width: 100%;
+}
+div.reportes-tareas-completadas p {
+        padding-bottom: 20px;
+    }
+form.formReporteTareasCompletadas {
+    position: relative;
+}  
+    form.formReporteTareasCompletadas div label {
+        padding-right: 10px;
+    }
+    form.formReporteTareasCompletadas div.fecha-inicio,
+    form.formReporteTareasCompletadas div.fecha-fin {
+        display: inline-block;
+        position: relative;
+        padding-right: 20px;
+        padding-bottom: 10px;
+    }
+/***** Reportes (fin) *****/
+
+/***** Grafica tarea realizadas (inicio) *****/
+div.grafica-tareas-realizadas {
+    position: relative;
+}
+div.grafica-tareas-realizadas h2 {
+    font-size: 21px;
+}
+div.grafica-tareas-realizadas canvas {
+    margin-top: 35px;
+}
+div.grafica-tareas-realizadas div.labels {
+    left: 50%;
+    margin-left: -150px;
+    position: absolute;
+    top: 50px;
+}
+div.grafica-tareas-realizadas table, div.grafica-tareas-realizadas table th, 
+div.grafica-tareas-realizadas table tr {
+    border: 1px solid #CBCBCB;
+    padding: 8px;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+div.grafica-tareas-realizadas table {
+    margin: 30px auto 0;
+}
+div.grafica-tareas-realizadas table tbody td {
+    padding: 3px;
+}
+div.grafica-tareas-realizadas table th.titulo {
+    color:#FFFFFF;
+    font-size: 19px;
+    background-color: #0E83EB;
+    font-family: 'asapbold';
+    text-align: center;
+}
+/***** Grafica tarea realizadas (fin) *****/

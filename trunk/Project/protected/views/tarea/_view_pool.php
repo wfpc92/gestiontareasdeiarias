@@ -6,8 +6,7 @@
 $idTarea = $data->id_tarea;
 $nombreTarea = $data->nombre_tarea;
 ?>
-
-<div id="tarea-view-pool-<?php echo $idTarea; ?>" class="view" draggable="true" ondragstart="drag(event)">
+<div id="tarea-view-pool-<?php echo $idTarea; ?>" class="view pool" draggable="true" ondragstart="drag(event)">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => "tarea-mostrar-form-{$idTarea}",
@@ -45,7 +44,6 @@ $nombreTarea = $data->nombre_tarea;
     </ul>
 
     <div class="clearFix"></div>
-    <br />
     <?php
     $this->endWidget();
     ?>

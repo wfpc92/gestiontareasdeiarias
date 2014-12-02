@@ -1,61 +1,66 @@
-<h1>Tareas</h1>
-<?php
-$this->widget(
+<div class="grafica-tareas-realizadas">
+    <h2>Reporte Tareas Completadas</h2>
+    <?php
+    $this->widget(
         'chartjs.widgets.ChPie', array(
-    'width' => 600,
-    'height' => 300,
-    'htmlOptions' => array(),
-    'drawLabels' => true,
-    'datasets' => array(
-        array(
-            "value" => intval($cantidadTareasFinalizadas[0]['contador']),
-            //"value" => 1,
-            "color" => "rgba(220,30, 70,1)",
-            "label" => "Tareas Finalizadas"
+        'width' => 600,
+        'height' => 300,
+        'htmlOptions' => array(),
+        'drawLabels' => true,
+        'datasets' => array(
+            array(
+                "value" => intval($cantidadTareasFinalizadas[0]['contador']),
+                //"value" => 1,
+                "color" => "rgba(220,30, 70,1)",
+                "label" => "Tareas Finalizadas"
+            ),
+            array(
+                "value" => intval($cantidadTareasPendientes[0]['contador']),
+                //"value" => 6,
+                "color" => "rgba(66,66,66,1)",
+                "label" => "Tareas Pendientes"
+            )
         ),
-        array(
-            "value" => intval($cantidadTareasPendientes[0]['contador']),
-            //"value" => 6,
-            "color" => "rgba(66,66,66,1)",
-            "label" => "Tareas Pendientes"
-        )
-    ),
-    'options' => array()
-        )
-);
-echo "Finalizadas: " . $cantidadTareasFinalizadas[0]['contador'] . "\nPendientes: " . $cantidadTareasPendientes[0]['contador'];
-?>
-<br />
-<table>
-    <tr>
-        <th>Finalizadas</th>
-    </tr>        
-    <?php
-    foreach ($tareasFinalizadas as $finalizada) {
+        'options' => array()
+            )
+    );
+    ?>
+    <span>
+        <?php
+        echo "Finalizadas: " . $cantidadTareasFinalizadas[0]['contador'] . "\nPendientes: " . $cantidadTareasPendientes[0]['contador'];
         ?>
+    </span>
+    
+    <br />
+    <table>
         <tr>
-            <td>
-                <?php
-                echo $finalizada['nombre_tarea'];
-            }
+            <th class="titulo">Finalizadas</th>
+        </tr>        
+        <?php
+        foreach ($tareasFinalizadas as $finalizada) {
             ?>
-        </td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <th>Pendientes</th>
-    </tr>
-    <?php
-    foreach ($tareasPendientes as $pendiente) {
-        ?>
+            <tr>
+                <td>
+                    <?php
+                    echo $finalizada['nombre_tarea'];
+                }
+                ?>
+            </td>
+        </tr>
+    </table>
+    <table>
         <tr>
-            <td>
-                <?php
-                echo $pendiente['nombre_tarea'] . '  ';
-            }
+            <th class="titulo">Pendientes</th>
+        </tr>
+        <?php
+        foreach ($tareasPendientes as $pendiente) {
             ?>
-        </td>
-</table>       
-
-
+            <tr>
+                <td>
+                    <?php
+                    echo $pendiente['nombre_tarea'] . '  ';
+                }
+                ?>
+            </td>
+    </table>   
+</div>
