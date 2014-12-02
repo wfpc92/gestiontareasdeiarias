@@ -15,17 +15,15 @@
     ));
     ?>
 
-    <?php echo $form->errorSummary($model); ?>
-
     <div class="row">
         <?php
         $idUsuario = Yii::app()->user->getId();
         $categoria = new Categoria;
-        $categorias = Categoria::model()->findAll("CORREO='{$idUsuario}'");
-        $listaCategorias = CHtml::listData($categorias, 'ID_CATEGORIA', 'NOMBRE_CATEGORIA');
+        $categorias = Categoria::model()->findAll("id_usuario='{$idUsuario}'");
+        $listaCategorias = CHtml::listData($categorias, 'id_categoria', 'nombre_categoria');
 
         echo $form->labelEx($categoria, 'Seleccione una categoria: ');
-        echo CHtml::dropDownList('ID_CATEGORIA'
+        echo CHtml::dropDownList('id_categoria'
                 , 'Seleccione...'
                 , array('Seleccione...') + $listaCategorias
                 , array('onchange' => 'return categoriaCargarAjax(this)')

@@ -25,16 +25,14 @@ function cadenaConexion() {
         'tablePrefix' => 'hola'] + $conn;
 }
 
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-// This is the main Web application configuration. Any writable
-// CWebApplication properties can be configured here.
+Yii::setPathOfAlias('chartjs', dirname(__FILE__) . '/../extensions/yii-chartjs');
+
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Planificación de Actividades Diarias',
     'theme' => 'classic', // requires you to copy the theme under your themes directory
     // preloading 'log' component
-    'preload' => array(),//'log'),
+    'preload' => array('chartjs'),
     'language' => 'es',
     // autoloading model and component classes
     'import' => array(
@@ -75,25 +73,10 @@ return array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
         ),
-        /*
-        'log' => array(
-            'class' => 'CLogRouter',
-            'routes' => array(
-                array(
-                    'class' => 'CFileLogRoute',
-                    'levels' => 'error, warning',
-                ),
-            // uncomment the following to show log messages on web pages
-            /*
-              array(
-              'class'=>'CWebLogRoute',
-              ),
-             
-            ),
-        ),*/
         'clientScript' => array(
             'enableJavaScript' => true
         ),
+        'chartjs' => array('class' => 'chartjs.components.ChartJs'),
     ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']

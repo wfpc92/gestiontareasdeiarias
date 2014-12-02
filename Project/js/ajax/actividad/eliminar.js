@@ -16,7 +16,7 @@ var actividadEliminarModal = function(self) {
                         actividadEliminarAjax(form);
                         $(this).dialog("close");
                     },
-                    Cancel: function() {
+                    Cancelar: function() {
                         $(this).dialog("close");
                     }
                 }

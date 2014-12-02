@@ -1,4 +1,7 @@
+
 <?php
+/*  @var $productividadModel Productividad */
+
 $fechaFormato = Calendario::getFechaFormato();
 $userId = Yii::app()->user->getId();
 ?>
@@ -27,3 +30,37 @@ $this->widget('zii.widgets.CListView', array(
         'ondragover' => "allowDrop(event)"
     ))
 );
+
+$productividadModel = Productividad::model()->findByAttributes(array("fecha_productividad" => Calendario::getFechaFormato()));
+
+if ($productividadModel == NULL) {
+    $productividadModel = new Productividad();
+    $productividadModel->fecha_productividad = Calendario::getFechaFormato();
+}
+
+$form = $this->beginWidget('CActiveForm', array(
+    'id' => "form-productividad",
+    'enableAjaxValidation' => false,
+    'action' => Yii::app()->homeUrl . '/productividad/actualizarAjax',
+    'htmlOptions' => array(
+        'onchange' => 'return productividadActualizarAjax(this)',
+        'class' => ''
+    )
+        ));
+
+echo CHtml::hiddenField("fecha_productividad", $productividadModel->fecha_productividad);
+echo $form->labelEx($productividadModel, 'productividad');
+echo CHtml::dropDownList(
+        'productividad'
+        , $productividadModel->productividad
+        , array(
+    Productividad::ALTA => Productividad::ALTA,
+    Productividad::MEDIA => Productividad::MEDIA,
+    Productividad::BAJA => Productividad::BAJA,
+        )
+        , array('title' => 'Ingrese su sensación de productividad para el día de hoy.')
+);
+?>
+
+
+<?php $this->endWidget(); ?>

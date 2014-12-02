@@ -6,10 +6,11 @@
 $idTarea = $data->id_tarea;
 $nombreTarea = $data->nombre_tarea;
 ?>
+
 <div id="tarea-view-pool-<?php echo $idTarea; ?>" class="view" draggable="true" ondragstart="drag(event)">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'tarea-mostrar-form-' . $idTarea,
+        'id' => "tarea-mostrar-form-{$idTarea}",
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl,
         'htmlOptions' => array(
@@ -25,18 +26,10 @@ $nombreTarea = $data->nombre_tarea;
         'id' => "p-tarea-nombre-{$idTarea}",
         'onclick' => 'return tareaMostrarPoolAjax(this)',
             ), $nombreTarea);
-    ?>
-    <div class="botones">
-        <?php
-        echo CHtml::tag('p', array(
-            'id' => "p-duracion-tarea-{$idTarea}"
-                ), $data->DURACION);
-        ?>
-        <div class="clearFix"></div>
-    </div>
-    <?php
-    echo CHtml::link("Menú Tarea", "", array(
-        'class' => 'menu-tarea',
+
+
+    echo CHtml::link("Menú Tarea", "#",  array(
+        'class' => "menu-tarea",
         'onclick' => 'return tareaMenu(this)'
     ));
     ?>
@@ -50,6 +43,8 @@ $nombreTarea = $data->nombre_tarea;
             ?>
         </li>
     </ul>
+
+    <div class="clearFix"></div>
     <br />
     <?php
     $this->endWidget();
