@@ -1,4 +1,5 @@
 var registroTareaActualizarAjax = function(self) {
+    menus();
     var form = $(self);
 
     var confAjax = {

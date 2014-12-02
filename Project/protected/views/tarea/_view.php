@@ -44,7 +44,8 @@ $fechaFormato = Calendario::getFechaFormato();
     $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
 
     echo CHtml::tag('p', array(
-        'id' => "p-tarea-actividad-{$idTarea}"
+        'id' => "p-tarea-actividad-{$idTarea}",
+        'class' => 'tarea-actividad'
             ), $nomAbreviado);
     ?>
     <div class="botones">

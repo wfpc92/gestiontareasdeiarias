@@ -1,3 +1,4 @@
+<h3 class="pool-tarea">Pool de Tareas</h3>
 <?php
 
 $fechaFormato = Calendario::getFechaFormato();

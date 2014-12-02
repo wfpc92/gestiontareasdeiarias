@@ -3,7 +3,7 @@
 /* @var $model Reportes */
 ?>
 
-<ul>
+<ul id="reportes">
     <li>
         <?php echo CHtml::link("Tareas Completadas", Yii::app()->createUrl("reportes/formularioTareasCompletadas")); ?>
     </li>
