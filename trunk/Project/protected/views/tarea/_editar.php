@@ -97,7 +97,7 @@ $idTarea = $model->id_tarea;
     </div>
 
 
-    <div class="row">
+    <div class="row inamovible">
         <?php
         echo $form->labelEx($model, 'inamovible');
         $inaChecked = $model->inamovible == Tarea::INAMOVIBLESI ? true : false;
