@@ -189,7 +189,7 @@ class Tarea extends CActiveRecord {
     }
 
     public function crearRegistroTarea() {
-        $nuevoRegistroTarea = new RegistroTarea();
+        $nuevoRegistroTarea = new RegistroTarea;
         $nuevoRegistroTarea->id_tarea = $this->id_tarea;
         if ($nuevoRegistroTarea->validate()) {
             $nuevoRegistroTarea->save();

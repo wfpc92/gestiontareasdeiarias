@@ -419,6 +419,7 @@ class TareaController extends Controller {
 
     public function actionEliminarRegistroTareaAjax() {
         $error = NULL;
+        $idTarea = NULL;
         $idRegistroTarea = NULL;
 
         if (isset($_REQUEST['RegistroTarea'])) {
@@ -426,13 +427,16 @@ class TareaController extends Controller {
             $model = RegistroTarea::model()->findByPk($idRegistroTarea);
             if ($model != NULL && !$model->delete()) {
                 $error = "Error: no se elimina el registro, actualice la página.";
+            } else {
+                $idTarea = $model->id_tarea;
             }
         } else {
             $error = "ERROR: peticion mal formada.";
         }
         echo CJavaScript::jsonEncode(array(
             'error' => $error,
-            'idRegistroTarea' => $idRegistroTarea,
+            'idTarea' => $idTarea,
+            'idRegistroTarea' => $idRegistroTarea
         ));
     }
 

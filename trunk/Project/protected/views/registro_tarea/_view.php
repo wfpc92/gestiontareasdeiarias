@@ -78,8 +78,6 @@ $idRegistroTarea = $data->id_registro_tarea;
 </div>
 
 <script>
-
-
     $("#<?php echo $idDatePicker; ?>")
             .datepicker({
                 changeMonth: true,
@@ -91,10 +89,4 @@ $idRegistroTarea = $data->id_registro_tarea;
                 buttonImageOnly: true,
                 buttonText: "Seleccione una Fecha."
             });
-    $("#<?php echo $idTimePicker; ?>")
-            .timepicki({
-                fecha: <?php echo CJavaScript::encode($horaInicioFormatoDate); ?>
-            });
-
-
 </script>
