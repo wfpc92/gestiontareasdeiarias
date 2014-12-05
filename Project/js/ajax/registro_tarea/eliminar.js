@@ -26,14 +26,23 @@ var registroTareaEliminarAjax = function (self) {
         data: $(form).serialize(),
         dataType: 'json',
         success: function (data) {
+            var idTarea = data.idTarea;
             var idRegistroTarea = data.idRegistroTarea;
             $("#registro-tarea-view-" + idRegistroTarea).remove();
+            var items = $("#lst-registro-tarea-" + idTarea + " .items > div");
+            if (items.length === 0) {
+                $("#lst-registro-tarea-" + idTarea + " .items").text("No se encontraron resultados.");
+            }
         }
     };
 
     var selectores = {
         cargando: {
             div: $("#cargando-principal")
+        },
+        exito: {
+            div: $("#exito-principal"),
+            mensaje: "Registro de tiempo eliminado."
         },
         error: {
             div: $("#error-principal")

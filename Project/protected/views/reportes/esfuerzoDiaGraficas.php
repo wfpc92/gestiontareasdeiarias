@@ -3,13 +3,13 @@ $producNumero = array();
 $producFecha = array();
 foreach ($productividad as $prod) {
     switch ($prod['productividad']) {
-        case 'alta':
+        case Productividad::ALTA:
             $producNumero[] = 3;
             break;
-        case 'media':
+        case Productividad::MEDIA:
             $producNumero[] = 2;
             break;
-        case 'baja':
+        case Productividad::BAJA:
             $producNumero[] = 1;
             break;
     }

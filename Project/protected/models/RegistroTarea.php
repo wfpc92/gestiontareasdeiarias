@@ -102,6 +102,7 @@ class RegistroTarea extends CActiveRecord {
     }
 
     public function horaInicioFormatoPicker() {
+        var_dump($this->fecha_inicio);
         return Calendario::horaFormatoPicker($this->fecha_inicio);
     }
 

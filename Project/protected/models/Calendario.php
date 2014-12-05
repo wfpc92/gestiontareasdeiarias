@@ -44,25 +44,25 @@ class Calendario extends CActiveRecord {
         return static::$fecha;
     }
 
-    public static function fechaFormatoPicker($fecha) {
-        $fecha = date_create($fecha);
-        return date_format($fecha, "Y-m-d");
+    public static function fechaFormatoPicker($fechaStr) {
+        $fechaDate = date_create($fechaStr);
+        return date_format($fechaDate, "Y-m-d");
     }
 
-    public static function horaFormatoPicker($fecha) {
-        $fecha = date_create($fecha);
-        return date_format($fecha, "h : i : A");
+    public static function horaFormatoPicker($fechaStr) {
+        $fechaDate = date_create($fechaStr);
+        return date_format($fechaDate, "h : i A");
     }
 
-    public static function horaFormatoDate($fecha) {
-        $fecha = date_create($fecha);
+    public static function horaFormatoDate($fechaStr) {
+        $fechaDate = date_create($fechaStr);
         return array(
-            'anio' => date_format($fecha, "Y"),
-            'mes' => date_format($fecha, "m"),
-            'dia' => date_format($fecha, "d"),
-            'horas' => date_format($fecha, "H"),
-            'minutos' => date_format($fecha, "i"),
-            'segundos' => date_format($fecha, "s"),
+            'anio' => date_format($fechaDate, "Y"),
+            'mes' => date_format($fechaDate, "m"),
+            'dia' => date_format($fechaDate, "d"),
+            'horas' => date_format($fechaDate, "H"),
+            'minutos' => date_format($fechaDate, "i"),
+            'segundos' => date_format($fechaDate, "s"),
         );
     }
 
