@@ -1,19 +1,26 @@
+<h2>Reporte Esfuerzo por Días</h2>
 <?php
 $producNumero = array();
 $producFecha = array();
+$contadorAlta = 0;
+$contadorMedia = 0;
+$contadorBaja = 0;
 foreach ($productividad as $prod) {
     switch ($prod['productividad']) {
         case Productividad::ALTA:
             $producNumero[] = 3;
+            $contadorAlta += 1;
             break;
         case Productividad::MEDIA:
             $producNumero[] = 2;
+            $contadorMedia += 1;
             break;
         case Productividad::BAJA:
             $producNumero[] = 1;
+            $contadorBaja += 1;
             break;
     }
-    $producFecha[] = $prod['fecha_productividad'];
+    $producFecha[] = substr($prod['fecha_productividad'],0,10);
 }
 ?>
 <?php
@@ -46,8 +53,9 @@ $this->widget(
         ?>
         <tr>
             <td>
-                <?php
-                echo $prod['fecha_productividad'] . '  ';
+                <?php                
+                $fecha = substr($prod['fecha_productividad'],0,10);
+                echo CHtml::link($fecha, Yii::app()->createUrl("tarea/vistaDiaria?fecha=".$fecha));
             }
             ?>
         </td>
@@ -63,10 +71,30 @@ $this->widget(
         <tr>
             <td>
                 <?php
-                echo $prod['productividad'] . '  ';
+                echo $prod['productividad'];
             }
             ?>
         </td>
     </tr>
 </table>
-
+<?php
+    $proMensaje = '';
+    if($contadorAlta>$contadorMedia){
+        if($contadorAlta>$contadorBaja){
+            $proMensaje=Productividad::ALTA;
+        }
+        else{
+            $proMensaje=Productividad::BAJA;
+        }
+    }
+    else{
+        if($contadorMedia>$contadorBaja){
+            $proMensaje=Productividad::MEDIA;
+        }
+        else{
+            $proMensaje=Productividad::BAJA;
+        }
+    }
+    echo "Su productividad en este rango de fechas es: ".$proMensaje;
+?>
+<?php echo CHtml::link("Menu Graficas", Yii::app()->createUrl("reportes")); ?>

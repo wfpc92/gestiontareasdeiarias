@@ -40,7 +40,7 @@ class Reportes {
     public function getTareasFinalizadas($fechaInicio, $fechaFin) {
         $connection = Yii::app()->db;
         $userId = Yii::app()->user->getId();
-        $sql = "SELECT nombre_tarea
+        $sql = "SELECT nombre_tarea, fecha_inicio
                 FROM tarea
                 WHERE estado = '" . Tarea::ESTADOFINALIZADA . "'
                 AND fecha_inicio between '{$fechaInicio}' AND '{$fechaFin}'
@@ -55,7 +55,7 @@ class Reportes {
     public function getTareasPendientes($fechaInicio, $fechaFin) {
         $connection = Yii::app()->db;
         $userId = Yii::app()->user->getId();
-        $sql = "SELECT nombre_tarea
+        $sql = "SELECT nombre_tarea, fecha_inicio
                 FROM tarea
                 WHERE estado != '" . Tarea::ESTADOFINALIZADA . "'
                 AND fecha_inicio between '{$fechaInicio}' AND '{$fechaFin}'

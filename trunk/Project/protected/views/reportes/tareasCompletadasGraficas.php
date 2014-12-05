@@ -42,7 +42,8 @@
             <tr>
                 <td>
                     <?php
-                    echo $finalizada['nombre_tarea'];
+                    $fecha = substr($finalizada['fecha_inicio'],0,10);
+                    echo CHtml::link($finalizada['nombre_tarea'], Yii::app()->createUrl("tarea/vistaDiaria?fecha=".$fecha));                    
                 }
                 ?>
             </td>
@@ -58,9 +59,11 @@
             <tr>
                 <td>
                     <?php
-                    echo $pendiente['nombre_tarea'] . '  ';
+                    $fecha = substr($pendiente['fecha_inicio'],0,10);
+                    echo CHtml::link($pendiente['nombre_tarea'], Yii::app()->createUrl("tarea/vistaDiaria?fecha=".$fecha));                    
                 }
                 ?>
             </td>
     </table>   
 </div>
+<?php echo CHtml::link("Menu Graficas", Yii::app()->createUrl("reportes")); ?>
