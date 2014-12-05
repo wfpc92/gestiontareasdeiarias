@@ -31,7 +31,7 @@
     </div>
     <div class="row buttons">
         <?php
-        $label = "Enviar";
+        $label = "Consultar";
         $htmlOptions = array(
             'id' => 'enviar-formulario-tarea',
             'class' => 'enviar-tarea'
@@ -42,6 +42,7 @@
     <?php
     $this->endWidget();
     ?>
+    <?php echo CHtml::link("Atras", Yii::app()->createUrl("reportes")); ?>
 </div>
 <script>
     $(".dpicker").datepicker({
