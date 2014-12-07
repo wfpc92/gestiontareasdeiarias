@@ -24,8 +24,10 @@ class ReportesController extends Controller {
                     'index',
                     'formularioTareasCompletadas',
                     'formularioEsfuerzo',
+                    'formularioDedicacion',
                     'tareasCompletadas',
-                    'esfuerzoDiario'
+                    'esfuerzoDiario',
+                    'dedicacion'
                 ),
                 'users' => array('@'),
             ),
@@ -80,6 +82,10 @@ class ReportesController extends Controller {
     public function actionFormularioEsfuerzo() {
         $this->plantillaIndex('_form_esfuerzo');
     }
+    
+    public function actionFormularioDedicacion() {
+        $this->plantillaIndex('_form_tipo_tarea');
+    }
 
     public function actionTareasCompletadas() {
         $fecha = date_create();
@@ -121,4 +127,20 @@ class ReportesController extends Controller {
         ));
     }
 
+    public function actionDedicacion() {
+        $fecha = date_create();
+        Calendario::setFecha($fecha);
+        $model = new Reportes;
+        if (isset($_REQUEST['Tarea'])) {
+            $fechaInicio = $_REQUEST['Tarea']['FECHA_INICIO'];
+            $fechaFin = $_REQUEST['Tarea']['FECHA_FIN'];
+        }
+        $dedicacion = $model->getDedicacion($fechaInicio, $fechaFin);
+        $dedicacionPorTipo = $model->getDedicacionPorTipo($fechaInicio, $fechaFin);
+        $content = $this->renderPartial('_dedicacion', array('dedicacion' => $dedicacion, 
+            'dedicacionPorTipo' => $dedicacionPorTipo), true);
+        $this->render('../site/index', array(
+            'vistaIzquierda' => $content
+        ));
+    }
 }

@@ -80,5 +80,37 @@ class Reportes {
         $rows = $dataReader->readAll();
         return $rows;
     }
+    
+    public function getDedicacion($fechaInicio, $fechaFin) {
+        $connection = Yii::app()->db;
+        $userId = Yii::app()->user->getId();
+        $sql = "SELECT ti.nombre, t.nombre_tarea, SUM( r.duracion ) as dur, t.fecha_inicio
+                FROM tarea t
+                JOIN registro_tarea r ON ( r.id_tarea = t.id_tarea )
+                JOIN tipo_tarea ti ON ( ti.id_tipo_tarea = t.id_tipo_tarea )
+                WHERE t.fecha_inicio between '{$fechaInicio}' AND '{$fechaFin}'
+                AND t.id_usuario = {$userId}
+                GROUP BY t.nombre_tarea";
+        $command = $connection->createCommand($sql);
+        $dataReader = $command->query();
+        $rows = $dataReader->readAll();
+        return $rows;
+    }
+    
+    public function getDedicacionPorTipo($fechaInicio, $fechaFin) {
+        $connection = Yii::app()->db;
+        $userId = Yii::app()->user->getId();
+        $sql = "SELECT ti.nombre, SUM( r.duracion ) as dur
+                FROM tarea t
+                JOIN registro_tarea r ON ( r.id_tarea = t.id_tarea )
+                JOIN tipo_tarea ti ON ( ti.id_tipo_tarea = t.id_tipo_tarea )
+                WHERE t.fecha_inicio between '{$fechaInicio}' AND '{$fechaFin}'
+                AND t.id_usuario = {$userId}
+                GROUP BY ti.nombre";
+        $command = $connection->createCommand($sql);
+        $dataReader = $command->query();
+        $rows = $dataReader->readAll();
+        return $rows;
+    }
 
 }

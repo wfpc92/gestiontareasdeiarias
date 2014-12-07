@@ -10,4 +10,7 @@
     <li>
         <?php echo CHtml::link("Sensación de productividad", Yii::app()->createUrl("reportes/formularioEsfuerzo")); ?>
     </li>
+    <li>
+        <?php echo CHtml::link("Dedicación por Tipo de tarea", Yii::app()->createUrl("reportes/formularioDedicacion")); ?>
+    </li>
 </ul>
