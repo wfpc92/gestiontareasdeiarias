@@ -31,6 +31,8 @@ class TareaController extends Controller {
                     'mostrarPoolAjax',
                     'pooladiariaAjax',
                     'crearRegistroTareaAjax',
+                    'pausarRegistroTareaAjax',
+                    'actualizarRegistroTareaAjax',
                     'eliminarRegistroTareaAjax'
                 ),
                 'users' => array('@'),
@@ -413,6 +415,81 @@ class TareaController extends Controller {
             'idTarea' => $idTarea,
             'idRegistroTarea' => $idRegistroTarea,
             'htmlRegistroTarea' => $htmlRegistroTarea,
+            'error' => $error
+        ));
+    }
+
+    /* @var $ultimoRT RegistroTarea */
+
+    public function actionPausarRegistroTareaAjax() {
+        $idTarea = NULL;
+        $idRegistroTareaUltimo = NULL;
+        $duracionUltimo = NULL;
+        $idRegistroTarea = NULL;
+        $htmlRegistroTarea = NULL;
+        $error = NULL;
+
+        if (isset($_REQUEST['Tarea'])) {
+            $model = new Tarea;
+            $model->attributes = $_REQUEST['Tarea'];
+            $model = Tarea::model()->findByPk($model->id_tarea);
+
+            if ($model->validate()) {
+                // actualizar la duracion de la tarea mas reciente
+                $ultimoRT = $model->pausarRegistroTarea();
+                $idRegistroTareaUltimo = $ultimoRT->id_registro_tarea;
+                $duracionUltimo = $ultimoRT->duracion;
+                // crear el nuevo registro de tarea.
+                $nuevoRegistroTarea = $model->crearRegistroTarea();
+                $idTarea = $model->id_tarea;
+                $idRegistroTarea = $nuevoRegistroTarea->id_registro_tarea;
+                $htmlRegistroTarea = $this->renderPartial('../registro_tarea/_view', array('data' => $nuevoRegistroTarea), true);
+            }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
+        } else {
+            $error = "ERROR: peticion mal formada.";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'idTarea' => $idTarea,
+            'idRegistroTareaUltimo' => $idRegistroTareaUltimo,
+            'duracionUltimo' => $duracionUltimo,
+            'idRegistroTarea' => $idRegistroTarea,
+            'htmlRegistroTarea' => $htmlRegistroTarea,
+            'error' => $error
+        ));
+    }
+
+    /* @var $model RegistroTarea */
+
+    public function actionActualizarRegistroTareaAjax() {
+        $idTarea = NULL;
+        $idRegistroTarea = NULL;
+        $error = NULL;
+
+        if (isset($_REQUEST['RegistroTarea'])) {
+            $idTarea = isset($_REQUEST['RegistroTarea']['id_tarea']) ? $_REQUEST['RegistroTarea']['id_tarea'] : NULL;
+            $idRegistroTarea = isset($_REQUEST['RegistroTarea']['id_registro_tarea']) ? $_REQUEST['RegistroTarea']['id_registro_tarea'] : NULL;
+            $model = RegistroTarea::model()->findByPk($idRegistroTarea);
+
+            $fechaInicio = isset($_REQUEST['fecha_inicio']) ? $_REQUEST['fecha_inicio'] : NULL;
+            $horaInicio = isset($_REQUEST['hora_inicio']) ? $_REQUEST['hora_inicio'] : NULL;
+            //guardar la fecha de inicio y la hora de inicio en el mismo campo
+            $model->fecha_inicio = "{$fechaInicio} {$horaInicio}";
+
+            if ($model->validate()) {
+                $model->save();
+            }
+            if ($model->hasErrors()) {
+                $error = $model->getErrors();
+            }
+        } else {
+            $error = "ERROR: peticion mal formada.";
+        }
+        echo CJavaScript::jsonEncode(array(
+            'idTarea' => $idTarea,
+            'idRegistroTarea' => $idRegistroTarea,
             'error' => $error
         ));
     }

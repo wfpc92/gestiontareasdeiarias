@@ -66,8 +66,10 @@ $fechaFormato = Calendario::getFechaFormato();
 
         //echo CHtml::label("Duracion", "p-duracion-tarea-{$idTarea}");
         echo CHtml::tag('p', array(
+                ), "Duración__ ");
+        echo CHtml::tag('p', array(
             'id' => "p-duracion-tarea-{$idTarea}"
-                ), "Duración: " . $data->getDuracion());
+                ), $data->getDuracion());
         ?>
         <div class="clearFix"></div>
     </div>

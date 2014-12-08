@@ -193,8 +193,21 @@ class Tarea extends CActiveRecord {
         $nuevoRegistroTarea->id_tarea = $this->id_tarea;
         if ($nuevoRegistroTarea->validate()) {
             $nuevoRegistroTarea->save();
+            return RegistroTarea::model()->findByPk($nuevoRegistroTarea->id_registro_tarea);
         }
         return $nuevoRegistroTarea;
+    }
+
+    /* @var $ultimoRT RegistroTarea */
+
+    public function pausarRegistroTarea() {
+        $arrRT = RegistroTarea::model()->findAllByAttributes(array('id_tarea' => $this->id_tarea));
+        $numRT = count($arrRT);
+        $ultimoRT = $arrRT[$numRT - 1];
+
+        //var_dump($ultimoRT);
+        $ultimoRT->duracion = 10;
+        return $ultimoRT;
     }
 
     public function eliminarTarea() {

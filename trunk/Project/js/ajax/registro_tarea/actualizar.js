@@ -1,4 +1,4 @@
-var registroTareaActualizarAjax = function(self) {
+var registroTareaActualizarAjax = function (self) {
     menus();
     var form = $(self);
 
@@ -7,8 +7,9 @@ var registroTareaActualizarAjax = function(self) {
         url: $(form).attr('action') + '/tarea/actualizarRegistroTareaAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function(data) {
-
+        success: function (data) {
+            var idTarea = data.idTarea;
+            actualizarDuracionTarea(idTarea);
         }
     };
 

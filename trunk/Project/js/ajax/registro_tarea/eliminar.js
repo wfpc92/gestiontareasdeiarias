@@ -33,6 +33,7 @@ var registroTareaEliminarAjax = function (self) {
             if (items.length === 0) {
                 $("#lst-registro-tarea-" + idTarea + " .items").text("No se encontraron resultados.");
             }
+            actualizarDuracionTarea(idTarea);
         }
     };
 
