@@ -20,14 +20,20 @@
         $cs->registerCssFile($bu . 'css/main.css');
         $cs->registerCssFile($bu . 'css/form.css');
         $cs->registerCssFile($bu . 'css/genericos.css');
+        $cs->registerCssFile($bu . 'css/jquery-ui.css');
         $cs->registerCssFile($bu . 'css/estilos.css');
         $cs->registerCssFile($bu . 'css/responsive1200.css', 'screen and (max-width: 1200px)');
         $cs->registerCssFile($bu . 'css/responsive920.css', 'screen and (max-width: 920px)');
         $cs->registerCssFile($bu . 'css/responsive700.css', 'screen and (max-width: 700px)');
         $cs->registerCssFile($bu . 'css/responsive360.css', 'screen and (max-width: 360px)');
-
+        
         $cs->registerScriptFile($bu . 'lib/timepicki/js/timepicki.js');
         $cs->registerLinkTag("stylesheet", "text/css", $bu . "lib/timepicki/css/timepicki.css");
+
+        $cs->registerScriptFile($bu . 'lib/timeselect/timeselect.js');
+        $cs->registerLinkTag("stylesheet", "text/css", $bu . "lib/timeselect/timeselect.css");
+        
+        $cs->registerScriptFile($bu . 'lib/jquery-ui.js');
 
         $cs->registerScriptFile($bu . 'js/proyecto.js', CClientScript::POS_HEAD);
         $cs->registerScriptFile($bu . 'js/ajax/plantillas_ajax.js');

@@ -42,11 +42,12 @@
         );
         echo CHtml::submitButton($label, $htmlOptions);
         ?>
+        <?php echo CHtml::Button('Regresar', array('submit' => '../reportes', 'class' => 'regresar-reportes')); ?>
+        <div class="clearFix"></div>
     </div>
     <?php
     $this->endWidget();
-    ?>    
-    <?php echo CHtml::link("Atras", Yii::app()->createUrl("reportes")); ?>
+    ?>
 </div>
 <script>
     $(document).ready(function() {

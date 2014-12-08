@@ -107,6 +107,7 @@ $idTarea = $model->id_tarea;
         ));
         echo $form->error($model, 'inamovible');
         ?>
+        <div class="clearFix"></div>
     </div>
 
     <div class="row buttons">
