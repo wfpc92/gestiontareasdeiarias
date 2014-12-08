@@ -33,7 +33,7 @@ $(document).ready(function() {
     setTimeout(function() {
         $("#exito-principal").fadeOut(1500);
     }, 3000);
-
+    
     menus();
 });
 

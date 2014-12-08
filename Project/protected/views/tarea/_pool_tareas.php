@@ -1,4 +1,4 @@
-<h3 class="pool-tarea">Pool de Tareas</h3>
+<h3 class="pool-tarea">Tareas Pendientes</h3>
 <?php
 
 $fechaFormato = Calendario::getFechaFormato();

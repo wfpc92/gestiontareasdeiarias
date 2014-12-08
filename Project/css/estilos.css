@@ -206,7 +206,7 @@ div.nombre-actividad {
 .desplegable {
 	display: none;
 	margin-top: 20px;
-        margin-left: 20px;
+        margin-left: 10px;
 }
 
 #categoria-form .row label,
@@ -271,6 +271,12 @@ div.nombre-actividad {
 	}
 div.buttons input[type="submit"] {
 	margin-right: 10px;
+}
+.editarPool .row .editar-tarea .fecha-inicio input {
+    width: 80px;
+}
+.editarPool .row .editar-tarea .row textarea {
+    width: 87%;
 }
 /***** Formularios (fin) *****/
 
@@ -480,6 +486,7 @@ ul.tarea li.eliminar {
 p.tarea-actividad {
     font-size: 13px;
     padding-left: 32px;
+    color: #868686;
 }
 /***** Formulario editar actividad (inicio) *****/
 .form-editar-actividad, .form-editar-categoria {
@@ -718,8 +725,17 @@ div.editar-tarea textarea, div.editar-tarea input[type="text"] {
     width: 95%;
     padding: 0 5px;
 }
+div.editar-tarea div.fecha-inicio {
+    position: relative;
+}
+
+div.editar-tarea div.fecha-inicio .ui-datepicker-trigger {
+    left: 100px;;
+    top: 21px;
+}
 div.editar-tarea div.fecha-inicio input[type="text"] {
     width: 85px;
+    position: relative;
 }
 div.editar-tarea textarea {
     height: 100px;
@@ -732,10 +748,12 @@ div.editar-tarea select {
     height: 22px;
     border: medium none;
 }
-
+div.inamovible input {
+    float: left;
+}
 div.inamovible label {
     display: inline;
-    padding-right: 10px;
+    padding-left: 5px;
 }
 /***** Editar tarea (fin) *****/
 
@@ -762,10 +780,12 @@ h3.pool-tarea {
 
 /***** Reportes (inicio) *****/
 #reportes {
-    
+   list-style-type: disc;
+   padding-top: 20px;
 }
     #reportes li {
-        margin-top: 15px;
+        margin-left: 20px;
+        padding-bottom: 10PX;
     }
         #reportes li a {
             text-decoration: none;
@@ -777,18 +797,25 @@ div.reportes-tareas-completadas {
 div.reportes-tareas-completadas p {
         padding-bottom: 20px;
     }
-form.formReporteTareasCompletadas {
+form.formReporteTareasCompletadas, .formReporteDedicacion {
     position: relative;
 }  
-    form.formReporteTareasCompletadas div label {
+    form.formReporteTareasCompletadas div label,
+    form.formReporteDedicacion div label  {
         padding-right: 10px;
     }
     form.formReporteTareasCompletadas div.fecha-inicio,
-    form.formReporteTareasCompletadas div.fecha-fin {
+    form.formReporteTareasCompletadas div.fecha-fin,
+    form.formReporteDedicacion div.fecha-inicio,
+    form.formReporteDedicacion div.fecha-fin{
         display: inline-block;
         position: relative;
         padding-right: 20px;
-        padding-bottom: 10px;
+        padding-bottom: 25px;
+    }
+    form.formReporteTareasCompletadas div.fecha-inicio,
+    form.formReporteDedicacion div.fecha-inicio {
+        margin-right: 30px;
     }
 /***** Reportes (fin) *****/
 
@@ -803,8 +830,6 @@ div.grafica-tareas-realizadas canvas {
     margin-top: 35px;
 }
 div.grafica-tareas-realizadas div.labels {
-    left: 50%;
-    margin-left: -150px;
     position: absolute;
     top: 50px;
 }
@@ -817,9 +842,21 @@ div.grafica-tareas-realizadas table tr {
 }
 div.grafica-tareas-realizadas table {
     margin: 30px auto 0;
+    float: left;
+    width: 250px;
+}
+div.grafica-tareas-realizadas table.pendientes {
+    margin-left: 20px;
 }
 div.grafica-tareas-realizadas table tbody td {
     padding: 3px;
+}
+div.grafica-tareas-realizadas table tbody td a {
+    color: #000000;
+    text-decoration: none;
+}
+div.grafica-tareas-realizadas table tbody td a:hover {
+    color: #0066CC;
 }
 div.grafica-tareas-realizadas table th.titulo {
     color:#FFFFFF;
@@ -827,5 +864,25 @@ div.grafica-tareas-realizadas table th.titulo {
     background-color: #0E83EB;
     font-family: 'asapbold';
     text-align: center;
+}
+.formReporteTareasCompletadas .regresar-reportes {
+    float: left;
+}
+.chart-label {
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #202020;
+    color: #55558B;
+    display: block;
+    height: 5px;
+    margin: 5px;
+    padding: 5px;
+    text-shadow: none;
+    width: 5px;
+}
+.chart-label span {
+    display: inline-block;
+    margin-top: -5px;
+    padding-left: 20px;
+    width: 135px;
 }
 /***** Grafica tarea realizadas (fin) *****/

@@ -43,7 +43,7 @@ $idRegistroTarea = $data->id_registro_tarea;
         echo CHtml::textField('hora_inicio', $horaInicio, array(
             'id' => $idTimePicker,
             'name' => 'timepicker',
-            'class' => 'time_element',
+            'class' => 'hasTimepicker',
             'title' => 'Ingrese la hora en que inicia la tarea.'
         ));
         ?>
@@ -92,4 +92,11 @@ $idRegistroTarea = $data->id_registro_tarea;
                 buttonImageOnly: true,
                 buttonText: "Seleccione una Fecha."
             });
+    $(document).ready(function() {
+        $('.hora-inicio input').ptTimeSelect({
+            setButtonLabel: "Seleccionar",
+            minutesLabel: "Min",
+            hoursLabel: "Hrs"
+        });
+    });
 </script>

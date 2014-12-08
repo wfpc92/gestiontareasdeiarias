@@ -10,7 +10,7 @@
         'action' => Yii::app()->homeUrl,
         'htmlOptions' => array(
             'onsubmit' => 'return tareaActualizarAjax(this)',
-            'class' => 'formTarea'
+            'class' => 'formTarea editarPool'
         )
     ));
     ?>
