@@ -52,7 +52,10 @@ $idRegistroTarea = $data->id_registro_tarea;
     <div class="duracion">
         <?php
         echo $form->labelEx($data, 'duración');
-        echo $form->textField($data, 'duracion');
+        echo $form->textField($data, 'duracion', array(
+            'id' => "txt-registro-tarea-duracion-{$idRegistroTarea}",
+            'class' => 'duracion-registro-tarea'
+        ));
         ?>
     </div>
     <?php
