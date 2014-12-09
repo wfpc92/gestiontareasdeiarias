@@ -9,10 +9,8 @@ var tareaIniciarAjax = function (self) {
             var idTarea = data.idTarea;
             var idRegistroTarea = data.idRegistroTarea;
             var htmlRegistroTarea = data.htmlRegistroTarea;
-
             //mostrar los registros.
             form.siblings(".desplegable").show();
-
             //seleccionar la lista donde se van a agregar el registro.
             var items = $("#lst-registro-tarea-" + idTarea + " .items");
             var divsItems = $("#lst-registro-tarea-" + idTarea + " .items > div");
