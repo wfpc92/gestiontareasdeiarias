@@ -97,18 +97,25 @@ class TipoTarea extends CActiveRecord {
     }
 
     public function todosTipoTareas() {
-        $connection = Yii::app()->db;
-        $idUsuario = Yii::app()->user->getId();
-        $sql = "select distinct tt.nombre nombre_tipo_tarea from tarea ta, tipo_tarea tt where ta.id_usuario = {$idUsuario} and ta.id_tipo_tarea = tt.id_tipo_tarea";
-        $command = $connection->createCommand($sql);
-        $dataReader = $command->query();
-        $rows = $dataReader->readAll();
-        $nombre_tipo_tarea = array();
-        $nombre_tipo_tarea[] = "Seleccione un tipo de tarea...";
-        foreach ($rows as $tipo_tarea) {
-            $nombre_tipo_tarea[$tipo_tarea["nombre_tipo_tarea"]] = $tipo_tarea["nombre_tipo_tarea"];
-        }
-        return $nombre_tipo_tarea;
+        /* $connection = Yii::app()->db;
+          $idUsuario = Yii::app()->user->getId();
+          $sql = "select distinct tt.nombre nombre_tipo_tarea from tarea ta, tipo_tarea tt "
+          . "where ta.id_usuario = {$idUsuario} and ta.id_tipo_tarea = tt.id_tipo_tarea";
+          $command = $connection->createCommand($sql);
+          $dataReader = $command->query();
+          $rows = $dataReader->readAll();
+          $nombre_tipo_tarea = array();
+          $nombre_tipo_tarea[] = "Seleccione un tipo de tarea...";
+          foreach ($rows as $tipo_tarea) {
+          $nombre_tipo_tarea[$tipo_tarea["nombre_tipo_tarea"]] = $tipo_tarea["nombre_tipo_tarea"];
+          }
+          return $nombre_tipo_tarea; */
+        return array(
+            NULL => "Seleccione un tipo de tarea...",
+            0 => 'docencia',
+            1 => 'investigacion',
+            2 => 'gestion',
+            3 => 'servicios');
     }
 
     public function nombreTipoTarea($idTipoTarea) {

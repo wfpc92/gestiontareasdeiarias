@@ -32,12 +32,17 @@ $fechaFormato = Calendario::getFechaFormato();
     ));
 
     $nomCompleto = "{$data->nombre_tarea} ";
-    $maxLog = 25;
+    //$maxLog = 25;
+    $maxLog = 50;
     $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
+    if (strlen($nomCompleto) > $maxLog) {
+        $nomAbreviado .= "...";
+    }
 
     echo CHtml::tag('p', array(
         'id' => "p-tarea-nombre-{$idTarea}",
         'onclick' => 'return tareaToogle(this)',
+        'title' => $nomCompleto
             ), $nomAbreviado);
 
     $nomCompleto = "{$data->idActividad->nombre_actividad} ";
@@ -45,23 +50,32 @@ $fechaFormato = Calendario::getFechaFormato();
 
     echo CHtml::tag('p', array(
         'id' => "p-tarea-actividad-{$idTarea}",
-        'class' => 'tarea-actividad'
+        'class' => 'tarea-actividad',
+        'title' => $nomCompleto
             ), $nomAbreviado);
     ?>
     <div class="botones">
         <?php
+        $disabledPlayAttr = ($data->estado == Tarea::ESTADONUEVA || $data->estado == Tarea::ESTADOEJECUCION ? '0' : "disabled");
+        $disabledPlayValue = ($data->estado == Tarea::ESTADONUEVA || $data->estado == Tarea::ESTADOEJECUCION ? '0' : "disabled");
+
+        $disabledPausaAttr = ($data->estado == Tarea::ESTADOPAUSA ? '0' : "disabled");
+        $disabledPausaValue = ($data->estado == Tarea::ESTADOPAUSA ? '0' : "disabled");
+
         echo CHtml::button("Play Tarea", array(
             'id' => "btn-play-tarea-{$idTarea}",
             'class' => 'play-tarea',
             'onclick' => 'return tareaIniciarAjax(this)',
-            'title' => 'Iniciar Tiempo.'
+            'title' => 'Iniciar Tiempo.',
+            $disabledPlayAttr => $disabledPlayValue
         ));
 
         echo CHtml::button("Pausar Tarea", array(
-            'id' => "lnk-pausar-tarea-{$idTarea}",
+            'id' => "btn-pausar-tarea-{$idTarea}",
             'class' => 'pause-tarea',
             'onclick' => 'return tareaPausarAjax(this)',
-            'title' => 'Pausar Tiempo.'
+            'title' => 'Pausar Tiempo.',
+            $disabledPausaAttr => $disabledPausaValue
         ));
 
         //echo CHtml::label("Duracion", "p-duracion-tarea-{$idTarea}");

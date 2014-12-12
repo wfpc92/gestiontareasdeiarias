@@ -30,7 +30,7 @@ class Categoria extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('nombre_categoria', 'required', 'message' => 'Debe ingresar el nombre de la Categoría.'),
-            array('nombre_categoria', 'match', 'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/', 'message' => 'El nombre de la Categoría solo pude contener letras, tildes, números y espacios.'),
+            array('nombre_categoria', 'match', 'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ,.]*$/', 'message' => 'El nombre de la Categoría solo pude contener letras, tildes, números y espacios.'),
             array('nombre_categoria', 'length', 'max' => 100),
             array('id_usuario', 'length', 'max' => 10),
             // The following rule is used by search().

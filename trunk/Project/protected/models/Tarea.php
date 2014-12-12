@@ -15,13 +15,13 @@
  * @property string $id_actividad
  * @property string $id_usuario
  * @property string $id_tipo_tarea
+ * @property string $diaria
  *
  * The followings are the available model relations:
  * @property RegistroTarea[] $registroTareas
  * @property TipoTarea $idTipoTarea
  * @property Actividad $idActividad
  * @property Usuario $idUsuario
- * @property integer $diaria
  */
 class Tarea extends CActiveRecord {
 
@@ -34,6 +34,8 @@ class Tarea extends CActiveRecord {
     const PRIORIDADALTA = 'ALTA';
     const INAMOVIBLESI = 'SI';
     const INAMOVIBLENO = 'NO';
+    const DIARIASI = 'SI';
+    const DIARIANO = 'NO';
 
     /**
      * @return string the associated database table name
@@ -54,7 +56,7 @@ class Tarea extends CActiveRecord {
             array('nombre_tarea, fecha_inicio, prioridad, estado, inamovible ', 'required',
                 'on' => 'actualizarAjax', 'message' => 'El campo {attribute} no puede estar vacio.'),
             array('nombre_tarea, descripcion', 'match',
-                'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/',
+                'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ,.()\'\"]*$/',
                 'message' => 'El Nombre de la Tarea sólo puede contener letras, tildes, números y espacios.'),
             array('id_tarea, prioridad, estado, inamovible, id_actividad, id_usuario, id_tipo_tarea', 'length', 'max' => 10),
             array('nombre_tarea', 'length', 'max' => 100),
@@ -95,7 +97,7 @@ class Tarea extends CActiveRecord {
             'inamovible' => 'Inamovible',
             'id_actividad' => 'Id Actividad',
             'id_usuario' => 'Id Usuario',
-            'id_tipo_tarea' => 'Id Tipo Tarea',
+            'id_tipo_tarea' => 'Tipo Tarea',
         );
     }
 
@@ -159,19 +161,21 @@ class Tarea extends CActiveRecord {
      */
     public function listaTareas() {
         $connection = Yii::app()->db;
-        $sql = 'select distinct "" as "title", FECHA_INICIO as "start", FECHA_INICIO as "end"
-                    from tarea
-                    where ID_ACTIVIDAD is not null';
+        $sql = 'SELECT CONCAT(CONVERT(COUNT(*), CHAR), \' Tareas\') AS "title",'
+                . ' DATE(fecha_inicio) AS "start", '
+                . ' DATE(fecha_inicio) AS "end" '
+                . ' FROM tarea '
+                . ' WHERE diaria = \'' . Tarea::DIARIANO . '\' '
+                . ' GROUP BY DATE(fecha_inicio)';
         $command = $connection->createCommand($sql);
         $dataReader = $command->query();
-
         $rows = $dataReader->readAll();
         return $rows;
     }
 
     public function cambiarADiaria($id, $fecha) {
         $this->FECHA_INICIO = $fecha;
-        $this->diaria = 1;
+        $this->diaria = Tarea::DIARIASI;
         $this->validate();
         return $this->save();
     }
@@ -199,14 +203,22 @@ class Tarea extends CActiveRecord {
     }
 
     /* @var $ultimoRT RegistroTarea */
+    /* @var $nuevoRT RegistroTarea */
 
     public function pausarRegistroTarea() {
         $arrRT = RegistroTarea::model()->findAllByAttributes(array('id_tarea' => $this->id_tarea));
         $numRT = count($arrRT);
-        $ultimoRT = $arrRT[$numRT - 1];
-
-        //var_dump($ultimoRT);
-        $ultimoRT->duracion = 10;
+        $ultimoRT = $arrRT[$numRT - 2];
+        $nuevoRT = $arrRT[$numRT - 1];
+        $fechaFinal = date_create($nuevoRT->fecha_inicio);
+        $fechaInicial = date_create($ultimoRT->fecha_inicio);
+        $diff = date_diff($fechaFinal, $fechaInicial, TRUE);
+        //obtener los minutos entre la fecha
+        $minutos = $diff->d * 24 * 60;
+        $minutos += $diff->h * 60;
+        $minutos += $diff->i;
+        $ultimoRT->duracion = $minutos;
+        $ultimoRT->save();
         return $ultimoRT;
     }
 

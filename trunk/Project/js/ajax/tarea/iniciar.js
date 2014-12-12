@@ -1,11 +1,11 @@
-var tareaIniciarAjax = function (self) {
+var tareaIniciarAjax = function(self) {
     var form = $(self).parents("form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/crearRegistroTareaAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var idTarea = data.idTarea;
             var idRegistroTarea = data.idRegistroTarea;
             var htmlRegistroTarea = data.htmlRegistroTarea;
@@ -18,6 +18,8 @@ var tareaIniciarAjax = function (self) {
                 items.html("");
             }
             items.append(htmlRegistroTarea);
+            habilitarPausa(idTarea);
+            deshabilitarPlay(idTarea);
         }
     };
 
@@ -36,4 +38,27 @@ var tareaIniciarAjax = function (self) {
 
     templateAjax1(confAjax, selectores);
     return false;
+};
+
+var habilitarPlay = function(idTarea) {
+    var btnPlay = $("#btn-play-tarea-" + idTarea);
+    btnPlay.removeAttr("disabled");
+
+};
+
+var deshabilitarPlay = function(idTarea) {
+    var btnPlay = $("#btn-play-tarea-" + idTarea);
+    btnPlay.attr('disabled', 'disabled');
+
+};
+
+var habilitarPausa = function(idTarea) {
+    var btnPausa = $("#btn-pausar-tarea-" + idTarea);
+    btnPausa.removeAttr("disabled");
+
+};
+
+var deshabilitarPausa = function(idTarea) {
+    var btnPausa = $("#btn-pausar-tarea-" + idTarea);
+    btnPausa.attr('disabled', 'disabled');
 };

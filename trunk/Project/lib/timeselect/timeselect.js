@@ -279,7 +279,7 @@
                     + jQuery('#ptTimeSelectUserSelMin').text()
                     + " "
                     + jQuery('#ptTimeSelectUserSelAmPm').text();
-        jQuery(".isPtTimeSelectActive").val(tSel);
+        jQuery(".isPtTimeSelectActive").val(tSel).trigger('change')
         this.closeCntr();
         
     };// END setTime() function

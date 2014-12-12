@@ -51,7 +51,7 @@ class Calendario extends CActiveRecord {
 
     public static function horaFormatoPicker($fechaStr) {
         $fechaDate = date_create($fechaStr);
-        return date_format($fechaDate, "h : i A");
+        return date_format($fechaDate, "h:i A");
     }
 
     public static function horaFormatoDate($fechaStr) {
@@ -64,6 +64,14 @@ class Calendario extends CActiveRecord {
             'minutos' => date_format($fechaDate, "i"),
             'segundos' => date_format($fechaDate, "s"),
         );
+    }
+
+    public static function fechaHoraFormatoSQL($fecha, $hora) {
+        $fechaDate = date_create_from_format("Y-m-d h:i A", $fecha . " " . $hora);
+        if ($fechaDate != false) {
+            return date_format($fechaDate, "Y-m-d H:i:s");
+        }
+        return NULL;
     }
 
     /**

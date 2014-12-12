@@ -32,7 +32,7 @@ class Productividad extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fecha_productividad, productividad, id_usuario', 'required'),
+            array('fecha_productividad, id_usuario', 'required'),
             array('productividad, id_usuario', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.

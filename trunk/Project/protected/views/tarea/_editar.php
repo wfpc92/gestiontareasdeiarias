@@ -50,7 +50,7 @@ $idTarea = $model->id_tarea;
         <?php
         $fechaInicio = $model->fechaInicioFormatoPicker();
         echo $form->labelEx($model, 'fecha_inicio');
-        echo CHtml::textField('fecha_inicio', $fechaInicio, array(
+        echo CHtml::textField('Tarea[fecha_inicio]', $fechaInicio, array(
             'id' => 'd-picker-fecha-inicio',
             'class' => 'dpicker',
             'title' => 'Ingrese la fecha en que inicia la tarea.'
@@ -63,7 +63,7 @@ $idTarea = $model->id_tarea;
         <?php
         echo $form->labelEx($model, 'prioridad');
         echo CHtml::dropDownList(
-                'prioridad'
+                'Tarea[prioridad]'
                 , $model->prioridad
                 , array(
             Tarea::PRIORIDADALTA => Tarea::PRIORIDADALTA,
@@ -78,16 +78,12 @@ $idTarea = $model->id_tarea;
 
     <div class="row">
         <?php
-        $nombreTipoTarea = TipoTarea::model()->nombreTipoTarea($model->id_tipo_tarea);
-        $listaNombresTipoTarea = array(
-            "Seleccione un tipo de tarea...",
-            'docencia',
-            'investigacion',
-            'gestion',
-            'servicios');
+        $nombreTipoTarea = $model->id_tipo_tarea != NULL ? $model->id_tipo_tarea : NULL;
+        //TipoTarea::model()->nombreTipoTarea($model->id_tipo_tarea);
+        $listaNombresTipoTarea = TipoTarea::model()->todosTipoTareas();
         echo $form->labelEx($model, 'id_tipo_tarea');
         echo CHtml::dropDownList(
-                'id_tipo_tarea'
+                'Tarea[id_tipo_tarea]'
                 , $nombreTipoTarea
                 , $listaNombresTipoTarea
                 , array('title' => 'Ingrese el nivel de prioridad que le va a asignar a la tarea.',)
