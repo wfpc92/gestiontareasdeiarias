@@ -6,9 +6,11 @@
  * The followings are the available columns in table 'tipo_tarea':
  * @property string $id_tipo_tarea
  * @property string $nombre
+ * @property string $id_usuario
  *
  * The followings are the available model relations:
  * @property Tarea[] $tareas
+ * @property Usuario $idUsuario
  */
 class TipoTarea extends CActiveRecord {
 
@@ -26,11 +28,12 @@ class TipoTarea extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('nombre', 'required'),
+            array('nombre, id_usuario', 'required'),
             array('nombre', 'length', 'max' => 45),
+            array('id_usuario', 'length', 'max' => 10),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id_tipo_tarea, nombre', 'safe', 'on' => 'search'),
+            array('id_tipo_tarea, nombre, id_usuario', 'safe', 'on' => 'search'),
         );
     }
 
@@ -42,6 +45,7 @@ class TipoTarea extends CActiveRecord {
         // class name for the relations automatically generated below.
         return array(
             'tareas' => array(self::HAS_MANY, 'Tarea', 'id_tipo_tarea'),
+            'idUsuario' => array(self::BELONGS_TO, 'Usuario', 'id_usuario'),
         );
     }
 
@@ -52,6 +56,7 @@ class TipoTarea extends CActiveRecord {
         return array(
             'id_tipo_tarea' => 'Id Tipo Tarea',
             'nombre' => 'Nombre',
+            'id_usuario' => 'Id Usuario',
         );
     }
 
@@ -74,6 +79,7 @@ class TipoTarea extends CActiveRecord {
 
         $criteria->compare('id_tipo_tarea', $this->id_tipo_tarea, true);
         $criteria->compare('nombre', $this->nombre, true);
+        $criteria->compare('id_usuario', $this->id_usuario, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
