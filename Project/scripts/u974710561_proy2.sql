@@ -80,8 +80,15 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `u974710561_proy2`.`tipo_tarea` (
   `id_tipo_tarea` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
+  `id_usuario` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id_tipo_tarea`),
-  UNIQUE INDEX `NOMBRE_UNIQUE` (`nombre` ASC))
+  UNIQUE INDEX `NOMBRE_UNIQUE` (`nombre` ASC),
+  INDEX `fk_tipo_tarea_usuario1_idx` (`id_usuario` ASC),
+  CONSTRAINT `fk_tipo_tarea_usuario1`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `u974710561_proy2`.`usuario` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -150,7 +157,7 @@ DEFAULT CHARACTER SET = latin1;
 CREATE TABLE IF NOT EXISTS `u974710561_proy2`.`productividad` (
   `id_productividad` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `fecha_productividad` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `productividad` VARCHAR(10) NOT NULL,
+  `productividad` VARCHAR(10) NOT NULL DEFAULT 'MEDIA',
   `id_usuario` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id_productividad`),
   INDEX `fk_productividad_usuario1_idx` (`id_usuario` ASC),
