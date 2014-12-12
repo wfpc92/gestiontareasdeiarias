@@ -39,7 +39,11 @@ $this->widget(
             "data" => $producNumero,
         ),
     ),
-    'options' => array()
+    'options' => array(
+                    "scaleOverride" => true, 
+                    "scaleSteps" => 3, 
+                    "scaleStepWidth" => 1, 
+                    "scaleStartValue" =>0)
         )
 );
 ?>
@@ -97,4 +101,6 @@ $this->widget(
     }
     echo "Su productividad en este rango de fechas es: ".$proMensaje;
 ?>
+<h2>Descripcion</h2>
+<p>Esta grafica muestra la sensacion de productividad que se tuvo el dia mencionado (la sensacion es ingresada por el usuario). 3 representa una sensacion alta, 2 una sensacion media y 1 una sensacion baja</p>
 <?php echo CHtml::link("Menu Graficas", Yii::app()->createUrl("reportes")); ?>
