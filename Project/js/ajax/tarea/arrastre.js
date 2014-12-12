@@ -10,9 +10,6 @@ var tareaPoolADiariaAjax = function(self, target) {
             $("#lst-tarea-diaria > .items").append(htmlTarea);
             var div = $("#" + self);
             div.remove();
-        },
-        error: function(data) {
-            alert(data.error)
         }
     };
 
@@ -20,8 +17,12 @@ var tareaPoolADiariaAjax = function(self, target) {
         cargando: {
             div: $("#cargando-principal")
         },
+        exito: {
+            div: $("#exito-principal"),
+            mensaje: "La Tarea se ha asignado a este día."
+        },
         error: {
-            div: $(form).find(".error")
+            div: $("#error-principal")
         }
     };
 

@@ -38,10 +38,14 @@ class ProductividadController extends Controller {
         $fechaProductividad = (isset($_REQUEST['fecha_productividad']) ? $_REQUEST['fecha_productividad'] : NULL);
         $userId = Yii::app()->user->getId();
 
-        $model = new Productividad;
+        $model = Productividad::model()->findByAttributes(array('fecha_productividad' => $fechaProductividad));
+        if ($model == NULL) {
+            $model = new Productividad;
+        }
         $model->productividad = $productividad;
         $model->fecha_productividad = $fechaProductividad;
         $model->id_usuario = $userId;
+
         if ($model->validate()) {
             $model->save();
         }

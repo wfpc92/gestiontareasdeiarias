@@ -31,6 +31,8 @@ class RegistroTarea extends CActiveRecord {
             array('id_tarea', 'required'),
             array('id_tarea', 'length', 'max' => 10),
             array('fecha_inicio, duracion', 'safe'),
+            array('duracion', 'numerical', 'integerOnly'=>true,'min'=>0),
+            array('fecha_inicio', 'date', 'format'=>'yyyy-M-d H:m:s'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id_registro_tarea, id_tarea, fecha_inicio, duracion', 'safe', 'on' => 'search'),

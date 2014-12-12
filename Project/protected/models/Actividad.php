@@ -30,7 +30,7 @@ class Actividad extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('nombre_actividad', 'required', 'message' => 'Debe ingresar el nombre de la Actividad.'),
-            array('nombre_actividad', 'match', 'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ]*$/',
+            array('nombre_actividad', 'match', 'pattern' => '/^[a-zA-Z0-9[:space:]\süÜáéíóúÁÉÍÓÚñÑ,.]*$/',
                 'message' => 'El Nombre de la Actividad solo puede contener letras, tildes, números y espacios.'),
             array('nombre_actividad', 'length', 'max' => 100),
             array('id_categoria', 'length', 'max' => 10),

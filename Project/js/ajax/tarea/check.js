@@ -6,7 +6,16 @@ var tareaCheckAjax = function(self) {
         data: $(form).serialize(),
         dataType: 'json',
         success: function(data) {
+            var idTarea = data.idTarea;
+            var estado = data.estado;
             var progressBar = data.progressBar;
+            if (estado == 'FINALIZADA') {
+                deshabilitarPlay(idTarea);
+                deshabilitarPausa(idTarea);
+            } else {
+                habilitarPlay(idTarea);
+                habilitarPausa(idTarea);
+            }
             actualizarProgressBar(progressBar);
         }
     };

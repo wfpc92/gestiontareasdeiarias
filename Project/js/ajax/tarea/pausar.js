@@ -1,11 +1,11 @@
-var tareaPausarAjax = function (self) {
+var tareaPausarAjax = function(self) {
     var form = $(self).parents("form");
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/tarea/pausarRegistroTareaAjax',
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var idTarea = data.idTarea;
             var idRegistroTareaUltimo = data.idRegistroTareaUltimo;
             var duracionUltimo = data.duracionUltimo;
@@ -13,10 +13,10 @@ var tareaPausarAjax = function (self) {
             var htmlRegistroTarea = data.htmlRegistroTarea;
             var error = data.error;
 
-            console.log(data);
-
             var txtUltimoRT = $("#txt-registro-tarea-duracion-" + idRegistroTareaUltimo);
-            txtUltimoRT.val(duracionUltimo);
+            if (txtUltimoRT.val() == '0') {
+                txtUltimoRT.val(duracionUltimo);
+            }
 
             form.siblings(".desplegable").show();
             //seleccionar la lista donde se van a agregar el registro.
@@ -48,12 +48,12 @@ var tareaPausarAjax = function (self) {
 };
 
 
-var actualizarDuracionTarea = function (idTarea) {
+var actualizarDuracionTarea = function(idTarea) {
     var duracion = 0;
     var lblDuracion = $("#p-duracion-tarea-" + idTarea);
     var arrDuracion = $("#lst-registro-tarea-" + idTarea + " .items .duracion-registro-tarea");
 
-    arrDuracion.each(function () {
+    arrDuracion.each(function() {
         var strDuracion = $(this).val();
         duracion += Number(strDuracion);
     });

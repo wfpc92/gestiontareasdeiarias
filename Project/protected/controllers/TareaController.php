@@ -178,16 +178,17 @@ class TareaController extends Controller {
      */
     public function actionActualizarAjax() {
         $idActividad = (isset($_REQUEST['id_actividad']) ? $_REQUEST['id_actividad'] : NULL);
-        $fechaInicio = (isset($_REQUEST['fecha_inicio']) ? $_REQUEST['fecha_inicio'] : NULL);
         $idTarea = NULL;
         $actualizar = FALSE;
         $error = NULL;
+
+        $inamovible = isset($_REQUEST['inamovible']) ? Tarea::INAMOVIBLESI : Tarea::INAMOVIBLENO;
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["id_tarea"];
             $model = Tarea::model()->findByPk($idTarea);
             $model->attributes = $_REQUEST['Tarea'];
-            $model->fecha_inicio = $fechaInicio;
+            $model->inamovible = $inamovible;
 
             if ($idActividad != NULL) {
                 $model->id_actividad = $idActividad;
@@ -256,15 +257,17 @@ class TareaController extends Controller {
         $idTarea = NULL;
         $idActividad = NULL;
         $progressBar = NULL;
+        $estado = NULL;
         $error = NULL;
 
-        $estado = isset($_REQUEST["ESTADO"]) ? 1 : 0;
+        $estado = isset($_REQUEST["estado"]) ? Tarea::ESTADOFINALIZADA : Tarea::ESTADOEJECUCION;
+
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["id_tarea"];
-            $fecha = isset($_REQUEST["FECHA_HOY"]) ? $_REQUEST["FECHA_HOY"] : NULL;
+            $fecha = isset($_REQUEST["fecha_hoy"]) ? $_REQUEST["fecha_hoy"] : NULL;
             $model = Tarea::model()->findByPk($idTarea);
             $idActividad = $model->id_actividad;
-            $model->ESTADO = $estado;
+            $model->estado = $estado;
             $model->save();
             $progressBar = $model->progressBar($fecha);
         } else {
@@ -275,6 +278,7 @@ class TareaController extends Controller {
             'idActividad' => $idActividad,
             'progressBar' => $progressBar,
             'fecha' => $fecha,
+            'estado' => $estado,
             'error' => $error
         ));
     }
@@ -319,6 +323,8 @@ class TareaController extends Controller {
             $model->id_usuario = $userId;
             $model->id_actividad = NULL;
             $model->prioridad = Tarea::PRIORIDADMEDIA;
+            $model->inamovible = Tarea::INAMOVIBLESI;
+            $model->diaria = Tarea::DIARIASI;
             $model->scenario = 'crearAjax';
 
             if ($model->validate()) {
@@ -365,13 +371,13 @@ class TareaController extends Controller {
         $idActividad = NULL;
         $error = NULL;
 
-        $idActividad = $_REQUEST['Tarea']['id_actividad'];
+        $idActividad = isset($_REQUEST['Tarea']['id_actividad']) ? $_REQUEST['Tarea']['id_actividad'] : NULL;
 
         if (isset($_REQUEST['Tarea'])) {
-            $idTarea = $_REQUEST['Tarea']['ID_TAREA'];
+            $idTarea = $_REQUEST['Tarea']['id_tarea'];
             $hoy = ($_REQUEST['FECHA_HOY']);
             $model = Tarea::model()->findByPk($idTarea);
-            $idActividad = $model->ID_ACTIVIDAD;
+            $idActividad = $model->id_actividad;
             if ($idActividad != NULL) {
                 $model->cambiarADiaria($idActividad, $hoy); //asignarle fecha de inicio, precondicion es que haya un id actividad.
                 $htmlTarea = $this->renderPartial('_view', array('data' => $model), true);
@@ -419,6 +425,7 @@ class TareaController extends Controller {
         ));
     }
 
+    /* @var $model Tarea */
     /* @var $ultimoRT RegistroTarea */
 
     public function actionPausarRegistroTareaAjax() {
@@ -435,14 +442,17 @@ class TareaController extends Controller {
             $model = Tarea::model()->findByPk($model->id_tarea);
 
             if ($model->validate()) {
+                // crear el nuevo registro de tarea.
+                $nuevoRegistroTarea = $model->crearRegistroTarea();
+                $idRegistroTarea = $nuevoRegistroTarea->id_registro_tarea;
+                $idTarea = $model->id_tarea;
                 // actualizar la duracion de la tarea mas reciente
                 $ultimoRT = $model->pausarRegistroTarea();
                 $idRegistroTareaUltimo = $ultimoRT->id_registro_tarea;
                 $duracionUltimo = $ultimoRT->duracion;
-                // crear el nuevo registro de tarea.
-                $nuevoRegistroTarea = $model->crearRegistroTarea();
-                $idTarea = $model->id_tarea;
-                $idRegistroTarea = $nuevoRegistroTarea->id_registro_tarea;
+
+                $model->estado = Tarea::ESTADOPAUSA;
+                $model->save();
                 $htmlRegistroTarea = $this->renderPartial('../registro_tarea/_view', array('data' => $nuevoRegistroTarea), true);
             }
             if ($model->hasErrors()) {
@@ -471,12 +481,14 @@ class TareaController extends Controller {
         if (isset($_REQUEST['RegistroTarea'])) {
             $idTarea = isset($_REQUEST['RegistroTarea']['id_tarea']) ? $_REQUEST['RegistroTarea']['id_tarea'] : NULL;
             $idRegistroTarea = isset($_REQUEST['RegistroTarea']['id_registro_tarea']) ? $_REQUEST['RegistroTarea']['id_registro_tarea'] : NULL;
+            $duracion = isset($_REQUEST['RegistroTarea']['duracion']) ? $_REQUEST['RegistroTarea']['duracion'] : NULL;
             $model = RegistroTarea::model()->findByPk($idRegistroTarea);
-
             $fechaInicio = isset($_REQUEST['fecha_inicio']) ? $_REQUEST['fecha_inicio'] : NULL;
             $horaInicio = isset($_REQUEST['hora_inicio']) ? $_REQUEST['hora_inicio'] : NULL;
             //guardar la fecha de inicio y la hora de inicio en el mismo campo
-            $model->fecha_inicio = "{$fechaInicio} {$horaInicio}";
+            $fechaHoraInicio = Calendario::fechaHoraFormatoSQL($fechaInicio, $horaInicio);
+            $model->duracion = $duracion;
+            $model->fecha_inicio = $fechaHoraInicio;
 
             if ($model->validate()) {
                 $model->save();
