@@ -375,7 +375,7 @@ class TareaController extends Controller {
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST['Tarea']['id_tarea'];
-            $hoy = ($_REQUEST['FECHA_HOY']);
+            $hoy = isset($_REQUEST['FECHA_HOY']) ? $_REQUEST['FECHA_HOY'] : NULL;
             $model = Tarea::model()->findByPk($idTarea);
             $idActividad = $model->id_actividad;
             if ($idActividad != NULL) {

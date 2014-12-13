@@ -152,7 +152,11 @@ class Tarea extends CActiveRecord {
      * @return type
      */
     public function progressBar($fecha) {
-        return Actividad::model()->findByPk($this->id_actividad)->progressBar($fecha);
+        $act = Actividad::model()->findByPk($this->id_actividad);
+        if ($act != NULL) {
+            return $act->progressBar($fecha);
+        }
+        return NULL;
     }
 
     /**
@@ -177,8 +181,8 @@ class Tarea extends CActiveRecord {
     }
 
     public function cambiarADiaria($id, $fecha) {
-        $this->FECHA_INICIO = $fecha;
-        $this->diaria = Tarea::DIARIASI;
+        $this->fecha_inicio = $fecha;
+        $this->diaria = Tarea::DIARIANO;
         $this->validate();
         return $this->save();
     }
