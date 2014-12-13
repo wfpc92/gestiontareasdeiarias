@@ -161,12 +161,15 @@ class Tarea extends CActiveRecord {
      */
     public function listaTareas() {
         $connection = Yii::app()->db;
-        $sql = 'SELECT CONCAT(CONVERT(COUNT(*), CHAR), \' Tareas\') AS "title",'
-                . ' DATE(fecha_inicio) AS "start", '
-                . ' DATE(fecha_inicio) AS "end" '
-                . ' FROM tarea '
-                . ' WHERE diaria = \'' . Tarea::DIARIANO . '\' '
-                . ' GROUP BY DATE(fecha_inicio)';
+        $userId = Yii::app()->user->getId();
+        $diariaNo = Tarea::DIARIANO;
+        $sql = "SELECT CONCAT(CONVERT(COUNT(*), CHAR), ' Tareas') AS \"title\","
+                . " DATE(fecha_inicio) AS \"start\", "
+                . " DATE(fecha_inicio) AS \"end\" "
+                . " FROM tarea "
+                . " WHERE id_usuario = {$userId} "
+                . " AND diaria = '{$diariaNo}'"
+                . " GROUP BY DATE(fecha_inicio)";
         $command = $connection->createCommand($sql);
         $dataReader = $command->query();
         $rows = $dataReader->readAll();
