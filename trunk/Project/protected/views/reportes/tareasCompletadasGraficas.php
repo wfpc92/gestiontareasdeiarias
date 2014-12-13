@@ -70,4 +70,4 @@
     </div>
 </div>
 
-<?php echo CHtml::link("Menu Graficas", Yii::app()->createUrl("reportes")); ?>
+<?php echo CHtml::link("Regresar", Yii::app()->createUrl("reportes")); ?>
