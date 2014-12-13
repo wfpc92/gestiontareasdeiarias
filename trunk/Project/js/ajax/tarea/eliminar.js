@@ -65,7 +65,7 @@ var tareaEliminarAjax = function(self) {
 
 var tareaEliminarPoolModal = function(self) {
     $("<div>")
-            .html("¿Estas seguro que deseas eliminar esta Tarea?")
+            .html("¿Estas seguro que deseas eliminar esta Tarea del Pool?")
             .dialog({
                 title: "Eliminar Tarea",
                 resizable: false,
@@ -97,10 +97,13 @@ var tareaEliminarPoolAjax = function(self) {
             var idTarea = data.idTarea;
             var progressBar = data.progressBar;
             //obtener la lista de tareas.
-            var idTareaActual = "#tarea-view-" + idTarea;
-            $("div").remove(idTareaActual);
+            var tareaPool = $("#tarea-view-pool-" + idTarea);
+            tareaPool.remove();
             actualizarProgressBar(progressBar);
-            //tareaCerrar(null);
+            var items = $("#lst-pool-tareas .items > .view");
+            if (items.length === 0) {
+                $("#lst-pool-tareas .items").text("No se encontraron resultados.");
+            }
             return false;
         }
     };
@@ -108,6 +111,10 @@ var tareaEliminarPoolAjax = function(self) {
     var selectores = {
         cargando: {
             div: $("#cargando-principal")
+        },
+        exito: {
+            div: $("#exito-principal"),
+            mensaje: "Tarea Pendiente Eliminada."
         },
         error: {
             div: $("#error-principal")

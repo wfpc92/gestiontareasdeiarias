@@ -10,6 +10,10 @@ var tareaPoolADiariaAjax = function(self, target) {
             $("#lst-tarea-diaria > .items").append(htmlTarea);
             var div = $("#" + self);
             div.remove();
+            var items = $("#lst-pool-tareas .items > .view");
+            if (items.length === 0) {
+                $("#lst-pool-tareas .items").text("No se encontraron resultados.");
+            }
         }
     };
 

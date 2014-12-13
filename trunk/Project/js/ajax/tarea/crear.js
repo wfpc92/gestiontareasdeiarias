@@ -1,10 +1,10 @@
-var tareaCrearAjax = function (form) {
+var tareaCrearAjax = function(form) {
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action'),
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var htmlTarea = data.htmlTarea;
             var htmlTareaEditar = data.htmlTareaEditar;
             var idActividad = data.idActividad;
@@ -41,7 +41,7 @@ var tareaCrearAjax = function (form) {
     return false;
 };
 
-var tareaCrearPoolAjax = function (self) {
+var tareaCrearPoolAjax = function(self) {
     var form = $(self);
 
     var confAjax = {
@@ -49,26 +49,19 @@ var tareaCrearPoolAjax = function (self) {
         url: $(form).attr('action'),
         data: $(form).serialize(),
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
             var htmlTarea = data.htmlTarea;
             var htmlTareaEditar = data.htmlTareaEditar;
             var idActividad = data.idActividad;
             var progressBar = data.progressBar;
-            var items = $("#lst-pool-tareas");
+            var items = $("#lst-pool-tareas .items");
             var divsItems = $("#lst-pool-tareas .items > div");
-
-            console.log(items);
-            console.log(divsItems);
 
             if (divsItems.length === 0) {
                 items.html("");
             }
             items.append(htmlTarea);
             $("#txt-tarea").val("");
-
-            //mostrarPanelDerecho(htmlTareaEditar);
-            //actualizarProgressBar(progressBar);
-            //menus();
         }
     };
 
