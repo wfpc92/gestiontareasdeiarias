@@ -19,7 +19,7 @@
             'id' => 'd-picker-fecha-inicio',
             'class' => 'dpicker',
             'title' => 'Ingrese la fecha en que inicia la tarea.',
-            'value' => '2014-01-01'
+            'value' => ''
         ));
         ?>
     </div>
@@ -30,7 +30,7 @@
             'id' => 'd-picker-fecha-fin',
             'class' => 'dpicker',
             'title' => 'Ingrese la fecha en que finaliza la tarea.',
-            'value' => '2014-12-19'
+            'value' => ''
         ));
         ?>
     </div>
