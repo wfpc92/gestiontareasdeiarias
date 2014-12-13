@@ -83,24 +83,14 @@ $this->widget(
 </table>
 <?php
     $proMensaje = '';
-    if($contadorAlta>$contadorMedia){
-        if($contadorAlta>$contadorBaja){
-            $proMensaje=Productividad::ALTA;
-        }
-        else{
-            $proMensaje=Productividad::BAJA;
-        }
-    }
-    else{
-        if($contadorMedia>$contadorBaja){
-            $proMensaje=Productividad::MEDIA;
-        }
-        else{
-            $proMensaje=Productividad::BAJA;
-        }
-    }
+    $promedio = (($contadorAlta*3)+($contadorMedia*2)+$contadorBaja)/($contadorAlta+$contadorMedia+$contadorBaja);
+    switch(intval($promedio)){
+        case 1:$proMensaje = Productividad::BAJA;break;
+        case 2:$proMensaje = Productividad::MEDIA;break;
+        case 3:$proMensaje = Productividad::ALTA;break;
+    }    
     echo "Su productividad en este rango de fechas es: ".$proMensaje;
 ?>
 <h2>Descripcion</h2>
 <p>Esta grafica muestra la sensacion de productividad que se tuvo el dia mencionado (la sensacion es ingresada por el usuario). 3 representa una sensacion alta, 2 una sensacion media y 1 una sensacion baja</p>
-<?php echo CHtml::link("Menu Graficas", Yii::app()->createUrl("reportes")); ?>
+<?php echo CHtml::link("Regresar", Yii::app()->createUrl("reportes")); ?>

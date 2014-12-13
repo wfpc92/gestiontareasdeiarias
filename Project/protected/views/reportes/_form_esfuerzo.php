@@ -1,4 +1,6 @@
-<div lass="form">
+<h2>Esfuerzo por Días</h2>
+<p>La fecha inicial y final determinaran cuan productivo se ha sentido el usuario en ese rango de tiempo</p>
+<div class="form">    
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tareas-form',

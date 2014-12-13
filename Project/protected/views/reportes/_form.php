@@ -1,4 +1,6 @@
 <div class="reportes-tareas-completadas">
+    <h2>Tareas Completadas</h2>
+    <p>La fecha inicial y final determinaran que tareas se han terminado y cuales estan pendiente en ese rango de tiempo</p>
     <p>Por favor ingrese la fecha inicial y final del reporte.</p>
     <?php
     $form = $this->beginWidget('CActiveForm', array(

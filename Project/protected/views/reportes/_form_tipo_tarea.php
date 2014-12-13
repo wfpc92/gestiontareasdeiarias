@@ -1,4 +1,6 @@
-<div lass="form">
+<h2>Dedicacion</h2>
+<p>La fecha inicial y final determinaran cuanto tiempo se ha dedicado por tipo de tarea</p>
+<div class="form">    
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tareas-form',

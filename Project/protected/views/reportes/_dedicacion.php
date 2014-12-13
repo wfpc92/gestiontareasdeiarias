@@ -1,4 +1,5 @@
 <h2>Dedicacion</h2>
+<br/>
 <?php
 $tipoTarea = array();
 $durac = array();
@@ -12,7 +13,9 @@ foreach ($durac as $du) {
         $mayorDuracion = $du;
     }
 }
-$mayorDuracion = $mayorDuracion+5;
+$cantidad = 10;
+$ancho = intval($mayorDuracion / 7);
+
 $this->widget(
             'chartjs.widgets.ChBars', 
             array(
@@ -29,8 +32,8 @@ $this->widget(
                 ),
                 'options' => array(
                     "scaleOverride" => true, 
-                    "scaleSteps" => $mayorDuracion, 
-                    "scaleStepWidth" => 1, 
+                    "scaleSteps" => $cantidad, 
+                    "scaleStepWidth" => $ancho, 
                     "scaleStartValue" =>0)
             )
         );
@@ -87,4 +90,4 @@ $this->widget(
 </table>
 <h2>Descripcion</h2>
 <p>Esta grafica muestra cuanto tiempo se ha dedicado a cada tipo de tarea. En las tablas se puede encontrar informacion acerca de que tareas pertenecen a cada tipo y cuanto tiempo se ha invertido a cada tarea</p>
-<?php echo CHtml::link("Menu Graficas", Yii::app()->createUrl("reportes")); ?>
+<?php echo CHtml::link("Regresar", Yii::app()->createUrl("reportes")); ?>
