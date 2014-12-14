@@ -1,6 +1,6 @@
 <h2>Dedicacion</h2>
 <p>La fecha inicial y final determinaran cuanto tiempo se ha dedicado por tipo de tarea</p>
-<div class="form">    
+<div class="">    
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tareas-form',
@@ -51,14 +51,16 @@
     ?>
 </div>
 <script>
-    $(".dpicker").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        showButtonPanel: true,
-        dateFormat: 'yy-mm-dd',
-        showOn: "both",
-        buttonImage: "<?php echo Yii::app()->baseUrl . "/images/calendar.gif"; ?>",
-        buttonImageOnly: true,
-        buttonText: "Seleccione una Fecha."
+    $(document).ready(function() {
+        $(".dpicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'yy-mm-dd',
+            showOn: "both",
+            buttonImage: "<?php echo Yii::app()->baseUrl . "/images/calendar.gif"; ?>",
+            buttonImageOnly: true,
+            buttonText: "Seleccione una Fecha."
+        });
     });
 </script>

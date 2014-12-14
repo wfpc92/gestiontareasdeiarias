@@ -298,7 +298,9 @@ div.buttons input[type="submit"] {
 }
 .ui-progressbar .ui-progressbar-value {
 	background: url("../images/fondoBarra.png") repeat-x;
-		border-radius: 17px;
+        border-radius: 17px;
+        border: none;
+        margin: 0;
 }
 #progressbar .ui-corner-all, #progressbar .ui-corner-bottom,
 #progressbar .ui-corner-right, #progressbar .ui-corner-br {
@@ -469,12 +471,17 @@ ul.tarea li.eliminar {
 		background: url("../images/playHover.png") no-repeat center;
 	}
 	.botones .pause-tarea:hover {
-		background: url("../images/pause.png") no-repeat center;
+		background: url("../images/pauseHover.png") no-repeat center;
 	}
-	.botones p {
+        .botones .play-inactivo {
+		background: url("../images/playInactivo.png") no-repeat center;
+	}
+	.botones .pause-inactivo {
+		background: url("../images/pauseInactivo.png") no-repeat center;
+	}
+	.botones div {
 		float: right;
 		margin-top: -25px;
-		padding: 0 !important;
 	}
 /***** Duración botones play y paluse (fin) *****/
 .view .form-tarea input[type="checkbox"] {
@@ -483,6 +490,7 @@ ul.tarea li.eliminar {
 	margin: 3px 10px 0; 
 	background: none;
 }
+
 p.tarea-actividad {
     font-size: 13px;
     padding-left: 32px;
@@ -594,7 +602,7 @@ div.form textarea.success, div.form select.success {
 		border: 1px solid #90b3ec;
 		border-radius: 5px;
 	}
-	#usuario-form .regresar-login {
+	#usuario-form .buttons input[type="submit"] { 
 		float: right;
 		margin-right: 2px;
 	}
@@ -665,6 +673,9 @@ div.form textarea.success, div.form select.success {
 #content-princ-izq h2 {
     padding-top: 10px;
     padding-bottom: 20px;
+    color: #000000;
+    font-family: "asapbold";
+    font-size: 18px;
 }
 div.pool-tarea:hover {
     background-color: #E1E2E5;
@@ -672,9 +683,6 @@ div.pool-tarea:hover {
 }
 
 /***** Registro de tareas (inicio) *****/
-.desplegable .list-view {
-
-}
 div.registro-tarea {
     position: relative;
     margin-bottom: 2px;
@@ -689,6 +697,8 @@ div.registro-tarea form div {
 }
 div.registro-tarea form div label {
     padding-right: 5px;
+    vertical-align: text-bottom;
+    position: initial;
 }
 div.registro-tarea form div.fecha-inicio {
    padding-right: 20px;
@@ -696,13 +706,6 @@ div.registro-tarea form div.fecha-inicio {
 div.registro-tarea form div input {
    padding: 0 5px;
    width: 75px;
-}
-div.registro-tarea form div.hora-inicio label {
-   float: left;
-   line-height: 20px;
-}
-div.registro-tarea form div.hora-inicio input {
-   float: right;
 }
 .ui-datepicker-trigger {
     position: absolute;
@@ -761,13 +764,13 @@ div.inamovible label {
 h3.pool-tarea {
     font-size: 18px;
     font-family: 'asapbold';
+    padding-top: 26px;
 }
 /***** Pool de Tareas (fin) *****/
 
 /***** Productividad (inicio) *****/
 #form-productividad {
-    margin: 15px auto 0;
-    width: 190px;
+    margin: 0px auto 0px;
 }
 #form-productividad label {
     padding-right: 10px;
@@ -797,15 +800,21 @@ div.reportes-tareas-completadas {
 div.reportes-tareas-completadas p {
         padding-bottom: 20px;
     }
-form.formReporteTareasCompletadas, .formReporteDedicacion {
+    form.formReporteProductividad {
+        margin-top: 20px;
+    }
+form.formReporteTareasCompletadas, .formReporteDedicacion, .formReporteProductividad {
     position: relative;
 }  
     form.formReporteTareasCompletadas div label,
+    form.formReporteProductividad div label,
     form.formReporteDedicacion div label  {
         padding-right: 10px;
     }
     form.formReporteTareasCompletadas div.fecha-inicio,
     form.formReporteTareasCompletadas div.fecha-fin,
+    form.formReporteProductividad div.fecha-inicio,
+    form.formReporteProductividad div.fecha-fin,
     form.formReporteDedicacion div.fecha-inicio,
     form.formReporteDedicacion div.fecha-fin{
         display: inline-block;
@@ -814,12 +823,14 @@ form.formReporteTareasCompletadas, .formReporteDedicacion {
         padding-bottom: 25px;
     }
     form.formReporteTareasCompletadas div.fecha-inicio,
+    form.formReporteProductividad div.fecha-inicio,
     form.formReporteDedicacion div.fecha-inicio {
         margin-right: 30px;
     }
 /***** Reportes (fin) *****/
 
 /***** Grafica tarea realizadas (inicio) *****/
+
 div.grafica-tareas-realizadas {
     position: relative;
 }
@@ -868,6 +879,9 @@ div.grafica-tareas-realizadas table th.titulo {
 .formReporteTareasCompletadas .regresar-reportes {
     float: left;
 }
+input.regresar-form-reportes {
+    margin-top: 20px;
+}
 .chart-label {
     border-radius: 5px;
     box-shadow: 2px 2px 5px #202020;
@@ -886,3 +900,84 @@ div.grafica-tareas-realizadas table th.titulo {
     width: 135px;
 }
 /***** Grafica tarea realizadas (fin) *****/
+
+/***** Grafica senseción de productividad (inicio) *****/
+.graficaProductividad, .graficaDedicacion {
+    margin: 30px auto;
+}
+.reporteProductividad {
+    margin: 0 auto 30px;
+    max-width: 320px;
+}
+.dedicacion {
+    margin-bottom: 30px;
+}
+.reporteProductividad thead, .dedicacion thead {
+    font-size: 16px;
+    background-color: #0E83EB;
+    font-family: 'asapbold';
+    color: #FFFFFF;
+    border: 1px solid #CBCBCB;
+    border-right: none;
+}
+thead th {
+    background: #0E83EB;
+}
+    .reporteProductividad tbody, .dedicacion tbody {
+        background-color: #FFFFFF;
+        color: #000000;
+    }
+    .reporteProductividad tbody tr td a, .dedicacion tbody tr td a  {
+        color: #000000;
+        text-decoration: none;
+    }
+    .reporteProductividad tbody tr td a:hover, .dedicacion tbody tr td a:hover {
+        color: #0066CC;
+    }
+    .reporteProductividad tr th, .reporteProductividad tr td,
+    .dedicacion tr th, .dedicacion tr td {
+       text-align: center;
+       padding: 8px;
+    }
+    .dedicacion tr td {
+       text-align: left;
+    }
+    .reporteProductividad tr, .dedicacion tr  {
+       border: 1px solid #CBCBCB;
+       border-right: none;
+    }
+    .reporteProductividad tr td, .reporteProductividad tr th,
+    .dedicacion tr td, .dedicacion tr th{
+       border-right: 1px solid #CBCBCB; 
+    }
+span.productividad-final {
+    color: #000000;
+    font-family: 'asapbold';
+}
+.dedicacion tr td.duracion {
+   text-align: center;
+}
+.dedicacion tr th:first-child {
+    width: 100px;
+}
+/***** Grafica senseción de productividad (fin) *****/
+.ui-widget-header {
+  background: #1C8FF1;
+  border: 1px solid #4841F7;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+  background: #C3D9FF;
+  border: 1px solid #94BCFF;
+}
+
+.ui-state-hover {
+    background: #FDFDFD;
+    border: 1px solid #6AA0FD;
+    color: #4821F3;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    border: 1px solid #6AA0FD;
+    color: #6E94C4;
+}

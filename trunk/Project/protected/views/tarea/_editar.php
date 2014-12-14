@@ -108,16 +108,16 @@ $idTarea = $model->id_tarea;
 
     <div class="row buttons">
         <?php
-        echo CHtml::submitButton("Guardar", array(
-            'id' => 'btn-guardar-tarea-' . $idTarea,
-            'class' => 'guardar-tarea'
-        ));
-
         echo CHtml::submitButton("Cerrar", array(
             'id' => 'btn-cerrar-tarea-' . $idTarea,
             'class' => '',
             'onclick' => 'return tareaCerrar(this)'
         ));
+        
+        echo CHtml::submitButton("Guardar", array(
+            'id' => 'btn-guardar-tarea-' . $idTarea,
+            'class' => 'guardar-tarea'
+        ));        
         ?>
 
     </div>

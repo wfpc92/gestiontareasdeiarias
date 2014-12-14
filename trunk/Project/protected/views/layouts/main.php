@@ -15,7 +15,7 @@
 
         $cs->registerCssFile($bu . 'css/screen.css', 'screen, projection');
         $cs->registerCssFile($bu . 'css/print.css', 'print');
-        //$cs->registerCssFile('css/ie.css', 'screen, projection');
+        $cs->registerCssFile('css/ie.css', 'screen, projection');
 
         $cs->registerCssFile($bu . 'css/main.css');
         $cs->registerCssFile($bu . 'css/form.css');

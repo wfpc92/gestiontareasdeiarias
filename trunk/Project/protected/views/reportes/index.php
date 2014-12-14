@@ -15,3 +15,10 @@
         <?php echo CHtml::link("Dedicación por Tipo de tarea", Yii::app()->createUrl("reportes/formularioDedicacion")); ?>
     </li>
 </ul>
+
+<script>
+    $(document).ready(function() {
+        tareaCerrar();
+        $("#actividad_progress_bar").hide();
+    });
+</script>

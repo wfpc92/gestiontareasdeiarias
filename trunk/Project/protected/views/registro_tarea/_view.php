@@ -47,7 +47,6 @@ $idRegistroTarea = $data->id_registro_tarea;
             'title' => 'Ingrese la hora en que inicia la tarea.'
         ));
         ?>
-        <div class="clearFix"></div>
     </div>
     <div class="duracion">
         <?php
@@ -58,6 +57,7 @@ $idRegistroTarea = $data->id_registro_tarea;
         ));
         ?>
     </div>
+    <div class="clearFix"></div>
     <?php
     echo CHtml::link("Menú Registro de Tarea", "", array(
         'class' => 'menu-registro-tarea',
@@ -81,7 +81,8 @@ $idRegistroTarea = $data->id_registro_tarea;
 </div>
 
 <script>
-    $("#<?php echo $idDatePicker; ?>")
+    $(document).ready(function() {
+        $("#<?php echo $idDatePicker; ?>")
             .datepicker({
                 changeMonth: true,
                 changeYear: true,
@@ -91,8 +92,8 @@ $idRegistroTarea = $data->id_registro_tarea;
                 buttonImage: "<?php echo Yii::app()->baseUrl . "/images/calendar.gif"; ?>",
                 buttonImageOnly: true,
                 buttonText: "Seleccione una Fecha."
-            });
-    $(document).ready(function() {
+        });
+            
         $('.hora-inicio input').ptTimeSelect({
             setButtonLabel: "Seleccionar",
             minutesLabel: "Min",

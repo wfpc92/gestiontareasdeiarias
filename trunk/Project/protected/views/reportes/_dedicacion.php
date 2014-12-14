@@ -1,10 +1,11 @@
 <h2>Dedicacion</h2>
+<p>Esta gráfica muestra cuanto tiempo se ha dedicado a cada tipo de tarea. En las tablas se puede encontrar información acerca de que tareas pertenecen a cada tipo y cuánto tiempo se ha invertido a cada tarea</p>
 <br/>
 <?php
 $tipoTarea = array();
 $durac = array();
 foreach ($dedicacionPorTipo as $ded) {
-    $tipoTarea[] = $ded['nombre'];
+    $tipoTarea[] = ucwords($ded['nombre']);
     $durac[] = intval($ded['dur']);
 }
 $mayorDuracion = 0;
@@ -21,12 +22,12 @@ $this->widget(
             array(
                 'width' => 600,
                 'height' => 300,
-                'htmlOptions' => array(),
+                'htmlOptions' => array("class"=>"graficaDedicacion"),
                 'labels' => $tipoTarea,
                 'datasets' => array(
                     array(
-                        "fillColor" => "#ff00ff",
-                        "strokeColor" => "rgba(220,220,220,1)",
+                        "fillColor" => "rgba(76,250,189,0.5)",
+                        "strokeColor" => "#22F7A6",
                         "data" => $durac
                     )       
                 ),
@@ -39,55 +40,38 @@ $this->widget(
         );
 ?>
 
-<table>
-    <tr>
-        <th>Tipo de Tarea</th>
-    </tr>        
-    <?php
-    foreach ($dedicacion as $ded) {
+<table class="dedicacion">
+    <thead>
+        <tr>
+            <th>Tipo de Tarea</th>
+            <th>Tarea</th>
+            <th>Duración</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        foreach ($dedicacion as $ded) {
         ?>
         <tr>
             <td>
                 <?php                
-                echo $ded['nombre'];
-            }
-            ?>
-        </td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <th>Tarea</th>
-    </tr>        
-    <?php
-    foreach ($dedicacion as $ded) {
-        ?>
-        <tr>
+                echo ucwords($ded['nombre']);
+                ?>
+            </td>
             <td>
                 <?php                
                 $fecha = substr($ded['fecha_inicio'],0,10);
                 echo CHtml::link($ded['nombre_tarea'], Yii::app()->createUrl("tarea/vistaDiaria?fecha=".$fecha));
-            }
-            ?>
-        </td>
-    </tr>
+                ?>
+            </td>
+            <td class="duracion">
+                <?php
+                echo $ded['dur'];;
+                }
+                ?>
+            </td>
+        </tr>
+    </tbody>
 </table>
-<table>
-    <tr>
-        <th>Duración</th>
-    </tr>        
-    <?php
-    foreach ($dedicacion as $ded) {
-        ?>
-        <tr>
-            <td>
-                <?php                                
-                echo $ded['dur'];
-            }
-            ?>
-        </td>
-    </tr>
-</table>
-<h2>Descripcion</h2>
-<p>Esta grafica muestra cuanto tiempo se ha dedicado a cada tipo de tarea. En las tablas se puede encontrar informacion acerca de que tareas pertenecen a cada tipo y cuanto tiempo se ha invertido a cada tarea</p>
-<?php echo CHtml::link("Regresar", Yii::app()->createUrl("reportes")); ?>
+
+<?php echo CHtml::Button('Regresar', array('submit' => '../reportes/formularioTareasCompletadas', 'class' => 'regresar-form-reportes')); ?>

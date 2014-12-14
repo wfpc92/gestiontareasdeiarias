@@ -70,4 +70,5 @@
     </div>
 </div>
 
-<?php echo CHtml::link("Regresar", Yii::app()->createUrl("reportes")); ?>
+
+<?php echo CHtml::Button('Regresar', array('submit' => '../reportes/formularioTareasCompletadas', 'class' => 'regresar-form-reportes')); ?>

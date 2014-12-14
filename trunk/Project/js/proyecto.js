@@ -16,7 +16,7 @@ $(document).ready(function() {
     }
 
     if ($("#content-princ-izq").width() <= 1200) {
-        $(".botones").css("margin-right", "30px");
+        $(".botones").css("margin-right", "50px");
     } else {
         $(".botones").css("margin-right", "25%");
     }

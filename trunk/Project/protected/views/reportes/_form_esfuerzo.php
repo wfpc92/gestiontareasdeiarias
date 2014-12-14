@@ -1,13 +1,13 @@
 <h2>Esfuerzo por Días</h2>
 <p>La fecha inicial y final determinaran cuan productivo se ha sentido el usuario en ese rango de tiempo</p>
-<div class="form">    
+<div class="">    
     <?php
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tareas-form',
         'enableAjaxValidation' => false,
         'action' => Yii::app()->homeUrl . '/reportes/esfuerzoDiario',
         'htmlOptions' => array(
-            'class' => 'formReporteTareasCompletadas'
+            'class' => 'formReporteProductividad'
         )
     ));
     ?>
@@ -35,6 +35,7 @@
         ?>
     </div>
     <div class="row buttons">
+        <?php echo CHtml::Button('Regresar', array('submit' => '../reportes', 'class' => 'regresar-reportes')); ?>
         <?php
         $label = "Consultar";
         $htmlOptions = array(
@@ -43,7 +44,7 @@
         );
         echo CHtml::submitButton($label, $htmlOptions);
         ?>
-        <?php echo CHtml::Button('Regresar', array('submit' => '../reportes', 'class' => 'regresar-reportes')); ?>
+        
         <div class="clearFix"></div>
     </div>
     <?php
@@ -51,14 +52,16 @@
     ?>
 </div>
 <script>
-    $(".dpicker").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        showButtonPanel: true,
-        dateFormat: 'yy-mm-dd',
-        showOn: "both",
-        buttonImage: "<?php echo Yii::app()->baseUrl . "/images/calendar.gif"; ?>",
-        buttonImageOnly: true,
-        buttonText: "Seleccione una Fecha."
+    $(document).ready(function() {
+        $(".dpicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'yy-mm-dd',
+            showOn: "both",
+            buttonImage: "<?php echo Yii::app()->baseUrl . "/images/calendar.gif"; ?>",
+            buttonImageOnly: true,
+            buttonText: "Seleccione una Fecha."
+        });
     });
 </script>
