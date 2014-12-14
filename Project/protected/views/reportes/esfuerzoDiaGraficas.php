@@ -1,4 +1,5 @@
 <h2>Reporte Esfuerzo por Días</h2>
+<p>Esta gráfica muestra la sensación de productividad que se tuvo el día mencionado (la sensación es ingresada por el usuario). 3 representa una sensación alta, 2 una sensación media y 1 una sensación baja</p>
 <?php
 $producNumero = array();
 $producFecha = array();
@@ -28,14 +29,14 @@ $this->widget(
         'chartjs.widgets.ChLine', array(
     'width' => 600,
     'height' => 300,
-    'htmlOptions' => array(),
+    'htmlOptions' => array("class"=>"graficaProductividad"),
     'labels' => $producFecha,
     'datasets' => array(
         array(
-            "fillColor" => "rgba(220,220,220,0.5)",
-            "strokeColor" => "rgba(220,220,220,1)",
-            "pointColor" => "rgba(220,220,220,1)",
-            "pointStrokeColor" => "#ffffff",
+            "fillColor" => "rgba(72,65,247,0.5)",
+            "strokeColor" => "rgba(72,65,247,1)",
+            "pointColor" => "#ffffff",
+            "pointStrokeColor" => "rgba(72,65,247,0.5)",
             "data" => $producNumero,
         ),
     ),
@@ -48,39 +49,35 @@ $this->widget(
 );
 ?>
 <br />
-<table>
-    <tr>
-        <th>Día</th>
-    </tr>        
-    <?php
-    foreach ($productividad as $prod) {
+<table class="reporteProductividad">
+    <thead>
+        <tr>
+            <th>Día</th>
+            <th>Sensación de productividad</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <?php
+        foreach ($productividad as $prod) {
         ?>
         <tr>
             <td>
                 <?php                
                 $fecha = substr($prod['fecha_productividad'],0,10);
                 echo CHtml::link($fecha, Yii::app()->createUrl("tarea/vistaDiaria?fecha=".$fecha));
-            }
-            ?>
-        </td>
-    </tr>
-</table>
-<table>
-    <tr>
-        <th>Sensación de productividad</th>
-    </tr>
-    <?php
-    foreach ($productividad as $prod) {
-        ?>
-        <tr>
+                ?>
+            </td>
             <td>
                 <?php
                 echo $prod['productividad'];
-            }
-            ?>
-        </td>
-    </tr>
+                }
+                ?>
+            </td>
+        </tr>
+    </tbody>   
 </table>
+
 <?php
     $proMensaje = '';
     $promedio = (($contadorAlta*3)+($contadorMedia*2)+$contadorBaja)/($contadorAlta+$contadorMedia+$contadorBaja);
@@ -89,8 +86,11 @@ $this->widget(
         case 2:$proMensaje = Productividad::MEDIA;break;
         case 3:$proMensaje = Productividad::ALTA;break;
     }    
-    echo "Su productividad en este rango de fechas es: ".$proMensaje;
 ?>
-<h2>Descripcion</h2>
-<p>Esta grafica muestra la sensacion de productividad que se tuvo el dia mencionado (la sensacion es ingresada por el usuario). 3 representa una sensacion alta, 2 una sensacion media y 1 una sensacion baja</p>
-<?php echo CHtml::link("Regresar", Yii::app()->createUrl("reportes")); ?>
+<div>
+   <?php
+   echo "Su productividad en este rango de fechas es: " ?> <span class="productividad-final"><?php echo $proMensaje; ?></span>
+</div>
+
+<?php echo CHtml::Button('Regresar', array('submit' => '../reportes/formularioTareasCompletadas', 'class' => 'regresar-form-reportes')); ?>
+

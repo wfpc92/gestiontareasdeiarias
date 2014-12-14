@@ -46,8 +46,8 @@
     </div>
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Registrarse' : 'Save'); ?>
         <?php echo CHtml::Button('Regresar', array('submit' => '../site/login', 'class' => 'regresar-login')); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Registrarse' : 'Save'); ?>        
     </div>
 
     <?php $this->endWidget(); ?>

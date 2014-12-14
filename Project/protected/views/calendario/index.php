@@ -38,6 +38,7 @@ $this->widget('ext.EFullCalendar.EFullCalendar', array(
 <script>
     $(document).ready(function() {
         tareaCerrar();
+        $("#actividad_progress_bar").hide();
     });
 </script>
 

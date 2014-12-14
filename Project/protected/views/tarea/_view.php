@@ -33,7 +33,7 @@ $fechaFormato = Calendario::getFechaFormato();
 
     $nomCompleto = "{$data->nombre_tarea} ";
     //$maxLog = 25;
-    $maxLog = 50;
+    $maxLog = 40;
     $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
     if (strlen($nomCompleto) > $maxLog) {
         $nomAbreviado .= "...";
@@ -77,14 +77,18 @@ $fechaFormato = Calendario::getFechaFormato();
             'title' => 'Pausar Tiempo.',
             $disabledPausaAttr => $disabledPausaValue
         ));
-
+        ?>
+        <div>
+            <?php
         //echo CHtml::label("Duracion", "p-duracion-tarea-{$idTarea}");
-        echo CHtml::tag('p', array(
-                ), "Duración__ ");
-        echo CHtml::tag('p', array(
+        echo CHtml::tag('span', array(
+                ), "Duración ");
+        echo CHtml::tag('span', array(
             'id' => "p-duracion-tarea-{$idTarea}"
                 ), $data->getDuracion());
         ?>
+        </div>
+        
         <div class="clearFix"></div>
     </div>
     <?php
@@ -132,8 +136,7 @@ $fechaFormato = Calendario::getFechaFormato();
             )
         ));
         ?>
-
-
+        
         <div class="clearFix"></div>
     </div>
 

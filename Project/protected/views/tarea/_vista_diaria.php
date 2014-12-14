@@ -4,35 +4,6 @@
 
 $fechaFormato = Calendario::getFechaFormato();
 $userId = Yii::app()->user->getId();
-?>
-<h2><?php echo Calendario::getFechaFormatoHoy(); ?></h2>
-
-<?php
-/**
- * Obtener las tareas que hay para el dia
- */
-$tareaNo = Tarea::DIARIANO;
-
-$dataProvider = new CActiveDataProvider('Tarea', array(
-    'pagination' => false,
-    'criteria' => array(
-        'condition' => " id_usuario = {$userId}"
-        . " and DATE(fecha_inicio) = '{$fechaFormato}' "
-        . " and diaria = '{$tareaNo}' "
-    ))
-);
-
-$this->widget('zii.widgets.CListView', array(
-    'dataProvider' => $dataProvider,
-    'itemView' => '../tarea/_view',
-    'enablePagination' => false,
-    'htmlOptions' => array(
-        'id' => 'lst-tarea-diaria',
-        'ondrop' => "drop(event)",
-        'ondragover' => "allowDrop(event)"
-    ))
-);
-
 $productividadModel = Productividad::model()->findByAttributes(array("fecha_productividad" => $fechaFormato));
 
 if ($productividadModel == NULL) {
@@ -62,7 +33,35 @@ echo CHtml::dropDownList(
         )
         , array('title' => 'Ingrese su sensación de productividad para el día de hoy.')
 );
+
+$this->endWidget(); 
+
 ?>
 
+<h2><?php echo Calendario::getFechaFormatoHoy(); ?></h2>
 
-<?php $this->endWidget(); ?>
+<?php
+/**
+ * Obtener las tareas que hay para el dia
+ */
+$tareaNo = Tarea::DIARIANO;
+
+$dataProvider = new CActiveDataProvider('Tarea', array(
+    'pagination' => false,
+    'criteria' => array(
+        'condition' => " id_usuario = {$userId}"
+        . " and DATE(fecha_inicio) = '{$fechaFormato}' "
+        . " and diaria = '{$tareaNo}' "
+    ))
+);
+
+$this->widget('zii.widgets.CListView', array(
+    'dataProvider' => $dataProvider,
+    'itemView' => '../tarea/_view',
+    'enablePagination' => false,
+    'htmlOptions' => array(
+        'id' => 'lst-tarea-diaria',
+        'ondrop' => "drop(event)",
+        'ondragover' => "allowDrop(event)"
+    ))
+);

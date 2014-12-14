@@ -25,7 +25,7 @@ class Calendario extends CActiveRecord {
         $nummes = date_format(static::$fecha, "n");
         $diames = date_format(static::$fecha, "j"); //muestra el día del mes
         $anho = date_format(static::$fecha, "Y");
-        return "Fecha: $dia[$numdia], $diames de $mes[$nummes] del $anho";
+        return "$dia[$numdia], $diames de $mes[$nummes] del $anho";
     }
 
     public static function getFechaFormato() {
