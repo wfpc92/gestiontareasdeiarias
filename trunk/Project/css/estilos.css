@@ -270,7 +270,7 @@ div.nombre-actividad {
 		padding: 0px;
 	}
 div.buttons input[type="submit"] {
-	margin-right: 10px;
+	margin-left: 10px;
 }
 .editarPool .row .editar-tarea .fecha-inicio input {
     width: 80px;
@@ -720,9 +720,10 @@ div.editar-tarea {
     border: 1px solid #CBCBCB;
     border-radius: 3px;
 }
-div.editar-tarea h3 {
+div.editar-tarea h3, .pool .desplegable h3 {
     color: #0066cc;
     font-size: 15px;
+    padding-bottom: 10px;
 }
 div.editar-tarea textarea, div.editar-tarea input[type="text"] {
     width: 95%;
@@ -757,6 +758,7 @@ div.inamovible input {
 div.inamovible label {
     display: inline;
     padding-left: 5px;
+    position: inherit;
 }
 /***** Editar tarea (fin) *****/
 
@@ -980,4 +982,11 @@ span.productividad-final {
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
     border: 1px solid #6AA0FD;
     color: #6E94C4;
+}
+
+.pool .desplegable .form .editarPool .row .editar-tarea {
+   border: none;
+}
+.pool .desplegable .form .editarPool .row .editar-tarea h3 {
+    display: none;
 }

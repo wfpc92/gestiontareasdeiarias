@@ -4,6 +4,7 @@
 /* @var $categoria Categoria */
 /* @var $actividad Actividad */
 ?>
+<h3>Editar tarea </h3>
 <div class="form">
     <?php
     $form = $this->beginWidget('CActiveForm', array(
