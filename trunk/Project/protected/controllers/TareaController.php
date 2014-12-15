@@ -201,7 +201,7 @@ class TareaController extends Controller {
                 if ($model->id_tipo_tarea == 0) {
                     $model->id_tipo_tarea = NULL;
                 }
-                //$model->save();
+                $model->save();
                 $actualizar = true;
             }
             if ($model->hasErrors()) {
