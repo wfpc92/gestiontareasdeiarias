@@ -21,7 +21,7 @@ foreach ($productividad as $prod) {
             $contadorBaja += 1;
             break;
     }
-    $producFecha[] = substr($prod['fecha_productividad'],0,10);
+    $producFecha[] = substr($prod['fecha_productividad'], 0, 10);
 }
 ?>
 <?php
@@ -29,7 +29,7 @@ $this->widget(
         'chartjs.widgets.ChLine', array(
     'width' => 600,
     'height' => 300,
-    'htmlOptions' => array("class"=>"graficaProductividad"),
+    'htmlOptions' => array("class" => "graficaProductividad"),
     'labels' => $producFecha,
     'datasets' => array(
         array(
@@ -41,10 +41,10 @@ $this->widget(
         ),
     ),
     'options' => array(
-                    "scaleOverride" => true, 
-                    "scaleSteps" => 3, 
-                    "scaleStepWidth" => 1, 
-                    "scaleStartValue" =>0)
+        "scaleOverride" => true,
+        "scaleSteps" => 3,
+        "scaleStepWidth" => 1,
+        "scaleStartValue" => 0)
         )
 );
 ?>
@@ -56,21 +56,21 @@ $this->widget(
             <th>Sensación de productividad</th>
         </tr>
     </thead>
-    
+
     <tbody>
         <?php
         foreach ($productividad as $prod) {
-        ?>
-        <tr>
-            <td>
-                <?php                
-                $fecha = substr($prod['fecha_productividad'],0,10);
-                echo CHtml::link($fecha, Yii::app()->createUrl("tarea/vistaDiaria?fecha=".$fecha));
-                ?>
-            </td>
-            <td>
-                <?php
-                echo $prod['productividad'];
+            ?>
+            <tr>
+                <td>
+                    <?php
+                    $fecha = substr($prod['fecha_productividad'], 0, 10);
+                    echo CHtml::link($fecha, Yii::app()->createUrl("tarea/vistaDiaria?fecha=" . $fecha));
+                    ?>
+                </td>
+                <td>
+                    <?php
+                    echo $prod['productividad'];
                 }
                 ?>
             </td>
@@ -79,18 +79,28 @@ $this->widget(
 </table>
 
 <?php
-    $proMensaje = '';
-    $promedio = (($contadorAlta*3)+($contadorMedia*2)+$contadorBaja)/($contadorAlta+$contadorMedia+$contadorBaja);
-    switch(intval($promedio)){
-        case 1:$proMensaje = Productividad::BAJA;break;
-        case 2:$proMensaje = Productividad::MEDIA;break;
-        case 3:$proMensaje = Productividad::ALTA;break;
-    }    
-?>
-<div>
-   <?php
-   echo "Su productividad en este rango de fechas es: " ?> <span class="productividad-final"><?php echo $proMensaje; ?></span>
-</div>
+$proMensaje = '';
+$denominador = ($contadorAlta + $contadorMedia + $contadorBaja);
+if ($denominador != 0) {
+    $promedio = (($contadorAlta * 3) + ($contadorMedia * 2) + $contadorBaja) / $denominador;
+} else {
+    $promedio = NULL;
+}
 
-<?php echo CHtml::Button('Regresar', array('submit' => '../reportes/formularioTareasCompletadas', 'class' => 'regresar-form-reportes')); ?>
+switch (intval($promedio)) {
+    case 1:$proMensaje = Productividad::BAJA;
+        break;
+    case 2:$proMensaje = Productividad::MEDIA;
+        break;
+    case 3:$proMensaje = Productividad::ALTA;
+        break;
+}
 
+if ($denominador != 0):
+    ?>
+    <div>
+        <?php echo "Su productividad en este rango de fechas es: " ?> <span class="productividad-final"><?php echo $proMensaje; ?></span>
+    </div>
+    <?php
+endif;
+echo CHtml::Button('Regresar', array('submit' => '../reportes/formularioTareasCompletadas', 'class' => 'regresar-form-reportes'));
