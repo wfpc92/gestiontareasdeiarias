@@ -177,7 +177,7 @@ class TareaController extends Controller {
      * Funcion que actualizar una tarea. 
      */
     public function actionActualizarAjax() {
-        $idActividad = (isset($_REQUEST['id_actividad']) ? $_REQUEST['id_actividad'] : NULL);
+        $idActividad = isset($_REQUEST['id_actividad']) ? $_REQUEST['id_actividad'] : NULL;
         $idTarea = NULL;
         $actualizar = FALSE;
         $error = NULL;
@@ -190,7 +190,7 @@ class TareaController extends Controller {
             $model->attributes = $_REQUEST['Tarea'];
             $model->inamovible = $inamovible;
 
-            if ($idActividad != NULL) {
+            if ($idActividad != NULL && $idActividad != 0) {
                 $model->id_actividad = $idActividad;
             } else {
                 $idActividad = $model->id_actividad;
@@ -198,7 +198,10 @@ class TareaController extends Controller {
             $model->scenario = "actualizarAjax";
 
             if ($model->validate()) {
-                $model->save();
+                if ($model->id_tipo_tarea == 0) {
+                    $model->id_tipo_tarea = NULL;
+                }
+                //$model->save();
                 $actualizar = true;
             }
             if ($model->hasErrors()) {

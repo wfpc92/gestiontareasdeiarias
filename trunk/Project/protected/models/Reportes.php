@@ -73,6 +73,7 @@ class Reportes {
                 FROM productividad
                 WHERE fecha_productividad between '{$fechaInicio}' AND '{$fechaFin}'
                 AND id_usuario = {$userId}
+                AND productividad != '' 
                 ORDER BY fecha_productividad ASC";
 
         $command = $connection->createCommand($sql);
@@ -80,7 +81,7 @@ class Reportes {
         $rows = $dataReader->readAll();
         return $rows;
     }
-    
+
     public function getDedicacion($fechaInicio, $fechaFin) {
         $connection = Yii::app()->db;
         $userId = Yii::app()->user->getId();
@@ -96,7 +97,7 @@ class Reportes {
         $rows = $dataReader->readAll();
         return $rows;
     }
-    
+
     public function getDedicacionPorTipo($fechaInicio, $fechaFin) {
         $connection = Yii::app()->db;
         $userId = Yii::app()->user->getId();

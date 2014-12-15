@@ -190,14 +190,9 @@ class CategoriaController extends Controller {
 
         if (isset($_REQUEST['id_categoria'])) {
             $idCategoria = $_REQUEST['id_categoria'];
-            $actividades = Actividad::model()->findAll("id_categoria={$idCategoria}");
-            $lstActividades = CHtml::listData($actividades, 'id_actividad', 'nombre_actividad');
-            $htmlActividades = CHtml::label("Seleccione una Actividad:", "id_actividad");
-            $htmlActividades .= CHtml::dropDownList('id_actividad'
-                            , 'Seleccione...'
-                            , array('Seleccione...') + $lstActividades
-                            , array()
-            );
+            $actividad = new Actividad;
+            $actividad->id_categoria = $idCategoria;
+            $htmlActividades = $this->renderPartial("../actividad/droplist", array('actividad' => $actividad), TRUE);
         } else {
             $error = "Error en el envio del formulario.";
         }

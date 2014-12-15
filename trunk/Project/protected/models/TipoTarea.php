@@ -111,11 +111,11 @@ class TipoTarea extends CActiveRecord {
           }
           return $nombre_tipo_tarea; */
         return array(
-            NULL => "Seleccione un tipo de tarea...",
-            0 => 'docencia',
-            1 => 'investigacion',
-            2 => 'gestion',
-            3 => 'servicios');
+            0 => "Seleccione un tipo de tarea...",
+            1 => 'docencia',
+            2 => 'investigacion',
+            3 => 'gestion',
+            4 => 'servicios');
     }
 
     public function nombreTipoTarea($idTipoTarea) {

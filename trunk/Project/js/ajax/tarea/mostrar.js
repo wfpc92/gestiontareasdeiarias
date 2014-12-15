@@ -14,7 +14,6 @@ var tareaMostrarAjax = function (self) {
             }
         }
     };
-
     var selectores = {
         cargando: {
             div: $("#cargando-principal")
@@ -23,10 +22,11 @@ var tareaMostrarAjax = function (self) {
             div: $("#error-principal")
         }
     };
-
     templateAjax1(confAjax, selectores);
     return false;
 };
+
+/*
 var tareaMostrarPoolAjax = function (self) {
     var form = $(self).parent("form");
 
@@ -56,4 +56,4 @@ var tareaMostrarPoolAjax = function (self) {
 
     templateAjax1(confAjax, selectores);
     return false;
-};
+};*/
