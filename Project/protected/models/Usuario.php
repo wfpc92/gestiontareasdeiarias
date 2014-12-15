@@ -71,7 +71,8 @@ class Usuario extends CActiveRecord {
             'correo' => 'Correo',
             'nombres' => 'Nombres',
             'apellidos' => 'Apellidos',
-            'contrasena' => 'Contrasena',
+            'contrasena' => 'Contraseña (mínimo 6 caracteres)',
+            'repetir_contrasena' => 'Repetir Contraseña',
             'nivel_admin' => 'Nivel Admin',
             'fecha_registro' => 'Fecha Registro',
         );

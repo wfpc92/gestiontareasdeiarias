@@ -34,7 +34,7 @@ class ProductividadController extends Controller {
     public function actionActualizarAjax() {
         $error = NULL;
 
-        $productividad = (isset($_REQUEST['productividad']) ? $_REQUEST['productividad'] : NULL);
+        $productividad = isset($_REQUEST['productividad']) ? $_REQUEST['productividad'] : NULL;
         $fechaProductividad = (isset($_REQUEST['fecha_productividad']) ? $_REQUEST['fecha_productividad'] : NULL);
         $userId = Yii::app()->user->getId();
 

@@ -15,7 +15,7 @@
 
         $cs->registerCssFile($bu . 'css/screen.css', 'screen, projection');
         $cs->registerCssFile($bu . 'css/print.css', 'print');
-        $cs->registerCssFile('css/ie.css', 'screen, projection');
+        $cs->registerCssFile($bu . 'css/ie.css', 'screen, projection');
 
         $cs->registerCssFile($bu . 'css/main.css');
         $cs->registerCssFile($bu . 'css/form.css');
@@ -26,13 +26,13 @@
         $cs->registerCssFile($bu . 'css/responsive920.css', 'screen and (max-width: 920px)');
         $cs->registerCssFile($bu . 'css/responsive700.css', 'screen and (max-width: 700px)');
         $cs->registerCssFile($bu . 'css/responsive360.css', 'screen and (max-width: 360px)');
-        
+
         $cs->registerScriptFile($bu . 'lib/timepicki/js/timepicki.js');
         $cs->registerLinkTag("stylesheet", "text/css", $bu . "lib/timepicki/css/timepicki.css");
 
         $cs->registerScriptFile($bu . 'lib/timeselect/timeselect.js');
         $cs->registerLinkTag("stylesheet", "text/css", $bu . "lib/timeselect/timeselect.css");
-        
+
         $cs->registerScriptFile($bu . 'lib/jquery-ui.js');
 
         $cs->registerScriptFile($bu . 'js/proyecto.js', CClientScript::POS_HEAD);
@@ -95,7 +95,7 @@
                     $this->widget('zii.widgets.CMenu', array(
                         'items' => array(
                             array('label' => 'Iniciar Sesión', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                            array('label' => "Cerrar Sesion " . Usuario::model()->nombreUsuarioActual(), 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
+                            array('label' => Usuario::model()->nombreUsuarioActual() . ",  Cerrar Sesion ", 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest)
                         ),
                     ));
                     ?>

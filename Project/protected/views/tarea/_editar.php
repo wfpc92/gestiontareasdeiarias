@@ -78,7 +78,7 @@ $idTarea = $model->id_tarea;
 
     <div class="row">
         <?php
-        $nombreTipoTarea = $model->id_tipo_tarea != NULL ? $model->id_tipo_tarea : NULL;
+        $nombreTipoTarea = $model->id_tipo_tarea != NULL ? $model->id_tipo_tarea : 0;
         //TipoTarea::model()->nombreTipoTarea($model->id_tipo_tarea);
         $listaNombresTipoTarea = TipoTarea::model()->todosTipoTareas();
         echo $form->labelEx($model, 'id_tipo_tarea');
@@ -108,16 +108,22 @@ $idTarea = $model->id_tarea;
 
     <div class="row buttons">
         <?php
-        echo CHtml::submitButton("Cerrar", array(
+        if (isset($pool)) {//siginifica que es una tarea del pool para cambiar comportamiento
+            $onClickCerrar = "return tareaPoolToogle2(this)";
+        } else {
+            $onClickCerrar = 'return tareaCerrar(this)';
+        }
+
+        echo CHtml::button("Cerrar", array(
             'id' => 'btn-cerrar-tarea-' . $idTarea,
             'class' => '',
-            'onclick' => 'return tareaCerrar(this)'
+            'onclick' => $onClickCerrar
         ));
-        
+
         echo CHtml::submitButton("Guardar", array(
             'id' => 'btn-guardar-tarea-' . $idTarea,
             'class' => 'guardar-tarea'
-        ));        
+        ));
         ?>
 
     </div>
@@ -125,14 +131,16 @@ $idTarea = $model->id_tarea;
 </div><!-- form -->
 
 <script>
-    $(".dpicker").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        showButtonPanel: true,
-        dateFormat: 'yy-mm-dd',
-        showOn: "both",
-        buttonImage: "<?php echo Yii::app()->baseUrl . "/images/calendar.gif"; ?>",
-        buttonImageOnly: true,
-        buttonText: "Seleccione una Fecha."
+    $(document).ready(function() {
+        $(".dpicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'yy-mm-dd',
+            showOn: "both",
+            buttonImage: "<?php echo Yii::app()->baseUrl . "/images/calendar.gif"; ?>",
+            buttonImageOnly: true,
+            buttonText: "Seleccione una Fecha."
+        });
     });
 </script>

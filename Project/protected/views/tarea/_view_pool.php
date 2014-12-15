@@ -23,20 +23,26 @@ $nombreTarea = $data->nombre_tarea;
 
     echo CHtml::tag('p', array(
         'id' => "p-tarea-nombre-{$idTarea}",
-        'onclick' => 'return tareaMostrarPoolAjax(this)',
+        'onclick' => 'return tareaPoolToogle(this)',
             ), $nombreTarea);
 
 
-    echo CHtml::link("Menú Tarea", "#",  array(
+    echo CHtml::link("Menú Tarea", "#", array(
         'class' => "menu-tarea",
         'onclick' => 'return tareaMenu(this)'
     ));
     ?>
     <ul class="tarea">
+        <li class="editar">
+            <?php
+            echo CHtml::link("Editar", "#", array(
+                'onclick' => 'return tareaPoolToogle(this)'
+            ));
+            ?>
+        </li>
         <li class="eliminar">
             <?php
             echo CHtml::link("Eliminar", "#", array(
-                'id' => 'lnk-tarea-eliminar-' . $idTarea,
                 'onclick' => 'return tareaEliminarPoolModal(this)'
             ));
             ?>
@@ -47,4 +53,9 @@ $nombreTarea = $data->nombre_tarea;
     <?php
     $this->endWidget();
     ?>
+    <div class="desplegable">
+        <?php
+        $this->renderPartial('../tarea/_editar_diaria', array('model' => $data));
+        ?>
+    </div>
 </div>
