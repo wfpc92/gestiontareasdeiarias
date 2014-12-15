@@ -776,6 +776,7 @@ h3.pool-tarea {
 }
 #form-productividad label {
     padding-right: 10px;
+    position: inherit
 }
 #form-productividad select {
     border: medium none;
