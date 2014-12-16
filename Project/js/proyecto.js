@@ -20,7 +20,10 @@ $(document).ready(function() {
     } else {
         $(".botones").css("margin-right", "25%");
     }
-
+    if ($(window).width() <= 920) {
+        $("#content-princ-der").css("width", "100%");
+        $("#content-princ-izq").css("width", "100%");
+    }
     $("#regresar").click(function() {
         $("#contentDer").hide();
         $("#contentIzq").show();

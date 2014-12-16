@@ -575,6 +575,10 @@ div.form textarea.success, div.form select.success {
 	float: right;
 	margin-right: 10px;
 }
+
+div.form .rememberMe label {
+  position: unset;
+}
 /***** Login (fin) *****/
 
 /***** Registro (inicio) *****/
@@ -686,14 +690,13 @@ div.pool-tarea:hover {
 div.registro-tarea {
     position: relative;
     margin-bottom: 2px;
-    padding: 3px;
     max-width: 620px;
-    font-size: 15px;
+    font-size: 13px;
 }
 div.registro-tarea form div {
     position: relative;
     float: left;
-    margin: 0 5px;
+    margin: 0 5px 3px 0;
 }
 div.registro-tarea form div label {
     padding-right: 5px;
@@ -705,7 +708,15 @@ div.registro-tarea form div.fecha-inicio {
 }
 div.registro-tarea form div input {
    padding: 0 5px;
-   width: 75px;
+}
+div.registro-tarea form div.fecha-inicio input {
+   width: 66px;
+}
+div.registro-tarea form div.hora-inicio input {
+   width: 53px;
+}
+div.registro-tarea form div.duracion input {
+   width: 35px;
 }
 .ui-datepicker-trigger {
     position: absolute;
@@ -806,8 +817,9 @@ div.reportes-tareas-completadas p {
     form.formReporteProductividad {
         margin-top: 20px;
     }
-form.formReporteTareasCompletadas, .formReporteDedicacion, .formReporteProductividad {
+form.formReporteTareasCompletadas, form.formReporteDedicacion, form.formReporteProductividad {
     position: relative;
+    margin-top: 20px;
 }  
     form.formReporteTareasCompletadas div label,
     form.formReporteProductividad div label,

@@ -1,0 +1,16 @@
+#content-princ-izq {
+    width: 100%;
+}
+#content-princ-der {
+    width:100%;
+    float: none;
+}
+div.grafica-tareas-realizadas canvas {
+  height: 150px !important;
+  width: 300px !important; 
+  margin-top: 50px;
+}
+.graficaProductividad, .graficaDedicacion {
+  height: 100% !important;
+  width: 100% !important; 
+}
