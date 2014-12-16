@@ -44,7 +44,7 @@ $fechaFormato = Calendario::getFechaFormato();
         'onclick' => 'return tareaToogle(this)',
         'title' => $nomCompleto
             ), $nomAbreviado);
-
+    
     $nomCompleto = "{$data->idActividad->nombre_actividad} ";
     $nomAbreviado = substr($nomCompleto, 0, strrpos(substr($nomCompleto, 0, $maxLog), " "));
 

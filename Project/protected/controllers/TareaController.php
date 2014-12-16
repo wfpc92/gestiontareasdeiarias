@@ -327,7 +327,7 @@ class TareaController extends Controller {
             $model->id_actividad = NULL;
             $model->prioridad = Tarea::PRIORIDADMEDIA;
             $model->inamovible = Tarea::INAMOVIBLESI;
-            $model->diaria = Tarea::DIARIASI;
+            $model->diaria = Tarea::DIARIANO;
             $model->scenario = 'crearAjax';
 
             if ($model->validate()) {
