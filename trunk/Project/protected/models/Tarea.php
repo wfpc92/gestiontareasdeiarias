@@ -182,7 +182,7 @@ class Tarea extends CActiveRecord {
 
     public function cambiarADiaria($id, $fecha) {
         $this->fecha_inicio = $fecha;
-        $this->diaria = Tarea::DIARIANO;
+        $this->diaria = Tarea::DIARIASI;
         $this->validate();
         return $this->save();
     }

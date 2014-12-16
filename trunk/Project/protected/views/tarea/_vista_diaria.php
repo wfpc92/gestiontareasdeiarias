@@ -44,14 +44,14 @@ $this->endWidget();
 /**
  * Obtener las tareas que hay para el dia
  */
-$tareaNo = Tarea::DIARIANO;
+$tareaSi = Tarea::DIARIASI;
 
 $dataProvider = new CActiveDataProvider('Tarea', array(
     'pagination' => false,
     'criteria' => array(
         'condition' => " id_usuario = {$userId}"
         . " and DATE(fecha_inicio) = '{$fechaFormato}' "
-        . " and diaria = '{$tareaNo}' "
+        . " and diaria = '{$tareaSi}' "
     ))
 );
 
