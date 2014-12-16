@@ -1,3 +1,28 @@
 /***** Contenedores principales (inicio) *****/
-
+#contentDer {
+    margin-left: 245px;
+}
+#contentIzq {
+    width: 235px;
+}
 /***** Contenedores principales (fin) *****/
+.botones {
+    float: none;
+    margin-top: 5px;
+    margin-left: 30px;
+}
+#logo a {
+    margin-left: 0px;
+}
+#mainmenu{
+    right: 0px;
+}
+div.buttons input[type="submit"] {
+    margin-left: 0px;
+}
+div.grafica-tareas-realizadas table.pendientes {
+    margin-left: 0px;
+}
+div.grafica-tareas-realizadas table {
+    width: 100%;
+}
