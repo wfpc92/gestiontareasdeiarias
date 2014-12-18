@@ -9,6 +9,7 @@ $modelTarea->fecha_inicio = $fechaFormato;
 $this->renderPartial($form, array('model' => $modelTarea));
 
 $diariaNo = Tarea::DIARIANO;
+$estadoFinalizada = Tarea::ESTADOFINALIZADA;
 
 $dataProvider = new CActiveDataProvider('Tarea', array(
     'pagination' => false,
@@ -16,6 +17,7 @@ $dataProvider = new CActiveDataProvider('Tarea', array(
         'condition' => "id_usuario = {$userId}"
         . " AND DATE(fecha_inicio) <= '{$fechaFormato}' "
         . " AND diaria = '{$diariaNo}' "
+        . " AND estado != '{$estadoFinalizada}' "
     //. " AND inamovible = '" . Tarea::INAMOVIBLENO . "' "
     ))
 );

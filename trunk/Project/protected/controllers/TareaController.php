@@ -263,14 +263,16 @@ class TareaController extends Controller {
         $estado = NULL;
         $error = NULL;
 
-        $estado = isset($_REQUEST["estado"]) ? Tarea::ESTADOFINALIZADA : Tarea::ESTADOEJECUCION;
+        $estado = isset($_REQUEST["estado"]) ? Tarea::ESTADOFINALIZADA : NULL;
 
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["id_tarea"];
             $fecha = isset($_REQUEST["fecha_hoy"]) ? $_REQUEST["fecha_hoy"] : NULL;
             $model = Tarea::model()->findByPk($idTarea);
             $idActividad = $model->id_actividad;
-            $model->estado = $estado;
+            if ($estado != NULL) {
+                $model->estado = $estado;
+            }
             $model->save();
             $progressBar = $model->progressBar($fecha);
         } else {
@@ -409,6 +411,7 @@ class TareaController extends Controller {
             $model = Tarea::model()->findByPk($model->id_tarea);
 
             if ($model->validate()) {
+                $model->estado = Tarea::ESTADOEJECUCION;
                 $nuevoRegistroTarea = $model->crearRegistroTarea();
                 $idTarea = $model->id_tarea;
                 $idRegistroTarea = $nuevoRegistroTarea->id_registro_tarea;
@@ -436,7 +439,6 @@ class TareaController extends Controller {
         $idRegistroTareaUltimo = NULL;
         $duracionUltimo = NULL;
         $idRegistroTarea = NULL;
-        $htmlRegistroTarea = NULL;
         $error = NULL;
 
         if (isset($_REQUEST['Tarea'])) {
@@ -446,8 +448,8 @@ class TareaController extends Controller {
 
             if ($model->validate()) {
                 // crear el nuevo registro de tarea.
-                $nuevoRegistroTarea = $model->crearRegistroTarea();
-                $idRegistroTarea = $nuevoRegistroTarea->id_registro_tarea;
+                //$nuevoRegistroTarea = $model->crearRegistroTarea();
+                //$idRegistroTarea = $nuevoRegistroTarea->id_registro_tarea;
                 $idTarea = $model->id_tarea;
                 // actualizar la duracion de la tarea mas reciente
                 $ultimoRT = $model->pausarRegistroTarea();
@@ -456,7 +458,6 @@ class TareaController extends Controller {
 
                 $model->estado = Tarea::ESTADOPAUSA;
                 $model->save();
-                $htmlRegistroTarea = $this->renderPartial('../registro_tarea/_view', array('data' => $nuevoRegistroTarea), true);
             }
             if ($model->hasErrors()) {
                 $error = $model->getErrors();
@@ -469,7 +470,6 @@ class TareaController extends Controller {
             'idRegistroTareaUltimo' => $idRegistroTareaUltimo,
             'duracionUltimo' => $duracionUltimo,
             'idRegistroTarea' => $idRegistroTarea,
-            'htmlRegistroTarea' => $htmlRegistroTarea,
             'error' => $error
         ));
     }

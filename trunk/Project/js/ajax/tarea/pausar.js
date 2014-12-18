@@ -10,7 +10,6 @@ var tareaPausarAjax = function(self) {
             var idRegistroTareaUltimo = data.idRegistroTareaUltimo;
             var duracionUltimo = data.duracionUltimo;
             var idRegistroTarea = data.idRegistroTarea;
-            var htmlRegistroTarea = data.htmlRegistroTarea;
             var error = data.error;
 
             var txtUltimoRT = $("#txt-registro-tarea-duracion-" + idRegistroTareaUltimo);
@@ -19,13 +18,15 @@ var tareaPausarAjax = function(self) {
             }
 
             form.siblings(".desplegable").show();
-            //seleccionar la lista donde se van a agregar el registro.
+            /*//seleccionar la lista donde se van a agregar el registro.
             var items = $("#lst-registro-tarea-" + idTarea + " .items");
             var divsItems = $("#lst-registro-tarea-" + idTarea + " .items > div");
             if (divsItems.length === 0) {
                 items.html("");
             }
-            items.append(htmlRegistroTarea);
+            items.append(htmlRegistroTarea);*/
+            deshabilitarPausa(idTarea);
+            habilitarPlay(idTarea);
             actualizarDuracionTarea(idTarea);
         }
     };

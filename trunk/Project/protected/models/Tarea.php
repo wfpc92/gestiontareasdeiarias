@@ -215,9 +215,9 @@ class Tarea extends CActiveRecord {
     public function pausarRegistroTarea() {
         $arrRT = RegistroTarea::model()->findAllByAttributes(array('id_tarea' => $this->id_tarea));
         $numRT = count($arrRT);
-        $ultimoRT = $arrRT[$numRT - 2];
-        $nuevoRT = $arrRT[$numRT - 1];
-        $fechaFinal = date_create($nuevoRT->fecha_inicio);
+        $ultimoRT = $arrRT[$numRT - 1];
+        //$nuevoRT = $arrRT[$numRT - 1];
+        $fechaFinal = date_create();
         $fechaInicial = date_create($ultimoRT->fecha_inicio);
         $diff = date_diff($fechaFinal, $fechaInicial, TRUE);
         //obtener los minutos entre la fecha
