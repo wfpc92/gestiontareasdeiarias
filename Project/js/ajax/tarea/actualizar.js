@@ -9,6 +9,7 @@ var tareaActualizarAjax = function(form) {
             var txtNombreTarea = $("#txt-tarea-nombre-" + idTarea);
             var pViejoTarea = $("#p-tarea-nombre-" + idTarea);
             pViejoTarea.text(txtNombreTarea.val());
+            tareaPoolToogle3(form);
         }
     };
 
