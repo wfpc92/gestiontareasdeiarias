@@ -33,6 +33,8 @@ CREATE TABLE IF NOT EXISTS `u974710561_proy2`.`usuario` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+insert into usuario (`id_usuario`,`correo`,`nombres`,`apellidos`,`contrasena`,`nivel_admin`) values (1, 'admin@unicauca.edu.co', 'admin','admin', '123456', 0);
+
 
 -- -----------------------------------------------------
 -- Table `u974710561_proy2`.`categoria`
@@ -91,6 +93,11 @@ CREATE TABLE IF NOT EXISTS `u974710561_proy2`.`tipo_tarea` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
+
+INSERT INTO `u974710561_proy2`.`tipo_tarea` (`id_tipo_tarea`, `nombre`, `id_usuario`) VALUES (1, 'docencia', 1);
+INSERT INTO `u974710561_proy2`.`tipo_tarea` (`id_tipo_tarea`, `nombre`, `id_usuario`) VALUES (2, 'investigacion', 1);
+INSERT INTO `u974710561_proy2`.`tipo_tarea` (`id_tipo_tarea`, `nombre`, `id_usuario`) VALUES (3, 'gestion', 1);
+INSERT INTO `u974710561_proy2`.`tipo_tarea` (`id_tipo_tarea`, `nombre`, `id_usuario`) VALUES (4, 'servicios', 1);
 
 
 -- -----------------------------------------------------
