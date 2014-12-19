@@ -3,10 +3,13 @@
 /* @var $this Controller */
 /* @var $categoria Categoria */
 /* @var $actividad Actividad */
+/* @var $form CActiveForm */
 ?>
 <h3>Editar tarea </h3>
 <div class="form">
     <?php
+    $idTarea = $model->id_tarea;
+
     $form = $this->beginWidget('CActiveForm', array(
         'id' => 'editar',
         'enableAjaxValidation' => false,
@@ -41,7 +44,7 @@
                 , array('onchange' => 'return categoriaCargarAjax(this)')
         );
         ?>
-        <div id="div-lst-actividades" >
+        <div id="div-lst-actividades-<?php echo $idTarea; ?>" >
             <?php
             if ($actividad != NULL) {
                 $this->renderPartial('../actividad/droplist', array('actividad' => $actividad));
@@ -49,10 +52,12 @@
             ?>
         </div>
         <?php
-        $this->renderPartial('../tarea/_editar', array('model' => $model, 'pool'=>'pool'));
-
-        $this->endWidget();
+        //echo $form->hiddenField($model, 'id_tarea');
+        $this->renderPartial('../tarea/_editar', array('model' => $model, 'pool' => 'pool'));
         ?>
     </div>
+    <?php
+    $this->endWidget();
+    ?>
 </div><!-- form -->
 

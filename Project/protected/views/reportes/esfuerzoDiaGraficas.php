@@ -1,11 +1,16 @@
 <h2>Reporte Esfuerzo por Días</h2>
-<p>Esta gráfica muestra la sensación de productividad que se tuvo el día mencionado (la sensación es ingresada por el usuario). 3 representa una sensación alta, 2 una sensación media y 1 una sensación baja</p>
+<p>Esta gráfica muestra la sensación de productividad que se tuvo el día mencionado
+    (la sensación es ingresada por el usuario). 3 representa una sensación alta, 2 
+    una sensación media y 1 una sensación baja.
+</p>
+
 <?php
 $producNumero = array();
 $producFecha = array();
 $contadorAlta = 0;
 $contadorMedia = 0;
 $contadorBaja = 0;
+
 foreach ($productividad as $prod) {
     switch ($prod['productividad']) {
         case Productividad::ALTA:
@@ -21,12 +26,14 @@ foreach ($productividad as $prod) {
             $contadorBaja += 1;
             break;
     }
+
     $producFecha[] = substr($prod['fecha_productividad'], 0, 10);
 }
 ?>
 <?php
 $this->widget(
-        'chartjs.widgets.ChLine', array(
+        'chartjs.widgets.ChBars', array(
+    //'chartjs.widgets.ChLine', array(
     'width' => 600,
     'height' => 300,
     'htmlOptions' => array("class" => "graficaProductividad"),
@@ -44,9 +51,9 @@ $this->widget(
         "scaleOverride" => true,
         "scaleSteps" => 3,
         "scaleStepWidth" => 1,
-        "scaleStartValue" => 0)
-        )
-);
+        "scaleStartValue" => 0,
+        'scaleBeginAtZero' => true
+)));
 ?>
 <br />
 <table class="reporteProductividad">
@@ -87,7 +94,7 @@ if ($denominador != 0) {
     $promedio = NULL;
 }
 
-switch (intval($promedio)) {
+switch (round($promedio)) {
     case 1:$proMensaje = Productividad::BAJA;
         break;
     case 2:$proMensaje = Productividad::MEDIA;
@@ -103,4 +110,4 @@ if ($denominador != 0):
     </div>
     <?php
 endif;
-echo CHtml::Button('Regresar', array('submit' => '../reportes/formularioTareasCompletadas', 'class' => 'regresar-form-reportes'));
+echo CHtml::Button('Regresar', array('submit' => '../reportes/formularioEsfuerzo', 'class' => 'regresar-form-reportes'));

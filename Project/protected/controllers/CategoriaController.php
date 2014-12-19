@@ -184,12 +184,14 @@ class CategoriaController extends Controller {
      * Cargar las actividades de una categoria
      */
     public function actionCargarActividadesAjax() {
+        $idTarea = NULL;
         $idCategoria = NULL;
         $htmlActividades = NULL;
         $error = NULL;
 
         if (isset($_REQUEST['id_categoria'])) {
             $idCategoria = $_REQUEST['id_categoria'];
+            $idTarea = $_REQUEST['Tarea']['id_tarea'];
             $actividad = new Actividad;
             $actividad->id_categoria = $idCategoria;
             $htmlActividades = $this->renderPartial("../actividad/droplist", array('actividad' => $actividad), TRUE);
@@ -198,6 +200,7 @@ class CategoriaController extends Controller {
         }
 
         echo CJavaScript::jsonEncode(array(
+            'idTarea' => $idTarea,
             'idCategoria' => $idCategoria,
             'htmlActividades' => $htmlActividades,
             'error' => $error
