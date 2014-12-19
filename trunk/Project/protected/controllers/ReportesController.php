@@ -82,7 +82,7 @@ class ReportesController extends Controller {
     public function actionFormularioEsfuerzo() {
         $this->plantillaIndex('_form_esfuerzo');
     }
-    
+
     public function actionFormularioDedicacion() {
         $this->plantillaIndex('_form_tipo_tarea');
     }
@@ -116,12 +116,13 @@ class ReportesController extends Controller {
         $fecha = date_create();
         Calendario::setFecha($fecha);
         $model = new Reportes;
+        $content = NULL;
         if (isset($_REQUEST['Tarea'])) {
             $fechaInicio = $_REQUEST['Tarea']['FECHA_INICIO'];
             $fechaFin = $_REQUEST['Tarea']['FECHA_FIN'];
+            $productividad = $model->getProductividad($fechaInicio, $fechaFin);
+            $content = $this->renderPartial('esfuerzoDiaGraficas', array('productividad' => $productividad), true);
         }
-        $productividad = $model->getProductividad($fechaInicio, $fechaFin);
-        $content = $this->renderPartial('esfuerzoDiaGraficas', array('productividad' => $productividad), true);
         $this->render('../site/index', array(
             'vistaIzquierda' => $content
         ));
@@ -137,10 +138,11 @@ class ReportesController extends Controller {
         }
         $dedicacion = $model->getDedicacion($fechaInicio, $fechaFin);
         $dedicacionPorTipo = $model->getDedicacionPorTipo($fechaInicio, $fechaFin);
-        $content = $this->renderPartial('_dedicacion', array('dedicacion' => $dedicacion, 
+        $content = $this->renderPartial('_dedicacion', array('dedicacion' => $dedicacion,
             'dedicacionPorTipo' => $dedicacionPorTipo), true);
         $this->render('../site/index', array(
             'vistaIzquierda' => $content
         ));
     }
+
 }

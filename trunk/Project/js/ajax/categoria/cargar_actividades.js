@@ -1,16 +1,18 @@
-var categoriaCargarAjax = function(select) {
+var categoriaCargarAjax = function (select) {
     var form = $(select).parents("form");
 
     var confAjax = {
         type: 'POST',
         url: $(form).attr('action') + '/categoria/cargarActividadesAjax',
-        data: $(select).serialize(),
+        data: $(form).serialize(),
         dataType: 'json',
-        success: function(data, textStatus, jqXHR) {
+        success: function (data, textStatus, jqXHR) {
+            var idTarea = data.idTarea;
             var idCategoria = data.idCategoria;
             var htmlActividades = data.htmlActividades;
             var error = data.error;
-            $("#div-lst-actividades").html(htmlActividades);
+
+            $("#div-lst-actividades-" + idTarea).html(htmlActividades);
             menus();
         }
     };

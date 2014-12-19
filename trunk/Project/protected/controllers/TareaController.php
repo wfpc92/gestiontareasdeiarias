@@ -187,10 +187,10 @@ class TareaController extends Controller {
         if (isset($_REQUEST['Tarea'])) {
             $idTarea = $_REQUEST["Tarea"]["id_tarea"];
             $model = Tarea::model()->findByPk($idTarea);
-            $model->attributes = $_REQUEST['Tarea'];
             $model->inamovible = $inamovible;
 
-            if ($idActividad != NULL && $idActividad != 0) {
+            if ($idActividad != NULL || $idActividad != '0' || $model->id_tarea == NULL) {
+                $model->attributes = $_REQUEST['Tarea'];
                 $model->id_actividad = $idActividad;
             } else {
                 $idActividad = $model->id_actividad;

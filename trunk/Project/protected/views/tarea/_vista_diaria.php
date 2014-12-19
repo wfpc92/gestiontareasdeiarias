@@ -34,8 +34,7 @@ echo CHtml::dropDownList(
         , array('title' => 'Ingrese su sensación de productividad para el día de hoy.')
 );
 
-$this->endWidget(); 
-
+$this->endWidget();
 ?>
 
 <h2><?php echo Calendario::getFechaFormatoHoy(); ?></h2>
@@ -52,6 +51,7 @@ $dataProvider = new CActiveDataProvider('Tarea', array(
         'condition' => " id_usuario = {$userId}"
         . " and DATE(fecha_inicio) = '{$fechaFormato}' "
         . " and diaria = '{$tareaSi}' "
+        . " and id_actividad IS NOT NULL "
     ))
 );
 
